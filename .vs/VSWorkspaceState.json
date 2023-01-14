@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\modules",
+    "\\src\\modules\\demonstrations",
+    "\\src\\modules\\demonstrations\\dashboard",
+    "\\src\\shared"
+  ],
+  "SelectedNode": "\\src\\modules\\demonstrations\\dashboard\\index.tsx",
+  "PreviewInSolutionExplorer": false
+}

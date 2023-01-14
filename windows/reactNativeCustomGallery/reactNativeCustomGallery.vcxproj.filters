@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ReactPackageProvider.cpp" />
+    <ClCompile Include="AutolinkedNativeModules.g.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ReactPackageProvider.h" />
+    <ClInclude Include="AutolinkedNativeModules.g.h" />
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\SplashScreen.scale-200.png" />
+    <Image Include="Assets\Square150x150Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Poppins\Poppins-Black.ttf" />
+    <Font Include="Assets\Poppins\Poppins-BlackItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-Bold.ttf" />
+    <Font Include="Assets\Poppins\Poppins-BoldItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-ExtraBold.ttf" />
+    <Font Include="Assets\Poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-ExtraLight.ttf" />
+    <Font Include="Assets\Poppins\Poppins-ExtraLightItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-Italic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-Light.ttf" />
+    <Font Include="Assets\Poppins\Poppins-LightItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-Medium.ttf" />
+    <Font Include="Assets\Poppins\Poppins-MediumItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-Regular.ttf" />
+    <Font Include="Assets\Poppins\Poppins-SemiBold.ttf" />
+    <Font Include="Assets\Poppins\Poppins-SemiBoldItalic.ttf" />
+    <Font Include="Assets\Poppins\Poppins-Thin.ttf" />
+    <Font Include="Assets\Poppins\Poppins-ThinItalic.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Black.ttf" />
+    <Font Include="Assets\Roboto\Roboto-BlackItalic.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Bold.ttf" />
+    <Font Include="Assets\Roboto\Roboto-BoldItalic.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Italic.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Light.ttf" />
+    <Font Include="Assets\Roboto\Roboto-LightItalic.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Medium.ttf" />
+    <Font Include="Assets\Roboto\Roboto-MediumItalic.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Regular.ttf" />
+    <Font Include="Assets\Roboto\Roboto-Thin.ttf" />
+    <Font Include="Assets\Roboto\Roboto-ThinItalic.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Black.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Bold.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-ExtraBold.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-ExtraLight.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Light.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Medium.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Regular.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-SemiBold.ttf" />
+    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Thin.ttf" />
+    <Font Include="Assets\RNVIFonts\AntDesign.ttf" />
+    <Font Include="Assets\RNVIFonts\Entypo.ttf" />
+    <Font Include="Assets\RNVIFonts\EvilIcons.ttf" />
+    <Font Include="Assets\RNVIFonts\Feather.ttf" />
+    <Font Include="Assets\RNVIFonts\FontAwesome.ttf" />
+    <Font Include="Assets\RNVIFonts\FontAwesome5_Brands.ttf" />
+    <Font Include="Assets\RNVIFonts\FontAwesome5_Regular.ttf" />
+    <Font Include="Assets\RNVIFonts\FontAwesome5_Solid.ttf" />
+    <Font Include="Assets\RNVIFonts\Fontisto.ttf" />
+    <Font Include="Assets\RNVIFonts\Foundation.ttf" />
+    <Font Include="Assets\RNVIFonts\Ionicons.ttf" />
+    <Font Include="Assets\RNVIFonts\MaterialCommunityIcons.ttf" />
+    <Font Include="Assets\RNVIFonts\MaterialIcons.ttf" />
+    <Font Include="Assets\RNVIFonts\Octicons.ttf" />
+    <Font Include="Assets\RNVIFonts\SimpleLineIcons.ttf" />
+    <Font Include="Assets\RNVIFonts\Zocial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
+    <None Include="reactNativeCustomGallery_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Assets\Poppins\OFL.txt" />
+    <Text Include="Assets\Roboto\LICENSE.txt" />
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+</Project>
