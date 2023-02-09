@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="1789d0eb-1601-4992-a000-3d7b0cc88866"
+    Name="e1cb4602-7101-4b60-a8ce-b35fce9142f2"
     Publisher="CN=agcoi"
-    Version="1.0.4.0" />
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1789d0eb-1601-4992-a000-3d7b0cc88866" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="e1cb4602-7101-4b60-a8ce-b35fce9142f2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>reactNativeCustomGallery</DisplayName>
@@ -37,7 +37,7 @@
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="reactNativeCustomGallery"
-        BackgroundColor="#2E2E2E">
+        BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>

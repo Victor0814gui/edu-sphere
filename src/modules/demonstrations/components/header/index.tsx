@@ -1,46 +1,38 @@
 import { useState } from "react";
-import { View,StyleSheet } from "react-native";
-import { COLORS, FONTS } from "../../../../shared/theme";
-import IconsHome from "../../assets/icons/copy.svg"
-import {
-  Container,
-  ViewContainerOnHover,
-  ButtonCopyRoomCode,
-  CircleIconCopy,
-  CircleIconImage,
-  ButtonCopyRoomCodeText,
-} from "./styles";
+import { View } from "react-native";
+import { Container } from "./styles";
+import { ButtonBorder } from "../button-header";
+import { Modal } from "../../../../shared/components/modal-component.windows";
+import { modalType } from "../../../../shared/types"
 
-export function Header(){
+type modalContentType = {
+  title: string;
+  description: string;
+  type: modalType;
+}
+
+const modalContent: modalContentType = {
+  title: "tem certeza 🤔?",
+  description: "Tem certeza que deseja encerrar essa sala? Ela não podera ser reaberta novamente depois de fechada",
+  type:"warning",
+}
+
+export const Header = (props:{
+  roomId: string,
+}) => {
+
+  const [ modalIsOpen,setModalIsOpen ] = useState(false);
 
   return (
     <Container>
       <View style={{marginLeft: "auto"}}>
-        <ButtonBoder label="#AHAPQNASDJ" borderActive />
+        <ButtonBorder label={props.roomId || "#AHAPQNASDJ"} borderActive />
       </View>
-      <ButtonBoder label="Encerrar sala"/>
+      <ButtonBorder onPress={() => setModalIsOpen(!modalIsOpen)} label="Encerrar sala"/>
+      <Modal props={{
+        ...modalContent,
+        modalIsOpen,
+      }} />
     </Container>
   )
 }
-
-function ButtonBoder({label,borderActive = false}:{label: string,borderActive?: boolean}){
-  const [ onHover,setOnHover ] = useState(false);
-  return(
-    <ViewContainerOnHover onMouseEnter={() => setOnHover(true)} onMouseLeave={() => setOnHover(false)}>
-      <ButtonCopyRoomCode onHover={onHover}>
-        {borderActive &&
-          <CircleIconCopy onHover={onHover}>
-            <CircleIconImage  source={IconsHome} />
-          </CircleIconCopy>
-        }
-        <ButtonCopyRoomCodeText onHover={onHover} style={font.buttonText}>{label}</ButtonCopyRoomCodeText>
-      </ButtonCopyRoomCode>
-    </ViewContainerOnHover>
-  )
-}
-
-const font = StyleSheet.create({
-  buttonText:{
-    fontFamily: FONTS.Roboto.Medium,
-  }
-})

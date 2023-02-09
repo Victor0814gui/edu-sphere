@@ -4,12 +4,14 @@ import { CustomNavbar } from './navbar';
 import { Profile } from '../../modules/demonstrations/profile';
 import { useWindowDimensions,Platform } from "react-native";
 import { COLORS } from '../theme';
+import { Room } from '../../modules/demonstrations/room';
 
 
 
 type UserDrawerType = {
   dashboard: undefined;
   profile: undefined;
+  room: undefined
 }
 
 
@@ -27,6 +29,7 @@ export function UserDrawerRoutes() {
     >
       <UserDrawer.Screen name="dashboard" component={Dashboard} />
       <UserDrawer.Screen name="profile" component={Profile} />
+      <UserDrawer.Screen name="room" component={Room} />
     </UserDrawer.Navigator>
   );
 }

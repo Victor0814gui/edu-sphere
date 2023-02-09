@@ -4,3 +4,5 @@ declare module "*.svg" {
   const content: JSX.Element<SvgProps>;
   export default content;
 }
+
+declare module "*.gif"{}

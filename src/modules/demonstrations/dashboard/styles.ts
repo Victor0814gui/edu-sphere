@@ -2,10 +2,26 @@ import styled from "styled-components/native";
 import { FONTS,COLORS } from "../../../shared/theme";
 import { StyleSheet } from "react-native";
 
+export const fonts = StyleSheet.create({
+  TitleRoom:{
+    color: COLORS.white,
+    fontFamily: FONTS.Poppins.Bold,
+    fontSize: 24,
+  },
+  TitleRoomText:{
+    color: COLORS.grey_180,
+    fontFamily: FONTS.Roboto.Medium,
+    fontSize: 14,
+  },
+  headerSectionTitle:{
+    fontSize: 18,
+    fontFamily: FONTS.Roboto.Medium,
+    marginVertical: 9,
+  }
+});
 
 export const Container = styled.View`
   flex: 1;
-  padding: 21px;
   background-color: ${COLORS.grey_180};
 `;
 
@@ -27,8 +43,28 @@ export const AmountOfQuestions = styled.TouchableOpacity`
   margin-left: 12px;
 `;
 
-export const ListQuestions = styled.FlatList`
-  border-radius: 8px;
-  max-width: 900px;
-  margin: 5px auto;
+export const ContainerSectionCardRoom = styled.View`
+  position: relative;
+`;
+
+export const HeaderSectionTitle = styled.Text`
+  margin-left: 21px;
+`;
+
+const ButtonRoomBase = styled.TouchableOpacity`
+  height: 35px;
+  width: 35px;
+  border-radius: 18px;
+  background-color: ${COLORS.grey_240};
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+`;
+
+export const ButtonBackRoom = styled(ButtonRoomBase)`
+
+`;
+
+export const ButtonNextRoom = styled(ButtonRoomBase)`
+  right: 0;
 `;

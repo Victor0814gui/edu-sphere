@@ -7,7 +7,6 @@ namespace winrt::reactNativeCustomGallery::implementation
     struct MainPage : MainPageT<MainPage>
     {
         MainPage();
-        
     };
 }
 

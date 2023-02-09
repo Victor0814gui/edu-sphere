@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { 
-  ListToastNotifications,
   Container,
-  ContentToast,
-  ContainerTitle,
-  ContainerDescription,
+  ListToastNotifications,
+  ContainerButtons,
+  ContainerButtonCancel,
+  ContainerButtonAccept,
 } from './styles'; 
 import { 
   View,
@@ -15,72 +15,65 @@ import {
 
 import { COLORS,FONTS } from "../theme";
 import { useToastNotificaitonProvider,ToastContentType } from '../../shared/contexts/toast-notification';
-import { Flyout } from 'react-native-windows';
+import { Flyout, useWindowDimensions } from 'react-native-windows';
 
 
 export function ToastComponent() {
-  const { toastNotifications,removeToastNotication } = useToastNotificaitonProvider();
+  const { toastNotifications } = useToastNotificaitonProvider();
+  const { width,height } = useWindowDimensions()
+  const [ onHover,setOnHover ] = useState(false);
+  const [ pressed,setPressed ] = useState(false);
+  const [ flyoutIsDimissible,setFlyoutIsDimissible ] = useState(true);
 
   if(!toastNotifications){
     return <View/>
   }
 
-  // if(Platform.OS === "windows"){
-  //   return (
-  //     <Flyout
-  //       isOpen={showFlyout1}
-  //       onDismiss={() => {
-  //         setShowFlyout1(false);
-  //       }}
-  //       horizontalOffset={120}
-  //       verticalOffset={height - 35}
-  //     >
-  //       <View style={{
-  //         backgroundColor: COLORS.grey_270,
-  //         padding: 12,
-  //         flexDirection: "row",
-  //       }}> 
-  //         <SwitchText>This is a flyout.</SwitchText>
-  //         <TouchableHighlight
-  //           onPress={() => {
-  //             setShowFlyout1(false);
-  //           }}
-  //           activeOpacity={0.2}
-  //           underlayColor={"blue"}>
-  //           <SwitchText>Close Flyout</SwitchText>
-  //         </TouchableHighlight>
-  //       </View>
-  //     </Flyout>
-  //   )
-  // }
+  const renderItem = ({item}:{item:ToastContentType}) => (
+    <Flyout
+      isOpen={flyoutIsDimissible}
+      onDismiss={() => setFlyoutIsDimissible(false)}
+      horizontalOffset={width/2}
+      verticalOffset={height/2}
+    >
+      <View style={{
+        backgroundColor: COLORS.grey_270,
+        padding: 12,
+        maxWidth: 480,
+        width: "100%",
+      }}> 
+        <Text style={styles.modalTitle}>{item.title}</Text>
+        <Text style={styles.modalDescription}>{item.description}</Text>
+        <ContainerButtons>
+          <ContainerButtonCancel
+            onPress={() => setFlyoutIsDimissible(false)}
+            activeOpacity={0.2}
+            underlayColor={COLORS.green_390}>
+            <Text style={styles.containerButtonCancelText}>Cancelar</Text>
+          </ContainerButtonCancel>
+          <ContainerButtonAccept
+            onPressIn={() => setPressed(true)}
+            onPressOut={() => setPressed(false)}
+            onHover={onHover}
+            pressed={pressed}
+            underlayColor={"transparent"}
+            onPress={() => {}}
+            activeOpacity={0.2}
+            //@ts-ignore
+            onMouseEnter={() => setOnHover(true)}
+            onMouseLeave={() => setOnHover(false)}>
+            <Text style={styles.containerButtonAcceptText}>Encerrar</Text>
+          </ContainerButtonAccept>
+        </ContainerButtons>
+      </View>
+    </Flyout>
+  )
+
   return (
     <Container>
       <ListToastNotifications<React.ElementType>
         data={toastNotifications}
-        renderItem={({item}:{item:ToastContentType}) => (
-        <Flyout
-          isOpen={true}
-          onDismiss={() => {
-          }}
-          horizontalOffset={120}
-          verticalOffset={140}
-        >
-          <View style={{
-            backgroundColor: COLORS.grey_270,
-            padding: 12,
-            flexDirection: "row",
-          }}> 
-            <Text>This is a flyout.</Text>
-            <TouchableHighlight
-              onPress={() => {
-              }}
-              activeOpacity={0.2}
-              underlayColor={"blue"}>
-              <Text>Close Flyout</Text>
-            </TouchableHighlight>
-          </View>
- </Flyout>
-        )}
+        renderItem={renderItem}
         keyExtractor={({id}:{id: string}) => id}
       />
     </Container>
@@ -94,5 +87,23 @@ const styles = StyleSheet.create({
   },
   containerDescription: {
     fontFamily: FONTS.Roboto.Regular,
-  }
+  },
+  modalTitle:{
+    fontSize: 16,
+    fontFamily: FONTS.Roboto.Medium,
+  },
+  modalDescription:{
+    fontSize: 14,
+    fontFamily: FONTS.Roboto.Regular,
+    color: COLORS.grey_800,
+    marginTop: 31,
+  },
+  containerButtonCancelText:{
+    fontFamily: FONTS.Roboto.Medium,
+    color: COLORS.grey_800,
+  },
+  containerButtonAcceptText:{
+    color: COLORS.grey_200,
+    fontFamily: FONTS.Roboto.Medium,
+  },
 });

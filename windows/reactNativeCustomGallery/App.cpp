@@ -3,11 +3,7 @@
 #include "App.h"
 
 #include "AutolinkedNativeModules.g.h"
-
 #include "ReactPackageProvider.h"
-// C++
-
-
 
 using namespace winrt;
 using namespace xaml;
@@ -42,7 +38,7 @@ App::App() noexcept
 
     RegisterAutolinkedNativeModulePackages(PackageProviders()); // Includes any autolinked modules
 
-    PackageProviders().Append(make<ReactPackageProvider>());
+    PackageProviders().Append(make<ReactPackageProvider>()); // Includes all modules in this project
 
     InitializeComponent();
 }
@@ -58,7 +54,6 @@ void App::OnLaunched(activation::LaunchActivatedEventArgs const& e)
 
     Frame rootFrame = Window::Current().Content().as<Frame>();
     rootFrame.Navigate(xaml_typename<MainPage>(), box_value(e.Arguments()));
-    rootFrame.Background();
 }
 
 /// <summary>

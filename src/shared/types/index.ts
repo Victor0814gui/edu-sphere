@@ -1,5 +1,5 @@
 
-
+type modalType = 'default' | 'warning' | 'error' | 'sucess';
 
 type UserType = {
   id: string;
@@ -35,6 +35,13 @@ type ToastContentType = {
   title: string;
   description?: string;
   type?: 'default' | 'warning' | 'error' | 'sucess';
+  position?: 'center' | 'right' | 'left' | 'top' | 'bottom';
+}
+
+type ModalContentType = {
+  title: string;
+  description?: string;
+  type?: modalType
 }
 
 type ToastNotificaitonContextType = {
@@ -42,13 +49,21 @@ type ToastNotificaitonContextType = {
   addToastNotifications:(state:ToastContentType) => void;
   removeToastNotication:(state: string) => void;
 }
+type ModalContextType = {
+  modalContent: ModalContentType | null;
+  openModal:(state: boolean) => void;
+  closeModal:(state: boolean) => void;
+}
 
 
 export type {
+  modalType,
   UserType,
   SignInMethodProps,
+  ModalContextType,
   ContextAuthContextType,
   ToastNotificaitonContextType,
   ToastContentType,
+  ModalContentType,
   UserDrawerType,
 }

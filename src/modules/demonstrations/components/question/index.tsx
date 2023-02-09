@@ -8,7 +8,11 @@ import {
   VisualizationIcons,
 } from "./styles";
 
-import Icon from "react-native-vector-icons/Entypo"
+import { 
+  checkmarkCircle,
+  excluir,
+  messages,
+} from  "../../assets/icons";
 
 export function Question(){
 
@@ -24,9 +28,9 @@ export function Question(){
           <Text style={styles.questionUserNameProfile}>Marcelo Oliveira de Souza</Text>
         </SectionContent>
         <SectionContent>
-          <VisualizationIcons/>
-          <VisualizationIcons/>
-          <VisualizationIcons/>
+          <VisualizationIcons source={checkmarkCircle} />
+          <VisualizationIcons source={excluir} />
+          <VisualizationIcons source={messages} />
         </SectionContent>
       </ContentAuthorInformationAndEditOption>
     </ContainerQuestion>

@@ -43,9 +43,8 @@ export const CircleIconProfile = styled.Image`
 `;
 
 
-export const VisualizationIcons = styled.View`
+export const VisualizationIcons = styled.Image`
   height: 24px;
   width: 24px;
-  background-color: ${COLORS.green_500};
   margin: 0 12px;
 `;

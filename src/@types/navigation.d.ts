@@ -6,6 +6,9 @@ export declare global {
     interface RootParamList extends RootStackParamList{
       dashboard: undefined;
       profile: undefined;
+      room: {
+        roomId: string;
+      }
       signin: undefined;
       signupstepone: undefined;
       signupsteptwo: undefined;

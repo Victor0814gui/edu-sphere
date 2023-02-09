@@ -10,8 +10,6 @@ import { View,StyleSheet, Button } from 'react-native';
 
 import { COLORS,FONTS } from "../theme";
 import { useToastNotificaitonProvider,ToastContentType } from '../../shared/contexts/toast-notification';
-import { Flyout, Platform } from 'react-native-windows';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 
 
 export function ToastComponent() {

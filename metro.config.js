@@ -4,7 +4,6 @@
  *
  * @format
  */
-const { getDefaultConfig } = require("metro-config");
 const fs = require('fs');
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
@@ -13,11 +12,7 @@ const rnwPath = fs.realpathSync(
   path.resolve(require.resolve('react-native-windows/package.json'), '..'),
 );
 
-module.exports = (async () => {
-  const {
-    resolver: { sourceExts, assetExts }
-  } = await getDefaultConfig();
- return{
+module.exports = {
   resolver: {
     blockList: exclusionList([
       // This stops "react-native run-windows" from causing the metro server to crash if its already running
@@ -38,5 +33,4 @@ module.exports = (async () => {
       },
     }),
   },
- }
-});
+};

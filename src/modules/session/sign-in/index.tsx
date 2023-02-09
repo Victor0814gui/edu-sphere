@@ -22,9 +22,7 @@ export function SignIn() {
   const { signIn } = useAuthContextProvider();
 
   const handleSignIn = useCallback(() => {
-    signIn({email,password});
-    setEmail('');
-    setPassword('');
+    signIn({email,password});   
   },[email,password])
 
   return (
