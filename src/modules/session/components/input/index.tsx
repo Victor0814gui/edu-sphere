@@ -21,10 +21,10 @@ export function Input({labelText,...rest}:InputProps) {
     <InputContainerAndLabel>
       <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>
       <ContainerStyleTextInput
-        //@ts-ignore
-        onMouseEnter={() => setOnHover(true)}
-        onMouseLeave={() => setOnHover(false)}
         onHover={onHover}
+        //@ts-ignore
+        onMouseLeave={() => setOnHover(false)}
+        onMouseEnter={() => setOnHover(true)}
       >
         <TextInput  
           {...rest}

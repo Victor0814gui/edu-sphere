@@ -35,6 +35,12 @@ export const Container = styled.View<{isActive: boolean,onHover:boolean}>`
   margin: 5px auto;
 `;
 
+export const Icon = styled.Image.attrs((props) => ({
+  resizeMode: "contain",
+}))`
+  width: 25px;
+  height: 25px;
+`;
 
 export const SectionProfileClient = styled.View`
   padding: 21px 8px;

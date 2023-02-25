@@ -4,7 +4,7 @@ import { NavigationContainer,DefaultTheme, Theme } from '@react-navigation/nativ
 import { COLORS } from "./theme";
 import { ContextAuthContextProvider } from "./contexts/auth";
 import { ToastNotificaitonProvider } from "./contexts/toast-notification";
-import { Modal } from "./components/modal-component.windows";
+import { NotificationContextProvider } from "./contexts/notification";
 
 const MyTheme: Theme = {
   ...DefaultTheme,
@@ -16,12 +16,16 @@ const MyTheme: Theme = {
 
 
 
-export const Main = () => (
-  <NavigationContainer theme={MyTheme}>
-    <ContextAuthContextProvider>
-      <ToastNotificaitonProvider>
-        <Router/>
-      </ToastNotificaitonProvider>
-    </ContextAuthContextProvider>
-  </NavigationContainer>
-)
+export const Main = () => {
+  return (
+    <NavigationContainer theme={MyTheme}>
+      <NotificationContextProvider>
+        <ToastNotificaitonProvider>
+          <ContextAuthContextProvider>
+            <Router/>
+          </ContextAuthContextProvider>
+        </ToastNotificaitonProvider>
+      </NotificationContextProvider>
+    </NavigationContainer>
+  )
+}

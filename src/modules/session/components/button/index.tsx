@@ -24,6 +24,7 @@ export function Button({children,text,...rest}:InputProps) {
         onMouseEnter={() => setOnHover(true)}
         onMouseLeave={() => setOnHover(false)}
         onHover={onHover}
+        disabled={sendResponseToServer}
       >
         <>
         {children}

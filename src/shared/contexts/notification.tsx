@@ -1,45 +1,53 @@
 import {
-  createContext,
+  useState,
   useContext,
-  useState
+  createContext,
+  ReactNode,
+  useEffect,
 } from "react";
 
 import { NativeModules } from "react-native";
 
 
 type ContextNotificationProviderType = {
-  notificationText: string;
+  // notificationText: string;
   setNotificationText: (state: string) => void;
 }
 
-const ContextNotificationProvider = createContext<ContextNotificationProviderType>(
+
+
+const NotificationContext = createContext<ContextNotificationProviderType>(
   {} as ContextNotificationProviderType
 );
 
-function NotificationProvider(){
+const NotificationContextProvider = ({children}:{children: ReactNode}) => {
   const [ notificationText,setNotificationText ] = useState('');
 
-  NativeModules.Notifications.raise({
-    template: 0,
-    text: "Notificações windows",
-    image: {
-      src: "https://microsoft.github.io/react-native-windows/img/header_logo.svg",
-      alt: "React logo",
-    },
-  });
+
+
+  // useEffect(() => {
+  //   NativeModules.Notifications.raise({
+  //     template: 0,
+  //     text: "Notificações windows",
+  //     image: {
+  //       src: "http://localhost:4000/Multiavatar-Aphex-Maiden.png",
+  //       alt: "React logo",
+  //     },
+  //   });
+  // },[notificationText])
 
   return(
-    <ContextNotificationProvider.Provider value={{
-      notificationText,
+    <NotificationContext.Provider value={{
+      // notificationText,
       setNotificationText,
     }}>
-
-    </ContextNotificationProvider.Provider>
+      {children}
+    </NotificationContext.Provider>
   )
 }
 
-function useNotificationContext(){
-  const contextAlreadyExiste = useContext(ContextNotificationProvider);
+function useNotificationContextProvider(){
+  const contextAlreadyExiste = useContext(NotificationContext);
 
   if(!contextAlreadyExiste){
     throw new Error('o [contextAlreadyExiste] context não foi instanciado no escopo')
@@ -48,4 +56,7 @@ function useNotificationContext(){
   return contextAlreadyExiste;
 }
 
-export { NotificationProvider }
+export { 
+  NotificationContextProvider,
+  useNotificationContextProvider
+}

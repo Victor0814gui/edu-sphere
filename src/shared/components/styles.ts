@@ -1,13 +1,41 @@
 import styled from "styled-components/native";
-import { COLORS } from "../theme";
-import { FlatList } from "react-native";
+import { COLORS, FONTS } from "../theme";
+import { FlatList,StyleSheet } from "react-native";
 
 import  { ToastContentType } from "../contexts/toast-notification";
 
+export const aditionalStyles = StyleSheet.create({
+  containerTitleFont:{
+    fontFamily: FONTS.Roboto.Medium,
+  },
+  containerDescription: {
+    fontFamily: FONTS.Roboto.Regular,
+  },
+  modalTitle:{
+    fontSize: 16,
+    fontFamily: FONTS.Roboto.Medium,
+  },
+  modalDescription:{
+    fontSize: 14,
+    fontFamily: FONTS.Roboto.Regular,
+    color: COLORS.grey_800,
+  },
+  containerButtonCancelText:{
+    fontFamily: FONTS.Roboto.Medium,
+    color: COLORS.grey_800,
+  },
+  containerButtonAcceptText:{
+    color: COLORS.grey_200,
+    fontFamily: FONTS.Roboto.Medium,
+  },
+});
+
 export const Container = styled.View`
   position: absolute;
+  z-index: 1;
   margin: 12px;
-  right: 0;
+  right: 5%;
+  top: 5%;
 `;
 
 export const ListToastNotifications = styled(FlatList as new () => FlatList<ToastContentType>)``;

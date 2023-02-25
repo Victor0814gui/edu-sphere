@@ -1,12 +1,15 @@
 import styled from "styled-components/native";
 import { COLORS, FONTS } from "../../../../shared/theme";
-import { PlatformColor } from "react-native";
+import { Platform,TouchableHighlight } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+const mobile = Platform.OS === "android";
 
-export const ContainerButton = styled.TouchableHighlight<{onHover:boolean}>`
+
+export const ContainerButton = styled(mobile ? RectButton : TouchableHighlight)<{onHover:boolean}>`
   width: 100%;
   height: 42px;
   margin: 4px 0;
-  border-radius: 12px;
+  border-radius: 21px;
   font-size: 14px;
   align-items: center;
   justify-content: center;

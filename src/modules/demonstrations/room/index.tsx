@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useEffect,useState } from "react";
 import { Text,Image } from "react-native";
 import { Header } from "../components/header";
 import { Question } from "../components/question";
@@ -17,18 +17,58 @@ import {
   ButtonRoomNotFound,
   ButtonRoomNotFoundText,
 } from "./styles";
+// import LottieView  from "lottie-react-native";
 
 
 type RoomParamsType = {
   roomId: string;
 }
 
+export type QuestionType = {
+  message: string;
+  avatarUrl?: string;
+  authorId: string;
+  nickname: string;
+  messageVideoUrl?: string | null;
+  isPrivate: boolean;
+}
+
+const questions: QuestionType[] = [
+  {
+    nickname: "Álefe C Oliveira",
+    message: "Olá, eu gostaria de saber como criar um componente funcional dentro do React e se existe diferença na perfomance entre um componente com classes.",
+    authorId: "1234-1234-asdf-asdf",
+    avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
+    messageVideoUrl: "https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_30mb.mp4",
+    isPrivate: false,
+  },
+  {
+    nickname: "Victorguilherme0814",
+    authorId: "1234-asdf-hjk5-55hf",
+    message: "Olá, eu gostaria de saber como criar um componente funcional dentro do React e se existe diferença na perfomance entre um componente com classes.",
+    avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
+    messageVideoUrl: "http://localhost:4000/2023-02-13-21-27-16.mkv",
+    isPrivate: false,
+  },
+  {
+    nickname: "Victorguilherme0814",
+    authorId: "1234-asdf-hjk5-55hf",
+    message: "Olá, eu gostaria de saber como criar um componente funcional dentro do React e se existe diferença na perfomance entre um componente com classes.",
+    avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
+    messageVideoUrl: "http://localhost:4000/2022-08-28-09-12-22.mkv",
+    isPrivate: false,
+  },
+]
+
 export const Room = () => {
 
-  const [ data,setData ] = useState<number[]>([1,2,1,2,3,4,5,2,2,3,4,2,4,2,4,5,1,2,5,1,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,2,5,5,2,5,25,2,2,2,2,2,3,4,4,5,6,6,7,8,8,9,9,6,6,5,5,4,4,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]);
+  const [ data,setData ] = useState<QuestionType[]>([]);
   const route  = useRoute()
   const { navigate } = useNavigation();
 
+  useEffect(() => {
+    setData(questions)
+  })  
 
   if(!route.params){
     return (
@@ -38,6 +78,7 @@ export const Room = () => {
         <ButtonRoomNotFound onPress={() => navigate("dashboard")}>
           <ButtonRoomNotFoundText style={fonts.buttonRoomNotFoundText}>Home</ButtonRoomNotFoundText>
         </ButtonRoomNotFound>
+        {/* <LottieView style={{width: 400,height:400}}  source={"HamburgerArrow"} /> */}
       </ContainerRoomNotFound>
     )
   }
@@ -45,6 +86,19 @@ export const Room = () => {
   const {
     roomId,
   } = route.params as RoomParamsType;
+
+  const renderItem = ({item}:{item: QuestionType,index?: number}): JSX.Element => (
+    <Question
+      nickname={item.nickname}
+      message={item.message}
+      authorId={item.authorId}
+      avatarUrl={item.avatarUrl}
+      messageVideoUrl={item.messageVideoUrl}
+      isPrivate={item.isPrivate}
+    />
+  )
+
+  const keyExtractor = (item:unknown,index:number) =>`${index}-${item}`;
 
   return(
     <Container>
@@ -60,9 +114,10 @@ export const Room = () => {
       <ListQuestions
         data={data}
         ListEmptyComponent={<Image source={require("../assets/animations/arty-chat.gif")}/>}
-        renderItem={({item}) => (<Question/>)}        
+        //@ts-ignore
+        renderItem={renderItem}
         showsVerticalScrollIndicator
-        keyExtractor={(item,index) =>`${index}-${item}`}
+        keyExtractor={keyExtractor}
       />
     </Container>
   );

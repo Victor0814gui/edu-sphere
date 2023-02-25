@@ -10,7 +10,6 @@ export const Container = styled.View`
 `;
 
 export const Form = styled.View`
-  justify-content: start;
   max-width: 380px;
 `;
 

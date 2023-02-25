@@ -1,6 +1,9 @@
 import styled from "styled-components/native";
 import { FONTS,COLORS } from "../../../shared/theme";
-import { StyleSheet } from "react-native";
+import { StyleSheet,Platform,Animated,Pressable,TouchableOpacity } from "react-native";
+import { RectButton } from "react-native-gesture-handler"
+
+const mobile = Platform.OS === "android";
 
 export const fonts = StyleSheet.create({
   TitleRoom:{
@@ -31,7 +34,7 @@ export const SubHeaderContent = styled.View`
   margin-bottom: 21px;
 `;
 
-export const AmountOfQuestions = styled.TouchableOpacity`
+export const AmountOfQuestions = styled((mobile ? RectButton : TouchableOpacity))`
   background-color: ${COLORS.green_500};
   height: 32px;
   margin: 4px;
@@ -51,20 +54,25 @@ export const HeaderSectionTitle = styled.Text`
   margin-left: 21px;
 `;
 
-const ButtonRoomBase = styled.TouchableOpacity`
-  height: 35px;
-  width: 35px;
+export const ContainerUsersEvents = styled.View``;
+
+export const ButtonRoomControlListContainer = styled(Animated.View)`
+  height: 40px;
+  width: 40px;
   border-radius: 18px;
   background-color: ${COLORS.grey_240};
   position: absolute;
   top: 50%;
   z-index: 1;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const ButtonBackRoom = styled(ButtonRoomBase)`
+export const ButtonRoomControlList = styled(mobile ? RectButton : Pressable)``;
 
-`;
-
-export const ButtonNextRoom = styled(ButtonRoomBase)`
-  right: 0;
+export const ButtonRoomIcon = styled.Image.attrs(props => ({
+  resizeMode: "contain"
+}))`
+  width: 24px;
+  height: 24px;
 `;

@@ -22,7 +22,7 @@ export function UserDrawerRoutes() {
   
   return (
     <UserDrawer.Navigator 
-      useLegacyImplementation={Platform.OS ==='windows' ? true : false}
+      useLegacyImplementation
       screenOptions={NavbarDevices()}
       drawerContent={({navigation,state}) => <CustomNavbar navigation={navigation} state={state}/>}
       initialRouteName="dashboard"

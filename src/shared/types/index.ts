@@ -19,6 +19,7 @@ type ContextAuthContextType = {
   user: UserType | null;
   signIn: ({email,password}: SignInMethodProps) => void;
   signUp: (state: UserType) => void;
+  signOut: () => void;
   sendResponseToServer: boolean;
 }
 

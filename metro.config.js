@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 
+
 const rnwPath = fs.realpathSync(
   path.resolve(require.resolve('react-native-windows/package.json'), '..'),
 );
@@ -33,4 +34,4 @@ module.exports = {
       },
     }),
   },
-};
+}

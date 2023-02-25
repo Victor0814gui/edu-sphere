@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled,{ css } from "styled-components/native";
 import { COLORS,FONTS } from "../../../../shared/theme";
 import { StyleSheet } from "react-native";
 
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
 });
 
 export const ContainerQuestion = styled.View`
-  height: 142px;
+  min-height: 142px;
   width: 100%;
   border-radius: 8px;
   background-color: ${COLORS.grey_240};
@@ -34,7 +34,9 @@ export const SectionContent  = styled.View`
   align-items: center;
 `;
 
-export const CircleIconProfile = styled.Image`
+export const CircleIconProfile = styled.Image.attrs((props) => ({
+  resizeMode:"cover",
+}))`
   width: 38px;
   height: 38px;
   border-radius: 19px;
@@ -43,8 +45,19 @@ export const CircleIconProfile = styled.Image`
 `;
 
 
+export const ButtonIconContainer = styled.TouchableHighlight<{onHover: boolean}>`
+  width: 32px;
+  height: 32px;
+  ${({onHover}) => onHover && css`
+    background-color: ${COLORS.grey_400}
+  `};
+  border-radius: 7px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+`;
+
 export const VisualizationIcons = styled.Image`
   height: 24px;
   width: 24px;
-  margin: 0 12px;
 `;

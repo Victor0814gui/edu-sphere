@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import LogoImage from "../assets/images/logo.svg";
 import { Input } from '../components/input';
 import { 
+  styles,
   Container,
   Form,
   SectionButtonForm,
@@ -49,12 +50,3 @@ export function SignUpStepTwo() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  logo:{
-    marginBottom: 58,
-  },
-  text:{
-    fontFamily: FONTS.Roboto.Medium
-  },
-});

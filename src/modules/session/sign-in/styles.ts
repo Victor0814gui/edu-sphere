@@ -10,6 +10,10 @@ export const styles = StyleSheet.create({
   text:{
     fontFamily: FONTS.Roboto.Medium
   },
+  button:{ 
+    marginTop: 12,
+    minWidth: "100%"
+  }
 });
 
 export const Container = styled.View`
@@ -19,7 +23,6 @@ export const Container = styled.View`
 `;
 
 export const Form = styled.View`
-  justify-content: start;
   max-width: 380px;
 `;
 

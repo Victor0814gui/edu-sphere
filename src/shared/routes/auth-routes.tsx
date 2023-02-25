@@ -9,7 +9,6 @@ import { AppProvider } from '../contexts';
 
 
 
-
 const AuthDrawer = createDrawerNavigator<UserDrawerType>();
 
 export function AuthRoutes() {

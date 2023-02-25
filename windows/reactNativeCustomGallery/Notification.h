@@ -19,7 +19,7 @@ struct Notifications {
     void Raise(const React::JSValue& notification) noexcept
     {
 
-        ToastTemplateType type = ToastTemplateType::ToastImageAndText03;
+        ToastTemplateType type = ToastTemplateType::ToastImageAndText01;
 
         React::JSValueObject obj;
         if (notification.Type() == React::JSValueType::String)

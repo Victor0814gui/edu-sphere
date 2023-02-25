@@ -22,8 +22,8 @@ export function ToastComponent() {
         renderItem={({item}:{item:ToastContentType}) => (
           <ContentToast>
             <View>
-              <ContainerTitle style={styles.containerTitleFont}>{item.title}</ContainerTitle>
-              <ContainerDescription style={styles.containerDescription}>{item.description}</ContainerDescription>
+              <ContainerTitle style={aditionalStyles.containerTitleFont}>{item.title}</ContainerTitle>
+              <ContainerDescription style={aditionalStyles.containerDescription}>{item.description}</ContainerDescription>
               <Button onPress={() => removeToastNotication(item.id!)} title="rasdfasdfasdfsdfemove" />
             </View>
           </ContentToast>
@@ -35,7 +35,7 @@ export function ToastComponent() {
 }
 
 
-const styles = StyleSheet.create({
+const aditionalStyles = StyleSheet.create({
   containerTitleFont:{
     fontFamily: FONTS.Roboto.Medium,
   },

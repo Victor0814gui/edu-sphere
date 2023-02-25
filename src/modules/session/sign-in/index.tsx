@@ -1,7 +1,6 @@
 import React, { useState,useCallback } from 'react';
-import { Text, Image,StyleSheet, Pressable, ActivityIndicator } from "react-native";
+import {  Image,Pressable } from "react-native";
 import { Button } from "../components/button";
-import { FONTS,COLORS } from "../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
 import LogoImage from "../assets/images/logo.svg";
 import { Input } from '../components/input';
@@ -35,10 +34,7 @@ export function SignIn() {
         <Button
           text="entrar"
           onPress={() => handleSignIn()}
-          style={{
-            marginTop: 12,
-            minWidth: "100%"
-          }}
+          style={styles.button}
         />
       </Form>
       <Pressable onPress={() => {

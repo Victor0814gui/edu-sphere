@@ -4,18 +4,18 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   textInput:{
-    fontFamily: FONTS.Roboto.Medium,
+    fontFamily: FONTS.Poppins.Medium,
   },
 });
 
 export const InputContainerAndLabel = styled.View`
-  justify-content: start;
   flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const InputLabelText = styled.Text`
   font-size: 16px;
-  margin-bottom: 7px;
+  margin-top: 7px;
 `;
 
 export const ContainerStyleTextInput = styled.View<{onHover: boolean}>`

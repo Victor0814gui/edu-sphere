@@ -6,5 +6,5 @@ import { UserDrawerRoutes } from "./user-routes";
 
 export function Router(){
   const { user } = useAuthContextProvider();
-  return !user?.id ? <UserDrawerRoutes/> : <AuthRoutes/>
+  return user?.id ? <UserDrawerRoutes/> : <AuthRoutes/>
 }

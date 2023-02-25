@@ -16,9 +16,15 @@ export const font = StyleSheet.create({
     fontSize: 14,
     color: COLORS.grey_480,
   },
+  progressIndicator:{
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    right: "50%",
+  },
 })
 
-export const Container = styled.TouchableHighlight`
+export const Container = styled.Pressable`
   max-width: 340px;
   background-color: ${COLORS.grey_200};
   border-radius: 8px;
@@ -27,7 +33,7 @@ export const Container = styled.TouchableHighlight`
 `;
 
 export const ContainerContent = styled.View<{pressed: boolean}>`
-  opacity: ${({pressed}) => pressed ? 0 : 1};
+  opacity: ${({pressed}) => pressed ? 0.7 : 1};
 `;
 
 export const Title = styled.Text`

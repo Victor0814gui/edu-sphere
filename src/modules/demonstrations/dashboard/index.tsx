@@ -1,9 +1,5 @@
-import React,{ memo,useState,useRef,useCallback } from "react";
-import { Text,FlatList,StyleSheet,SectionList } from "react-native";
-import { Header } from "../components/header";
-import { Question } from "../components/question";
-import { ProgressView } from "@react-native-community/progress-view";
-
+import React,{ useEffect,useState,useRef,useCallback } from "react";
+import { Text,View,FlatList,Platform,SectionList,Animated,PressableProps, SectionListData, ImageSourcePropType } from "react-native";
 import {
   fonts,
   Container,
@@ -11,18 +7,20 @@ import {
   AmountOfQuestions,
   ContainerSectionCardRoom,
   HeaderSectionTitle,
-  ButtonBackRoom, 
-  ButtonNextRoom, 
+  ButtonRoomControlListContainer,
+  ButtonRoomControlList,
+  ButtonRoomIcon,
 } from "./styles";
-import { COLORS, FONTS } from "../../../shared/theme";
-import { artyChat } from "../assets/animations";
 import { CardRoom } from "../components/card-room";
+import { arrowLeft, arrowRight } from "../assets/icons";
+import { api } from "../../../shared/services/api";
 
 type CardType = {
   title: string;
   avatarUrl: string;
   nickname: string;
   tags: string[];
+  id: string;
 }
 
 type CardSectionType = {
@@ -30,20 +28,10 @@ type CardSectionType = {
   data: CardType[];
 }
 
-const card = {
-  title: "Olá, eu gostaria de saber como criar um componente funcional dentro do React e se existe diferença na perfomance entre um componente com classes.",
-  avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
-  nickname: "victor0814gui",
-  tags: ["#reactjs","#nodejs"],
+type ButtonListRoomControlProps = PressableProps & {
+  icon: ImageSourcePropType;
+  position: "left" | "right";
 }
-
-const cardSection: CardSectionType = {
-  title: "#Node",
-  data: [card,card,card,card,card,card,card]
-}
-
-const Data = [cardSection];
-// new Array(30).fill(cardSection);
 
 type RenderSectionListProps = {
   section:{
@@ -52,10 +40,70 @@ type RenderSectionListProps = {
   }
 }
 
-const RenderSectionList = ({section: {title,data: itemsData}}:RenderSectionListProps) => {
+const ButtonListRoomControl = ({ 
+  icon,
+  position,
+  ...rest 
+}: ButtonListRoomControlProps) => {
+  const animatedButtonSizeRef = useRef(new Animated.Value(1)).current;
+
+  const onMouseEnter = () => {
+    Animated.spring(animatedButtonSizeRef,{
+      toValue: 1.5,
+      useNativeDriver: true,
+    }).start()
+  }
+  
+  const onMouseLeave = () => {
+    Animated.spring(animatedButtonSizeRef,{
+      toValue: 1,
+      useNativeDriver: true
+    }).start()
+  }
+  return (
+    //@ts-ignore
+    <ButtonRoomControlListContainer 
+      style={[
+        {transform:[{scale: animatedButtonSizeRef}]},
+        position === "left" ? { left: 0 } : { right: 0 }
+      ]}
+      //@ts-ignore
+      onMouseEnter={() => onMouseEnter()}
+      // onMouseLeave={() => onMouseLeave()}
+    >
+      <ButtonRoomControlList {...rest}>
+        <ButtonRoomIcon source={arrowLeft}/>
+      </ButtonRoomControlList>
+    </ButtonRoomControlListContainer>
+  )
+}
+
+const ButtonsControlsList = (props:{
+  backIndexList:() => void,
+  nextIndexList:() => void,
+}) => {
+  return(
+    <>
+    <ButtonListRoomControl
+      onPress={props.backIndexList}
+      icon={arrowLeft}
+      position="left"
+    />
+    <ButtonListRoomControl
+      onPress={props.nextIndexList}
+      icon={arrowRight}
+      position="right"
+    />
+    </>
+  )
+}
+
+const CardsRoomSection = ({section: {title,data: itemsData}}:RenderSectionListProps) => {
   console.log("[RenderSectionList]-atualizou")
+  const [ onHover,setOnHover ] = useState(false);
   const [ index,setIndex ] = useState(0)
   const horizontalListRef = useRef<FlatList | null>(null);
+  const mobile = Platform.OS === "android";
   
   const nextIndexList = useCallback((indexTotal: number) => {
     if( index + 1 <indexTotal){
@@ -70,30 +118,53 @@ const RenderSectionList = ({section: {title,data: itemsData}}:RenderSectionListP
       horizontalListRef.current?.scrollToIndex({index: index - 1})
     }
   },[index]);
-
+  
   return (
-    <>
-    <ContainerSectionCardRoom>
+    <ContainerSectionCardRoom
+      //@ts-ignore
+      onMouseEnter={() => setOnHover(true)}
+      onMouseLeave={() => setOnHover(false)}
+    >
       <HeaderSectionTitle style={fonts.headerSectionTitle}>{title}</HeaderSectionTitle>
-      <ButtonBackRoom onPress={backIndexList}/>
       <FlatList
         ref={horizontalListRef}
         data={itemsData}
-        renderItem={({item}) => <CardRoom {...item}/>}
-        keyExtractor={(_,index) => index.toString() + _.nickname}
+        renderItem={({item,index}) => <CardRoom index={index} {...item}/>}
+        keyExtractor={(_,index) => _.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        scrollEnabled={false}
+        scrollEnabled={mobile}
       />
-      <ButtonNextRoom onPress={() => nextIndexList(itemsData.length)}/>
+      {(onHover) && 
+        <ButtonsControlsList
+          nextIndexList={() => nextIndexList(itemsData.length)}
+          backIndexList={backIndexList}
+        />
+      }
     </ContainerSectionCardRoom>
-    </>
-  )
-}
+  );
+};
 
 export const Dashboard = () => {
 
-  const [ data,setData ] = useState<CardSectionType[]>(Data);
+  const [ data,setData ] = useState<CardSectionType[]>([]);
+
+  const renderSectionHeader = ({section}:{section: SectionListData<CardType, CardSectionType>}) => {
+    console.log({section})
+    return (
+      <CardsRoomSection section={section}/> 
+    )
+  }
+
+
+  useEffect(() => {
+    const fetchRoomsData = async () => {
+      const roomsDataResponse = await api.get("/rooms");
+      setData (roomsDataResponse.data);
+    }
+    fetchRoomsData();
+  },[])
+  
   return(
     <Container>
       <SubHeaderContent>
@@ -104,10 +175,10 @@ export const Dashboard = () => {
       </SubHeaderContent>
       <SectionList
         sections={data}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => `${index}`}
         renderItem={({item}) =>null}
-        renderSectionHeader={({section}) => <RenderSectionList section={section}/>}
+        renderSectionHeader={renderSectionHeader}
       />
     </Container>
   );
-}
+};

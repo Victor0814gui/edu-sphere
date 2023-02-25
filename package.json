@@ -2,44 +2,57 @@
   "name": "reactNativeCustomGallery",
   "version": "0.0.1",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "start:macos": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "windows": "react-native run-windows"
+    "macos": "react-native run-macos",
+    "windows": "react-native run-windows",
+    "windows:autolink": "npx react-native autolink-windows --check --sln windows/reactNativeCustomGallery.sln --proj windows/reactNativeCustomGallery/reactNativeCustomGallery.vcxproj",
+    "check-dependencies": "rnx-align-deps",
+    "fix-dependencies": "rnx-align-deps --write"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-env": "^7.20.0",
+    "@react-native-community/netinfo": "^9.0.0",
     "@react-native-community/progress-view": "^1.4.0-beta.0",
     "@react-native-picker/picker": "^2.4.8",
     "@react-navigation/drawer": "^6.5.6",
-    "@react-navigation/native": "^6.1.1",
+    "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.9.7",
     "axios": "^1.2.2",
+    "lottie-react-native": "^5.1.5",
     "react": "18.1.0",
-    "react-native": "0.71.0",
+    "react-hook-form": "^7.43.2",
+    "react-native": "^0.70.0",
     "react-native-chart-kit": "^6.12.0",
-    "react-native-gesture-handler": "^2.8.0",
-    "react-native-reanimated": "^2.14.4",
+    "react-native-eject": "^0.2.0",
+    "react-native-gesture-handler": "^2.6.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",
-    "react-native-svg": "12.1.1",
+    "react-native-svg": "^12.3.0",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-windows": "0.71.0",
+    "react-native-video": "^5.2.1",
+    "react-native-windows": "^0.70.0",
     "styled-components": "^5.3.6",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
+    "@babel/core": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@rnx-kit/align-deps": "^2.2.0",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^26.0.23",
     "@types/react": "^18.0.21",
     "@types/react-native": "^0.70.6",
     "@types/react-native-vector-icons": "^6.4.12",
+    "@types/react-native-video": "^5.0.14",
     "@types/react-test-renderer": "^18.0.0",
     "@types/styled-components": "^5.1.26",
     "@types/styled-components-react-native": "^5.2.0",
@@ -50,10 +63,41 @@
     "babel-plugin-module-resolver": "^5.0.0",
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
-    "metro-config": "^0.72.3",
-    "metro-react-native-babel-preset": "0.72.3",
+    "metro-config": "^0.72.1",
+    "metro-react-native-babel-preset": "^0.72.1",
     "react-native-svg-transformer": "^1.0.0",
     "react-test-renderer": "18.1.0",
     "typescript": "^4.8.3"
+  },
+  "rnx-kit": {
+    "kitType": "app",
+    "alignDeps": {
+      "requirements": {
+        "development": [
+          "react-native@0.71"
+        ],
+        "production": [
+          "react-native@0.70"
+        ]
+      },
+      "capabilities": [
+        "animation",
+        "babel-preset-react-native",
+        "core",
+        "core-android",
+        "core-ios",
+        "core-windows",
+        "gestures",
+        "jest",
+        "metro-config",
+        "navigation/native",
+        "netinfo",
+        "react",
+        "react-test-renderer",
+        "safe-area",
+        "screens",
+        "svg"
+      ]
+    }
   }
 }
