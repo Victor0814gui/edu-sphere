@@ -149,6 +149,7 @@
       <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
+  
   <ItemGroup>
     <None Include="PropertySheet.props" />
     <Text Include="Assets\Poppins\OFL.txt" />
@@ -161,6 +162,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Message.json" Name="Message" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Welcome.json" Name="Welcome" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\Poppins\Poppins-Black.ttf" />
@@ -204,12 +209,12 @@
     <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Thin.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <PropertyGroup Label="LottieReactNativeProps">
+  <!-- <PropertyGroup Label="LottieReactNativeProps">
     <LottieReactNativeDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\lottie-react-native\package.json'))\node_modules\lottie-react-native</LottieReactNativeDir>
   </PropertyGroup>
   <ImportGroup Label="LottieReactNativeTargets">
     <Import Project="$(LottieReactNativeDir)\src\windows\cppwinrt\PropertySheets\LottieGen.Auto.targets" />
-  </ImportGroup>
+  </ImportGroup> -->
   <ImportGroup Label="ReactNativeWindowsTargets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets')" />
   </ImportGroup>
