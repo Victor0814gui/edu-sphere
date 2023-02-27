@@ -2,7 +2,6 @@
 
 #include "winrt/Microsoft.ReactNative.h"
 
-
 namespace winrt::reactNativeCustomGallery::implementation
 {
     struct ReactPackageProvider : winrt::implements<ReactPackageProvider, winrt::Microsoft::ReactNative::IReactPackageProvider>

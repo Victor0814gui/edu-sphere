@@ -1705,16 +1705,14 @@
   resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-2.4.8.tgz#a1a21f3d6ecadedbc3f0b691a444ddd7baa081f8"
   integrity sha512-5NQ5XPo1B03YNqKFrV6h9L3CQaHlB80wd4ETHUEABRP2iLh7FHLVObX2GfziD+K/VJb8G4KZcZ23NFBFP1f7bg==
 
-"@react-native-windows/cli@0.70.3":
-  version "0.70.3"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.70.3.tgz#ce2023558a080cd60cdef763a75e856ddbe595ea"
-  integrity sha512-GxzPH7utyAbqIaWPaowj9UfonHXgrk3uIwRNoj6nA9/srajrTrtcQvM2Ydb0MlETmgVG15m6puFaa87vLGvy0Q==
+"@react-native-windows/cli@0.70.4":
+  version "0.70.4"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.70.4.tgz#a598763aa9e2fe88072a7a9b2216ddfb493ca599"
+  integrity sha512-/fQ1EuOcvxNDm2jE4KPb9YNKtfpDQhG2a8xKu6BBIBnTOXrWxyEhJy1a5hEdDdomDkDfyO+Uze0QSatlmECu9Q==
   dependencies:
-    "@react-native-windows/fs" "0.70.1"
-    "@react-native-windows/package-utils" "0.70.1"
-    "@react-native-windows/telemetry" "0.70.2"
-    "@typescript-eslint/eslint-plugin" "^5.20.0"
-    "@typescript-eslint/parser" "^5.20.0"
+    "@react-native-windows/fs" "0.70.2"
+    "@react-native-windows/package-utils" "0.70.2"
+    "@react-native-windows/telemetry" "0.70.3"
     "@xmldom/xmldom" "^0.7.7"
     chalk "^4.1.0"
     cli-spinners "^2.2.0"
@@ -1733,45 +1731,37 @@
     xml-parser "^1.2.1"
     xpath "^0.0.27"
 
-"@react-native-windows/find-repo-root@0.70.1":
-  version "0.70.1"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/find-repo-root/-/find-repo-root-0.70.1.tgz#dfe021f8f739102bec3cdeed52d904b47490f521"
-  integrity sha512-t6n+UPgIJeJ+2lagOio7rFL/lohSdN69nQDe9Mb0q3Rk5sA3fKv/c2jLbXxYPcUI0DpJHpkH0BtBNUX7btnQXw==
+"@react-native-windows/find-repo-root@0.70.2":
+  version "0.70.2"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/find-repo-root/-/find-repo-root-0.70.2.tgz#0af21ff319e2748062bd79f608926afc87f2c3b3"
+  integrity sha512-3hXA46/1t0BHARaUG5BP9vb9kMorT7IQebEAi11uSrVu6kRBbuxZdw3HppG1g7q87ZENtyyOS94wQQAlZxxRLA==
   dependencies:
-    "@react-native-windows/fs" "0.70.1"
-    "@typescript-eslint/eslint-plugin" "^5.20.0"
-    "@typescript-eslint/parser" "^5.20.0"
+    "@react-native-windows/fs" "0.70.2"
     find-up "^4.1.0"
 
-"@react-native-windows/fs@0.70.1":
-  version "0.70.1"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/fs/-/fs-0.70.1.tgz#9086efe23d6cce10c1625b0acd60160933f26234"
-  integrity sha512-VTm0qe/dDhUnBVfquZORyR3OHPlYO7ewP8MqkqP4NGKr59PEaNLXToUYc3B98p1Fy5tmjcox/rRUex/P5p7xQQ==
+"@react-native-windows/fs@0.70.2":
+  version "0.70.2"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/fs/-/fs-0.70.2.tgz#565a1072ef504acdba03cda2fb84d5e82506344a"
+  integrity sha512-KdpMDuWroQZaW3UiUxu3QIJfcZUTWQnGxVWQJR3GjWIitXV+A+BHd+5Nm+ZvcTmOuNMDfP4vq49zqr5zxZxzWg==
   dependencies:
-    "@typescript-eslint/eslint-plugin" "^5.20.0"
-    "@typescript-eslint/parser" "^5.20.0"
     graceful-fs "^4.2.8"
 
-"@react-native-windows/package-utils@0.70.1":
-  version "0.70.1"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/package-utils/-/package-utils-0.70.1.tgz#d39066dc11be0e0bdf75fdbe9bfc499f97ab5b7f"
-  integrity sha512-unPXvDndCwvxbO7YFT3IZbjoKGAgD49ASJAQGNwzLXsdrhE+D7SGQ7xwHq46JCGj/frlub7u+/3035+coiNt/Q==
+"@react-native-windows/package-utils@0.70.2":
+  version "0.70.2"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/package-utils/-/package-utils-0.70.2.tgz#bcb7920a087f2e66109e30950b5e9034288629d0"
+  integrity sha512-/hrra88TIF613g0AIijj//7xmi19kBTfA5R/Ah5/vzsDCI78NmZ1og2HzskcnsssOPbHLJtJxhyqCiaiLVlQqg==
   dependencies:
-    "@react-native-windows/find-repo-root" "0.70.1"
-    "@react-native-windows/fs" "0.70.1"
-    "@typescript-eslint/eslint-plugin" "^5.20.0"
-    "@typescript-eslint/parser" "^5.20.0"
+    "@react-native-windows/find-repo-root" "0.70.2"
+    "@react-native-windows/fs" "0.70.2"
     get-monorepo-packages "^1.2.0"
     lodash "^4.17.15"
 
-"@react-native-windows/telemetry@0.70.2":
-  version "0.70.2"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/telemetry/-/telemetry-0.70.2.tgz#d88f2ea0a0e3ca8bd700594ab6c79ab459d4de3e"
-  integrity sha512-BaqrK00WFe2EPSyH/hDz7eUDmBn7SnKEpTUvfhDqTfVUc8y+11jwkBevaP3DkcAn083tgvRnFf9Ge4JtYUsYWg==
+"@react-native-windows/telemetry@0.70.3":
+  version "0.70.3"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/telemetry/-/telemetry-0.70.3.tgz#02d16addf170f4647ae79b62eee341fe7f6fa597"
+  integrity sha512-8S3G2BKJo8h+gd7erVkbPjY93ZhRe8EZHgKya3WmgW1YP9PQkdPSWlAAHrsDBBriEr/fxTibUa+nxoySmTw04w==
   dependencies:
-    "@react-native-windows/fs" "0.70.1"
-    "@typescript-eslint/eslint-plugin" "^5.20.0"
-    "@typescript-eslint/parser" "^5.20.0"
+    "@react-native-windows/fs" "0.70.2"
     "@xmldom/xmldom" "^0.7.7"
     applicationinsights "^2.3.1"
     ci-info "^3.2.0"
@@ -1780,10 +1770,10 @@
     os-locale "^5.0.0"
     xpath "^0.0.27"
 
-"@react-native-windows/virtualized-list@0.70.1":
-  version "0.70.1"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/virtualized-list/-/virtualized-list-0.70.1.tgz#6403797a532e467de0c9bee5363b782f128433be"
-  integrity sha512-3V1lEBTmwN/ldKCDbxjplB0mwp7peK0ynzQv6Pnq+W0GeW8ApjhKBwUrqAVT6jDL5Ur4sXGoGM/Q26aFUloJZQ==
+"@react-native-windows/virtualized-list@0.70.2":
+  version "0.70.2"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/virtualized-list/-/virtualized-list-0.70.2.tgz#5b049bf8ed1b5e2cec4166258e6b96f02df858b7"
+  integrity sha512-GgO5G4JDBkuris1njBl+xAZDZk9ByUZ5Q3/KvSjhFP1YozNyQiLnL8zpxk5/kHQV/J2EsEbY4KIwlpxybgj+Qg==
   dependencies:
     invariant "^2.2.4"
 
@@ -2236,7 +2226,7 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@typescript-eslint/eslint-plugin@^5.20.0", "@typescript-eslint/eslint-plugin@^5.37.0":
+"@typescript-eslint/eslint-plugin@^5.37.0":
   version "5.53.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.53.0.tgz#24b8b4a952f3c615fe070e3c461dd852b5056734"
   integrity sha512-alFpFWNucPLdUOySmXCJpzr6HKC3bu7XooShWM+3w/EL6J2HIoB2PFxpLnq4JauWVk6DiVeNKzQlFEaE+X9sGw==
@@ -2274,7 +2264,7 @@
     "@typescript-eslint/typescript-estree" "3.10.1"
     eslint-visitor-keys "^1.1.0"
 
-"@typescript-eslint/parser@^5.20.0", "@typescript-eslint/parser@^5.37.0":
+"@typescript-eslint/parser@^5.37.0":
   version "5.53.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.53.0.tgz#a1f2b9ae73b83181098747e96683f1b249ecab52"
   integrity sha512-MKBw9i0DLYlmdOb3Oq/526+al20AJZpANdT6Ct9ffxcV8nKCHz63t/S0IhlTFNsBIHJv+GY5SFJ0XfqVeydQrQ==
@@ -7334,18 +7324,18 @@ react-native-video@^5.2.1:
     prop-types "^15.7.2"
     shaka-player "^2.5.9"
 
-react-native-windows@^0.70.0:
-  version "0.70.12"
-  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.70.12.tgz#50011bd69bd5b198e5fe991e37cb537936622508"
-  integrity sha512-zpVYb9ZGZHm2TYNTyULsZljqVS0vd+GH2x+UmKnRpAoiqmGDqjOwbhfsMIiF/5TC0w7cTS8zhklhW5qD+TC/dQ==
+react-native-windows@0.70.13:
+  version "0.70.13"
+  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.70.13.tgz#a0c96580980e50a14f6fd9a0662dbb872ff94891"
+  integrity sha512-93NWaBwu9Kz6VDvzaSurLG14VAXZxvFtFdMvMG1DNuSMv7vXmD0RjeVPdhC96jeXwRR+Hp4KtvTNH4lvlRAuBA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@jest/create-cache-key-function" "^27.0.1"
     "@react-native-community/cli" "^9.0.0"
     "@react-native-community/cli-platform-android" "^9.0.0"
     "@react-native-community/cli-platform-ios" "^9.0.0"
-    "@react-native-windows/cli" "0.70.3"
-    "@react-native-windows/virtualized-list" "0.70.1"
+    "@react-native-windows/cli" "0.70.4"
+    "@react-native-windows/virtualized-list" "0.70.2"
     "@react-native/assets" "1.0.0"
     "@react-native/normalize-color" "2.0.0"
     "@react-native/polyfills" "2.0.0"

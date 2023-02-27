@@ -3,42 +3,12 @@
 #include "pch.h"
 #include "AutolinkedNativeModules.g.h"
 
-// Includes from @react-native-community/netinfo
-#include <winrt/ReactNativeNetInfo.h>
-
-// Includes from @react-native-community/progress-view
-#include <winrt/progress_view.h>
-
-// Includes from @react-native-picker/picker
-#include <winrt/ReactNativePicker.h>
-
-// Includes from react-native-screens
-#include <winrt/RNScreens.h>
-
-// Includes from react-native-video
-#include <winrt/ReactNativeVideoCPP.h>
-
-// Includes from lottie-react-native
-// #include <winrt/LottieReactNative.h>
-// #include <winrt/AnimatedVisuals.h>
-
 namespace winrt::Microsoft::ReactNative
 {
 
 void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collections::IVector<winrt::Microsoft::ReactNative::IReactPackageProvider> const& packageProviders)
 { 
-    // IReactPackageProviders from @react-native-community/netinfo
-    packageProviders.Append(winrt::ReactNativeNetInfo::ReactPackageProvider());
-    // IReactPackageProviders from @react-native-community/progress-view
-    packageProviders.Append(winrt::progress_view::ReactPackageProvider());
-    // IReactPackageProviders from @react-native-picker/picker
-    packageProviders.Append(winrt::ReactNativePicker::ReactPackageProvider());
-    // IReactPackageProviders from react-native-screens
-    packageProviders.Append(winrt::RNScreens::ReactPackageProvider());
-    // IReactPackageProviders from react-native-video
-    packageProviders.Append(winrt::ReactNativeVideoCPP::ReactPackageProvider());
-    //IReactPackageProvider from lottie-react-native
-    // packageProviders.Append(winrt::LottieReactNative::ReactPackageProvider(winrt::AnimatedVisuals::LottieCodegenSourceProvider()));
+    UNREFERENCED_PARAMETER(packageProviders);
 }
 
 }

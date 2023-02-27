@@ -55,51 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
-    <Text Include="Assets\Poppins\OFL.txt" />
-    <Text Include="Assets\Roboto\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Black.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Bold.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-ExtraBold.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-ExtraLight.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Light.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Medium.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Regular.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-SemiBold.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Thin.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Black.ttf" />
-    <Font Include="Assets\Poppins\Poppins-BlackItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Bold.ttf" />
-    <Font Include="Assets\Poppins\Poppins-BoldItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraBold.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraBoldItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraLight.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraLightItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Italic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Light.ttf" />
-    <Font Include="Assets\Poppins\Poppins-LightItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Medium.ttf" />
-    <Font Include="Assets\Poppins\Poppins-MediumItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Regular.ttf" />
-    <Font Include="Assets\Poppins\Poppins-SemiBold.ttf" />
-    <Font Include="Assets\Poppins\Poppins-SemiBoldItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Thin.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ThinItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Black.ttf" />
-    <Font Include="Assets\Roboto\Roboto-BlackItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Bold.ttf" />
-    <Font Include="Assets\Roboto\Roboto-BoldItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Italic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Light.ttf" />
-    <Font Include="Assets\Roboto\Roboto-LightItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Medium.ttf" />
-    <Font Include="Assets\Roboto\Roboto-MediumItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Regular.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Thin.ttf" />
-    <Font Include="Assets\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
 </Project>

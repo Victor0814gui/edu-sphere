@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This project was created with react-native-windows 0.71.1 -->
+<!-- This project was created with react-native-windows 0.70.13 -->
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(SolutionDir)\ExperimentalFeatures.props" Condition="Exists('$(SolutionDir)\ExperimentalFeatures.props')" />
   <PropertyGroup Label="Globals">
@@ -10,15 +10,13 @@
     <ProjectName>reactNativeCustomGallery</ProjectName>
     <RootNamespace>reactNativeCustomGallery</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Label="ReactNativeWindowsProps">
-    <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(SolutionDir), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
+    <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
   </PropertyGroup>
   <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.WindowsSdk.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -62,8 +60,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -149,11 +146,8 @@
       <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
-  
   <ItemGroup>
     <None Include="PropertySheet.props" />
-    <Text Include="Assets\Poppins\OFL.txt" />
-    <Text Include="Assets\Roboto\LICENSE.txt" />
     <Text Include="readme.txt">
       <DeploymentContent>false</DeploymentContent>
     </Text>
@@ -164,57 +158,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <LottieAnimation Include="..\..\src\shared\assets\animations\Message.json" Name="Message" />
-    <LottieAnimation Include="..\..\src\shared\assets\animations\Welcome.json" Name="Welcome" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="Assets\Poppins\Poppins-Black.ttf" />
-    <Font Include="Assets\Poppins\Poppins-BlackItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Bold.ttf" />
-    <Font Include="Assets\Poppins\Poppins-BoldItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraBold.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraBoldItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraLight.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ExtraLightItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Italic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Light.ttf" />
-    <Font Include="Assets\Poppins\Poppins-LightItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Medium.ttf" />
-    <Font Include="Assets\Poppins\Poppins-MediumItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Regular.ttf" />
-    <Font Include="Assets\Poppins\Poppins-SemiBold.ttf" />
-    <Font Include="Assets\Poppins\Poppins-SemiBoldItalic.ttf" />
-    <Font Include="Assets\Poppins\Poppins-Thin.ttf" />
-    <Font Include="Assets\Poppins\Poppins-ThinItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Black.ttf" />
-    <Font Include="Assets\Roboto\Roboto-BlackItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Bold.ttf" />
-    <Font Include="Assets\Roboto\Roboto-BoldItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Italic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Light.ttf" />
-    <Font Include="Assets\Roboto\Roboto-LightItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Medium.ttf" />
-    <Font Include="Assets\Roboto\Roboto-MediumItalic.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Regular.ttf" />
-    <Font Include="Assets\Roboto\Roboto-Thin.ttf" />
-    <Font Include="Assets\Roboto\Roboto-ThinItalic.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Black.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Bold.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-ExtraBold.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-ExtraLight.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Light.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Medium.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Regular.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-SemiBold.ttf" />
-    <Font Include="Assets\Roboto_Slab\static\RobotoSlab-Thin.ttf" />
+    <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.211028.7" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <!-- <PropertyGroup Label="LottieReactNativeProps">
-    <LottieReactNativeDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\lottie-react-native\package.json'))\node_modules\lottie-react-native</LottieReactNativeDir>
-  </PropertyGroup>
-  <ImportGroup Label="LottieReactNativeTargets">
-    <Import Project="$(LottieReactNativeDir)\src\windows\cppwinrt\PropertySheets\LottieGen.Auto.targets" />
-  </ImportGroup> -->
   <ImportGroup Label="ReactNativeWindowsTargets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets')" />
   </ImportGroup>
