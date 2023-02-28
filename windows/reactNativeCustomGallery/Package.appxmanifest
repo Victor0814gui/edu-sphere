@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="49b7f0bd-32c5-4568-9ed1-f87fdd81e3d3"
+    Name="7dadd211-493b-4b1a-90ac-d2abfd1eae6e"
     Publisher="CN=agcoi"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="49b7f0bd-32c5-4568-9ed1-f87fdd81e3d3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="7dadd211-493b-4b1a-90ac-d2abfd1eae6e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>reactNativeCustomGallery</DisplayName>
