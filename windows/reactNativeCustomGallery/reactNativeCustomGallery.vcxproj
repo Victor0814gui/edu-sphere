@@ -150,6 +150,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
+    <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
+    <Text Include="..\..\src\shared\assets\fonts\Roboto\LICENSE.txt" />
     <Text Include="readme.txt">
       <DeploymentContent>false</DeploymentContent>
     </Text>
@@ -160,6 +162,36 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-BlackItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Bold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-BoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraBold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraLight.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraLightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Italic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Light.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-LightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Medium.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-MediumItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Regular.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-SemiBold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-SemiBoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Thin.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ThinItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Black.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Bold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Italic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Light.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Medium.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Regular.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Thin.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ReactNativeWindowsTargets">

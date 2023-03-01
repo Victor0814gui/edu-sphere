@@ -1,10 +1,35 @@
 import { useContext,createContext, ReactNode, useState, useCallback } from "react";
 import { api } from "../services/api";
-import { ContextAuthContextType, SignInMethodProps, UserType } from "../../shared/types";
+import { ContextAuthContextType, SignInMethodProps, UserType,ToastContentType } from "../../shared/types";
 import { useToastNotificaitonProvider } from "../contexts/toast-notification";
 import { useNotificationContextProvider } from "../contexts/notification";
 import { v4 as uuidV4 } from "uuid";
 
+const signInNotificationContentTypeServerError: ToastContentType = {
+  title:"error ao conectar com o servidor",
+  description:"asdfasdf",
+  position: "center",
+  type:"error"
+}
+const signInNotificationContentTypeNetworkError: ToastContentType = {
+  title:"error ao conectar com o servidor",
+  description:"asdfasdf",
+  position: "center",
+  type:"error"
+}
+
+const signUpNotificationContentTypeServerError: ToastContentType = {
+  title:"error ao conectar com o servidor",
+  description:"asdfasdf",
+  position: "center",
+  type:"error"
+}
+const signUpNotificationContentTypeNetworkError: ToastContentType = {
+  title:"error ao conectar com o servidor",
+  description:"asdfasdf",
+  position: "center",
+  type:"error"
+}
 
 const ContextAuthContext = createContext<ContextAuthContextType>(
   {} as ContextAuthContextType
@@ -21,23 +46,13 @@ function ContextAuthContextProvider({children}:{children: ReactNode}){
     try{
       const signInDataResponse = await api.post("/session/signin",{email,password})
       if(signInDataResponse.statusText === "Network Error"){
-        addToastNotifications({
-          title:"error ao conectar com o servidor",
-          description:"asdfasdf",
-          position: "center",
-          type:"error"
-        });
+        addToastNotifications(signInNotificationContentTypeServerError);
       }
       setUser(signInDataResponse.data);
     }catch(err){
       console.log("auth-network-error")
       // setNotificationText(uuidV4())
-      addToastNotifications({
-        title:"error ao conectar com o servidor",
-        description:"asdfasdf",
-        position: "center",
-        type:"error"
-      }); 
+      addToastNotifications(signInNotificationContentTypeNetworkError); 
     }finally{
       setSendResponseToServer(false);
     }
@@ -47,21 +62,11 @@ function ContextAuthContextProvider({children}:{children: ReactNode}){
     try{
       const signInDataResponse = await api.post("/session/signup",{props})
       if(signInDataResponse.statusText === "Network Error"){
-        addToastNotifications({
-          title:"error ao conectar com o servidor",
-          description:"asdfasdf",
-          position: "center",
-          type:"error"
-        }); 
+        addToastNotifications(signUpNotificationContentTypeServerError); 
       }
     }catch(err){
       console.log("auth-network-error")
-      addToastNotifications({
-        title:"error ao conectar com o servidor",
-        description:"asdfasdf",
-        position: "center",
-        type:"error"
-      }); 
+      addToastNotifications(signUpNotificationContentTypeNetworkError); 
     }
   },[])
 
