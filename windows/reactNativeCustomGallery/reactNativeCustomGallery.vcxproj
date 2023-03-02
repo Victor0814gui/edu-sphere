@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- This project was created with react-native-windows 0.71.2 -->
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props" Condition="Exists('..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props')" />
   <Import Project="$(SolutionDir)\ExperimentalFeatures.props" Condition="Exists('$(SolutionDir)\ExperimentalFeatures.props')" />
   <PropertyGroup Label="Globals">
     <CppWinRTOptimized>true</CppWinRTOptimized>
@@ -14,6 +15,13 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <!-- custom configuration to resolve lottie bug -->
+    <IntDir>$(MSBuildProjectDirectory)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <GeneratedFilesDir>$(IntDir)Generated Files\</GeneratedFilesDir>
+    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <!-- end -->
   </PropertyGroup>
   <PropertyGroup Label="ReactNativeWindowsProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(SolutionDir), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
@@ -162,6 +170,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <LottieAnimation Include="Assets/Animations/MyAnimation.json" Name="MyAnimation" />
+  </ItemGroup>
+  <ItemGroup>
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-BlackItalic.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Bold.ttf" />
@@ -194,6 +205,12 @@
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup Label="LottieReactNativeProps">
+    <LottieReactNativeDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\lottie-react-native\package.json'))\node_modules\lottie-react-native</LottieReactNativeDir>
+  </PropertyGroup>
+  <ImportGroup Label="LottieReactNativeTargets">
+    <Import Project="$(LottieReactNativeDir)\src\windows\cppwinrt\PropertySheets\LottieGen.Auto.targets" />
+  </ImportGroup>
   <ImportGroup Label="ReactNativeWindowsTargets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets')" />
     <Import Project="..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets" Condition="Exists('..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets')" />
@@ -212,5 +229,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets'))" />
     <Error Condition="!Exists('..\packages\Win2D.uwp.1.26.0\build\native\Win2D.uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Win2D.uwp.1.26.0\build\native\Win2D.uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props'))" />
   </Target>
 </Project>
