@@ -26,5 +26,9 @@
     <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-video\windows\ReactNativeVideoCPP\ReactNativeVideoCPP.vcxproj">
       <Project>{0d1e54d3-4be1-4daf-98bf-124c28c85014}</Project>
     </ProjectReference>
+    <!-- Projects from lottie-react-native -->
+    <ProjectReference Include="$(ProjectDir)..\..\node_modules\lottie-react-native\src\windows\cppwinrt\LottieReactNative.vcxproj">
+      <Project>{e5a7828d-f596-4793-80ec-4c071e575c58}</Project>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -21,6 +21,9 @@
 // Includes from react-native-video
 #include <winrt/ReactNativeVideoCPP.h>
 
+#include <winrt/LottieReactNative.h>
+#include <winrt/AnimatedVisuals.h>
+
 namespace winrt::Microsoft::ReactNative
 {
 
@@ -38,6 +41,8 @@ void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collecti
     packageProviders.Append(winrt::RNSVG::ReactPackageProvider());
     // IReactPackageProviders from react-native-video
     packageProviders.Append(winrt::ReactNativeVideoCPP::ReactPackageProvider());
+    // IReactPackageProviders from lottie-react-native
+    packageProviders.Append(winrt::LottieReactNative::ReactPackageProvider(winrt::AnimatedVisuals::LottieCodegenSourceProvider()));
 }
 
 }
