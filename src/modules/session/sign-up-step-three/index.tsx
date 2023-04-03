@@ -70,11 +70,11 @@ export function SignUpStepThree() {
       </SectionSelectAvatar>
       <Form>
         <SectionButtonForm>
-          <ButtonGoBack onPress={navigation.goBack}>
+          <ButtonGoBack onPress={() => navigation.navigate("signupsteptwo")}>
             <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
           </ButtonGoBack>
           <Button
-            text="proximo passo"
+            text="Criar conta"
             style={{ marginTop: 12 }}
           />
         </SectionButtonForm>

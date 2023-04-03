@@ -4,15 +4,22 @@ import {
   ContainerButton,
   ContainerButtonText,
 } from './styles';
-import { ActivityIndicator,TouchableOpacityProps } from 'react-native';
+import { ActivityIndicator,TouchableOpacityProps, View } from 'react-native';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 type InputProps = TouchableOpacityProps & {
   children?: ReactNode;
-  text?: string
+  text?: string;
+  iconName?: string;
 }
 
-export function Button({children,text,...rest}:InputProps) {
+export function Button({
+  children,
+  text,
+  iconName = "login",
+  ...rest
+}:InputProps) {
   const { sendResponseToServer } = useAuthContextProvider();
   const [ onHover,setOnHover ] = useState(false);
 
@@ -29,8 +36,16 @@ export function Button({children,text,...rest}:InputProps) {
         <>
         {children}
         {text && sendResponseToServer
-          ?<ActivityIndicator color={COLORS.grey_180}/>
-          :<ContainerButtonText style={{fontFamily: FONTS.Roboto.Medium}}>{text}</ContainerButtonText>}
+          ?  <ActivityIndicator color={COLORS.grey_180}/>
+          :(
+            <View style={{
+              alignItems: "center",
+              flexDirection: "row",
+            }}>
+              <ContainerButtonText style={{fontFamily: FONTS.Roboto.Medium,marginRight: 4}}>{text}</ContainerButtonText>
+              <Icon size={23} color={COLORS.grey_180} name={iconName}/>
+            </View>
+          )}
         </>
       </ContainerButton>
   );

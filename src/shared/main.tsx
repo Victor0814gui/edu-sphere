@@ -5,6 +5,7 @@ import { COLORS } from "./theme";
 import { ContextAuthContextProvider } from "./contexts/auth";
 import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 import { NotificationContextProvider } from "./contexts/notification";
+import { Dashboard } from "../modules/demonstrations/dashboard";
 
 const MyTheme: Theme = {
   ...DefaultTheme,

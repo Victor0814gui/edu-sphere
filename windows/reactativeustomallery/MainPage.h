@@ -2,7 +2,7 @@
 #include "MainPage.g.h"
 #include <winrt/Microsoft.ReactNative.h>
 
-namespace winrt::reactNativeCustomGallery::implementation
+namespace winrt::reactativeustomallery::implementation
 {
     struct MainPage : MainPageT<MainPage>
     {
@@ -10,7 +10,7 @@ namespace winrt::reactNativeCustomGallery::implementation
     };
 }
 
-namespace winrt::reactNativeCustomGallery::factory_implementation
+namespace winrt::reactativeustomallery::factory_implementation
 {
     struct MainPage : MainPageT<MainPage, implementation::MainPage>
     {

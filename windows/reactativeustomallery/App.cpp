@@ -5,13 +5,18 @@
 #include "AutolinkedNativeModules.g.h"
 #include "ReactPackageProvider.h"
 
+// Inclui a API de personalização da TitleBar
+// #include <Windows.UI.ViewManagement.h>
+
 using namespace winrt;
 using namespace xaml;
 using namespace xaml::Controls;
 using namespace xaml::Navigation;
-
 using namespace Windows::ApplicationModel;
-namespace winrt::reactNativeCustomGallery::implementation
+
+// using namespace Windows::UI::ViewManagement; // Inclui o namespace da API de personalização da TitleBar
+
+namespace winrt::reactativeustomallery::implementation
 {
 /// <summary>
 /// Initializes the singleton application object.  This is the first line of
@@ -20,27 +25,44 @@ namespace winrt::reactNativeCustomGallery::implementation
 /// </summary>
 App::App() noexcept
 {
-#if BUNDLE
-    JavaScriptBundleFile(L"index.windows");
-    InstanceSettings().UseWebDebugger(false);
-    InstanceSettings().UseFastRefresh(false);
-#else
-    JavaScriptBundleFile(L"index");
-    InstanceSettings().UseWebDebugger(true);
-    InstanceSettings().UseFastRefresh(true);
-#endif
+    // Configura a personalização da TitleBar
+    // auto titleBar = ApplicationView::GetForCurrentView()->TitleBar;
+    // titleBar->BackgroundColor = Colors::DarkGray;
+    // titleBar->ButtonBackgroundColor = Colors::DarkGray;
+    // titleBar->ForegroundColor = Colors::White;
+    // titleBar->ButtonForegroundColor = Colors::White;
+    // titleBar->LayoutMetricsChanged += 
+    //     winrt::auto_revoke, 
+    //     [this](ApplicationViewTitleBar const& sender, auto const& args)
+    //     {
+    //         // Lida com a mudança de layout da TitleBar
+    //         double titleBarHeight = sender.Height();
+    //         // Faça ajustes na sua janela conforme necessário
+    //     };
 
-#if _DEBUG
-    InstanceSettings().UseDeveloperSupport(true);
-#else
-    InstanceSettings().UseDeveloperSupport(false);
-#endif
+    // Configura as opções do React Native
 
-    RegisterAutolinkedNativeModulePackages(PackageProviders()); // Includes any autolinked modules
+    #if BUNDLE
+        JavaScriptBundleFile(L"index.windows");
+        InstanceSettings().UseWebDebugger(false);
+        InstanceSettings().UseFastRefresh(false);
+    #else
+        JavaScriptBundleFile(L"index");
+        InstanceSettings().UseWebDebugger(true);
+        InstanceSettings().UseFastRefresh(true);
+    #endif
 
-    PackageProviders().Append(make<ReactPackageProvider>()); // Includes all modules in this project
+    #if _DEBUG
+        InstanceSettings().UseDeveloperSupport(true);
+    #else
+        InstanceSettings().UseDeveloperSupport(false);
+    #endif
 
-    InitializeComponent();
+        RegisterAutolinkedNativeModulePackages(PackageProviders()); // Includes any autolinked modules
+
+        PackageProviders().Append(make<ReactPackageProvider>()); // Includes all modules in this project
+
+        InitializeComponent();
 }
 
 /// <summary>
@@ -90,4 +112,4 @@ void App::OnNavigationFailed(IInspectable const&, NavigationFailedEventArgs cons
     throw hresult_error(E_FAIL, hstring(L"Failed to load Page ") + e.SourcePageType().Name);
 }
 
-} // namespace winrt::reactNativeCustomGallery::implementation
+} // namespace winrt::reactativeustomallery::implementation

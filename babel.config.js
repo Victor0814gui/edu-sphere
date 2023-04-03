@@ -3,11 +3,4 @@ module.exports = {
     ['@babel/preset-env', {targets: {node: 'current'}}],
     'module:metro-react-native-babel-preset'
   ],
-  plugins: [
-    [
-      'react-native-reanimated/plugin', {
-          relativeSourceLocation: true,
-      },
-  ]
-  ],
 };

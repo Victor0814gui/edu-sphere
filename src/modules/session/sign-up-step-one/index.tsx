@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react';
-import { Text, Image,StyleSheet } from "react-native";
+import { Text, Image,Linking,StyleSheet } from "react-native";
 import { FONTS,COLORS } from "../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
+//@ts-ignore
 import LogoImage from "../assets/images/logo.svg";
 import { Input } from '../components/input';
 import { StepLevel } from '../components/step-level';
@@ -19,26 +20,32 @@ import {
 export function SignUpStepOne() {
   const { navigate,goBack } = useNavigation()
   const { setStep } = useAuthStepsContextProvider()
+
+
+  const handlePress = async () => {
+    // await Linking.openURL("reactativeustomallery://signup")
+      navigate('signupsteptwo');
+  }
+
   useEffect(() => {
     setStep(1);
     console.log('SignUpStepOne')
   },[])
+
   return (
     <>
     <StepLevel/>
     <Container>
       <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
       <Form>
-        <Input autoComplete='email' labelText="Seu Email"/>
+        <Input iconName="mail-outline" autoComplete='email' labelText="Seu Email"/>
         <SectionButtonForm>
           <ButtonGoBack onPress={() => goBack()}>
             <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
           </ButtonGoBack>
           <Button
             text="proximo passo"
-            onPress={() => {
-              navigate('signupsteptwo');
-            }}
+            onPress={handlePress}
             style={{
               marginTop: 12,
             }}

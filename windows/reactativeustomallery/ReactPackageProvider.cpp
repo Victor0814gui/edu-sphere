@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "ReactPackageProvider.h"
 #include "NativeModules.h"
-#include "..\..\src\native-modules\windows\Notification.h"
+
+#include "Notification.h"
 
 using namespace winrt::Microsoft::ReactNative;
 
-namespace winrt::reactNativeCustomGallery::implementation
+namespace winrt::reactativeustomallery::implementation
 {
 
 void ReactPackageProvider::CreatePackage(IReactPackageBuilder const &packageBuilder) noexcept
@@ -13,4 +14,4 @@ void ReactPackageProvider::CreatePackage(IReactPackageBuilder const &packageBuil
     AddAttributedModules(packageBuilder, true);
 }
 
-} // namespace winrt::reactNativeCustomGallery::implementation
+} // namespace winrt::reactativeustomallery::implementation

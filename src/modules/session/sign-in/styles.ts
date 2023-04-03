@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled,{ css } from "styled-components/native";
 import { COLORS, FONTS } from "../../../shared/theme";
 import { StyleSheet } from "react-native";
 
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     marginBottom: 58,
   },
   text:{
-    fontFamily: FONTS.Roboto.Medium
+    fontFamily: FONTS.Poppins.Medium,
   },
   button:{ 
     marginTop: 12,
@@ -26,12 +26,7 @@ export const Form = styled.View`
   max-width: 380px;
 `;
 
-export const TextRecoveryPassword = styled.Text`
-  font-size: 16px;
-  color: ${COLORS.grey_800};
-`;
-
-export const TextRedirectCreateAcount = styled.Text`
+export const RedirectCreateAcountText = styled.Text`
   font-size: 16px;
   color: ${COLORS.grey_800};
   margin-top: 14px;

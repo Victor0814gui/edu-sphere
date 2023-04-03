@@ -14,5 +14,6 @@
     //   "@shared/*": ["./shared/*"],
     //   "@types/*": ["./types/*"],
     // }
-  }
+  },
+  // "include": ["./src/@types/assets.d.ts","./src/@types/navigation.d.ts"]
 }

@@ -22,7 +22,25 @@ export const windowsFonts= {
 }
 
 
-export const FONTS = Platform.OS === "windows" ? windowsFonts : {
+
+
+export const FONTS = Platform.OS === "windows" ? {
+  Roboto:{
+    Black: "Roboto-Black.ttf#Roboto",
+    BlackItalic: "Roboto-BlackItalic.ttf#Roboto",
+    BoldItalic: "Roboto-BoldItalic.ttf#Roboto",
+    Light: "Roboto-Light.ttf#Roboto",
+    LightItalic: "Roboto-LightItalic.ttf#Roboto",
+    Medium: "Roboto-Medium.ttf#Roboto",
+    MediumItalic: "Roboto-MediumItalic.ttf#Roboto",
+    Regular: "Roboto-Regular.ttf#Roboto",
+  },
+  Poppins:{
+    Medium:"Poppins-Medium.ttf#Poppins",
+    Ligth:"Poppins-Light.ttf#Poppins",
+    Bold:"Poppins-Bold.ttf#Poppins",
+  }
+} : {
   Roboto:{
     Black: "Roboto-Black",
     BlackItalic: "Roboto-BlackItalic",

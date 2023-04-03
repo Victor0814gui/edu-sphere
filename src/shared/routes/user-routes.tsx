@@ -5,7 +5,8 @@ import { Profile } from '../../modules/demonstrations/profile';
 import { useWindowDimensions,Platform } from "react-native";
 import { COLORS } from '../theme';
 import { Room } from '../../modules/demonstrations/room';
-
+import { DrawerNavigationConfig } from '@react-navigation/drawer/lib/typescript/src/types';
+import { enableScreens,enableFreeze  } from "react-native-screens"
 
 
 type UserDrawerType = {
@@ -19,13 +20,15 @@ const UserDrawer = createDrawerNavigator<UserDrawerType>();
 
 export function UserDrawerRoutes() {
   console.log("UserDrawerRoutes");
-  
+  enableScreens(false);
+  enableFreeze(true);
   return (
     <UserDrawer.Navigator 
-      useLegacyImplementation
       screenOptions={NavbarDevices()}
       drawerContent={({navigation,state}) => <CustomNavbar navigation={navigation} state={state}/>}
       initialRouteName="dashboard"
+      key={"route-user-screens"}
+      useLegacyImplementation
     >
       <UserDrawer.Screen name="dashboard" component={Dashboard} />
       <UserDrawer.Screen name="profile" component={Profile} />
@@ -34,14 +37,14 @@ export function UserDrawerRoutes() {
   );
 }
 
-function NavbarDevices():DrawerNavigationOptions {
+function NavbarDevices():DrawerNavigationOptions  {
   const { width } = useWindowDimensions();
   const smallDevice = width < 900;
   console.log("NavbarDevices");
 
-  const drawerNavigationOptions: DrawerNavigationOptions = {
-    drawerType: !smallDevice ? 'permanent' : 'back',
+  const drawerNavigationOptions: DrawerNavigationOptions  = {
     headerShown: false,
+    drawerType: !smallDevice ? 'permanent' : 'back',
     drawerStyle:{
       backgroundColor: COLORS.grey_200,
       width: 250,

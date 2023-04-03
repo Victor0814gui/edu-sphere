@@ -25,10 +25,9 @@ export const font = StyleSheet.create({
 })
 
 export const Container = styled.Pressable`
-  max-width: 340px;
   background-color: ${COLORS.grey_200};
   border-radius: 8px;
-  margin: 0 5px;
+  margin: 5px 5px;
   padding: 12px;
 `;
 

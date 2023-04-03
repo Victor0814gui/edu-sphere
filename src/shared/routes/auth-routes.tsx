@@ -5,6 +5,7 @@ import { SignIn } from '../../modules/session/sign-in';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { UserDrawerType } from '../../shared/types';
 import { AppProvider } from '../contexts';
+import { enableScreens,enableFreeze  } from "react-native-screens"
 
 
 
@@ -12,11 +13,12 @@ import { AppProvider } from '../contexts';
 const AuthDrawer = createDrawerNavigator<UserDrawerType>();
 
 export function AuthRoutes() {
-  
+  enableScreens(true)
+  enableFreeze(true);
   return (
     <AppProvider>
       <AuthDrawer.Navigator 
-        useLegacyImplementation
+        useLegacyImplementation={true}
         initialRouteName="signin"
         screenOptions={{
           headerShown: false,

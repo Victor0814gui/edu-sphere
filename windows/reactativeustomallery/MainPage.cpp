@@ -9,7 +9,7 @@
 using namespace winrt;
 using namespace xaml;
 
-namespace winrt::reactNativeCustomGallery::implementation
+namespace winrt::reactativeustomallery::implementation
 {
     MainPage::MainPage()
     {

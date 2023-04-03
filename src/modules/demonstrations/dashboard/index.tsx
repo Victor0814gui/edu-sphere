@@ -176,8 +176,10 @@ export const Dashboard = () => {
       <SectionList
         sections={data}
         keyExtractor={(item, index) => `${index}`}
-        renderItem={({item}) =>null}
-        renderSectionHeader={renderSectionHeader}
+        renderItem={({item,index}) => <CardRoom index={index} {...item}/>}
+        renderSectionHeader={({section: {title}}) => (
+          <HeaderSectionTitle style={fonts.headerSectionTitle}>{title}</HeaderSectionTitle>
+        )}
       />
     </Container>
   );

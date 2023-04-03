@@ -6,7 +6,7 @@
 
 namespace activation = winrt::Windows::ApplicationModel::Activation;
 
-namespace winrt::reactNativeCustomGallery::implementation
+namespace winrt::reactativeustomallery::implementation
 {
     struct App : AppT<App>
     {
@@ -18,4 +18,4 @@ namespace winrt::reactNativeCustomGallery::implementation
       private:
         using super = AppT<App>;
     };
-} // namespace winrt::reactNativeCustomGallery::implementation
+} // namespace winrt::reactativeustomallery::implementation

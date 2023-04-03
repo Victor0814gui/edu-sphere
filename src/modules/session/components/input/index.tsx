@@ -4,17 +4,19 @@ import {
   InputContainerAndLabel,
   InputLabelText,
   ContainerStyleTextInput,
+  IconContainer,
   Input as TextInput,
 } from './styles';
 import { COLORS } from "../../../../shared/theme";
-
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { TextInputProps } from 'react-native';
 
 type InputProps = TextInputProps & {
   labelText: string;
+  iconName?: string;
 }
 
-export function Input({labelText,...rest}:InputProps) {
+export function Input({iconName,labelText,...rest}:InputProps) {
   const [ onHover,setOnHover ] = useState(false);
   console.log("[session]-{Component}-[Input]")
   return (
@@ -26,9 +28,13 @@ export function Input({labelText,...rest}:InputProps) {
         onMouseLeave={() => setOnHover(false)}
         onMouseEnter={() => setOnHover(true)}
       >
+        <IconContainer>
+          <Icon name={iconName || "vpn-key"} size={25} color={COLORS.green_500}/>        
+        </IconContainer>
         <TextInput  
           {...rest}
           textAlign='left' 
+          verticalAlign='middle'          
           selectionColor={COLORS.green_390} 
           style={styles.textInput}
         />
