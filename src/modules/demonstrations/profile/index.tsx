@@ -1,7 +1,7 @@
 import { useEffect,useRef,useState } from "react";
 import { View,Text,ScrollView,Pressable,Switch } from "react-native";
 import { COLORS } from "../../../shared/theme";
-
+import { useNavigation } from "@react-navigation/native";
 import { 
   aditionalStyles,
   Container,
@@ -47,9 +47,11 @@ function SectionSwitchContainer({label}:{label: string}){
 
 export const Profile = ():JSX.Element => {
   const { signOut } = useAuthContextProvider();
+  const { navigate } = useNavigation()
 
   const onPressSignOut = () => {
-    signOut()
+    // signOut()
+    navigate("player")
   }
 
   return(

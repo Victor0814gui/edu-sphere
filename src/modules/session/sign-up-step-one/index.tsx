@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import { Text, Image,Linking,StyleSheet } from "react-native";
+import { Text, Animated, Image,Linking,StyleSheet } from "react-native";
 import { FONTS,COLORS } from "../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
@@ -7,6 +7,7 @@ import LogoImage from "../assets/images/logo.svg";
 import { Input } from '../components/input';
 import { StepLevel } from '../components/step-level';
 import { useAuthStepsContextProvider } from '../contexts/auth-steps';
+
 import { 
   Container,
   Form,
@@ -33,12 +34,17 @@ export function SignUpStepOne() {
   },[])
 
   return (
-    <>
+    <Animated.View
+      style={{
+        flex: 1,
+      }}
+    >
     <StepLevel/>
     <Container>
       <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
       <Form>
-        <Input iconName="mail-outline" autoComplete='email' labelText="Seu Email"/>
+        <Input iconName="mail" autoComplete='email' labelText="Seu email"/>
+        <Input iconName="vpn-key" autoComplete='email' labelText="Sua senha"/>
         <SectionButtonForm>
           <ButtonGoBack onPress={() => goBack()}>
             <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
@@ -53,7 +59,7 @@ export function SignUpStepOne() {
         </SectionButtonForm>
       </Form>
     </Container>
-    </>
+    </Animated.View>
   );
 }
 

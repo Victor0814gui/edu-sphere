@@ -10,6 +10,9 @@ export const styles = StyleSheet.create({
   text:{
     fontFamily: FONTS.Poppins.Medium,
   },
+  errorMessageContainerText:{
+    fontFamily: FONTS.Poppins.Ligth,
+  },
   button:{ 
     marginTop: 12,
     minWidth: "100%"
@@ -24,6 +27,16 @@ export const Container = styled.View`
 
 export const Form = styled.View`
   max-width: 380px;
+`;
+
+export const ErrorMessageContainer = styled.View`
+  align-items: center;
+  flex-direction: row;
+`;
+
+export const ErrorMessageContainerText = styled.Text`
+  color: ${COLORS.orange_400};
+  margin-left: 3px;
 `;
 
 export const RedirectCreateAcountText = styled.Text`

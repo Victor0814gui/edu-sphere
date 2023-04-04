@@ -4,7 +4,6 @@ import { Header } from "../components/header";
 import { Question } from "../components/question";
 import { useNavigation,useRoute } from "@react-navigation/native";
 import { ProgressView } from "@react-native-community/progress-view";
-import asdf from "react-ntaive-windows"
 import {
   fonts,
   Container,

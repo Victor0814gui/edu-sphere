@@ -49,6 +49,8 @@ export const Avatar = ({item,isSelected = false,...rest}: AvatarProps) => {
     pressedAnimationAvatar();
   }
 
+  console.log(item);
+
   return (
     //@ts-ignore 
     <View onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
@@ -68,6 +70,8 @@ export const Avatar = ({item,isSelected = false,...rest}: AvatarProps) => {
             borderColor: COLORS.green_500,
           }]}
           source={!!item ? {uri: item} : require("../../assets/images/Multiavatar-Big-Brother.png")}
+          onLoadStart={() => {}}
+          onLoadEnd={() => {}}
         />
       </Pressable>
     </View>

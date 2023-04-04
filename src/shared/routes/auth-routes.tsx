@@ -13,8 +13,8 @@ import { enableScreens,enableFreeze  } from "react-native-screens"
 const AuthDrawer = createDrawerNavigator<UserDrawerType>();
 
 export function AuthRoutes() {
-  enableScreens(true)
-  enableFreeze(true);
+  enableScreens(false)
+  enableFreeze(false);
   return (
     <AppProvider>
       <AuthDrawer.Navigator 

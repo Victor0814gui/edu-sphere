@@ -6,6 +6,7 @@ export declare global {
     interface RootParamList extends RootStackParamList{
       dashboard: undefined;
       profile: undefined;
+      player: undefined;
       room: {
         roomId: string;
       }
@@ -13,6 +14,7 @@ export declare global {
       signupstepone: undefined;
       signupsteptwo: undefined;
       signinstepthree: undefined;
+      lessons: undefined;
     }
   }
 }

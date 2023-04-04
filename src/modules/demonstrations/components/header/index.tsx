@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { Container } from "./styles";
 import { ButtonBorder } from "../button-header";
-import { Modal } from "../../../../shared/components/modal-component.windows";
+import { Modal } from "../../../../shared/components/modal";
 import { modalType } from "../../../../shared/types"
 
 type modalContentType = {
@@ -29,10 +29,10 @@ export const Header = (props:{
         <ButtonBorder label={props.roomId || "#AHAPQNASDJ"} borderActive />
       </View>
       <ButtonBorder onPress={() => setModalIsOpen(!modalIsOpen)} label="Encerrar sala"/>
-      <Modal props={{
-        ...modalContent,
-        modalIsOpen,
-      }} />
+     {modalIsOpen && <Modal 
+        title="asdçfkljald falkdfçlkaçlsdfçlafa df asd fasd f asdf"
+        description="asdçfkljald falkdfçlkaçlsdfçlafa df asd fasd f asdf as df as df asdf a sdf as df asd f asd fa sdf as df asdflkjasdl fas df asdf asd f asdf asd fasdi fu asjdkf asdf asd fas dflkasd f ahsdfasdf asd f asdf"
+      />}
     </Container>
   )
 }

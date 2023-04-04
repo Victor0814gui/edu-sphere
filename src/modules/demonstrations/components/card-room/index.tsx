@@ -39,11 +39,7 @@ export const CardRoomComponent = (props:{
         <ContainerContent pressed={pressed}>
           {pressed && <ActivityIndicator style={font.progressIndicator}/>}
           <Title style={font.title}>{props.title}</Title>
-          <Footer>
-            <ProfileAvatar resizeMode="contain" source={{ uri: props.avatarUrl }}/>
-            <NickName style={font.nickName}>{props.index}{props.nickname}</NickName>
-            <ContainerTags>{containerTagsComponent}</ContainerTags>
-          </Footer>
+        
         </ContainerContent>
       )}
     </Container>

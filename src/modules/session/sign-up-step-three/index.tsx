@@ -1,16 +1,13 @@
-import React, { useState,useEffect,useRef } from 'react';
-import { View,Pressable, Animated,StyleSheet } from "react-native";
-import { FONTS,COLORS } from "../../../shared/theme"
+import React, { useState,useEffect } from 'react';
+import { StyleSheet } from "react-native";
+import { FONTS } from "../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
-import LogoImage from "../assets/images/logo.svg";
-import { Input } from '../components/input';
 import { api } from "../../../shared/services/api"
 import { 
   Container,
   SectionSelectAvatar,
   SectionSelectAvatarTitle,
   SelectAvatarList,
-  SelectAvatarImage,
   Form,
   SectionButtonForm,
   ButtonGoBack,
@@ -31,11 +28,11 @@ export function SignUpStepThree() {
 
 
   const renderItem = ({item,index}:{item: any,index: number}) => (
-      <Avatar 
-        item={item}
-        onPressIn={() => setItemIndex(index)}
-        isSelected={itemIndex === index}
-      />
+    <Avatar 
+      item={item}
+      onPressIn={() => setItemIndex(index)}
+      isSelected={itemIndex === index}
+    />
   )
   
   const fetchAvatarsData = async () => {
@@ -43,7 +40,7 @@ export function SignUpStepThree() {
       const avatarsDataResponse = await api.get("/avatars")
       setAvatars(avatarsDataResponse.data)
     }catch(err){
-
+      console.log({err})
     }
   }
 

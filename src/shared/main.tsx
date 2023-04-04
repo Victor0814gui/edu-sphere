@@ -6,6 +6,7 @@ import { ContextAuthContextProvider } from "./contexts/auth";
 import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 import { NotificationContextProvider } from "./contexts/notification";
 import { Dashboard } from "../modules/demonstrations/dashboard";
+import { Modal } from "./components/modal";
 
 const MyTheme: Theme = {
   ...DefaultTheme,

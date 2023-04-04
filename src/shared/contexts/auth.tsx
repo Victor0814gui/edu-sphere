@@ -24,6 +24,13 @@ const signUpNotificationContentTypeServerError: ToastContentType = {
   position: "center",
   type:"error"
 }
+
+const signUpNotificationContentTypeUsersDoesNotExists: ToastContentType = {
+  title:"o usuario não existe",
+  description:"parece que o usuario que você está tentando logar não existe",
+  position: "center",
+  type:"error"
+}
 const signUpNotificationContentTypeNetworkError: ToastContentType = {
   title:"error ao conectar com o servidor",
   description:"asdfasdf",
@@ -45,14 +52,15 @@ function ContextAuthContextProvider({children}:{children: ReactNode}){
     setSendResponseToServer(true);
     try{
       const signInDataResponse = await api.post("/session/signin",{email,password})
+
       if(signInDataResponse.statusText === "Network Error"){
         addToastNotifications(signInNotificationContentTypeServerError);
       }
+      
       setUser(signInDataResponse.data);
+
     }catch(err){
-      console.log("auth-network-error")
-      // setNotificationText(uuidV4())
-      addToastNotifications(signInNotificationContentTypeNetworkError); 
+      addToastNotifications(signUpNotificationContentTypeUsersDoesNotExists); 
     }finally{
       setSendResponseToServer(false);
     }

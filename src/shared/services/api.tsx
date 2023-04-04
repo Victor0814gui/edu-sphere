@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 const api = axios.create({
-  baseURL: "http://192.168.0.121:4000",
+  baseURL: "http://localhost:4000",
 })
 
 
@@ -14,20 +14,20 @@ api.interceptors.request.use(
   },
   (error) => {
     // Faz alguma coisa com o erro da requisição
-    console.log(error)
+    console.log("interceptor request",error)
   }
 );
 
 // Adiciona um interceptador na resposta
 api.interceptors.response.use(
   (config) => {
-    console.log(config)
-    // Faz alguma coisa antes da requisição ser enviada
+    
     return config;
   },
   (error) => {
-    // Faz alguma coisa com o erro da requisição
-    console.log(error)
+      // Faz alguma coisa com o erro da requisição
+
+      console.log("interceptor response",error)
   },
 );
 

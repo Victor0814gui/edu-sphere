@@ -16,9 +16,9 @@ type InputProps = TextInputProps & {
   iconName?: string;
 }
 
-export function Input({iconName,labelText,...rest}:InputProps) {
+export const Input = ({iconName,labelText,...rest}:InputProps) => {
   const [ onHover,setOnHover ] = useState(false);
-  console.log("[session]-{Component}-[Input]")
+
   return (
     <InputContainerAndLabel>
       <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>
@@ -37,6 +37,7 @@ export function Input({iconName,labelText,...rest}:InputProps) {
           verticalAlign='middle'          
           selectionColor={COLORS.green_390} 
           style={styles.textInput}
+          multiline={false}
         />
       </ContainerStyleTextInput>
     </InputContainerAndLabel>

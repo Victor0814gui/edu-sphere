@@ -11,7 +11,7 @@ import {
   useToastNotificaitonProvider,
   ToastContentType,
 } from '../../shared/contexts/toast-notification';
-
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { COLORS,FONTS } from "../theme";
 import { 
   aditionalStyles,
@@ -44,7 +44,7 @@ export const ToastItem = ({
 
   const animateLeaveToastItem = () => {
     Animated.spring(animateEnterAndLeaveToastItem,{
-      toValue: 280,
+      toValue: 480,
       useNativeDriver: true,
     }).start(({finished}) => {
       if(finished){
@@ -63,12 +63,20 @@ export const ToastItem = ({
       padding: 12,
       maxWidth: 480,
       width: "100%",
+      flexDirection: "row",
+      alignItems: "center",
       transform:[{translateX:animateEnterAndLeaveToastItem}]
     }}> 
-      <Text style={aditionalStyles.modalTitle}>{title}</Text>
-      <Text style={aditionalStyles.modalDescription}>{description}</Text>
+      <View>
+        <Text style={aditionalStyles.modalTitle}>{title}</Text>
+        <Text style={aditionalStyles.modalDescription}>{description}</Text>
+      </View>
       <Pressable onPress={animateLeaveToastItem}>
-        <Text>remover</Text>
+        <Icon
+          name="highlight-remove"  
+          size={25}
+          color={COLORS.orange_400}
+        />
       </Pressable>
     </Animated.View>
   )

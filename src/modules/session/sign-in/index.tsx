@@ -1,5 +1,5 @@
 import React, { useState,useCallback } from 'react';
-import {  Image,Pressable } from "react-native";
+import {  Image,Text,Pressable } from "react-native";
 import { Button } from "../components/button";
 import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
@@ -8,62 +8,109 @@ import { Input } from '../components/input';
 import { 
   styles,
   Container,
-  Form
+  Form,
+  ErrorMessageContainer,
+  ErrorMessageContainerText
 } from './styles';
 import { useAuthContextProvider } from '../../../shared/contexts/auth';
 import { HiperLink } from '../components/hiper-link';
+import { useForm,Controller } from 'react-hook-form';
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { COLORS } from '../../../shared/theme';
 
+
+type OnSubmitProps = {
+  password: string;
+  email: string;
+}
+
+
+const MessageError = ({children}:{children: string}) => {
+
+  return (
+    <ErrorMessageContainer>
+      <Icon name="dangerous" size={15} color={COLORS.orange_400}/>
+      <ErrorMessageContainerText style={styles.errorMessageContainerText}>{children}</ErrorMessageContainerText>
+    </ErrorMessageContainer>
+  )
+}
 
 
 export function SignIn() {
-  const [ email,setEmail ] = useState('')
-  const [ password,setPassword ] = useState('')
   const { navigate } = useNavigation()
   const { signIn } = useAuthContextProvider();
 
-  const handleSignIn = useCallback(() => {
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  });
+
+  const onSubmit = useCallback(({email,password}: OnSubmitProps) => {
     signIn({email,password});   
-  },[email,password])
+  },[])
 
   const handlePress = useCallback(async () => {
-    // Open the custom settings if the app has one`
     navigate('signupstepone');
-    // await Linking.openURL("https://github.com/notifications")
   }, []);
 
   return (
     <Container>
       <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
       <Form>
-        <Input 
-          onChangeText={setEmail}
-          iconName="mail-outline"
-          value={email} 
-          autoComplete='email' 
-          labelText="Seu Email"
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+            maxLength: 40,
+            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ 
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input 
+              onChangeText={onChange}
+              iconName="mail-outline"
+              value={value} 
+              autoComplete='email' 
+              labelText="Seu Email"
+            />
+          )}
+          name="email"
         />
-        <Input 
-          onChangeText={setPassword} 
-          value={password} 
-          autoComplete='password' 
-          secureTextEntry
-          labelText="Sua senha"
+        {errors.email?.type === 'required' && <MessageError >email is required</MessageError>}
+        {errors.email && <MessageError>email is incorrect</MessageError>}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+            maxLength: 20,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input 
+              onChangeText={onChange} 
+              value={value} 
+              autoComplete='password' 
+              secureTextEntry
+              labelText="Sua senha"
+            />
+          )}
+          name="password"
+        />  
+        {errors.password?.type === 'required' && <MessageError>password is required</MessageError>}
+        <HiperLink 
+          text="Redefinir senha" 
+          onPress={() => {}}
         />
-        <HiperLink text="Redefinir senha" />
         <Button
           text="entrar"
-          onPress={() => handleSignIn()}
+          onPress={handleSubmit(onSubmit)}
           style={styles.button}
         />
       </Form>
-      <Pressable onPress={handlePress}>
-          {({pressed}:{pressed: boolean}) => (
-            <HiperLink 
-              text="Ainda não tem uma conta? cria a sua aqui" 
-              pressed={pressed}
-            />
-          )}
-      </Pressable>
+      <HiperLink 
+        text="Ainda não tem uma conta? cria a sua aqui" 
+        onPress={handlePress}
+      />
     </Container>
   );
 }

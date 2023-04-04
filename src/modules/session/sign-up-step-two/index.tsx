@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Text, Image,StyleSheet } from "react-native";
 import { FONTS,COLORS } from "../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
+//@ts-ignore
 import LogoImage from "../assets/images/logo.svg";
 import { Input } from '../components/input';
 import { 
@@ -31,8 +32,8 @@ export function SignUpStepTwo() {
     <Container>
       <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
       <Form>
-        <Input autoComplete='email' labelText="Seu Email"/>
-        <Input autoComplete='email' labelText="Seu Email"/>
+        <Input autoComplete='name' iconName="person" labelText="Seu Nome"/>
+        <Input autoComplete='birthdate-full' iconName='calendar-today' labelText="Seu aniversario"/>
         <SectionButtonForm>
           <ButtonGoBack onPress={() => goBack()}>
             <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
