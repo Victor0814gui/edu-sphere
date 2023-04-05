@@ -15,19 +15,21 @@ import { useToastNotificaitonProvider,ToastContentType } from '../../shared/cont
 export function ToastComponent() {
   const { toastNotifications,removeToastNotication } = useToastNotificaitonProvider();
 
+  const renderItem = ({item}:{item:ToastContentType}) => (
+    <ContentToast>
+      <View>
+        <ContainerTitle style={aditionalStyles.containerTitleFont}>{item.title}</ContainerTitle>
+        <ContainerDescription style={aditionalStyles.containerDescription}>{item.description}</ContainerDescription>
+        <Button onPress={() => removeToastNotication(item.id!)} title="rasdfasdfasdfsdfemove" />
+      </View>
+    </ContentToast>
+  )
+  
   return (
     <Container>
       <ListToastNotifications<React.ElementType>
         data={toastNotifications}
-        renderItem={({item}:{item:ToastContentType}) => (
-          <ContentToast>
-            <View>
-              <ContainerTitle style={aditionalStyles.containerTitleFont}>{item.title}</ContainerTitle>
-              <ContainerDescription style={aditionalStyles.containerDescription}>{item.description}</ContainerDescription>
-              <Button onPress={() => removeToastNotication(item.id!)} title="rasdfasdfasdfsdfemove" />
-            </View>
-          </ContentToast>
-        )}
+        renderItem={renderItem}
         keyExtractor={({id}:{id: string}) => id}
       />
     </Container>

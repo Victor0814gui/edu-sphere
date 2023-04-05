@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import { StyleSheet } from "react-native";
-import { FONTS } from "../../../shared/theme"
+import { FONTS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
-import { api } from "../../../shared/services/api"
+import { api } from "../../../../shared/services/api"
 import { 
   Container,
   SectionSelectAvatar,
@@ -14,9 +14,9 @@ import {
   ButtonGoBackText,
   Button,
 } from './styles';
-import { StepLevel } from '../components/step-level';
-import { useAuthStepsContextProvider } from '../contexts/auth-steps';
-import { Avatar } from '../components/avatar';
+import { StepLevel } from '../../components/step-level';
+import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
+import { Avatar } from '../../components/avatar';
 
 
 

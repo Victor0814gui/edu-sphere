@@ -1,12 +1,12 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
-import { Dashboard } from '../../modules/demonstrations/dashboard';
+import { Dashboard } from '../../modules/demonstrations/screens/dashboard';
 import { CustomNavbar } from './navbar';
-import { Profile } from '../../modules/demonstrations/profile';
+import { Profile } from '../../modules/demonstrations/screens/profile';
 import { useWindowDimensions,Platform } from "react-native";
 import { COLORS } from '../theme';
-import { Room } from '../../modules/demonstrations/room';
-import { Player } from '../../modules/lessons/player';
-import { Lessons } from '../../modules/lessons/lessons';
+import { Room } from '../../modules/demonstrations/screens/room';
+import { Player } from '../../modules/lessons/screens/player';
+import { Lessons } from '../../modules/lessons/screens/lessons';
 import { DrawerNavigationConfig } from '@react-navigation/drawer/lib/typescript/src/types';
 import { enableScreens,enableFreeze  } from "react-native-screens"
 
@@ -30,7 +30,7 @@ export function UserDrawerRoutes() {
     <UserDrawer.Navigator 
       screenOptions={NavbarDevices()}
       drawerContent={({navigation,state}) => <CustomNavbar navigation={navigation} state={state}/>}
-      initialRouteName="lessons"
+      initialRouteName="dashboard"
       key={"route-user-screens"}
       useLegacyImplementation
     >

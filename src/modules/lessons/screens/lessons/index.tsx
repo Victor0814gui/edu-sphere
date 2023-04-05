@@ -1,7 +1,7 @@
 import React,{useState,useRef,useEffect} from 'react';
 import { Container,Box,Circle } from './styles';
-import { View,Text,Button,Animated, useWindowDimensions, Pressable } from "react-native";
-import { COLORS } from '../../../shared/theme';
+import { View,Text,PanResponder,Button,Animated, useWindowDimensions, Pressable } from "react-native";
+import { COLORS } from '../../../../shared/theme';
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -79,6 +79,52 @@ export const Lessons = () => {
     downArrowKey && console.log('Key Pressed: Down Arrow!');
     // console.log('Key Pressed: ', key);
   };
+  const panResponder = React.useRef(
+    PanResponder.create({
+      // Ask to be the responder:
+      onStartShouldSetPanResponder: (evt, gestureState) => true,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) =>
+        true,
+      onMoveShouldSetPanResponder: (evt, gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) =>
+        true,
+
+      onPanResponderGrant: (evt, gestureState) => {
+        // The gesture has started. Show visual feedback so the user knows
+        // what is happening!
+        // gestureState.d{x,y} will be set to zero now
+        console.log({evt, gestureState})
+      },
+      onPanResponderMove: (evt, gestureState) => {
+        // The most recent move distance is gestureState.move{X,Y}
+        // The accumulated gesture distance since becoming responder is
+        // gestureState.d{x,y}
+        console.log({evt, gestureState})
+
+      },
+      onPanResponderTerminationRequest: (evt, gestureState) =>
+        true,
+      onPanResponderRelease: (evt, gestureState) => {
+        // The user has released all touches while this view is the
+        // responder. This typically means a gesture has succeeded
+        console.log({evt, gestureState})
+
+      },
+      onPanResponderTerminate: (evt, gestureState) => {
+        // Another component has become the responder, so this gesture
+        // should be cancelled
+        console.log({evt, gestureState})
+
+      },
+      onShouldBlockNativeResponder: (evt, gestureState) => {
+        // Returns whether this component should block native components from becoming the JS
+        // responder. Returns true by default. Is currently only supported on android.
+        console.log({evt, gestureState})
+
+        return true;
+      },
+    }),
+  ).current;
 
   useEffect(() => {
     viewRef?.current?.focus?.();
@@ -88,6 +134,8 @@ export const Lessons = () => {
     <Pressable
       style={{flex: 1}}
       onPress={() => viewRef?.current?.focus?.()}
+      onHoverIn={(e) => console.log(e.nativeEvent)}
+      onHoverOut={(e) => console.log(e.nativeEvent)}
     >
     <Container
       ref={viewRef}
@@ -108,6 +156,8 @@ export const Lessons = () => {
         // validKeysDown={['Enter', 'Esc', 'rightArrow']}
         // onKeyDown={_onKeyDown}
         // pointerEvents={(e) =>console.log(e)}
+      {...panResponder.panHandlers} 
+
         >
       </View>
 

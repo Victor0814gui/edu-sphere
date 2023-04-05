@@ -1,7 +1,7 @@
 import React,{ useEffect,useState } from "react";
 import { Text,Image } from "react-native";
-import { Header } from "../components/header";
-import { Question } from "../components/question";
+import { Header } from "../../components/header";
+import { Question } from "../../components/question";
 import { useNavigation,useRoute } from "@react-navigation/native";
 import { ProgressView } from "@react-native-community/progress-view";
 import {

@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FONTS,COLORS } from "../../../shared/theme";
+import { FONTS,COLORS } from "../../../../shared/theme";
 import { StyleSheet } from "react-native";
 
 export const fonts = StyleSheet.create({

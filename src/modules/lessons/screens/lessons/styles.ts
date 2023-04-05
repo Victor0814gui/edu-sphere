@@ -1,5 +1,5 @@
 import styled from "styled-components/native"
-import { COLORS } from "../../../shared/theme";
+import { COLORS } from "../../../../shared/theme";
 import { Animated,Dimensions } from "react-native";
 
 

@@ -1,6 +1,6 @@
 import { Platform } from "react-native"
-import { PlayerWindows } from "./windows"
-import { PlayerMobile } from "./mobile"
+import { PlayerWindows } from "../../platforms/windows/player";
+import { PlayerMobile } from "../../platforms/mobile/player"
 
 
 

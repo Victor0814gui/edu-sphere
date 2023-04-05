@@ -1,10 +1,10 @@
 import React, { useState,useCallback } from 'react';
 import {  Image,Text,Pressable } from "react-native";
-import { Button } from "../components/button";
+import { Button } from "../../components/button";
 import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
-import LogoImage from "../assets/images/logo.svg";
-import { Input } from '../components/input';
+import LogoImage from "../../assets/images/logo.svg";
+import { Input } from '../../components/input';
 import { 
   styles,
   Container,
@@ -12,11 +12,12 @@ import {
   ErrorMessageContainer,
   ErrorMessageContainerText
 } from './styles';
-import { useAuthContextProvider } from '../../../shared/contexts/auth';
-import { HiperLink } from '../components/hiper-link';
+import { useAuthContextProvider } from '../../../../shared/contexts/auth';
+import { HiperLink } from '../../components/hiper-link';
 import { useForm,Controller } from 'react-hook-form';
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { COLORS } from '../../../shared/theme';
+import { COLORS } from '../../../../shared/theme';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 type OnSubmitProps = {
@@ -105,6 +106,7 @@ export function SignIn() {
           text="entrar"
           onPress={handleSubmit(onSubmit)}
           style={styles.button}
+          iconName='login'
         />
       </Form>
       <HiperLink 

@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import { COLORS, FONTS } from "../../../shared/theme";
-import { Button as ButtonPattern } from "../components/button";
+import { COLORS, FONTS } from "../../../../shared/theme";
+import { Button as ButtonPattern } from "../../components/button";
 
 const selectAvatarImageAttributes = (props: any) => ({resizeMode: "contain"})
 

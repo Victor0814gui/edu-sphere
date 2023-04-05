@@ -19,7 +19,7 @@ import {
   excluir,
   messages,
 } from  "../../assets/icons";
-import { QuestionType } from "../../room";
+import { QuestionType } from "../../screens/room";
 import { VideoPlayer } from "../video-player";
 
 const ButtonIcon = ({icon,...rest}: any & TouchableHighlightProps) => {

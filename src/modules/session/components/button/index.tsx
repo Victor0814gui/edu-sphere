@@ -7,6 +7,7 @@ import {
 import { ActivityIndicator,TouchableOpacityProps, View } from 'react-native';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import Icon from "react-native-vector-icons/MaterialIcons";
+import Animated, { Easing } from 'react-native-reanimated';
 
 type InputProps = TouchableOpacityProps & {
   children?: ReactNode;
@@ -17,7 +18,7 @@ type InputProps = TouchableOpacityProps & {
 export function Button({
   children,
   text,
-  iconName = "login",
+  iconName,
   ...rest
 }:InputProps) {
   const { sendResponseToServer } = useAuthContextProvider();
@@ -43,7 +44,7 @@ export function Button({
               flexDirection: "row",
             }}>
               <ContainerButtonText style={{fontFamily: FONTS.Roboto.Medium,marginRight: 4}}>{text}</ContainerButtonText>
-              <Icon size={23} color={COLORS.grey_180} name={iconName}/>
+              {iconName && <Icon size={23} color={COLORS.grey_180} name={iconName ?? "login"}/>}
             </View>
           )}
         </>
