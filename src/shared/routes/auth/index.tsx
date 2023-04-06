@@ -4,8 +4,8 @@ import { SignUpStepOne } from '../../../modules/session/screens/sign-up-step-one
 import { SignIn } from '../../../modules/session/screens/sign-in';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { UserDrawerType } from '../../types';
-import { AppProvider } from '../../contexts';
 import { enableScreens,enableFreeze  } from "react-native-screens"
+import { AuthStepsContextProvider } from '../../../modules/session/contexts/auth-steps';
 
 
 
@@ -16,7 +16,7 @@ export function AuthRoutes() {
   enableScreens(false)
   enableFreeze(false);
   return (
-    <AppProvider>
+    <AuthStepsContextProvider>
       <AuthDrawer.Navigator 
         useLegacyImplementation={true}
         initialRouteName="signin"
@@ -30,7 +30,7 @@ export function AuthRoutes() {
         <AuthDrawer.Screen name="signupsteptwo" component={SignUpStepTwo} />
         <AuthDrawer.Screen name="signinstepthree" component={SignUpStepThree} />
       </AuthDrawer.Navigator>
-    </AppProvider>
+    </AuthStepsContextProvider>
 
   );
 }

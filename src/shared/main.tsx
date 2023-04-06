@@ -7,6 +7,7 @@ import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 import { NotificationContextProvider } from "./contexts/notification";
 import { OpenAndCloseNavbarOnKeyPressContextProvider } from "./contexts/open-and-close-navbar-on-key-press";
 import { NetworkConnectionNotificationContextProvider } from "./contexts/network-connection-notification";
+import { AppProvider } from "./contexts";
 
 const MyTheme: Theme = {
   ...DefaultTheme,
@@ -20,14 +21,10 @@ const MyTheme: Theme = {
 
 export const Main = () => {
   return (
-      <NavigationContainer theme={MyTheme}>
-        <NotificationContextProvider>
-          <OpenAndCloseNavbarOnKeyPressContextProvider>
-            <ContextAuthContextProvider>
-              <Router/>
-            </ContextAuthContextProvider>
-          </OpenAndCloseNavbarOnKeyPressContextProvider>
-        </NotificationContextProvider>
-      </NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
+      <AppProvider>
+        <Router/>
+      </AppProvider>
+    </NavigationContainer>
   )
 }
