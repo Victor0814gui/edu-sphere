@@ -3,7 +3,7 @@ import { Text, Animated, Image,Linking,StyleSheet } from "react-native";
 import { FONTS,COLORS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
-import LogoImage from "../assets/images/logo.svg";
+import LogoImage from "../../assets/images/logo.svg";
 import { Input } from '../../components/input';
 import { StepLevel } from '../../components/step-level';
 import { useAuthStepsContextProvider } from '../../contexts/auth-steps';

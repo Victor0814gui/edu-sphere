@@ -1,14 +1,15 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
-import { Dashboard } from '../../modules/demonstrations/screens/dashboard';
-import { CustomNavbar } from './navbar';
-import { Profile } from '../../modules/demonstrations/screens/profile';
+import { Dashboard } from '../../../modules/demonstrations/screens/dashboard';
+import { CustomNavbar } from '../navbar';
+import { Profile } from '../../../modules/demonstrations/screens/profile';
 import { useWindowDimensions,Platform } from "react-native";
-import { COLORS } from '../theme';
-import { Room } from '../../modules/demonstrations/screens/room';
-import { Player } from '../../modules/lessons/screens/player';
-import { Lessons } from '../../modules/lessons/screens/lessons';
+import { COLORS } from '../../theme';
+import { Room } from '../../../modules/demonstrations/screens/room';
+import { Player } from '../../../modules/lessons/screens/player';
+import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { DrawerNavigationConfig } from '@react-navigation/drawer/lib/typescript/src/types';
 import { enableScreens,enableFreeze  } from "react-native-screens"
+import { useOpenAndCloseNavbarOnKeyPressContextProvider } from '../../contexts/open-and-close-navbar-on-key-press';
 
 
 type UserDrawerType = {
@@ -47,10 +48,12 @@ function NavbarDevices():DrawerNavigationOptions  {
   const { width } = useWindowDimensions();
   const smallDevice = width < 900;
   console.log("NavbarDevices");
+  const { navbarIsOpen } = useOpenAndCloseNavbarOnKeyPressContextProvider()
+
 
   const drawerNavigationOptions: DrawerNavigationOptions  = {
     headerShown: false,
-    drawerType: !smallDevice ? 'permanent' : 'back',
+    drawerType: navbarIsOpen ? 'permanent' : 'back',
     drawerStyle:{
       backgroundColor: COLORS.grey_200,
       width: 250,

@@ -1,6 +1,6 @@
 import { useEffect,useRef,useState } from "react";
 import { View,Text,ScrollView,Pressable,Switch } from "react-native";
-import { COLORS } from "../../../shared/theme";
+import { COLORS } from "../../../../shared/theme";
 import { useNavigation } from "@react-navigation/native";
 import { 
   aditionalStyles,
@@ -14,7 +14,7 @@ import {
   OptionsDescription,
   OptionsDescriptionText,
 } from "./styles";
-import { useAuthContextProvider } from "../../../shared/contexts/auth";
+import { useAuthContextProvider } from "../../../../shared/contexts/auth";
 
 const description = "Os Ursos constituem uma família de mamíferos plantígrados, geralmente de grande porte, contendo os ursos e os pandas. Algumas características comuns dos ursos são pelagem espessa, rabo curto, o olfato desenvolvido e as garras não retráteis.";
 

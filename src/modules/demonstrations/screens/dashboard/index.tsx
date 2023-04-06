@@ -5,15 +5,19 @@ import {
   Container,
   SubHeaderContent,
   AmountOfQuestions,
+  ContentContainerListEmpty,
+  ContentContainerListEmptyText,
   ContainerSectionCardRoom,
   HeaderSectionTitle,
   ButtonRoomControlListContainer,
   ButtonRoomControlList,
   ButtonRoomIcon,
 } from "./styles";
-import { CardRoom } from "../components/card-room";
-import { arrowLeft, arrowRight } from "../assets/icons";
-import { api } from "../../../shared/services/api";
+import { CardRoom } from "../../components/card-room";
+import { arrowLeft, arrowRight } from "../../assets/icons";
+import { api } from "../../../../shared/services/api";
+import { useToastNotificaitonProvider } from "../../../../shared/contexts/toast-notification";
+import { useOpenAndCloseNavbarOnKeyPressContextProvider } from "../../../../shared/contexts/open-and-close-navbar-on-key-press";
 
 type CardType = {
   title: string;
@@ -148,7 +152,8 @@ const CardsRoomSection = ({section: {title,data: itemsData}}:RenderSectionListPr
 export const Dashboard = () => {
 
   const [ data,setData ] = useState<CardSectionType[]>([]);
-
+  const { addToastNotifications } = useToastNotificaitonProvider();
+  const { onFocus } = useOpenAndCloseNavbarOnKeyPressContextProvider()
   const renderSectionHeader = ({section}:{section: SectionListData<CardType, CardSectionType>}) => {
     console.log({section})
     return (
@@ -156,12 +161,23 @@ export const Dashboard = () => {
     )
   }
 
-
-  useEffect(() => {
-    const fetchRoomsData = async () => {
+  const fetchRoomsData = async () => {
+    try{
       const roomsDataResponse = await api.get("/rooms");
       setData (roomsDataResponse.data);
+    }catch(err){
+      addToastNotifications({
+        title:"error ao conectar com o servidor",
+        description:"parece que estamos tendo um problema em carregar os dados",
+        position: "center",
+        type:"error"
+      }); 
+    }finally{
+      
     }
+  }
+
+  useEffect(() => {
     fetchRoomsData();
   },[])
   
@@ -169,7 +185,7 @@ export const Dashboard = () => {
     <Container>
       <SubHeaderContent>
         <Text style={fonts.TitleRoom}>Sala React Q&A</Text>
-        <AmountOfQuestions>
+        <AmountOfQuestions onPress={onFocus}>
           <Text style={fonts.TitleRoomText}>42 perguntas</Text>
         </AmountOfQuestions>
       </SubHeaderContent>
@@ -177,6 +193,11 @@ export const Dashboard = () => {
         sections={data}
         keyExtractor={(item, index) => `${index}`}
         renderItem={({item,index}) => <CardRoom index={index} {...item}/>}
+        ListEmptyComponent={
+          <ContentContainerListEmpty>
+            <ContentContainerListEmptyText>parece que nãoe existem salas disponiveis no momento</ContentContainerListEmptyText>
+          </ContentContainerListEmpty>
+        }
         renderSectionHeader={({section: {title}}) => (
           <HeaderSectionTitle style={fonts.headerSectionTitle}>{title}</HeaderSectionTitle>
         )}

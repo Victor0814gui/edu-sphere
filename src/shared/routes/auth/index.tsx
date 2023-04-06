@@ -1,10 +1,10 @@
-import { SignUpStepThree } from '../../modules/session/screens/sign-up-step-three';
-import { SignUpStepTwo } from "../../modules/session/screens/sign-up-step-two";
-import { SignUpStepOne } from '../../modules/session/screens/sign-up-step-one';
-import { SignIn } from '../../modules/session/screens/sign-in';
+import { SignUpStepThree } from '../../../modules/session/screens/sign-up-step-three';
+import { SignUpStepTwo } from "../../../modules/session/screens/sign-up-step-two";
+import { SignUpStepOne } from '../../../modules/session/screens/sign-up-step-one';
+import { SignIn } from '../../../modules/session/screens/sign-in';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { UserDrawerType } from '../../shared/types';
-import { AppProvider } from '../contexts';
+import { UserDrawerType } from '../../types';
+import { AppProvider } from '../../contexts';
 import { enableScreens,enableFreeze  } from "react-native-screens"
 
 

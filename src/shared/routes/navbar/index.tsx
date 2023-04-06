@@ -1,14 +1,14 @@
-import { memo,useState } from "react";
+import { useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
+  FlatList,
 } from 'react-native';
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 import { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
 import { home } from "../../assets/icons"
-import { COLORS, FONTS } from '../../theme';
+import { COLORS } from '../../theme';
 
 import { 
   fonts,
@@ -19,7 +19,6 @@ import {
   ProfileImage,
   CotenteTextProfile,
   ClientNameText,
-  ClientEmailText, 
   CustomerRoleBadge,
   CustomerRoleBadgeIcon,
 } from "./styles";
@@ -49,9 +48,24 @@ const ItemNavbar = ({routeName,isActive}:{isActive:boolean,routeName: string}) =
 }
 
 
+type RenderItemType = {
+  item:{
+    name: string;
+  },
+  index: number
+}
+
+
 export const CustomNavbar = ({navigation:_,state}:CustomNavbarProps) => {
   const navigation = useNavigation();
   const { user } = useAuthContextProvider()
+
+  const renderItem = ({ item:{ name }, index: i}:RenderItemType) => (
+    <ButtonItemNavbar key={i} onPress={() => navigation.navigate(name as any)}>
+      <ItemNavbar  isActive={state.index === i} routeName={name}/>
+    </ButtonItemNavbar>
+  )
+
   return (
     <View style={{flex: 1}}>
       <SectionProfileClient>
@@ -63,11 +77,11 @@ export const CustomNavbar = ({navigation:_,state}:CustomNavbarProps) => {
           <CustomerRoleBadgeIcon source={require("../../assets/icons/admin.svg")}/>
         </CustomerRoleBadge>
       </SectionProfileClient>
-      {state.routes.map(({name},i) => (
-        <ButtonItemNavbar key={i} onPress={() => navigation.navigate(name as any)}>
-          <ItemNavbar  isActive={state.index === i} routeName={name}/>
-        </ButtonItemNavbar>
-      ))}
+      <FlatList
+        data={state.routes}
+        renderItem={renderItem}
+        keyExtractor={(_,index) => `${index}`}
+      />
     </View>
   );
 }

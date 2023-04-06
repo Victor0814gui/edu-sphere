@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Text, Image,StyleSheet } from "react-native";
-import { FONTS,COLORS } from "../../../shared/theme"
+import { FONTS,COLORS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
-import LogoImage from "../assets/images/logo.svg";
-import { Input } from '../components/input';
+import LogoImage from "../../assets/images/logo.svg";
+import { Input } from '../../components/input';
 import { 
   styles,
   Container,
@@ -14,8 +14,8 @@ import {
   ButtonGoBackText,
   Button,
 } from './styles';
-import { StepLevel } from '../components/step-level';
-import { useAuthStepsContextProvider } from '../contexts/auth-steps';
+import { StepLevel } from '../../components/step-level';
+import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
 
 export function SignUpStepTwo() {
   const { navigate,goBack } = useNavigation()

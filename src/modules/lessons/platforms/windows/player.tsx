@@ -1,18 +1,8 @@
-import { useRef,useEffect, useState } from "react";
 import Video from "react-native-video";
-import { Pressable,View, Animated,useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { 
   Container,
-  VideoContainerControls,
-  DescriptionContainer,
-  Description,
-  Controls,
-  aditionalStyles,
-} from '../styles';
-import Icon from "react-native-vector-icons/Feather"
-import { COLORS } from "../../../../../shared/theme";
-import { ProgressView } from "@react-native-community/progress-view";
-import { styles } from "../../../session/sign-up-step-two/styles";
+} from './styles';
 
 export interface OnProgressData {
   currentTime: number;

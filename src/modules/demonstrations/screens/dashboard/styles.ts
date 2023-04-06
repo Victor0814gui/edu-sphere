@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FONTS,COLORS } from "../../../shared/theme";
+import { FONTS,COLORS } from "../../../../shared/theme";
 import { StyleSheet,Platform,Animated,Pressable,TouchableOpacity } from "react-native";
 import { RectButton } from "react-native-gesture-handler"
 
@@ -45,6 +45,15 @@ export const AmountOfQuestions = styled((mobile ? RectButton : TouchableOpacity)
   padding: 0 7px;
   margin-left: 12px;
 `;
+
+export const ContentContainerListEmpty = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ContentContainerListEmptyText = styled.Text``;
+
 
 export const ContainerSectionCardRoom = styled.View`
   position: relative;

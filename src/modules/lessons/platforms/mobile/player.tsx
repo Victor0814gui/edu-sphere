@@ -6,7 +6,7 @@ import {
   VideoContainerControls,
   DescriptionContainer,
   Controls,
-} from '../../screens/player/styles';
+} from './styles';
 import Icon from "react-native-vector-icons/Feather"
 import { COLORS } from "../../../../shared/theme";
 

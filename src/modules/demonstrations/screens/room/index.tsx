@@ -112,7 +112,7 @@ export const Room = () => {
       <ProgressView  isIndeterminate={true}/>
       <ListQuestions
         data={data}
-        ListEmptyComponent={<Image source={require("../assets/animations/arty-chat.gif")}/>}
+        ListEmptyComponent={<Image source={require("../../assets/animations/arty-chat.gif")}/>}
         //@ts-ignore
         renderItem={renderItem}
         showsVerticalScrollIndicator

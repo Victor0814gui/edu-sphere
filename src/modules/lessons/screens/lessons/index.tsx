@@ -1,197 +1,35 @@
-import React,{useState,useRef,useEffect} from 'react';
-import { Container,Box,Circle } from './styles';
-import { View,Text,PanResponder,Button,Animated, useWindowDimensions, Pressable } from "react-native";
-import { COLORS } from '../../../../shared/theme';
-import { useNavigation } from "@react-navigation/native";
 
-
-
+import { View } from "react-native";
+import { 
+  Container,
+  BackgroundImageContainer,
+  BackgroundImageContent,
+  BackgroundImage,
+  SectionHeaderContainer,
+  SectionHeaderContainerLeftText,
+  ListSubjectsContainer,
+} from "./styles";
 
 export const Lessons = () => {
-  const viewRef = useRef<View>(null);
-  const animatedView = useRef(new Animated.Value(0)).current;
-  const [key ,setKey] = useState('');
-  const { height,width } = useWindowDimensions();
-  const { navigate } = useNavigation();
 
-  const bigScale = () => {
-    Animated.spring(animatedView,{
-      toValue: 300,
-      useNativeDriver: true,
-    }).start()
-  }
 
-  const nomalScale = () => {
-    Animated.spring(animatedView,{
-      toValue: 0,
-      useNativeDriver: true,
-    }).start();
-  }
+  const renderItem = ({item}:any) => <View/>
 
-  const smallScale = () => {
-    Animated.spring(animatedView,{
-      toValue: -120,
-      useNativeDriver: true,
-    }).start();
-  }
 
-  const _onKeyDown = ({nativeEvent}) => {
-    console.log(nativeEvent.key)
-    
-    if(nativeEvent.key === "Control"){
-      bigScale()
-    }
-    if(nativeEvent.key === "F"){
-      nomalScale()
-    }
-    if(nativeEvent.key === " "){
-      smallScale()
-    }
-    
-    // console.log(viewRef.current)
-    setKey(nativeEvent.key)
-    
-    const {
-      capsLockKey = false,
-      shiftKey = false,
-      controlKey = false,
-      optionKey = false,
-      commandKey = false,
-      numericPadKey = false,
-      helpKey = false,
-      functionKey = false,
-      leftArrowKey = false,
-      rightArrowKey = false,
-      upArrowKey = false,
-      downArrowKey = false,
-    } = nativeEvent ?? {};
-    capsLockKey && console.log('Key Pressed: Caps Lock!');
-    shiftKey && console.log('Key Pressed: Shift Key!');
-    controlKey && console.log('Key Pressed: Control Key!');
-    optionKey && console.log('Key Pressed: Option Key!');
-    commandKey && console.log('Key Pressed: Command Key!');
-    numericPadKey && console.log('Key Pressed: NumericPad Key!');
-    helpKey && console.log('Key Pressed: Help Key!');
-    functionKey && console.log('Key Pressed: Function Key!');
-    leftArrowKey && console.log('Key Pressed: Left Arrow!');
-    rightArrowKey && console.log('Key Pressed: Right Arrow!');
-    upArrowKey && console.log('Key Pressed: Up Arrow!');
-    downArrowKey && console.log('Key Pressed: Down Arrow!');
-    // console.log('Key Pressed: ', key);
-  };
-  const panResponder = React.useRef(
-    PanResponder.create({
-      // Ask to be the responder:
-      onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onStartShouldSetPanResponderCapture: (evt, gestureState) =>
-        true,
-      onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) =>
-        true,
-
-      onPanResponderGrant: (evt, gestureState) => {
-        // The gesture has started. Show visual feedback so the user knows
-        // what is happening!
-        // gestureState.d{x,y} will be set to zero now
-        console.log({evt, gestureState})
-      },
-      onPanResponderMove: (evt, gestureState) => {
-        // The most recent move distance is gestureState.move{X,Y}
-        // The accumulated gesture distance since becoming responder is
-        // gestureState.d{x,y}
-        console.log({evt, gestureState})
-
-      },
-      onPanResponderTerminationRequest: (evt, gestureState) =>
-        true,
-      onPanResponderRelease: (evt, gestureState) => {
-        // The user has released all touches while this view is the
-        // responder. This typically means a gesture has succeeded
-        console.log({evt, gestureState})
-
-      },
-      onPanResponderTerminate: (evt, gestureState) => {
-        // Another component has become the responder, so this gesture
-        // should be cancelled
-        console.log({evt, gestureState})
-
-      },
-      onShouldBlockNativeResponder: (evt, gestureState) => {
-        // Returns whether this component should block native components from becoming the JS
-        // responder. Returns true by default. Is currently only supported on android.
-        console.log({evt, gestureState})
-
-        return true;
-      },
-    }),
-  ).current;
-
-  useEffect(() => {
-    viewRef?.current?.focus?.();
-  }, []);
-
-  return (
-    <Pressable
-      style={{flex: 1}}
-      onPress={() => viewRef?.current?.focus?.()}
-      onHoverIn={(e) => console.log(e.nativeEvent)}
-      onHoverOut={(e) => console.log(e.nativeEvent)}
-    >
-    <Container
-      ref={viewRef}
-      // style={{flex: 1}}
-      onMagicTap={() => viewRef?.current?.focus?.()}
-      focusable={true}
-      enableFocusRing={false}
-      onTouchEndCapture={(e) => console.log(e)}
-      validKeysDown={['Enter', 'Esc', 'rightArrow']}
-      onKeyDown={_onKeyDown}
-      pointerEvents={(e) =>console.log(e)}
-    >
-      <View
-        // ref={viewRef}
-        style={{flex: 1}}
-        // focusable
-        // enableFocusRing={true}
-        // validKeysDown={['Enter', 'Esc', 'rightArrow']}
-        // onKeyDown={_onKeyDown}
-        // pointerEvents={(e) =>console.log(e)}
-      {...panResponder.panHandlers} 
-
-        >
-      </View>
-
-          
-      <View style={{flexDirection: "row",alignSelf: "center",}}>
-        <Animated.View style={{
-          backgroundColor: COLORS.green_500,
-          width: width/3,
-          height: 130,
-          borderRadius: animatedView,
-          transform:[{translateY: animatedView}],
-        }}>
-          <Text>{key}</Text>
-          <Button title="focar" onPress={() => navigate('player')} color={COLORS.red_530}/>
-
-        </Animated.View>
-        <Animated.View style={{
-          backgroundColor: COLORS.green_500,
-          width: width/3,
-          height: 130,
-          borderRadius: animatedView,
-          transform:[{translateY: animatedView}],
-        }}>
-          <Text>{key}</Text>
-        </Animated.View>
-      </View>
-    
-      <View style={{
-        position: "absolute",
-        right: 0,
-      }}>
-      <Button title="focar" onPress={() => viewRef?.current?.focus?.()} color={COLORS.red_530}/>
-      </View>
+  return(
+    <Container>
+      <BackgroundImageContainer>
+        <BackgroundImageContent>
+          <BackgroundImage />
+        </BackgroundImageContent>
+        <SectionHeaderContainer>
+          <SectionHeaderContainerLeftText>materias</SectionHeaderContainerLeftText>
+        </SectionHeaderContainer>
+        <ListSubjectsContainer
+          data={[]}
+          renderItem={renderItem}
+        />
+      </BackgroundImageContainer>
     </Container>
-    </Pressable>
-  );
+  )
 }

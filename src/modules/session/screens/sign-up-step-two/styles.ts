@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import styled from "styled-components/native";
-import { COLORS, FONTS } from "../../../shared/theme";
-import { Button as ButtonPattern } from "../components/button";
+import { COLORS, FONTS } from "../../../../shared/theme";
+import { Button as ButtonPattern } from "../../components/button";
 
 
 export const styles = StyleSheet.create({

@@ -8,17 +8,30 @@ export const Container  = styled.View`
 `;
 
 
-export const Box = styled.View`
-  height: 230px;
-  width: 230px;
-  border-radius: 28px;
-  background-color: ${COLORS.green_500};
+export const BackgroundImageContainer = styled.View`
+  margin: 0 auto;
+  background-color: ${COLORS.grey_270};
+  height: 200px;
+  width: 80%;
+  border-radius: 21px;
 `;
 
-export const Circle = styled.View`
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  background-color: ${COLORS.red_500};
-  position: absolute;
+export const BackgroundImageContent = styled.View`
+
+`;
+
+export const BackgroundImage = styled.View`
+
+`;
+
+export const SectionHeaderContainer = styled.View`
+
+`;
+
+export const SectionHeaderContainerLeftText = styled.Text`
+
+`;
+
+export const ListSubjectsContainer = styled.FlatList`
+
 `;

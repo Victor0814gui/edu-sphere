@@ -5,8 +5,8 @@ import { COLORS } from "./theme";
 import { ContextAuthContextProvider } from "./contexts/auth";
 import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 import { NotificationContextProvider } from "./contexts/notification";
-import { Dashboard } from "../modules/demonstrations/dashboard";
-import { Modal } from "./components/modal";
+import { OpenAndCloseNavbarOnKeyPressContextProvider } from "./contexts/open-and-close-navbar-on-key-press";
+import { NetworkConnectionNotificationContextProvider } from "./contexts/network-connection-notification";
 
 const MyTheme: Theme = {
   ...DefaultTheme,
@@ -20,14 +20,14 @@ const MyTheme: Theme = {
 
 export const Main = () => {
   return (
-    <NavigationContainer theme={MyTheme}>
-      <NotificationContextProvider>
-        <ToastNotificaitonProvider>
-          <ContextAuthContextProvider>
-            <Router/>
-          </ContextAuthContextProvider>
-        </ToastNotificaitonProvider>
-      </NotificationContextProvider>
-    </NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
+        <NotificationContextProvider>
+          <OpenAndCloseNavbarOnKeyPressContextProvider>
+            <ContextAuthContextProvider>
+              <Router/>
+            </ContextAuthContextProvider>
+          </OpenAndCloseNavbarOnKeyPressContextProvider>
+        </NotificationContextProvider>
+      </NavigationContainer>
   )
 }

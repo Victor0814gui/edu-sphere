@@ -23,15 +23,14 @@ const NetworkConnectionNotificationContext = createContext(
 const NetworkConnectionNotificationContextProvider = ({
   children,
 }:{children: ReactNode}) => {
-  const [ clientNetworkConnected,setClientNetworkConnected ] = useState(false);
   const [ networkInfo,setNetworkInfo ] = useState(
     {} as NetworkConnectionNotificationContextType
   );
-  
-  useEffect(() => {
-    // Subscribe
-    const unsubscribe = NetInfo.addEventListener(state => {
-      console.log(state.details)
+
+  const unsubscribe = NetInfo.addEventListener(state => {
+    // console.log(state.details)
+
+    if(state.isConnected !== networkInfo.isConnected){
       setNetworkInfo({
         details: networkInfo.details,
         ipAddress: networkInfo.ipAddress,
@@ -39,11 +38,14 @@ const NetworkConnectionNotificationContextProvider = ({
         isInternetReachable: networkInfo.isInternetReachable,
         type: networkInfo.type,
       })
-      setClientNetworkConnected(state.isConnected!)
-    });
+    }
+  });
 
+
+
+  useEffect(() => {
     // Unsubscribe
-    return () => unsubscribe();
+    unsubscribe()
   },[])
   
 
