@@ -9,15 +9,15 @@ export const Container  = styled.View`
 
 
 export const BackgroundImageContainer = styled.View`
+ 
+`;
+
+export const BackgroundImageContent = styled.View`
   margin: 0 auto;
   background-color: ${COLORS.grey_270};
   height: 200px;
   width: 80%;
   border-radius: 21px;
-`;
-
-export const BackgroundImageContent = styled.View`
-
 `;
 
 export const BackgroundImage = styled.View`
