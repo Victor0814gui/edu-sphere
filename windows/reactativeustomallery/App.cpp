@@ -13,7 +13,6 @@ using namespace xaml;
 using namespace xaml::Controls;
 using namespace xaml::Navigation;
 using namespace Windows::ApplicationModel;
-
 // using namespace Windows::UI::ViewManagement; // Inclui o namespace da API de personalização da TitleBar
 
 namespace winrt::reactativeustomallery::implementation
@@ -25,21 +24,7 @@ namespace winrt::reactativeustomallery::implementation
 /// </summary>
 App::App() noexcept
 {
-    // Configura a personalização da TitleBar
-    // auto titleBar = ApplicationView::GetForCurrentView()->TitleBar;
-    // titleBar->BackgroundColor = Colors::DarkGray;
-    // titleBar->ButtonBackgroundColor = Colors::DarkGray;
-    // titleBar->ForegroundColor = Colors::White;
-    // titleBar->ButtonForegroundColor = Colors::White;
-    // titleBar->LayoutMetricsChanged += 
-    //     winrt::auto_revoke, 
-    //     [this](ApplicationViewTitleBar const& sender, auto const& args)
-    //     {
-    //         // Lida com a mudança de layout da TitleBar
-    //         double titleBarHeight = sender.Height();
-    //         // Faça ajustes na sua janela conforme necessário
-    //     };
-
+    AppWindowTitleBar TitleBar();
     // Configura as opções do React Native
 
     #if BUNDLE

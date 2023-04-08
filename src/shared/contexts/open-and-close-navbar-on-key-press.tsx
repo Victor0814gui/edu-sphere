@@ -23,12 +23,9 @@ const OpenAndCloseNavbarOnKeyPressContextProvider = (props:{
   const { goBack } = useNavigation();
 
   const _onKeyDown = ({nativeEvent}: IKeyboardEvent) => {
-    console.log(nativeEvent.key)
 
     if(nativeEvent.ctrlKey && nativeEvent.key === "B"){
       setNavbarIsOpen(!navbarIsOpen);
-      console.log("_onKeyDown")
-      console.log(nativeEvent.key)
     }
 
     if(nativeEvent.shiftKey && nativeEvent.key === "Escape"){
@@ -52,13 +49,13 @@ const OpenAndCloseNavbarOnKeyPressContextProvider = (props:{
         ref={viewRef}
         onMagicTap={() => viewRef?.current?.focus?.()}
         focusable={true}
+        //@ts-ignore
         enableFocusRing={true}
         onTouchEndCapture={(e) => viewRef?.current?.focus?.()}
         validKeysDown={['Enter', 'Esc', 'rightArrow']}
         onKeyDown={_onKeyDown}
         onTouchStart={() => viewRef?.current?.focus?.()}
         //@ts-ignore
-        pointerEvents={(e) =>console.log(e)}
       >
         {props.children}
       </View>

@@ -1,0 +1,44 @@
+import styled,{ css } from "styled-components/native";
+import { COLORS,FONTS } from "../../../../shared/theme";
+
+
+import { StyleSheet } from "react-native";
+
+export const additionalStyles = StyleSheet.create({
+  subjectContainerContentTitle:{
+    fontFamily: FONTS.Poppins.Medium,
+    color: COLORS.grey_970,
+    fontSize: 14
+  },
+  subjectContainerContentDescription:{
+    fontFamily: FONTS.Poppins.Ligth,
+    color: COLORS.grey_800,
+    fontSize: 12
+  },
+})
+
+
+export const SubjectContainer = styled.Pressable<{isPressed: boolean,onHover: boolean}>`
+  padding: 12px;
+  border-radius: 12px;
+  flex-direction: row;
+  align-items: center;
+
+  
+  margin: 3px;
+
+  ${({onHover,isPressed}) => 
+    isPressed && css` background-color: ${COLORS.grey_200}; `
+    || onHover && css` background-color: ${COLORS.grey_240}; `
+    || css` background-color: ${COLORS.grey_270} `
+  }
+`;
+export const IconSubjectContainer = styled.View`
+  margin: 0 12px;
+`;
+
+export const SubjectContainerContent = styled.View`
+`;
+
+export const SubjectContainerContentTitle = styled.Text``;
+export const SubjectContainerContentDescription = styled.Text``;

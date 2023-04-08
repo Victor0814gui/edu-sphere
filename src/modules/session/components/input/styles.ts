@@ -23,7 +23,7 @@ export const ContainerStyleTextInput = styled.View<{onHover: boolean}>`
   border-color: ${({onHover}) => onHover ? COLORS.green_500 : COLORS.grey_270};
   height: 48px;
   border-radius: 41px;
-  width: 100%
+  width: 100%;
   min-width: 320px;
   margin-top: 7px;
   flex-direction: row;

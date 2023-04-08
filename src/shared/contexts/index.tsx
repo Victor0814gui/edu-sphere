@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import { AuthStepsContextProvider } from '../../modules/session/contexts/auth-steps';
 import { ToastNotificaitonProvider } from './toast-notification';
-import { NotificationContextProvider } from "./notification";
+import { NotificationContextProvider } from "./notification-system";
 import { OpenAndCloseNavbarOnKeyPressContextProvider } from "./open-and-close-navbar-on-key-press";
 import { ContextAuthContextProvider } from "./auth";
 
@@ -9,13 +8,13 @@ import { ContextAuthContextProvider } from "./auth";
 export function AppProvider({children}:{children:ReactNode}){
   return(
     <NotificationContextProvider>
-      <OpenAndCloseNavbarOnKeyPressContextProvider>
-        <ContextAuthContextProvider>
-          <ToastNotificaitonProvider>
+      <ToastNotificaitonProvider>
+        <OpenAndCloseNavbarOnKeyPressContextProvider>
+          <ContextAuthContextProvider>
             {children}
-          </ToastNotificaitonProvider>
-        </ContextAuthContextProvider>
-      </OpenAndCloseNavbarOnKeyPressContextProvider>
+          </ContextAuthContextProvider>
+        </OpenAndCloseNavbarOnKeyPressContextProvider>
+      </ToastNotificaitonProvider>
     </NotificationContextProvider>
   )
 }

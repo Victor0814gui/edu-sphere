@@ -6,7 +6,7 @@ import {
   useEffect,
 } from "react";
 
-import { NativeModules } from "react-native";
+import { NativeModules, TurboModuleRegistry } from "react-native";
 
 
 type ContextNotificationProviderType = {
@@ -24,11 +24,11 @@ const NotificationContextProvider = ({children}:{children: ReactNode}) => {
   const [ notificationText,setNotificationText ] = useState('');
 
 
-
   // useEffect(() => {
   //   NativeModules.Notifications.raise({
   //     template: 0,
-  //     text: "Notificações windows",
+  //     text: "Notificações windows  asd fkajsdfjka sdfa sdf a sdf a sdf as df asd f as df asd f asdf as df asd f asdf as df asd fa sdf asd fa sdf a sdf" ,
+
   //     image: {
   //       src: "http://localhost:4000/Multiavatar-Aphex-Maiden.png",
   //       alt: "React logo",

@@ -1,6 +1,13 @@
 
-import { View } from "react-native";
+import React,{ useState } from "react";
 import { 
+  View,
+  Text,
+  TouchableOpacity,
+} from "react-native-windows";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { 
+  additionalStyles,
   Container,
   BackgroundImageContainer,
   BackgroundImageContent,
@@ -9,27 +16,30 @@ import {
   SectionHeaderContainerLeftText,
   ListSubjectsContainer,
 } from "./styles";
+import { Subject } from "../../components/subject";
+import { COLORS } from "../../../../shared/theme";
+
+const uri = "https://cdn.discordapp.com/attachments/1008571142858092684/1093544099388338287/thisistheway1142_toms_guide_logo_on_white_background_in_the_sty_4bf63938-ce79-40e7-928d-ac2b0da8b32b.png";
+
+
 
 export const Lessons = () => {
-
-
-  const renderItem = ({item}:any) => <View/>
+  const RenderList = [1,2,3,4,5,6,7,8,9,10,11,12,14].map((e) => <Subject/>)
 
 
   return(
     <Container>
       <BackgroundImageContainer>
         <BackgroundImageContent>
-          <BackgroundImage />
+          <BackgroundImage resizeMode="cover" source={{ uri }} />
         </BackgroundImageContent>
-        <SectionHeaderContainer>
-          <SectionHeaderContainerLeftText>materias</SectionHeaderContainerLeftText>
-        </SectionHeaderContainer>
-        <ListSubjectsContainer
-          data={[]}
-          renderItem={renderItem}
-        />
       </BackgroundImageContainer>
+      <SectionHeaderContainer>
+        <SectionHeaderContainerLeftText style={additionalStyles.sectionHeaderContainerLeftText}>materias</SectionHeaderContainerLeftText>
+      </SectionHeaderContainer>
+      <ListSubjectsContainer>
+        {RenderList}
+      </ListSubjectsContainer>
     </Container>
   )
 }

@@ -41,7 +41,7 @@ export function SignIn() {
   const { navigate } = useNavigation()
   const { signIn } = useAuthContextProvider();
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, handleSubmit, formState: { errors }, } = useForm({
     defaultValues: {
       email: '',
       password: ''
@@ -71,6 +71,7 @@ export function SignIn() {
             <Input 
               onChangeText={onChange}
               iconName="mail-outline"
+              onBlur={onBlur}
               value={value} 
               autoComplete='email' 
               labelText="Seu Email"
@@ -86,9 +87,10 @@ export function SignIn() {
             required: true,
             maxLength: 20,
           }}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange,onBlur, value } }) => (
             <Input 
               onChangeText={onChange} 
+              onBlur={onBlur}
               value={value} 
               autoComplete='password' 
               secureTextEntry

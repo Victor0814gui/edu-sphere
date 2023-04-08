@@ -2,6 +2,7 @@
 
 asdfasdf
 
+reanimated@1.10.0
 
 ### Run instructions for macOS:
     • npx react-native run-macos

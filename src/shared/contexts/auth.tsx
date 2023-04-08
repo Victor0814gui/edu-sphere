@@ -2,7 +2,7 @@ import { useContext,createContext, ReactNode, useState, useCallback } from "reac
 import { api } from "../services/api";
 import { ContextAuthContextType, SignInMethodProps, UserType,ToastContentType } from "../../shared/types";
 import { useToastNotificaitonProvider } from "../contexts/toast-notification";
-import { useNotificationContextProvider } from "../contexts/notification";
+import { useNotificationContextProvider } from "./notification-system";
 import { v4 as uuidV4 } from "uuid";
 
 const signInNotificationContentTypeServerError: ToastContentType = {

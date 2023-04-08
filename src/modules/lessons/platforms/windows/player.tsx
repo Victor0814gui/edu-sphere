@@ -1,7 +1,15 @@
 import Video from "react-native-video";
 import { useWindowDimensions } from "react-native";
+import { useNavigation,useRoute } from "@react-navigation/native";
+
 import { 
+  fonts,
   Container,
+  ContainerRoomNotFound,
+  TitleRoomNotFound,
+  DescriptionRoomNotFound,
+  ButtonRoomNotFound,
+  ButtonRoomNotFoundText,
 } from './styles';
 
 export interface OnProgressData {
@@ -12,6 +20,30 @@ export interface OnProgressData {
 
 
 export function PlayerWindows() {
+  const route  = useRoute()
+  const { navigate,goBack } = useNavigation();
+  
+  
+  
+  if(!route.params){
+    return (
+      <ContainerRoomNotFound>
+        <TitleRoomNotFound style={fonts.titleRoomNotFound}>Ops,video não encontrado</TitleRoomNotFound>
+        <DescriptionRoomNotFound style={fonts.descriptionRoomNotFound}>parece que o você está buscando não existe, ou não está disponivel</DescriptionRoomNotFound>
+        <ButtonRoomNotFound onPress={() => navigate("dashboard")}>
+          <ButtonRoomNotFoundText style={fonts.buttonRoomNotFoundText}>Home</ButtonRoomNotFoundText>
+        </ButtonRoomNotFound>
+        {/* <LottieView style={{width: 400,height:400}}  source={"HamburgerArrow"} /> */}
+      </ContainerRoomNotFound>
+    )
+  }
+
+  const { url } = route.params as {url: string};
+
+  if(!url){
+    navigate("dashboard");
+  }
+
   const {
     width,
     height,
@@ -74,6 +106,7 @@ export function PlayerWindows() {
   //   viewRef?.current?.focus?.();
   // }, []);
 
+
   return (
     <Container
       // ref={viewRef}
@@ -95,13 +128,16 @@ export function PlayerWindows() {
         playInBackground={true}
         // paused={paused}
         allowsExternalPlayback
+        onLoad={(e) => console.log(e)}
+        paused={false}
+        resizeMode="contain"
         // fullscreen={fullscreen}
         // onVideoLoad={(e) => console.log(e)}
         // onSeek={(e) => console.log(e)}
         // onProgress={(e) => console.log(e.nativeEvent)}
         // onLoad={(e) => console.log(e)}
         source={{
-          uri:"https://rr4---sn-gpv7yn7e.googlevideo.com/videoplayback?expire=1680661208&ei=eIYsZJ3fC8eYyAWe_aSQDQ&ip=37.212.2.164&id=o-ABLNIJqgZb_QQMVnem0SX11sauwujA9LIS8IDNi3gVfu&itag=22&source=youtube&requiressl=yes&spc=99c5CXkPFNHIbvf23c8VCqZITFrtlu1qE3kVcIuBxkb-MhHmCA&vprv=1&mime=video%2Fmp4&ns=lAU44GSLcEfmX9vewmFKHIgM&cnr=14&ratebypass=yes&dur=11255.385&lmt=1663598279578994&fexp=24007246&c=WEB&txp=5532434&n=EFMmFdZ9AtB-xQ&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhALUD3qh1W6NOZ6aqfydNRkD4edlSGXXWEj6zItSYIJLOAiAte4Xdelny9jqSwfQnDhyOLP3fiD9lSV9XZP2SIaX72w%3D%3D&title=Minecraft%20Survival%20-%20Relaxing%20Longplay%2C%20Mountain%20Tunnel%20(No%20Commentary)%201.18%20(%2321)&rm=sn-cxauxaxjvh-hn9es76,sn-f5fel7z&req_id=414853e2a7aa3ee&cmsv=e&redirect_counter=2&cms_redirect=yes&ipbypass=yes&mh=6G&mip=189.83.156.19&mm=30&mn=sn-gpv7yn7e&ms=nxu&mt=1680639061&mv=u&mvi=4&pl=23&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRgIhANPpRnR7yCpNbtEZ9tr5P-G2RIaUvnyk5oGYQ-J9WHXEAiEA_yF01ziZ6ZzefJZrLr8uSCCsdH5B-q9z6KkVFcu2aLQ%3D"
+          uri: url
         }}
         muted={false}
 

@@ -13,7 +13,7 @@ const ToastNotificaitonProvider = ({children}:{children: ReactNode}) => {
 
   const addToastNotifications = useCallback((props:ToastContentType) => {
     props.id = uuidV4();
-    setToastNotifications([...toastNotifications,props]);
+    setToastNotifications(oldProps => [...oldProps,props]);
   },[])
 
   const removeToastNotication = useCallback((id: string) => {
