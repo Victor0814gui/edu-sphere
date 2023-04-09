@@ -34,21 +34,19 @@ export function UserDrawerRoutes() {
     <UserDrawer.Navigator 
       screenOptions={NavbarDevices()}
       drawerContent={({navigation,state}) => <CustomNavbar navigation={navigation} state={state}/>}
-      initialRouteName="playlistlessons"
+      initialRouteName="dashboard"
       key={"route-user-screens"}
       useLegacyImplementation={true}
     >
       <UserDrawer.Screen name="dashboard" component={Dashboard} />
-      <UserDrawer.Screen name="profile" component={Profile} />
       <UserDrawer.Screen name="lessons" component={Lessons} />
+      <UserDrawer.Screen name="profile" component={Profile} />
        <UserDrawer.Screen name="room" component={Room} />
       <UserDrawer.Screen name="player" options={{ drawerType: "slide" }} component={Player} />
       <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
     </UserDrawer.Navigator>
   );
 }
-
-
 
 
 function NavbarDevices():DrawerNavigationOptions  {

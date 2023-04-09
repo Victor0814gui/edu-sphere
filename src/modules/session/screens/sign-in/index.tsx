@@ -9,15 +9,14 @@ import {
   styles,
   Container,
   Form,
-  ErrorMessageContainer,
-  ErrorMessageContainerText
+  RedirectCreateAcountText,
 } from './styles';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import { HiperLink } from '../../components/hiper-link';
 import { useForm,Controller } from 'react-hook-form';
-import Icon from "react-native-vector-icons/MaterialIcons";
 import { COLORS } from '../../../../shared/theme';
 import { ScrollView } from 'react-native-gesture-handler';
+import { MessageError } from '../../components/message-error';
 
 
 type OnSubmitProps = {
@@ -26,15 +25,6 @@ type OnSubmitProps = {
 }
 
 
-const MessageError = ({children}:{children: string}) => {
-
-  return (
-    <ErrorMessageContainer>
-      <Icon name="dangerous" size={15} color={COLORS.orange_400}/>
-      <ErrorMessageContainerText style={styles.errorMessageContainerText}>{children}</ErrorMessageContainerText>
-    </ErrorMessageContainer>
-  )
-}
 
 
 export function SignIn() {

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useCallback, useEffect} from 'react';
 import { Text, Animated, Image,Linking,StyleSheet } from "react-native";
 import { FONTS,COLORS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
@@ -16,17 +16,38 @@ import {
   ButtonGoBackText,
   Button,
 } from './styles';
+import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
+import { Controller, useForm } from 'react-hook-form';
+import { MessageError } from '../../components/message-error';
 
+type OnSubmitProps = {
+  email: string;
+  password: string;
+}
 
 export function SignUpStepOne() {
   const { navigate,goBack } = useNavigation()
   const { setStep } = useAuthStepsContextProvider()
+  const { setUserData } = useCreateUserStepsContextProvider();
 
+  const { control, handleSubmit, formState: { errors }, } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  });
 
-  const handlePress = async () => {
-    // await Linking.openURL("reactativeustomallery://signup")
-      navigate('signupsteptwo');
-  }
+  const onSubmit = useCallback(({email,password}: OnSubmitProps) => {
+    setUserData({
+      email,
+      password,
+      name: null,
+      birthday: null,
+      avatarUrl: ''
+    })
+    navigate('signupsteptwo');
+  },[])
+
 
   useEffect(() => {
     setStep(1);
@@ -39,26 +60,64 @@ export function SignUpStepOne() {
         flex: 1,
       }}
     >
-    <StepLevel/>
-    <Container>
-      <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
-      <Form>
-        <Input iconName="mail" autoComplete='email' labelText="Seu email"/>
-        <Input iconName="vpn-key" autoComplete='email' labelText="Sua senha"/>
-        <SectionButtonForm>
-          <ButtonGoBack onPress={() => goBack()}>
-            <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
-          </ButtonGoBack>
-          <Button
-            text="proximo passo"
-            onPress={handlePress}
-            style={{
-              marginTop: 12,
+      <StepLevel/>
+      <Container>
+        <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
+        <Form>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              maxLength: 40,
+              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ 
             }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input 
+                onChangeText={onChange}
+                iconName="mail-outline"
+                onBlur={onBlur}
+                value={value} 
+                autoComplete='email' 
+                labelText="Seu Email"
+              />
+            )}
+            name="email"
           />
-        </SectionButtonForm>
-      </Form>
-    </Container>
+          {errors.email?.type === 'required' && <MessageError>email is required</MessageError>}
+          {errors.email && <MessageError>email is incorrect</MessageError>}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              maxLength: 20,
+            }}
+            render={({ field: { onChange,onBlur, value } }) => (
+              <Input 
+                onChangeText={onChange} 
+                onBlur={onBlur}
+                value={value} 
+                autoComplete='password' 
+                secureTextEntry
+                labelText="Sua senha"
+              />
+            )}
+            name="password"
+          />  
+          {errors.password?.type === 'required' && <MessageError>password is required</MessageError>}
+          <SectionButtonForm>
+            <ButtonGoBack onPress={() => goBack()}>
+              <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
+            </ButtonGoBack>
+            <Button
+              text="proximo passo"
+              onPress={handleSubmit(onSubmit)}
+              style={{
+                marginTop: 12,
+              }}
+            />
+          </SectionButtonForm>
+        </Form>
+      </Container>
     </Animated.View>
   );
 }

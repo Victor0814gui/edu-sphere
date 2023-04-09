@@ -35,7 +35,7 @@ export const Container = styled.View<{isActive: boolean,onHover:boolean}>`
   margin: 5px auto;
 `;
 
-export const Icon = styled.Image.attrs((props) => ({
+export const IconComponent = styled.Image.attrs((props) => ({
   resizeMode: "contain",
 }))`
   width: 25px;
@@ -43,11 +43,21 @@ export const Icon = styled.Image.attrs((props) => ({
 `;
 
 export const SectionProfileClient = styled.View`
-  padding: 21px 8px;
+  padding: 12px 8px;
+  margin-top: 11px;
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
-  justify-content: space-evenly;
+`;
+
+export const ProfileIconImageSubstituteContainer = styled.View`
+ width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${COLORS.grey_240};
+  margin-right: 4px;
 `;
 
 export const ProfileImage = styled.Image`
@@ -57,11 +67,16 @@ export const ProfileImage = styled.Image`
 `;
 
 export const CotenteTextProfile = styled.View`
+  margin-left: 12px;
 `;
 
-export const ClientNameText = styled.Text``;
+export const ClientNameText = styled.Text`
+  max-width: 70%;
+`;
 
-export const ClientEmailText = styled.Text``;
+export const ClientEmailText = styled.Text`
+  font-size: 12px;
+`;
 
 export const CustomerRoleBadge = styled.View`
   width: 36px;
@@ -71,6 +86,7 @@ export const CustomerRoleBadge = styled.View`
   border-width: 1px;
   border-color: ${COLORS.green_500};
   border-radius: 18px;
+  margin-left: auto;
 `;
 
 export const CustomerRoleBadgeIcon = styled.Image``;

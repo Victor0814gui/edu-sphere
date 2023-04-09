@@ -24,8 +24,6 @@ namespace winrt::reactativeustomallery::implementation
 /// </summary>
 App::App() noexcept
 {
-    AppWindowTitleBar TitleBar();
-    // Configura as opções do React Native
 
     #if BUNDLE
         JavaScriptBundleFile(L"index.windows");

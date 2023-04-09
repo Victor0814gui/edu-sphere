@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { UserDrawerType } from '../../types';
 import { enableScreens,enableFreeze  } from "react-native-screens"
 import { AuthStepsContextProvider } from '../../../modules/session/contexts/auth-steps';
+import { CreateUserStepsContextProvider } from '../../contexts/create-user-steps';
 
 
 
@@ -17,19 +18,21 @@ export function AuthRoutes() {
   enableFreeze(false);
   return (
     <AuthStepsContextProvider>
-      <AuthDrawer.Navigator 
-        useLegacyImplementation={true}
-        initialRouteName="signin"
-        screenOptions={{
-          headerShown: false,
-          drawerType: 'slide',
-        }}
-      >
-        <AuthDrawer.Screen name="signin" component={SignIn} />
-        <AuthDrawer.Screen name="signupstepone" component={SignUpStepOne} />
-        <AuthDrawer.Screen name="signupsteptwo" component={SignUpStepTwo} />
-        <AuthDrawer.Screen name="signinstepthree" component={SignUpStepThree} />
-      </AuthDrawer.Navigator>
+      <CreateUserStepsContextProvider>
+        <AuthDrawer.Navigator 
+          useLegacyImplementation={true}
+          initialRouteName="signin"
+          screenOptions={{
+            headerShown: false,
+            drawerType: 'slide',
+          }}
+        >
+          <AuthDrawer.Screen name="signin" component={SignIn} />
+          <AuthDrawer.Screen name="signupstepone" component={SignUpStepOne} />
+          <AuthDrawer.Screen name="signupsteptwo" component={SignUpStepTwo} />
+          <AuthDrawer.Screen name="signinstepthree" component={SignUpStepThree} />
+        </AuthDrawer.Navigator>
+      </CreateUserStepsContextProvider>
     </AuthStepsContextProvider>
 
   );

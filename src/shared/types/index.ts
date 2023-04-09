@@ -3,7 +3,7 @@ type modalType = 'default' | 'warning' | 'error' | 'sucess';
 
 type UserType = {
   id: string;
-  name: string;
+  nickname: string;
   email: string;
   avatarUrl: string;
   birthday: string;
@@ -15,10 +15,18 @@ type SignInMethodProps = {
   password: string;
 }
 
+type SignUpProps = {
+  email?: string;
+  password?: string;
+  name: string;
+  birthday: string;
+  avatarUrl: string;
+}
+
 type ContextAuthContextType = {
   user: UserType | null;
   signIn: ({email,password}: SignInMethodProps) => void;
-  signUp: (state: UserType) => void;
+  signUp: (state: SignUpProps) => void;
   signOut: () => void;
   sendResponseToServer: boolean;
 }
@@ -60,6 +68,7 @@ type ModalContextType = {
 export type {
   modalType,
   UserType,
+  SignUpProps,
   SignInMethodProps,
   ModalContextType,
   ContextAuthContextType,

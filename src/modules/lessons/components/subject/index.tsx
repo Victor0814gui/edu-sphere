@@ -15,7 +15,11 @@ import {
 import { TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native-svg";
 
-export const Subject = () => {
+export const Subject = (props:{
+  premiun: boolean;
+  title: string;
+  amountLessons: number;
+}) => {
   const [ onHover,setOnHover ] = useState(false);
   const [ isPressed,setIsPressed ] = useState(false);
   const {navigate}  = useNavigation();
@@ -48,11 +52,11 @@ export const Subject = () => {
         <Icon name="play-circle-fill" size={25} color={COLORS.grey_970} />
       </IconSubjectContainer>
       <SubjectContainerContent>
-        <SubjectContainerContentTitle style={additionalStyles.subjectContainerContentTitle}>matematica</SubjectContainerContentTitle>
-        <SubjectContainerContentDescription style={additionalStyles.subjectContainerContentDescription}>14 aulas</SubjectContainerContentDescription>
+        <SubjectContainerContentTitle style={additionalStyles.subjectContainerContentTitle}>{props.title}</SubjectContainerContentTitle>
+        <SubjectContainerContentDescription style={additionalStyles.subjectContainerContentDescription}>{props.amountLessons} aulas</SubjectContainerContentDescription>
       </SubjectContainerContent>
       <IconSubjectContainer>
-        <Icon name="local-play" size={25} color={COLORS.green_500} />
+        {props.premiun ?? <Icon name="local-play" size={25} color={COLORS.green_500} />}
       </IconSubjectContainer>
     </SubjectContainer>
   )

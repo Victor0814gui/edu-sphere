@@ -50,8 +50,7 @@ export const Profile = ():JSX.Element => {
   const { navigate } = useNavigation()
 
   const onPressSignOut = () => {
-    // signOut()
-    navigate("player")
+    signOut()
   }
 
   return(

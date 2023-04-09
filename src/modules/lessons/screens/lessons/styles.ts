@@ -32,8 +32,7 @@ export const BackgroundImageContent = styled.View`
   margin: 0 auto;
   background-color: ${COLORS.grey_270};
   height: 200px;
-  width: 80%;
-  border-radius: 21px;
+  width: 100%;
 `;
 
 export const BackgroundImage = styled.Image`

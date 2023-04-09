@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useCallback } from 'react';
 import { StyleSheet } from "react-native";
 import { FONTS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
@@ -17,14 +17,42 @@ import {
 import { StepLevel } from '../../components/step-level';
 import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
 import { Avatar } from '../../components/avatar';
+import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
+import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 
-
+type OnSubmitProps = {
+  avatarUrl: string;
+}
 
 export function SignUpStepThree() {
   const navigation = useNavigation()
   const [ itemIndex, setItemIndex ] = useState(0)
   const { setStep } = useAuthStepsContextProvider();
   const [ avatars,setAvatars ] = useState<string[]>([])
+  const { userData,setUserData } = useCreateUserStepsContextProvider();
+  const { signUp } = useAuthContextProvider()
+
+
+  const onSubmit = useCallback(({avatarUrl}: OnSubmitProps) => {
+    console.log({avatarUrl})
+    setUserData({
+      email: userData.email,
+      password: userData.password,
+      name: userData.name,
+      birthday: userData.birthday,
+      avatarUrl
+    })
+
+    console.log(userData);
+    signUp({
+      name: userData.name!,
+      birthday: userData.birthday!,
+      avatarUrl: avatarUrl,
+      email: userData.email!,
+      password: userData.password,
+    })
+  },[signUp])
+
 
 
   const renderItem = ({item,index}:{item: any,index: number}) => (
@@ -73,6 +101,7 @@ export function SignUpStepThree() {
           <Button
             text="Criar conta"
             style={{ marginTop: 12 }}
+            onPress={() => onSubmit({avatarUrl: avatars[itemIndex]})}
           />
         </SectionButtonForm>
       </Form>

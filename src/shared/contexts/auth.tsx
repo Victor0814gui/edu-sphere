@@ -1,9 +1,10 @@
 import { useContext,createContext, ReactNode, useState, useCallback } from "react";
 import { api } from "../services/api";
-import { ContextAuthContextType, SignInMethodProps, UserType,ToastContentType } from "../../shared/types";
+import { ContextAuthContextType, SignInMethodProps, UserType,ToastContentType, SignUpProps } from "../../shared/types";
 import { useToastNotificaitonProvider } from "../contexts/toast-notification";
 import { useNotificationContextProvider } from "./notification-system";
 import { v4 as uuidV4 } from "uuid";
+import { useNavigation } from "@react-navigation/native";
 
 const signInNotificationContentTypeServerError: ToastContentType = {
   title:"error ao conectar com o servidor",
@@ -18,9 +19,24 @@ const signInNotificationContentTypeNetworkError: ToastContentType = {
   type:"error"
 }
 
+const signInNotificationContentTypeUserNotExistsOrIncorrectData: ToastContentType= {
+  title:"email ou senha incorretos",
+  description:"asdfasdf",
+  position: "center",
+  type:"error"
+}
+
 const signUpNotificationContentTypeServerError: ToastContentType = {
   title:"error ao conectar com o servidor",
   description:"asdfasdf",
+  position: "center",
+  type:"error"
+}
+
+
+const signUpNotificationContentTypeCreateUserSucess: ToastContentType = {
+  title:" perfil criado",
+  description:"bem vindo a nossa plataforma",
   position: "center",
   type:"error"
 }
@@ -47,34 +63,48 @@ function ContextAuthContextProvider({children}:{children: ReactNode}){
   const [ sendResponseToServer,setSendResponseToServer  ] = useState(false);
   const { addToastNotifications } = useToastNotificaitonProvider();
   const { setNotificationText } = useNotificationContextProvider()
+  const { navigate }  = useNavigation();
 
   const signIn = useCallback(async ({email,password}:SignInMethodProps) => {
     setSendResponseToServer(true);
     try{
       const signInDataResponse = await api.post("/session/signin",{email,password})
-
+      console.log({signInDataResponse});
+      if(signInDataResponse.status === 422){
+        addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
+      }
       if(signInDataResponse.statusText === "Network Error"){
         addToastNotifications(signInNotificationContentTypeServerError);
       }
+
       
       setUser(signInDataResponse.data);
 
     }catch(err){
+      console.log({err})
       addToastNotifications(signUpNotificationContentTypeUsersDoesNotExists); 
     }finally{
       setSendResponseToServer(false);
     }
   },[])
 
-  const signUp = useCallback(async (props: UserType) => {
+  const signUp = useCallback(async (props: SignUpProps) => {
+    setSendResponseToServer(true)
     try{
-      const signInDataResponse = await api.post("/session/signup",{props})
+      const signInDataResponse = await api.post("/session/signup",{...props})
       if(signInDataResponse.statusText === "Network Error"){
         addToastNotifications(signUpNotificationContentTypeServerError); 
+      }
+
+      if(signInDataResponse.status === 201){
+        navigate("signin")
+        addToastNotifications(signUpNotificationContentTypeCreateUserSucess); 
       }
     }catch(err){
       console.log("auth-network-error")
       addToastNotifications(signUpNotificationContentTypeNetworkError); 
+    }finally{
+      setSendResponseToServer(false)
     }
   },[])
 

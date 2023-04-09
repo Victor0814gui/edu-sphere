@@ -39,6 +39,8 @@ const LessonSubject = ({ item,index }:RenderItemProps) => {
   const [ isPressed,setIsPressed ] = useState(false);
   const { navigate } = useNavigation();
 
+  console.log(item.sources[0]);
+
   const handlerPress = () => {
     setIsPressed(true)
     navigate("player",{ url: item.sources[0] })

@@ -24,14 +24,20 @@ const uri = "https://cdn.discordapp.com/attachments/1008571142858092684/10935440
 
 
 export const Lessons = () => {
-  const RenderList = [1,2,3,4,5,6,7,8,9,10,11,12,14].map((e) => <Subject/>)
+  const RenderList = [1,2,3,4,5,6,7,8,9,10,11,12,14].map((e,index) => (
+    <Subject
+      amountLessons={index}
+      premiun={index % 2 === 0 && true}
+      title="Matematica"
+    />
+  ))
 
 
   return(
     <Container>
       <BackgroundImageContainer>
         <BackgroundImageContent>
-          <BackgroundImage resizeMode="cover" source={{ uri }} />
+          <BackgroundImage blurRadius={61} resizeMode="cover" source={{ uri }} />
         </BackgroundImageContent>
       </BackgroundImageContainer>
       <SectionHeaderContainer>

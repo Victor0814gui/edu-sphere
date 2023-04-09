@@ -26,8 +26,7 @@ api.interceptors.response.use(
   },
   (error) => {
       // Faz alguma coisa com o erro da requisição
-
-      console.log("interceptor response",error)
+    console.log("interceptor response",error)
   },
 );
 
