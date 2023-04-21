@@ -83,7 +83,7 @@ export const PlaylistLessons = () => {
   const  ItemSeparatorComponent = () =>  <ListLessonsSubjectSeparator/>
   const renderItem = (props:RenderItemProps) => <LessonSubject {...props}/>
   const ListEmptyComponent = () => (  
-    <LessonSujectContainerContentText>ainda não há items aqui</LessonSujectContainerContentText>
+    <LessonSujectContainerContentText>ainda aulas disponiveis aqui</LessonSujectContainerContentText>
   )
 
   useEffect(() => {

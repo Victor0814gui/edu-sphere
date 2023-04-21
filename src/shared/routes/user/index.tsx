@@ -1,4 +1,4 @@
-import { useWindowDimensions,Platform } from "react-native";
+import { useWindowDimensions, Platform } from "react-native";
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from "@react-navigation/stack";
 import { CustomNavbar } from '../navbar';
@@ -9,8 +9,8 @@ import { Dashboard } from '../../../modules/demonstrations/screens/dashboard';
 import { Player } from '../../../modules/lessons/screens/player';
 import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { DrawerNavigationConfig } from '@react-navigation/drawer/lib/typescript/src/types';
-import { enableScreens,enableFreeze  } from "react-native-screens"
-import { useOpenAndCloseNavbarOnKeyPressContextProvider } from '../../contexts/open-and-close-navbar-on-key-press';
+import { enableScreens, enableFreeze } from "react-native-screens"
+import { OpenAndCloseNavbarOnKeyPressContextProvider, useOpenAndCloseNavbarOnKeyPressContextProvider } from '../../contexts/open-and-close-navbar-on-key-press';
 import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
 
 
@@ -31,9 +31,9 @@ export function UserDrawerRoutes() {
   enableScreens(false);
   enableFreeze(false);
   return (
-    <UserDrawer.Navigator 
+    <UserDrawer.Navigator
       screenOptions={NavbarDevices()}
-      drawerContent={({navigation,state}) => <CustomNavbar navigation={navigation} state={state}/>}
+      drawerContent={({ navigation, state }) => <CustomNavbar navigation={navigation} state={state} />}
       initialRouteName="dashboard"
       key={"route-user-screens"}
       useLegacyImplementation={true}
@@ -41,7 +41,7 @@ export function UserDrawerRoutes() {
       <UserDrawer.Screen name="dashboard" component={Dashboard} />
       <UserDrawer.Screen name="lessons" component={Lessons} />
       <UserDrawer.Screen name="profile" component={Profile} />
-       <UserDrawer.Screen name="room" component={Room} />
+      <UserDrawer.Screen name="room" component={Room} />
       <UserDrawer.Screen name="player" options={{ drawerType: "slide" }} component={Player} />
       <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
     </UserDrawer.Navigator>
@@ -49,24 +49,24 @@ export function UserDrawerRoutes() {
 }
 
 
-function NavbarDevices():DrawerNavigationOptions  {
+function NavbarDevices(): DrawerNavigationOptions {
   const { width } = useWindowDimensions();
   const smallDevice = width < 900;
   console.log("NavbarDevices");
   const { navbarIsOpen } = useOpenAndCloseNavbarOnKeyPressContextProvider()
 
 
-  const drawerNavigationOptions: DrawerNavigationOptions  = {
+  const drawerNavigationOptions: DrawerNavigationOptions = {
     headerShown: false,
     drawerType: !navbarIsOpen ? 'permanent' : 'back',
-    drawerStyle:{
+    drawerStyle: {
       backgroundColor: COLORS.grey_200,
       width: 250,
-      borderRadius:0,
+      borderRadius: 0,
       borderWidth: 0,
       borderColor: COLORS.grey_200,
     },
-    drawerContentContainerStyle:{
+    drawerContentContainerStyle: {
       backgroundColor: '#333',
     }
   }

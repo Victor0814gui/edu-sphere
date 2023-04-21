@@ -46,6 +46,11 @@ export const ContentToast = styled.View`
   margin-top: 5px;
   flex-direction: row;
 `;
+export const IndicatorTypeToast = styled.View`
+  height: 100%;
+  width: 3px;
+  background-color: ${COLORS.green_500};
+`;
 
 export const ContainerTitle = styled.Text`
   font-size: 16px;

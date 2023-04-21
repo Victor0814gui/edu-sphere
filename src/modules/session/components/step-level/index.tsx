@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image } from 'react-native';
-import { 
+import {
   Container,
   ItemStep,
   ProgressBar,
 } from './styles';
 
-import { CalendarIconSvg,UserIconSvg } from "../../assets/icons"
 import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
 import { COLORS } from '../../../../shared/theme';
 import Icon from "react-native-vector-icons/Feather";
+
+
+const StepItem = (props: {
+  isActive: boolean,
+  iconName: string,
+}) => {
+  const [onHover, setOnHover] = useState(false)
+
+  const onMouseEnter = () => {
+    setOnHover(true)
+  }
+  const onMouseLeave = () => {
+    setOnHover(false)
+  }
+
+  return (
+    <ItemStep
+      active={props.isActive}
+      onHover={onHover}
+      //@ts-ignore
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <Icon name={props.iconName} size={22} color={props.isActive ? COLORS.green_500 : COLORS.grey_400} />
+    </ItemStep>
+  )
+}
 
 export function StepLevel() {
   const { step } = useAuthStepsContextProvider()
@@ -20,7 +46,21 @@ export function StepLevel() {
   console.log(step);
   return (
     <Container>
-      <ItemStep active={stepActiveOne}>
+      <StepItem
+        isActive={stepActiveOne}
+        iconName="mail"
+      />
+      <ProgressBar active={stepActiveTwo} />
+      <StepItem
+        isActive={stepActiveTwo}
+        iconName="calendar"
+      />
+      <ProgressBar active={stepActiveThree} />
+      <StepItem
+        isActive={stepActiveThree}
+        iconName="user"
+      />
+      {/* <ItemStep active={stepActiveOne}>
         <Icon name="mail" size={22} color={COLORS.green_500}/>
       </ItemStep>
       <ProgressBar active={stepActiveTwo}/>
@@ -30,7 +70,7 @@ export function StepLevel() {
       <ProgressBar active={stepActiveThree}/>
       <ItemStep active={stepActiveThree}>
         <Icon name="user" size={22} color={stepActiveThree ? COLORS.green_500 : COLORS.grey_400}/>
-      </ItemStep>
+      </ItemStep> */}
     </Container>
   );
 }

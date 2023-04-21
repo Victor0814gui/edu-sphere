@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
 export const InputContainerAndLabel = styled.View`
   flex-direction: column;
   align-items: flex-start;
+  
 `;
 
 export const InputLabelText = styled.Text`

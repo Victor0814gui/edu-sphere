@@ -59,7 +59,7 @@ export function SignUpStepTwo() {
     <>
     <StepLevel/>
     <Container>
-      <Image source={LogoImage} resizeMode="cover" style={styles.logo}/>
+      {/* <Image source={LogoImage} resizeMode="cover" style={styles.logo}/> */}
       <Form>
         <Controller
           control={control}

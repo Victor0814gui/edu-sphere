@@ -8,13 +8,13 @@ import { ContextAuthContextProvider } from "./auth";
 export function AppProvider({children}:{children:ReactNode}){
   return(
     <NotificationContextProvider>
-      <ToastNotificaitonProvider>
-        <OpenAndCloseNavbarOnKeyPressContextProvider>
+      <OpenAndCloseNavbarOnKeyPressContextProvider>
+        <ToastNotificaitonProvider>
           <ContextAuthContextProvider>
             {children}
           </ContextAuthContextProvider>
-        </OpenAndCloseNavbarOnKeyPressContextProvider>
-      </ToastNotificaitonProvider>
+        </ToastNotificaitonProvider>
+      </OpenAndCloseNavbarOnKeyPressContextProvider>
     </NotificationContextProvider>
   )
 }

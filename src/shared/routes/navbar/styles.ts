@@ -47,6 +47,8 @@ export const SectionProfileClient = styled.View`
   margin-top: 11px;
   flex-direction: row;
   align-items: center;
+  max-width: 100%;
+  /* justify-content: space-between; */
   margin-bottom: 10px;
 `;
 
@@ -67,11 +69,12 @@ export const ProfileImage = styled.Image`
 `;
 
 export const CotenteTextProfile = styled.View`
-  margin-left: 12px;
+  margin-left: 10px;
+  /* background-color: ${COLORS.green_400}; */
 `;
 
 export const ClientNameText = styled.Text`
-  max-width: 70%;
+  max-width: 80%;
 `;
 
 export const ClientEmailText = styled.Text`
@@ -86,7 +89,7 @@ export const CustomerRoleBadge = styled.View`
   border-width: 1px;
   border-color: ${COLORS.green_500};
   border-radius: 18px;
-  margin-left: auto;
+  /* margin-left: auto; */
 `;
 
 export const CustomerRoleBadgeIcon = styled.Image``;

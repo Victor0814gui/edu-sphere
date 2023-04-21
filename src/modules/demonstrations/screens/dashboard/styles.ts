@@ -16,6 +16,11 @@ export const fonts = StyleSheet.create({
     fontFamily: FONTS.Roboto.Medium,
     fontSize: 14,
   },
+  contentContainerListEmptyText:{
+    fontSize: 16,
+    // fontFamily: FONTS.Poppins.Medium,
+    marginVertical: 9,
+  },
   headerSectionTitle:{
     fontSize: 18,
     fontFamily: FONTS.Roboto.Medium,
@@ -50,6 +55,7 @@ export const ContentContainerListEmpty = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
+  /* background-color: ${COLORS.red_500}; */
 `;
 
 export const ContentContainerListEmptyText = styled.Text``;

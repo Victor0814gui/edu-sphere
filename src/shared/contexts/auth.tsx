@@ -19,6 +19,13 @@ const signInNotificationContentTypeNetworkError: ToastContentType = {
   type:"error"
 }
 
+const signInNotificationContentTypeUserDataUndefined: ToastContentType = {
+  title:"error interno no servidor",
+  description:"parece que tivemos um erro interno no servidor, estamos resolvendo o mais rapido possivel",
+  position: "center",
+  type:"error"
+}
+
 const signInNotificationContentTypeUserNotExistsOrIncorrectData: ToastContentType= {
   title:"email ou senha incorretos",
   description:"asdfasdf",
@@ -70,23 +77,41 @@ function ContextAuthContextProvider({children}:{children: ReactNode}){
     try{
       const signInDataResponse = await api.post("/session/signin",{email,password})
       console.log({signInDataResponse});
+
+      if(!signInDataResponse.data){
+        throw new Error("data is undefined")
+      }
+
       if(signInDataResponse.status === 422){
         addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
       }
+
+      
+      if(signInDataResponse.status === 404){
+        addToastNotifications(signInNotificationContentTypeUserDataUndefined);
+      }
+
       if(signInDataResponse.statusText === "Network Error"){
         addToastNotifications(signInNotificationContentTypeServerError);
       }
-
-      
+  
       setUser(signInDataResponse.data);
 
     }catch(err){
-      console.log({err})
-      addToastNotifications(signUpNotificationContentTypeUsersDoesNotExists); 
+      const error = err as unknown as { code: string }
+
+      addToastNotifications(signInNotificationContentTypeNetworkError);
+      if(error.code === "ERR_BAD_REQUEST"){
+        addToastNotifications({
+          title:"error",
+          description: "usuario não encontrado, verifique seus dados e tente novamente",
+          type: "error",
+        }); 
+      }
     }finally{
       setSendResponseToServer(false);
     }
-  },[])
+  },[user,setUser,api])
 
   const signUp = useCallback(async (props: SignUpProps) => {
     setSendResponseToServer(true)

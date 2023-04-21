@@ -97,7 +97,12 @@ export const CustomNavbar = ({navigation:_,state}:CustomNavbarProps) => {
           : <ProfileIconImageSubstitute/>
         }
         <CotenteTextProfile>
-          <ClientNameText style={fonts.clientNameText}>{user?.birthday}</ClientNameText>
+          <ClientNameText 
+            textBreakStrategy="simple" 
+            numberOfLines={2}  
+            ellipsizeMode="clip"
+            style={fonts.clientNameText}
+          >Victor Guilherme Coimbra Rocha</ClientNameText>
         </CotenteTextProfile>
         <CustomerRoleBadge>
           <CustomerRoleBadgeIcon source={require("../../assets/icons/admin.svg")}/>

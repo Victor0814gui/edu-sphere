@@ -10,7 +10,7 @@ export const Container = styled.View`
   margin-top: 21px;
 `;
 
-export const ItemStep = styled.View<{active: boolean}>`
+export const ItemStep = styled.View<{onHover:boolean,active: boolean}>`
   width: 44px;
   height: 44px;
   border-radius: 22px;
@@ -18,8 +18,8 @@ export const ItemStep = styled.View<{active: boolean}>`
   justify-content: center;
   align-items: center;
 
-  ${({active}) => 
-    active ? css`
+  ${({active,onHover}) => 
+    onHover || active ? css`
       border-color: ${COLORS.green_500};
     `
     :css`

@@ -195,7 +195,7 @@ export const Dashboard = () => {
         renderItem={({item,index}) => <CardRoom index={index} {...item}/>}
         ListEmptyComponent={
           <ContentContainerListEmpty>
-            <ContentContainerListEmptyText>parece que nãoe existem salas disponiveis no momento</ContentContainerListEmptyText>
+            <ContentContainerListEmptyText  style={fonts.contentContainerListEmptyText}>parece que não existem salas disponiveis no momento</ContentContainerListEmptyText>
           </ContentContainerListEmpty>
         }
         renderSectionHeader={({section: {title}}) => (

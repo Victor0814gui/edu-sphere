@@ -3,6 +3,7 @@ import {
   ListToastNotifications,
   Container,
   ContentToast,
+  IndicatorTypeToast,
   ContainerTitle,
   ContainerDescription,
 } from './styles'; 
@@ -17,6 +18,7 @@ export function ToastComponent() {
 
   const renderItem = ({item}:{item:ToastContentType}) => (
     <ContentToast>
+      <IndicatorTypeToast/>
       <View>
         <ContainerTitle style={aditionalStyles.containerTitleFont}>{item.title}</ContainerTitle>
         <ContainerDescription style={aditionalStyles.containerDescription}>{item.description}</ContainerDescription>
