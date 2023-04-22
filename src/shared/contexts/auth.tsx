@@ -5,6 +5,7 @@ import { useToastNotificaitonProvider } from "../contexts/toast-notification";
 import { useNotificationContextProvider } from "./notification-system";
 import { v4 as uuidV4 } from "uuid";
 import { useNavigation } from "@react-navigation/native";
+import { Axios, AxiosError } from "axios";
 
 const signInNotificationContentTypeServerError: ToastContentType = {
   title:"error ao conectar com o servidor",
@@ -99,14 +100,18 @@ function ContextAuthContextProvider({children}:{children: ReactNode}){
 
     }catch(err){
       const error = err as unknown as { code: string }
-
-      addToastNotifications(signInNotificationContentTypeNetworkError);
+      
       if(error.code === "ERR_BAD_REQUEST"){
         addToastNotifications({
           title:"error",
           description: "usuario não encontrado, verifique seus dados e tente novamente",
           type: "error",
         }); 
+      }
+
+      if(error instanceof AxiosError){
+      }else{
+        addToastNotifications(signInNotificationContentTypeNetworkError);
       }
     }finally{
       setSendResponseToServer(false);
