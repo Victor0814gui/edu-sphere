@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This project was created with react-native-windows 0.71.4 -->
+<!-- This project was created with react-native-windows 0.71.22 -->
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props" Condition="Exists('..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props')" />
   <Import Project="$(SolutionDir)\ExperimentalFeatures.props" Condition="Exists('$(SolutionDir)\ExperimentalFeatures.props')" />
   <PropertyGroup Label="Globals">
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
-    <ProjectGuid>{b2b1edd2-26e8-4c15-b6c5-731dd9276b43}</ProjectGuid>
+    <ProjectGuid>{96444eb6-0f5f-4a81-a61a-f264bf94bef8}</ProjectGuid>
     <ProjectName>reactativeustomallery</ProjectName>
     <RootNamespace>reactativeustomallery</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
@@ -17,8 +18,6 @@
     <IntDir>$(MSBuildProjectDirectory)\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\</OutDir>
     <GeneratedFilesDir>$(IntDir)Generated Files\</GeneratedFilesDir>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Label="ReactNativeWindowsProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(SolutionDir), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
@@ -76,18 +75,7 @@
   <ImportGroup Label="ReactNativeWindowsPropertySheets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\external\Microsoft.ReactNative.Uwp.CppApp.props" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.props')" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros">
-    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>08CD3DE6A310B0054DC9FA345D7995DB269DDD23</PackageCertificateThumbprint>
-    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundle>Always</AppxBundle>
-    <AppInstallerUri>https://meuwebsiteatualizadoaasdf.com</AppInstallerUri>
-    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
-  </PropertyGroup>
+  <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup>
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -166,7 +154,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
-    <None Include="reactativeustomallery_TemporaryKey.pfx" />
     <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
     <Text Include="..\..\src\shared\assets\fonts\Roboto\LICENSE.txt" />
     <Text Include="readme.txt">
@@ -177,6 +164,11 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Message.json" Name="Message" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Offline.json" Name="Offline" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Welcome.json" Name="Welcome" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />
@@ -209,11 +201,14 @@
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Regular.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Thin.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
-    <Font Include="Assets\EvilIcons.ttf" />
-    <Font Include="Assets\Feather.ttf" />
-    <Font Include="Assets\MaterialIcons.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup Label="LottieReactNativeProps">
+    <LottieReactNativeDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\lottie-react-native\package.json'))\node_modules\lottie-react-native</LottieReactNativeDir>
+  </PropertyGroup>
+  <ImportGroup Label="LottieReactNativeTargets">
+    <Import Project="$(LottieReactNativeDir)\src\windows\cppwinrt\PropertySheets\LottieGen.Auto.targets" />
+  </ImportGroup>
   <ImportGroup Label="ReactNativeWindowsTargets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets')" />
     <Import Project="..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets" Condition="Exists('..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets')" />
@@ -228,9 +223,10 @@
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.UI.Xaml.2.7.0\build\native\Microsoft.UI.Xaml.targets'))" />
     <Error Condition="!Exists('..\packages\Win2D.uwp.1.26.0\build\native\Win2D.uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Win2D.uwp.1.26.0\build\native\Win2D.uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LottieGen.MsBuild.7.0.5\build\native\LottieGen.MsBuild.props'))" />
   </Target>
 </Project>

@@ -19,6 +19,8 @@ import { api } from "../../../../shared/services/api";
 import { useToastNotificaitonProvider } from "../../../../shared/contexts/toast-notification";
 import { useOpenAndCloseNavbarOnKeyPressContextProvider } from "../../../../shared/contexts/open-and-close-navbar-on-key-press";
 
+import LottieView from "lottie-react-native";
+
 type CardType = {
   title: string;
   avatarUrl: string;
@@ -196,6 +198,10 @@ export const Dashboard = () => {
         ListEmptyComponent={
           <ContentContainerListEmpty>
             <ContentContainerListEmptyText  style={fonts.contentContainerListEmptyText}>parece que não existem salas disponiveis no momento</ContentContainerListEmptyText>
+            <LottieView autoPlay loop style={{ width: 220, height: 220 }} source={"Message"} />
+            {/* Message
+            Offline
+            Welcome */}
           </ContentContainerListEmpty>
         }
         renderSectionHeader={({section: {title}}) => (

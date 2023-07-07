@@ -1,10 +1,8 @@
-import { AppProvider } from "../contexts";
-import { ContextAuthContextProvider, useAuthContextProvider } from "../contexts/auth";
-import { COLORS } from "../theme";
+import { useAuthContextProvider } from "../contexts/auth";
 import { AuthRoutes } from "./auth";
 import { UserDrawerRoutes } from "./user";
 
-export function Router(){
+export function Router() {
   const { user } = useAuthContextProvider();
-  return user?.id ? <UserDrawerRoutes/> : <AuthRoutes/>
+  return !user?.id ? <UserDrawerRoutes /> : <AuthRoutes />
 }

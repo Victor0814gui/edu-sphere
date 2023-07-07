@@ -53,7 +53,6 @@
   <ItemGroup>
     <None Include="PropertySheet.props" />
     <None Include="packages.config" />
-    <None Include="reactativeustomallery_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
@@ -64,9 +63,6 @@
     <Page Include="MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Assets\EvilIcons.ttf" />
-    <Font Include="Assets\Feather.ttf" />
-    <Font Include="Assets\MaterialIcons.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Black.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BlackItalic.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Bold.ttf" />
