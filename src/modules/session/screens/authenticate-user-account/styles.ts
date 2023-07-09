@@ -4,8 +4,19 @@ import { StyleSheet } from "react-native";
 
 
 export const styles = StyleSheet.create({
-  logo:{
-    marginBottom: 58,
+  backgroundLeft:{
+    position: "absolute",
+    left: 0,
+    top: 0,
+    height: 345,
+    width: 407
+  },
+  backgroundRight:{
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    height: 345,
+    width: 407,   
   },
   text:{
     fontFamily: FONTS.Poppins.Medium,
@@ -26,7 +37,7 @@ export const Container = styled.View`
 `;
 
 export const Form = styled.View`
-  max-width: 380px;
+  max-width: 480px;
 `;
 
 export const RedirectCreateAcountText = styled.Text`

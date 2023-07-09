@@ -8,12 +8,11 @@
     "types": ["styled-components-react-native","jest"],
     /* Completeness */
     "skipLibCheck": true,
-    // "baseUrl":"./src",
-    // "paths":{
-    //   "@modules/*": ["./modules/*"],
-    //   "@shared/*": ["./shared/*"],
-    //   "@types/*": ["./types/*"],
-    // }
+    "baseUrl":"./",
+    "paths":{
+      "@modules/*": ["./src/modules/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@types/*": ["./src/@types/*"],
+    }
   },
-  // "include": ["./src/@types/assets.d.ts","./src/@types/navigation.d.ts"]
 }

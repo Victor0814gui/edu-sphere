@@ -6,28 +6,25 @@ import {
 } from 'react-native';
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 import { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
-import { useNavigation } from "@react-navigation/native";
-import { home } from "../../assets/icons"
 import { COLORS } from '../../theme';
 
 import Icon from "react-native-vector-icons/Feather";
 
-import { 
+import {
   fonts,
   ButtonItemNavbar,
   Container,
-  IconComponent,
   SectionProfileClient,
   ProfileIconImageSubstituteContainer,
   ProfileImage,
   CotenteTextProfile,
   ClientNameText,
-  ClientEmailText,
   CustomerRoleBadge,
   CustomerRoleBadgeIcon,
 } from "./styles";
 import { useAuthContextProvider } from "../../contexts/auth";
 import { IRoutes, UserRoutes } from "../user/routes";
+import { Gear, User } from "phosphor-react-native";
 
 
 type CustomNavbarProps = {
@@ -36,31 +33,24 @@ type CustomNavbarProps = {
 }
 
 type ItemNavbar = {
-  isActive:boolean;
+  isActive: boolean;
   routeName: string;
-  iconName?: string;
+  icon: React.ElementType;
 }
 
 
-const ItemNavbar = ({iconName,routeName,isActive}:ItemNavbar) => {
-  const  [ onHover,setOnHover ] = useState(false);
-  return(
+const ItemNavbar = ({ icon: Icon, routeName, isActive }: ItemNavbar) => {
+  const [onHover, setOnHover] = useState(false);
+  return (
     <Container
       //@ts-ignore
       onMouseEnter={() => setOnHover(true)}
-      onMou seLeave={() => setOnHover(false)}
+      onMouseLeave={() => setOnHover(false)}
       isActive={isActive}
       onHover={onHover}
     >
-      <Icon
-        style={{
-          marginRight: 4,
-        }}
-        name={iconName as any}
-        color={!isActive ? COLORS.grey_970 : COLORS.grey_180}
-        size={20}
-      />
-      <Text style={[fonts.containerNavbarText,!isActive && {color:COLORS.grey_970}]}>{routeName}</Text>
+      <Icon size={24} color={isActive ? COLORS.grey_240 : COLORS.white} weight="duotone" />
+      <Text style={[fonts.containerNavbarText, !isActive && { color: COLORS.grey_970 }]}>{routeName}</Text>
     </Container>
   )
 }
@@ -74,47 +64,56 @@ type RenderItemType = {
 
 const ProfileIconImageSubstitute = () => (
   <ProfileIconImageSubstituteContainer>
-    <Icon name="user" size={20}/>
+    <User size={24} color="#f2f2f2" weight="duotone" />
   </ProfileIconImageSubstituteContainer>
 )
 
 
-export const CustomNavbar = ({navigation:_,state}:CustomNavbarProps) => {
-  const navigation = useNavigation();
+export const CustomNavbar = ({ navigation, state }: CustomNavbarProps) => {
   const { user } = useAuthContextProvider()
 
-  const RenderItem = ({ item:{ name,key,icon }, index: i}:RenderItemType) => (
+  const RenderItem = ({ item: { name, key, icon }, index: i }: RenderItemType) => (
     <ButtonItemNavbar key={i} onPress={() => navigation.navigate(key as any)}>
-      <ItemNavbar  isActive={state.index === i} routeName={name} iconName={icon}/>
+      <ItemNavbar
+        isActive={state.index === i}
+        routeName={name}
+        icon={icon}
+      />
     </ButtonItemNavbar>
   )
 
+  console.log("update")
+
+  const onPress = async () => {
+    navigation.navigate("profile")
+  }
+
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <SectionProfileClient>
-        {user?.avatarUrl 
-          ? <ProfileImage source={{uri: user?.avatarUrl}}/>
-          : <ProfileIconImageSubstitute/>
+        {!user?.avatarUrl
+          ? <ProfileImage source={{ uri: user?.avatarUrl }} />
+          : <ProfileIconImageSubstitute />
         }
         <CotenteTextProfile>
-          <ClientNameText 
-            textBreakStrategy="simple" 
-            numberOfLines={2}  
+          <ClientNameText
+            textBreakStrategy="simple"
+            numberOfLines={2}
             ellipsizeMode="clip"
             style={fonts.clientNameText}
           >Victor Guilherme Coimbra Rocha</ClientNameText>
         </CotenteTextProfile>
         <CustomerRoleBadge>
-          <CustomerRoleBadgeIcon source={require("../../assets/icons/admin.svg")}/>
+          <CustomerRoleBadgeIcon />
         </CustomerRoleBadge>
       </SectionProfileClient>
       <FlatList
         data={UserRoutes}
         renderItem={RenderItem}
-        keyExtractor={(_,index) => `${index}`}
+        keyExtractor={(_, index) => `${index}`}
       />
-      <ButtonItemNavbar onPress={() => navigation.navigate("profile")}>
-        <ItemNavbar  isActive={state.index === 2} routeName={"configurações"} iconName={"settings"}/>
+      <ButtonItemNavbar onPress={onPress}>
+        <ItemNavbar isActive={state.index === 2} routeName={"configurações"} icon={Gear} />
       </ButtonItemNavbar>
     </View>
   );

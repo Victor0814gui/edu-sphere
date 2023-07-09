@@ -1,66 +1,21 @@
-import { useContext, createContext, ReactNode, useState, useCallback } from "react";
-import { api } from "../services/api";
-import { ContextAuthContextType, SignInMethodProps, UserType, ToastContentType, SignUpProps } from "../../shared/types";
-import { useToastNotificaitonProvider } from "../contexts/toast-notification";
-import { useNotificationContextProvider } from "./notification-system";
-import { v4 as uuidV4 } from "uuid";
+import { useContext, createContext, ReactNode, useState, useCallback, useEffect } from "react";
+import { ContextAuthContextType, SignInMethodProps, UserType, SignUpProps } from "../../types";
+import { useToastNotificaitonProvider } from "../toast-notification";
 import { useNavigation } from "@react-navigation/native";
-import { Axios, AxiosError } from "axios";
-
-const signInNotificationContentTypeServerError: ToastContentType = {
-  title: "error ao conectar com o servidor",
-  description: "asdfasdf",
-  position: "center",
-  type: "error"
-}
-const signInNotificationContentTypeNetworkError: ToastContentType = {
-  title: "error ao conectar com o servidor",
-  description: "asdfasdf",
-  position: "center",
-  type: "error"
-}
-
-const signInNotificationContentTypeUserDataUndefined: ToastContentType = {
-  title: "error interno no servidor",
-  description: "parece que tivemos um erro interno no servidor, estamos resolvendo o mais rapido possivel",
-  position: "center",
-  type: "error"
-}
-
-const signInNotificationContentTypeUserNotExistsOrIncorrectData: ToastContentType = {
-  title: "email ou senha incorretos",
-  description: "asdfasdf",
-  position: "center",
-  type: "error"
-}
-
-const signUpNotificationContentTypeServerError: ToastContentType = {
-  title: "error ao conectar com o servidor",
-  description: "asdfasdf",
-  position: "center",
-  type: "error"
-}
-
-
-const signUpNotificationContentTypeCreateUserSucess: ToastContentType = {
-  title: " perfil criado",
-  description: "bem vindo a nossa plataforma",
-  position: "center",
-  type: "error"
-}
-
-const signUpNotificationContentTypeUsersDoesNotExists: ToastContentType = {
-  title: "o usuario não existe",
-  description: "parece que o usuario que você está tentando logar não existe",
-  position: "center",
-  type: "error"
-}
-const signUpNotificationContentTypeNetworkError: ToastContentType = {
-  title: "error ao conectar com o servidor",
-  description: "asdfasdf",
-  position: "center",
-  type: "error"
-}
+import { api } from "../../services/api";
+import { AxiosError } from "axios";
+import RNSInfo from 'react-native-sensitive-info';
+import {
+  signInNotificationContentTypeServerError,
+  signInNotificationContentTypeNetworkError,
+  signInNotificationContentTypeUserDataUndefined,
+  signInNotificationContentTypeUserNotExistsOrIncorrectData,
+  signUpNotificationContentTypeServerError,
+  signUpNotificationContentTypeCreateUserSucess,
+  signUpNotificationContentTypeNetworkError,
+  AppAuthenticatoinKeyValue,
+  sharedStorageFreferencies,
+} from "./constants";
 
 const ContextAuthContext = createContext<ContextAuthContextType>(
   {} as ContextAuthContextType
@@ -71,6 +26,22 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const [sendResponseToServer, setSendResponseToServer] = useState(false);
   const { addToastNotifications } = useToastNotificaitonProvider();
   const { navigate } = useNavigation();
+
+
+  const setItem = async (data:string) => {
+    return RNSInfo.setItem(
+      AppAuthenticatoinKeyValue,
+      data,
+      sharedStorageFreferencies
+    )
+  }
+
+  const getItem = async () => {
+    return await RNSInfo.getItem(
+      AppAuthenticatoinKeyValue, 
+      sharedStorageFreferencies
+    );
+  }
 
   const signIn = useCallback(async ({ email, password }: SignInMethodProps) => {
     setSendResponseToServer(true);
@@ -86,7 +57,6 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
         addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
       }
 
-
       if (signInDataResponse.status === 404) {
         addToastNotifications(signInNotificationContentTypeUserDataUndefined);
       }
@@ -96,6 +66,10 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       }
 
       setUser(signInDataResponse.data);
+      if (!!signInDataResponse.data) {
+        const signInDataResponseSerializationData = JSON.stringify(signInDataResponse.data);
+        await setItem(signInDataResponseSerializationData)
+      }
 
     } catch (err) {
       const error = err as unknown as { code: string }
@@ -109,9 +83,9 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       }
 
       if (error instanceof AxiosError) {
-      } else {
-        addToastNotifications(signInNotificationContentTypeNetworkError);
-      }
+      } 
+
+      addToastNotifications(signInNotificationContentTypeNetworkError);
     } finally {
       setSendResponseToServer(false);
     }
@@ -137,9 +111,29 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const signOut = useCallback(() => {
+  const signOut = useCallback(async () => {
     setUser(null)
+    await RNSInfo.deleteItem(
+      AppAuthenticatoinKeyValue, 
+      sharedStorageFreferencies
+    );
   }, [])
+
+  const getUserDataStorage = async () => {
+    try{
+      const userDataStorageResponse = await getItem();
+      const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse) as UserType;
+
+      setUser(userDataStorageResponseParseData);
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getUserDataStorage();
+    console.log("jasljkdhflkajshdf")
+  },[])
 
   return (
     <ContextAuthContext.Provider value={{
@@ -156,10 +150,8 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
 
 const useAuthContextProvider = (): ContextAuthContextType => {
   const authContextExists = useContext(ContextAuthContext);
-
   if (!authContextExists) {
     throw new Error('o [ContextAuthContext] context não foi instanciado no escopo')
-
   }
   return authContextExists;
 }

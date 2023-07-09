@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeVideoCPP", "..\n
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LottieReactNative", "..\node_modules\lottie-react-native\src\windows\cppwinrt\LottieReactNative.vcxproj", "{E5A7828D-F596-4793-80EC-4C071E575C58}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RNSensitiveInfoCPP", "..\node_modules\react-native-sensitive-info\windows\RNSensitiveInfoCPP\RNSensitiveInfoCPP.vcxproj", "{471024F1-CD6D-4F1E-A6C7-0037152C850E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -131,6 +133,18 @@ Global
 		{E5A7828D-F596-4793-80EC-4C071E575C58}.Release|x86.Build.0 = Release|Win32
 		{E5A7828D-F596-4793-80EC-4C071E575C58}.Release|ARM64.ActiveCfg = Release|ARM64
 		{E5A7828D-F596-4793-80EC-4C071E575C58}.Release|ARM64.Build.0 = Release|ARM64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Debug|x64.ActiveCfg = Debug|x64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Debug|x64.Build.0 = Debug|x64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Debug|x86.ActiveCfg = Debug|Win32
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Debug|x86.Build.0 = Debug|Win32
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Debug|ARM64.Build.0 = Debug|ARM64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Release|x64.ActiveCfg = Release|x64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Release|x64.Build.0 = Release|x64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Release|x86.ActiveCfg = Release|Win32
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Release|x86.Build.0 = Release|Win32
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Release|ARM64.ActiveCfg = Release|ARM64
+		{471024F1-CD6D-4F1E-A6C7-0037152C850E}.Release|ARM64.Build.0 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

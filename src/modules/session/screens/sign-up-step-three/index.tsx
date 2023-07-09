@@ -1,9 +1,9 @@
-import React, { useState,useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet } from "react-native";
 import { FONTS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
 import { api } from "../../../../shared/services/api"
-import { 
+import {
   Container,
   SectionSelectAvatar,
   SectionSelectAvatarTitle,
@@ -19,6 +19,7 @@ import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
 import { Avatar } from '../../components/avatar';
 import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
+import { ScreenAnimationWrapper } from '@modules/session/components/screen-wrapper-animation';
 
 type OnSubmitProps = {
   avatarUrl: string;
@@ -26,15 +27,15 @@ type OnSubmitProps = {
 
 export function SignUpStepThree() {
   const navigation = useNavigation()
-  const [ itemIndex, setItemIndex ] = useState(0)
+  const [itemIndex, setItemIndex] = useState(0)
   const { setStep } = useAuthStepsContextProvider();
-  const [ avatars,setAvatars ] = useState<string[]>([])
-  const { userData,setUserData } = useCreateUserStepsContextProvider();
+  const [avatars, setAvatars] = useState<string[]>([])
+  const { userData, setUserData } = useCreateUserStepsContextProvider();
   const { signUp } = useAuthContextProvider()
 
 
-  const onSubmit = useCallback(({avatarUrl}: OnSubmitProps) => {
-    console.log({avatarUrl})
+  const onSubmit = useCallback(({ avatarUrl }: OnSubmitProps) => {
+    console.log({ avatarUrl })
     setUserData({
       email: userData.email,
       password: userData.password,
@@ -51,73 +52,71 @@ export function SignUpStepThree() {
       email: userData.email!,
       password: userData.password,
     })
-  },[signUp])
+  }, [signUp])
 
 
 
-  const renderItem = ({item,index}:{item: any,index: number}) => (
-    <Avatar 
+  const renderItem = ({ item, index }: { item: any, index: number }) => (
+    <Avatar
       item={item}
       onPressIn={() => setItemIndex(index)}
       isSelected={itemIndex === index}
     />
   )
-  
+
   const fetchAvatarsData = async () => {
-    try{
+    try {
       const avatarsDataResponse = await api.get("/avatars")
       setAvatars(avatarsDataResponse.data)
-    }catch(err){
-      console.log({err})
+    } catch (err) {
+      console.log({ err })
     }
   }
 
   useEffect(() => {
     fetchAvatarsData()
     setStep(3);
-    console.log('SignUpStepThree')
-
-  },[])
+  }, [])
 
   return (
-    <>
-    <StepLevel/>
-    <Container>
-      <SectionSelectAvatar>
-        <SectionSelectAvatarTitle style={styles.sectionSelectAvatar}>Escolha seu avatar</SectionSelectAvatarTitle>
-        <SelectAvatarList
-          data={avatars}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={renderItem}
-          keyExtractor={(_,index) => `${index}`}
-        />
-      </SectionSelectAvatar>
-      <Form>
-        <SectionButtonForm>
-          <ButtonGoBack onPress={() => navigation.navigate("signupsteptwo")}>
-            <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
-          </ButtonGoBack>
-          <Button
-            text="Criar conta"
-            style={{ marginTop: 12 }}
-            onPress={() => onSubmit({avatarUrl: avatars[itemIndex]})}
+    <ScreenAnimationWrapper>
+      <StepLevel />
+      <Container>
+        <SectionSelectAvatar>
+          <SectionSelectAvatarTitle style={styles.sectionSelectAvatar}>Escolha seu avatar</SectionSelectAvatarTitle>
+          <SelectAvatarList
+            data={avatars}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItem}
+            keyExtractor={(_, index) => `${index}`}
           />
-        </SectionButtonForm>
-      </Form>
-    </Container>
-    </>
+        </SectionSelectAvatar>
+        <Form>
+          <SectionButtonForm>
+            <ButtonGoBack onPress={() => navigation.navigate("signupsteptwo")}>
+              <ButtonGoBackText style={{ fontFamily: FONTS.Roboto.Medium }}>Voltar</ButtonGoBackText>
+            </ButtonGoBack>
+            <Button
+              text="Criar conta"
+              style={{ marginTop: 12 }}
+              onPress={() => onSubmit({ avatarUrl: avatars[itemIndex] })}
+            />
+          </SectionButtonForm>
+        </Form>
+      </Container>
+    </ScreenAnimationWrapper>
   );
 }
 
 const styles = StyleSheet.create({
-  logo:{
+  logo: {
     marginBottom: 58,
   },
-  text:{
+  text: {
     fontFamily: FONTS.Roboto.Medium
   },
-  sectionSelectAvatar:{
+  sectionSelectAvatar: {
     fontFamily: FONTS.Poppins.Medium,
   }
 });

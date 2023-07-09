@@ -19,6 +19,7 @@ import {
 import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
 import { Controller, useForm } from 'react-hook-form';
 import { MessageError } from '../../components/message-error';
+import { ScreenAnimationWrapper } from '@modules/session/components/screen-wrapper-animation';
 
 type OnSubmitProps = {
   email: string;
@@ -55,11 +56,7 @@ export function SignUpStepOne() {
   },[])
 
   return (
-    <Animated.View
-      style={{
-        flex: 1,
-      }}
-    >
+    <ScreenAnimationWrapper>
       <StepLevel/>
       <Container>
         {/* <Image source={LogoImage} resizeMode="cover" style={styles.logo}/> */}
@@ -74,7 +71,6 @@ export function SignUpStepOne() {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input 
                 onChangeText={onChange}
-                iconName="mail-outline"
                 onBlur={onBlur}
                 value={value} 
                 autoComplete='email' 
@@ -118,7 +114,7 @@ export function SignUpStepOne() {
           </SectionButtonForm>
         </Form>
       </Container>
-    </Animated.View>
+    </ScreenAnimationWrapper>
   );
 }
 

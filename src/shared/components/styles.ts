@@ -1,34 +1,17 @@
 import styled from "styled-components/native";
 import { COLORS, FONTS } from "../theme";
 import { FlatList,StyleSheet } from "react-native";
-
 import  { ToastContentType } from "../contexts/toast-notification";
 
-export const aditionalStyles = StyleSheet.create({
-  containerTitleFont:{
-    fontFamily: FONTS.Roboto.Medium,
-  },
-  containerDescription: {
-    fontFamily: FONTS.Roboto.Regular,
-  },
-  modalTitle:{
-    fontSize: 16,
-    fontFamily: FONTS.Roboto.Medium,
-  },
-  modalDescription:{
-    fontSize: 14,
-    fontFamily: FONTS.Roboto.Regular,
-    color: COLORS.grey_800,
-  },
-  containerButtonCancelText:{
-    fontFamily: FONTS.Roboto.Medium,
-    color: COLORS.grey_800,
-  },
-  containerButtonAcceptText:{
-    color: COLORS.grey_200,
-    fontFamily: FONTS.Roboto.Medium,
-  },
-});
+type IndicatorTypeToastProps = {
+  type: "default" | "warning" | "error" | "sucess";
+}
+const ToastType = {
+  warning:COLORS.orange_400,
+  error:COLORS.red_530,
+  sucess:COLORS.green_500,
+  default:COLORS.grey_800
+}
 
 export const Container = styled.View`
   position: absolute;
@@ -46,10 +29,12 @@ export const ContentToast = styled.View`
   margin-top: 5px;
   flex-direction: row;
 `;
-export const IndicatorTypeToast = styled.View`
+export const IndicatorTypeToast = styled.View<IndicatorTypeToastProps>`
   height: 100%;
-  width: 3px;
-  background-color: ${COLORS.green_500};
+  width: 4px;
+  background-color: ${({type}) => ToastType[type]};
+  margin-right: 7px;
+  border-radius: 2px;
 `;
 
 export const ContainerTitle = styled.Text`
@@ -57,7 +42,6 @@ export const ContainerTitle = styled.Text`
   width: 100%;
   max-width: 340px;
   margin-bottom: 14px;
-
 `;
 
 export const ContainerDescription = styled.Text`
@@ -88,4 +72,12 @@ export const ContainerButtonCancel = styled(ContainerButtonBase)`
 export const ContainerButtonAccept = styled(ContainerButtonBase)<{ pressed: boolean, onHover: boolean }>`
 
   background-color: ${({ onHover,pressed }) => (pressed && COLORS.red_500) || (onHover ? COLORS.red_530 : COLORS.red_580)};
+`;
+
+
+export const ToastRemoveButton = styled.TouchableHighlight`
+  height: 36px;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
 `;

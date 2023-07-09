@@ -1,18 +1,21 @@
 import { StyleSheet } from "react-native";
-import styled,{css} from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { COLORS, FONTS } from "../../theme";
+//@ts-ignore
+import AdminIconSvg from "@shared/assets/icons/admin.svg"
 
 
 export const fonts = StyleSheet.create({
-  clientNameText:{
+  clientNameText: {
     fontFamily: FONTS.Poppins.Medium,
   },
-  clientEmailText:{
+  clientEmailText: {
     fontFamily: FONTS.Roboto.Medium,
   },
-  containerNavbarText:{
+  containerNavbarText: {
     fontFamily: FONTS.Roboto.Medium,
     color: COLORS.grey_180,
+    marginLeft: 7,
   },
 })
 
@@ -21,15 +24,15 @@ export const ButtonItemNavbar = styled.TouchableOpacity`
 
 `;
 
-export const Container = styled.View<{isActive: boolean,onHover:boolean}>`
+export const Container = styled.View<{ isActive: boolean, onHover: boolean }>`
   height: 44px;
   width: 80%;
   border-radius: 22px;
   flex-direction: row;
   align-items: center;
   padding: 0 26px;
-  background-color: ${({isActive}) => isActive ? COLORS.green_500 : 'transparent'};
-  ${({onHover}) => onHover && css`
+  background-color: ${({ isActive }) => isActive ? COLORS.green_500 : 'transparent'};
+  ${({ onHover }) => onHover && css`
     transform: scale(0.98,0.98);
   `}
   margin: 5px auto;
@@ -92,5 +95,7 @@ export const CustomerRoleBadge = styled.View`
   /* margin-left: auto; */
 `;
 
-export const CustomerRoleBadgeIcon = styled.Image``;
+export const CustomerRoleBadgeIcon = styled(AdminIconSvg)`
+
+`;
 

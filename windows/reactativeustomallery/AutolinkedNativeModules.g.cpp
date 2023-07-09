@@ -15,6 +15,9 @@
 // Includes from react-native-screens
 #include <winrt/RNScreens.h>
 
+// Includes from react-native-sensitive-info
+#include <winrt/RNSensitiveInfoCPP.h>
+
 // Includes from react-native-svg
 #include <winrt/RNSVG.h>
 
@@ -34,6 +37,8 @@ void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collecti
     packageProviders.Append(winrt::ReactNativePicker::ReactPackageProvider());
     // IReactPackageProviders from react-native-screens
     packageProviders.Append(winrt::RNScreens::ReactPackageProvider());
+    // IReactPackageProviders from react-native-sensitive-info
+    packageProviders.Append(winrt::RNSensitiveInfoCPP::ReactPackageProvider());
     // IReactPackageProviders from react-native-svg
     packageProviders.Append(winrt::RNSVG::ReactPackageProvider());
     // IReactPackageProviders from react-native-video

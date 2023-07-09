@@ -19,6 +19,7 @@ import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
 import { Controller, useForm } from 'react-hook-form';
 import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
 import { MessageError } from '../../components/message-error';
+import { ScreenAnimationWrapper } from '@modules/session/components/screen-wrapper-animation';
 
 type OnSubmitProps = {
   name: string;
@@ -56,7 +57,7 @@ export function SignUpStepTwo() {
   },[])
 
   return (
-    <>
+    <ScreenAnimationWrapper>
     <StepLevel/>
     <Container>
       {/* <Image source={LogoImage} resizeMode="cover" style={styles.logo}/> */}
@@ -111,6 +112,6 @@ export function SignUpStepTwo() {
         </SectionButtonForm>
       </Form>
     </Container>
-    </>
+    </ScreenAnimationWrapper>
   );
 }

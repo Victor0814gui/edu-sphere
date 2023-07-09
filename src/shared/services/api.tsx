@@ -1,7 +1,8 @@
 import axios, { AxiosError } from "axios";
 
+const baseUrl = "http://localhost:5000";
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: baseUrl,
 })
 
 
@@ -21,7 +22,7 @@ const api = axios.create({
 // // Adiciona um interceptador na resposta
 // api.interceptors.response.use(
 //   (config) => {
-    
+
 //     return config;
 //   },
 //   (error) => {
@@ -32,4 +33,4 @@ const api = axios.create({
 
 
 
-export { api };
+export { api, baseUrl };

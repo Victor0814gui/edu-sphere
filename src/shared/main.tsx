@@ -3,6 +3,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 import { COLORS } from "./theme";
 import { AppProvider } from "./contexts";
+import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 
 const MyTheme: Theme = {
   ...DefaultTheme,
@@ -12,13 +13,17 @@ const MyTheme: Theme = {
   },
 };
 
+
+
 export const Main = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer theme={MyTheme}>
-        <AppProvider>
-          <Router />
-        </AppProvider>
+        <ToastNotificaitonProvider>
+          <AppProvider>
+            <Router />
+          </AppProvider>
+        </ToastNotificaitonProvider>
       </NavigationContainer>
     </GestureHandlerRootView>
   )

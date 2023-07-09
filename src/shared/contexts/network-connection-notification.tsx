@@ -1,4 +1,4 @@
-import { 
+import {
   useState,
   useEffect,
   useContext,
@@ -7,13 +7,7 @@ import {
 } from "react";
 import NetInfo from "@react-native-community/netinfo";
 
-type NetworkConnectionNotificationContextType = {
-  details: any;
-  ipAddress: string;
-  isConnected: boolean;
-  isInternetReachable: boolean;
-  type: string;
-}
+type NetworkConnectionNotificationContextType = {}
 
 const NetworkConnectionNotificationContext = createContext(
   {} as NetworkConnectionNotificationContextType
@@ -22,23 +16,17 @@ const NetworkConnectionNotificationContext = createContext(
 
 const NetworkConnectionNotificationContextProvider = ({
   children,
-}:{children: ReactNode}) => {
-  const [ networkInfo,setNetworkInfo ] = useState(
+}: { children: ReactNode }) => {
+  const [networkInfo, setNetworkInfo] = useState(
     {} as NetworkConnectionNotificationContextType
   );
 
   const unsubscribe = NetInfo.addEventListener(state => {
     // console.log(state.details)
 
-    if(state.isConnected !== networkInfo.isConnected){
-      setNetworkInfo({
-        details: networkInfo.details,
-        ipAddress: networkInfo.ipAddress,
-        isConnected: networkInfo.isConnected,
-        isInternetReachable: networkInfo.isInternetReachable,
-        type: networkInfo.type,
-      })
-    }
+    state
+
+
   });
 
 
@@ -46,27 +34,21 @@ const NetworkConnectionNotificationContextProvider = ({
   useEffect(() => {
     // Unsubscribe
     unsubscribe()
-  },[])
-  
+  }, [])
+
 
   return (
-    <NetworkConnectionNotificationContext.Provider value={{
-      details: networkInfo.details,
-      ipAddress: networkInfo.ipAddress,
-      isConnected: networkInfo.isConnected,
-      isInternetReachable: networkInfo.isInternetReachable,
-      type: networkInfo.type,
-    }}>
+    <NetworkConnectionNotificationContext.Provider value={{}}>
       {children}
     </NetworkConnectionNotificationContext.Provider>
   )
 }
 
 const useNetworkConnectionNotificationContextProvider = () => {
-  const networkConnectionNotificationContextProviderExists = 
+  const networkConnectionNotificationContextProviderExists =
     useContext(NetworkConnectionNotificationContext);
 
-  if(!networkConnectionNotificationContextProviderExists){
+  if (!networkConnectionNotificationContextProviderExists) {
     throw new Error('[useNetworkConnectionNotificationContextProvider] not defined')
   }
   return networkConnectionNotificationContextProviderExists

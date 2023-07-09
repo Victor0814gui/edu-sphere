@@ -1,4 +1,4 @@
-import React, { useState,ReactNode,useRef } from 'react';
+import React, { useState,ReactNode,useRef, ElementType } from 'react';
 import { COLORS, FONTS } from "../../../../shared/theme";
 import { 
   ContainerButton,
@@ -7,17 +7,18 @@ import {
 import { ActivityIndicator,TouchableOpacityProps,Animated, View } from 'react-native';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { SignIn } from 'phosphor-react-native';
 
 type InputProps = TouchableOpacityProps & {
   children?: ReactNode;
   text?: string;
-  iconName?: string;
+  icon?: ElementType;
 }
 
 export function Button({
   children,
   text,
-  iconName,
+  icon: Icon = SignIn,
   ...rest
 }:InputProps) {
   const { sendResponseToServer } = useAuthContextProvider();
@@ -62,7 +63,7 @@ export function Button({
             flexDirection: "row",
           }}>
             <ContainerButtonText style={{fontFamily: FONTS.Roboto.Medium,marginRight: 4}}>{text}</ContainerButtonText>
-            {iconName && <Icon size={23} color={COLORS.grey_180} name={iconName ?? "login"}/>}
+            <SignIn size={23} color={COLORS.grey_180} />
           </View>
         )}
       </>

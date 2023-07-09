@@ -2,6 +2,10 @@
 #include "ReactPackageProvider.h"
 #include "NativeModules.h"
 
+#include "Fullscreen.h"
+#include "Notification.h"
+#include "FilePicker.h"
+
 using namespace winrt::Microsoft::ReactNative;
 
 namespace winrt::reactativeustomallery::implementation

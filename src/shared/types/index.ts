@@ -25,7 +25,7 @@ type SignUpProps = {
 
 type ContextAuthContextType = {
   user: UserType | null;
-  signIn: ({email,password}: SignInMethodProps) => void;
+  signIn: ({ email, password }: SignInMethodProps) => void;
   signUp: (state: SignUpProps) => void;
   signOut: () => void;
   sendResponseToServer: boolean;
@@ -43,7 +43,8 @@ type ToastContentType = {
   id?: string;
   title: string;
   description?: string;
-  type?: 'default' | 'warning' | 'error' | 'sucess';
+  mode: "permanent" | "temporary";
+  type: 'default' | 'warning' | 'error' | 'sucess';
   position?: 'center' | 'right' | 'left' | 'top' | 'bottom';
 }
 
@@ -55,13 +56,13 @@ type ModalContentType = {
 
 type ToastNotificaitonContextType = {
   toastNotifications: ToastContentType[];
-  addToastNotifications:(state:ToastContentType) => void;
-  removeToastNotication:(state: string) => void;
+  addToastNotifications: (state: ToastContentType) => void;
+  removeToastNotication: (state: string) => void;
 }
 type ModalContextType = {
   modalContent: ModalContentType | null;
-  openModal:(state: boolean) => void;
-  closeModal:(state: boolean) => void;
+  openModal: (state: boolean) => void;
+  closeModal: (state: boolean) => void;
 }
 
 

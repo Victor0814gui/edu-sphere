@@ -22,18 +22,18 @@ export const InputLabelText = styled.Text`
 export const ContainerStyleTextInput = styled.View<{onHover: boolean}>`
   border-width: 2px;
   border-color: ${({onHover}) => onHover ? COLORS.green_500 : COLORS.grey_270};
-  height: 48px;
+  height: 44px;
   border-radius: 41px;
   width: 100%;
-  min-width: 320px;
+  min-width: 420px;
   margin-top: 7px;
   flex-direction: row;
   background-color: ${COLORS.grey_270};
 `;
 
 export const IconContainer = styled.View`
-  height: 48px;
-  width: 48px;
+  height: 44px;
+  width: 44px;
   align-items: center;
   justify-content: center;
 `;

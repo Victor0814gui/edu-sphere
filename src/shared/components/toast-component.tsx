@@ -9,20 +9,20 @@ import {
 } from './styles'; 
 import { View,StyleSheet, Button } from 'react-native';
 
-import { COLORS,FONTS } from "../theme";
+import { FONTS } from "../theme";
 import { useToastNotificaitonProvider,ToastContentType } from '../../shared/contexts/toast-notification';
 
 
 export function ToastComponent() {
-  const { toastNotifications,removeToastNotication } = useToastNotificaitonProvider();
+  const { toastNotifications } = useToastNotificaitonProvider();
 
   const renderItem = ({item}:{item:ToastContentType}) => (
     <ContentToast>
-      <IndicatorTypeToast/>
+      <IndicatorTypeToast type="error"/>
       <View>
         <ContainerTitle style={aditionalStyles.containerTitleFont}>{item.title}</ContainerTitle>
         <ContainerDescription style={aditionalStyles.containerDescription}>{item.description}</ContainerDescription>
-        <Button onPress={() => removeToastNotication(item.id!)} title="rasdfasdfasdfsdfemove" />
+        <Button onPress={() => {}} title="rasdfasdfasdfsdfemove" />
       </View>
     </ContentToast>
   )

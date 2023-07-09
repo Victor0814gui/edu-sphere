@@ -10,22 +10,16 @@ import {
 import {
   useToastNotificaitonProvider,
   ToastContentType,
-} from '../../shared/contexts/toast-notification';
-import { TouchableHighlight } from 'react-native';
-
-
-
+} from '@shared/contexts/toast-notification';
 import { COLORS } from "../theme";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { aditionalStyles } from "./aditional-styles"
 import {
-  aditionalStyles,
   Container,
   ListToastNotifications,
   IndicatorTypeToast,
-  ContainerButtons,
-  ContainerButtonCancel,
-  ContainerButtonAccept,
+  ToastRemoveButton,
 } from './styles';
+import { XCircle } from 'phosphor-react-native';
 
 export const ToastItem = ({
   title,
@@ -33,79 +27,86 @@ export const ToastItem = ({
   id,
   position,
   type,
+  mode = "temporary",
 }: ToastContentType) => {
   const animateEnterAndLeaveToastItem = useRef(new Animated.Value(-20)).current
   const animationScale = useRef(new Animated.Value(1)).current
   const { removeToastNotication } = useToastNotificaitonProvider();
 
   const animateEnterToastItem = () => {
-    setTimeout(() => {
-      animateLeaveToastItem()
-    }, 5000)
+    if (mode === "temporary") {
+      setTimeout(() => {
+        animateLeaveToastItem()
+      }, 5000)
+    }
     Animated.spring(animateEnterAndLeaveToastItem, {
-      toValue: 20,
-      useNativeDriver: true,
+      toValue: 0,
+      useNativeDriver: false,
     }).start();
   }
 
   const animateLeaveToastItem = () => {
     Animated.spring(animateEnterAndLeaveToastItem, {
       toValue: 480,
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start(({ finished }) => {
       if (finished) {
         Animated.spring(animationScale, {
           toValue: 1,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }).stop();
         removeToastNotication(id!)
       }
     })
   }
 
-  const onPress = () => {
+
+  const onPressOut = () => {
+    Animated.timing(animationScale, {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: false,
+    }).start();
+  }
+
+  const onPressIn = () => {
     Animated.timing(animationScale, {
       toValue: 0.94,
       duration: 100,
-      useNativeDriver: true,
-    }).start(({finished}) => {
-      if (finished) {
-        Animated.timing(animationScale, {
-          toValue: 1,
-          duration: 100,
-          useNativeDriver: true,
-        }).start();
-      }
-    });
+      useNativeDriver: false,
+    }).start();
   }
+
+  const onPress = () => { }
 
   useEffect(() => {
     animateEnterToastItem()
   }, [])
 
   return (
-    <Pressable onPress={onPress}>
+    <Pressable
+      onPressOut={onPressOut}
+      onPressIn={onPressIn}
+      onPress={onPress}>
       <Animated.View style={{
         backgroundColor: COLORS.grey_270,
         padding: 12,
         maxWidth: 480,
         width: "100%",
+        marginVertical: 5,
         flexDirection: "row",
         alignItems: "center",
-        transform: [{ translateX: animateEnterAndLeaveToastItem },{ scale: animationScale }],
+        borderRadius: 51,
+        transform: [{ translateX: animateEnterAndLeaveToastItem }, { scale: animationScale }],
       }}>
-        <IndicatorTypeToast />
+        <IndicatorTypeToast type={type} />
         <View>
           <Text style={aditionalStyles.modalTitle}>{title}</Text>
-          <Text style={aditionalStyles.modalDescription}>{description}</Text>
+          {/* <Text style={aditionalStyles.modalDescription}>{description}</Text> */}
         </View>
-        <TouchableHighlight onPress={animateLeaveToastItem}>
-          <Icon
-            name="highlight-remove"
-            size={25}
-            color={COLORS.orange_400}
-          />
-        </TouchableHighlight>
+        <ToastRemoveButton onPress={animateLeaveToastItem}>
+          <XCircle size={28} color="#f2f2f2" />
+        </ToastRemoveButton>
       </Animated.View>
     </Pressable>
   )
@@ -113,10 +114,6 @@ export const ToastItem = ({
 
 export function ToastComponent() {
   const { toastNotifications } = useToastNotificaitonProvider();
-  const { width, height } = useWindowDimensions()
-  const [onHover, setOnHover] = useState(false);
-  const [pressed, setPressed] = useState(false);
-  const [flyoutIsDimissible, setFlyoutIsDimissible] = useState(true);
 
   if (!toastNotifications) {
     return <View />
@@ -131,7 +128,7 @@ export function ToastComponent() {
       <ListToastNotifications<React.ElementType>
         data={toastNotifications}
         renderItem={renderItem}
-        keyExtractor={({ id }: { id: string }) => id}
+        keyExtractor={(_: any, index: number) => `${index}`}
       />
     </Container>
   );

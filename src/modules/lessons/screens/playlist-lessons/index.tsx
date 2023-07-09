@@ -1,8 +1,8 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { COLORS } from "../../../../shared/theme";
 import { api } from "../../../../shared/services/api";
 import { useNavigation } from "@react-navigation/native";
-import { 
+import {
   additionalStyles,
   Container,
   ListLessonsSubjectContainer,
@@ -18,6 +18,7 @@ import {
 } from "./styles"
 
 import Icon from "react-native-vector-icons/Feather";
+import { ScreenAnimationWrapper } from "@modules/lessons/components/screen-wrapper-animation";
 
 
 type LessonsTypes = {
@@ -34,16 +35,16 @@ type RenderItemProps = {
 }
 
 
-const LessonSubject = ({ item,index }:RenderItemProps) => {
-  const [ onHover,setOnHover ] = useState(false);
-  const [ isPressed,setIsPressed ] = useState(false);
+const LessonSubject = ({ item, index }: RenderItemProps) => {
+  const [onHover, setOnHover] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
   const { navigate } = useNavigation();
 
   console.log(item.sources[0]);
 
   const handlerPress = () => {
     setIsPressed(true)
-    navigate("player",{ url: item.sources[0] })
+    navigate("player", { url: item.sources[0] })
   }
   const onPressIn = () => {
     setIsPressed(true)
@@ -52,7 +53,7 @@ const LessonSubject = ({ item,index }:RenderItemProps) => {
   const onPressOut = () => {
     setIsPressed(false)
   }
-  return(
+  return (
     <LessonSujectContainer
       onHoverIn={(e) => setOnHover(true)}
       onHoverOut={(e) => setOnHover(false)}
@@ -72,44 +73,45 @@ const LessonSubject = ({ item,index }:RenderItemProps) => {
         </LessonSujectContainerDescriptionContent>
       </LessonSujectContainerContent>
       <LessonSujectIconContainerRight>
-        <Icon name="play" size={20} color={COLORS.green_500}/>
+        <Icon name="play" size={20} color={COLORS.green_500} />
       </LessonSujectIconContainerRight>
     </LessonSujectContainer>
   )
 }
 
 export const PlaylistLessons = () => {
-  const [ lessonData,setLessonsData ] = useState<LessonsTypes[]>([])
-  const  ItemSeparatorComponent = () =>  <ListLessonsSubjectSeparator/>
-  const renderItem = (props:RenderItemProps) => <LessonSubject {...props}/>
-  const ListEmptyComponent = () => (  
+  const [lessonData, setLessonsData] = useState<LessonsTypes[]>([])
+  const ItemSeparatorComponent = () => <ListLessonsSubjectSeparator />
+  const renderItem = (props: RenderItemProps) => <LessonSubject {...props} />
+  const ListEmptyComponent = () => (
     <LessonSujectContainerContentText>ainda aulas disponiveis aqui</LessonSujectContainerContentText>
   )
 
   useEffect(() => {
     const getDataLessons = async () => {
-      try{
-        const lessons = await api.get("lessons") as { data: LessonsTypes[]};
+      try {
+        const lessons = await api.get("lessons") as { data: LessonsTypes[] };
         setLessonsData(lessons.data);
-      }catch(err){
+      } catch (err) {
 
       }
     }
     getDataLessons();
-  },[])
+  }, [])
 
-  return(
-    <Container>
-      <ListLessonsSubjectContainer>
-        <ListLessonsSubject
-          data={lessonData}
-          //@ts-ignore
-          renderItem={renderItem}
-          ItemSeparatorComponent={ItemSeparatorComponent}
-          ListEmptyComponent={ListEmptyComponent}
-        />
-      </ListLessonsSubjectContainer>
-    </Container>
-
+  return (
+    <ScreenAnimationWrapper>
+      <Container>
+        <ListLessonsSubjectContainer>
+          <ListLessonsSubject
+            data={lessonData}
+            //@ts-ignore
+            renderItem={renderItem}
+            ItemSeparatorComponent={ItemSeparatorComponent}
+            ListEmptyComponent={ListEmptyComponent}
+          />
+        </ListLessonsSubjectContainer>
+      </Container>
+    </ScreenAnimationWrapper>
   )
 }

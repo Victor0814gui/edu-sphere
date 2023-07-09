@@ -18,7 +18,7 @@ export const fonts = StyleSheet.create({
   },
   contentContainerListEmptyText:{
     fontSize: 16,
-    // fontFamily: FONTS.Poppins.Medium,
+    fontFamily: FONTS.Poppins.Medium,
     marginVertical: 9,
   },
   headerSectionTitle:{
@@ -35,8 +35,10 @@ export const Container = styled.View`
 
 export const SubHeaderContent = styled.View`
   flex-direction: row;
+  margin-left: 4px;
   align-items: center;
   margin-bottom: 21px;
+  margin-top: 41px;
 `;
 
 export const AmountOfQuestions = styled((mobile ? RectButton : TouchableOpacity))`
@@ -85,9 +87,7 @@ export const ButtonRoomControlListContainer = styled(Animated.View)`
 
 export const ButtonRoomControlList = styled(mobile ? RectButton : Pressable)``;
 
-export const ButtonRoomIcon = styled.Image.attrs(props => ({
-  resizeMode: "contain"
-}))`
+export const ButtonRoomIcon = styled.Image.attrs(props => ({ resizeMode: "contain"}))`
   width: 24px;
   height: 24px;
 `;
