@@ -157,6 +157,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
+    <None Include="reactativeustomallery_TemporaryKey.pfx" />
     <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
     <Text Include="..\..\src\shared\assets\fonts\Roboto\LICENSE.txt" />
     <Text Include="readme.txt">
@@ -172,6 +173,7 @@
     <LottieAnimation Include="..\..\src\shared\assets\animations\Message.json" Name="Message" />
     <LottieAnimation Include="..\..\src\shared\assets\animations\Offline.json" Name="Offline" />
     <LottieAnimation Include="..\..\src\shared\assets\animations\Welcome.json" Name="Welcome" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Page-Not-Found.json" Name="Not Found" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />
@@ -208,6 +210,15 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <PropertyGroup Label="LottieReactNativeProps">
     <LottieReactNativeDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\lottie-react-native\package.json'))\node_modules\lottie-react-native</LottieReactNativeDir>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>F12B6659E09F3CD0D96956691ABD949AFE7A543B</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <ImportGroup Label="LottieReactNativeTargets">
     <Import Project="$(LottieReactNativeDir)\src\windows\cppwinrt\PropertySheets\LottieGen.Auto.targets" />

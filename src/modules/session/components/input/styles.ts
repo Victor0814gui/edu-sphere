@@ -1,14 +1,14 @@
 import styled from "styled-components/native";
 import { COLORS, FONTS } from "../../../../shared/theme";
-import { StyleSheet } from "react-native";
+import { Animated, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  textInput:{
+  textInput: {
     fontFamily: FONTS.Poppins.Medium,
   },
 });
 
-export const InputContainerAndLabel = styled.View`
+export const InputContainerAndLabel = styled(Animated.View)`
   flex-direction: column;
   align-items: flex-start;
   
@@ -19,9 +19,9 @@ export const InputLabelText = styled.Text`
   margin-top: 7px;
 `;
 
-export const ContainerStyleTextInput = styled.View<{onHover: boolean}>`
+export const ContainerStyleTextInput = styled.View<{ onHover: boolean }>`
   border-width: 2px;
-  border-color: ${({onHover}) => onHover ? COLORS.green_500 : COLORS.grey_270};
+  border-color: ${({ onHover }) => onHover ? COLORS.green_500 : COLORS.grey_270};
   height: 44px;
   border-radius: 41px;
   width: 100%;

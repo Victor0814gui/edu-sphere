@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { Button } from "../../components/button";
-import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
 import { Input } from '../../components/input';
 import {
@@ -12,7 +11,7 @@ import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import { HiperLink } from '../../components/hiper-link';
 import { useForm, Controller } from 'react-hook-form';
 import { MessageError } from '../../components/message-error';
-
+import { useNavigate, useNavigation } from "react-router-native"
 //@ts-ignore
 import BackgroundIlustrationSvg from "../../assets/images/background-ilustration.svg";
 //@ts-ignore
@@ -26,7 +25,7 @@ type OnSubmitProps = {
 }
 
 export function AuthenticateUserAccount() {
-  const { navigate } = useNavigation()
+  const history = useNavigate()
   const { signIn } = useAuthContextProvider();
 
   const { control, handleSubmit, formState: { errors }, } = useForm({
@@ -41,14 +40,14 @@ export function AuthenticateUserAccount() {
   }, [])
 
   const handlePress = useCallback(async () => {
-    navigate('signupstepone');
+    history('/signupstepone');
   }, []);
 
   return (
     <React.Fragment>
       <BackgroundIlustrationSvg style={styles.backgroundLeft} />
       <BackgroundIlustrationRightSvg style={styles.backgroundRight} />
-      <ScreenAnimationWrapper>        
+      <ScreenAnimationWrapper>
         <Container>
           <Form>
             <Controller

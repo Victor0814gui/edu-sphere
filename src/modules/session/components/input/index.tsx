@@ -7,8 +7,8 @@ import {
   IconContainer,
   Input as TextInput,
 } from './styles';
-import { COLORS } from "../../../../shared/theme";
-import { TextInput as TextInputType, TextInputProps } from 'react-native';
+import { COLORS } from "@shared/theme";
+import { TextInput as TextInputType, TextInputProps, Animated } from 'react-native';
 import { ControllerFieldState } from 'react-hook-form';
 import { User } from 'phosphor-react-native';
 
@@ -19,7 +19,7 @@ type InputProps = TextInputProps & {
 }
 
 export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: InputProps) => {
-  console.log(fieldState)
+  const [animation] = useState(new Animated.Value(0));
   const [onHover, setOnHover] = useState(false);
 
   const inputValueRef = useRef<TextInputProps>(null);
@@ -31,12 +31,28 @@ export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: Inp
     setIsFilled(!!inputValueRef.current?.value)
   }, [])
 
+  const AnimationsEnter = () => {
+    Animated.spring(animation, {
+      toValue: 0,
+      useNativeDriver: false, // Habilita o uso do driver nativo para melhor desempenho
+    }).start();
+  };
+
   const handleInputFocus = useCallback((value: any) => {
     setIsFocused(true)
   }, [])
 
+  useEffect(() => {
+    AnimationsEnter();
+  })
+
   return (
-    <InputContainerAndLabel>
+    <InputContainerAndLabel
+      onLayout={(e) => console.log(e.nativeEvent)}
+      style={{
+        transform: [{ translateY: animation }],
+      }}
+    >
       <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>
       <ContainerStyleTextInput
         onHover={onHover}

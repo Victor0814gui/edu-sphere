@@ -7,7 +7,7 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.System.h>
 #include <windows.h>
-#include "shobjidl_core.h"
+// #include "shobjidl_core.h"
 
 using namespace winrt;
 using namespace winrt::Windows::Storage;
@@ -25,9 +25,9 @@ namespace FilePicker {
     try {
         HWND hwnd = GetConsoleWindow(); // #include <windows.h>
         FileOpenPicker filePicker = FileOpenPicker();
-        filePicker.as<IInitializeWithWindow>()->Initialize(hwnd);
+        //filePicker.as<IInitializeWithWindow>()->Initialize(hwnd);
         filePicker.ViewMode(PickerViewMode::Thumbnail);
-        filePicker.SuggestedStartLocation(PickerLocationId::Downloads);
+        //filePicker.SuggestedStartLocation(PickerLocationId::Downloads);
         filePicker.FileTypeFilter().ReplaceAll({ L".jpg", L".jpeg", L".png" }); // Allowed File types
 
         try {

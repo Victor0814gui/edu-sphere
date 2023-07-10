@@ -45,6 +45,7 @@
     "react-native-video": "^5.2.1",
     "react-native-web": "^0.19.6",
     "react-native-windows": "0.71.22",
+    "react-router-native": "^6.14.1",
     "styled-components": "^5.3.6",
     "uuid": "^9.0.0"
   },

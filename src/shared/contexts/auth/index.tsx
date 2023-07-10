@@ -15,6 +15,7 @@ import {
   signUpNotificationContentTypeNetworkError,
   AppAuthenticatoinKeyValue,
   sharedStorageFreferencies,
+  signInNotificationContentTypeUserNotExists,
 } from "./constants";
 
 const ContextAuthContext = createContext<ContextAuthContextType>(
@@ -28,7 +29,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const { navigate } = useNavigation();
 
 
-  const setItem = async (data:string) => {
+  const setItem = async (data: string) => {
     return RNSInfo.setItem(
       AppAuthenticatoinKeyValue,
       data,
@@ -38,7 +39,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
 
   const getItem = async () => {
     return await RNSInfo.getItem(
-      AppAuthenticatoinKeyValue, 
+      AppAuthenticatoinKeyValue,
       sharedStorageFreferencies
     );
   }
@@ -53,18 +54,6 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
         throw new Error("data is undefined")
       }
 
-      if (signInDataResponse.status === 422) {
-        addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
-      }
-
-      if (signInDataResponse.status === 404) {
-        addToastNotifications(signInNotificationContentTypeUserDataUndefined);
-      }
-
-      if (signInDataResponse.statusText === "Network Error") {
-        addToastNotifications(signInNotificationContentTypeServerError);
-      }
-
       setUser(signInDataResponse.data);
       if (!!signInDataResponse.data) {
         const signInDataResponseSerializationData = JSON.stringify(signInDataResponse.data);
@@ -74,16 +63,21 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     } catch (err) {
       const error = err as unknown as { code: string }
 
-      if (error.code === "ERR_BAD_REQUEST") {
-        addToastNotifications({
-          title: "error",
-          description: "usuario não encontrado, verifique seus dados e tente novamente",
-          type: "error",
-        });
-      }
+      console.log(err)
+      if (err instanceof AxiosError) {
+        console.log(err)
+        if (err.code === "ERR_NETWORK") {
+          addToastNotifications(signInNotificationContentTypeNetworkError);
+        }
 
-      if (error instanceof AxiosError) {
-      } 
+        if (err.response.data.message.code === 422) {
+          addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
+        }
+
+        if (err.response.data.message.code === 404) {
+          addToastNotifications(signInNotificationContentTypeUserNotExists);
+        }
+      }
 
       addToastNotifications(signInNotificationContentTypeNetworkError);
     } finally {
@@ -114,18 +108,18 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const signOut = useCallback(async () => {
     setUser(null)
     await RNSInfo.deleteItem(
-      AppAuthenticatoinKeyValue, 
+      AppAuthenticatoinKeyValue,
       sharedStorageFreferencies
     );
   }, [])
 
   const getUserDataStorage = async () => {
-    try{
+    try {
       const userDataStorageResponse = await getItem();
       const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse) as UserType;
 
       setUser(userDataStorageResponseParseData);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
@@ -133,7 +127,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     getUserDataStorage();
     console.log("jasljkdhflkajshdf")
-  },[])
+  }, [])
 
   return (
     <ContextAuthContext.Provider value={{

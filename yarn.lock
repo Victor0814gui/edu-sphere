@@ -2059,6 +2059,11 @@
     color "^4.2.3"
     warn-once "^0.1.0"
 
+"@remix-run/router@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.7.1.tgz#fea7ac35ae4014637c130011f59428f618730498"
+  integrity sha512-bgVQM4ZJ2u2CM8k1ey70o1ePFXsEzYVZoWghh6WjM8p59jQ7HxzbHW4SbnWFG7V9ig9chLawQxDTZ3xzOF8MkQ==
+
 "@rnx-kit/align-deps@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@rnx-kit/align-deps/-/align-deps-2.2.0.tgz#558530fee0a0e22a6de9f1206eecd7a9ba7c5d5b"
@@ -2726,6 +2731,11 @@
   dependencies:
     "@typescript-eslint/types" "5.54.0"
     eslint-visitor-keys "^3.3.0"
+
+"@ungap/url-search-params@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@ungap/url-search-params/-/url-search-params-0.1.4.tgz#727e9b4c811beaa6be6d7e4cc0516663c884cfd0"
+  integrity sha512-RLwrxCTDNiNev9hpr9rDq8NyeQ8Nn0X1we4Wu7Tlf368I8r+7hBj3uObhifhuLk74egaYaSX5nUsBlWz6kjj+A==
 
 "@webassemblyjs/ast@1.11.6", "@webassemblyjs/ast@^1.11.5":
   version "1.11.6"
@@ -9166,6 +9176,21 @@ react-refresh@^0.4.0:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
+
+react-router-native@^6.14.1:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/react-router-native/-/react-router-native-6.14.1.tgz#08d876a6e251b6c7c0352a5ed6fa3dbaeebb0d59"
+  integrity sha512-G/BftIUkcxl1GU4NlxKLDs5cGW3crlD9eQX/UPeO38vEEMet7d+MguOCO4oEd6Z2thm3D0bQkI96Ye6PBG+7CA==
+  dependencies:
+    "@ungap/url-search-params" "^0.1.4"
+    react-router "6.14.1"
+
+react-router@6.14.1:
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.14.1.tgz#5e82bcdabf21add859dc04b1859f91066b3a5810"
+  integrity sha512-U4PfgvG55LdvbQjg5Y9QRWyVxIdO1LlpYT7x+tMAxd9/vmiPuJhIwdxZuIQLN/9e3O4KFDHYfR9gzGeYMasW8g==
+  dependencies:
+    "@remix-run/router" "1.7.1"
 
 react-shallow-renderer@^16.15.0:
   version "16.15.0"

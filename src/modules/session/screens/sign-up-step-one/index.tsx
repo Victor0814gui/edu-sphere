@@ -1,6 +1,6 @@
-import React,{useCallback, useEffect} from 'react';
-import { Text, Animated, Image,Linking,StyleSheet } from "react-native";
-import { FONTS,COLORS } from "../../../../shared/theme"
+import React, { useCallback, useEffect } from 'react';
+import { Text, Animated, Image, Linking, StyleSheet } from "react-native";
+import { FONTS, COLORS } from "../../../../shared/theme"
 import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
 import LogoImage from "../../assets/images/logo.svg";
@@ -8,7 +8,7 @@ import { Input } from '../../components/input';
 import { StepLevel } from '../../components/step-level';
 import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
 
-import { 
+import {
   Container,
   Form,
   SectionButtonForm,
@@ -20,6 +20,7 @@ import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/c
 import { Controller, useForm } from 'react-hook-form';
 import { MessageError } from '../../components/message-error';
 import { ScreenAnimationWrapper } from '@modules/session/components/screen-wrapper-animation';
+import { useNavigate } from 'react-router-native';
 
 type OnSubmitProps = {
   email: string;
@@ -27,7 +28,7 @@ type OnSubmitProps = {
 }
 
 export function SignUpStepOne() {
-  const { navigate,goBack } = useNavigation()
+  const navigate = useNavigate()
   const { setStep } = useAuthStepsContextProvider()
   const { setUserData } = useCreateUserStepsContextProvider();
 
@@ -38,7 +39,7 @@ export function SignUpStepOne() {
     }
   });
 
-  const onSubmit = useCallback(({email,password}: OnSubmitProps) => {
+  const onSubmit = useCallback(({ email, password }: OnSubmitProps) => {
     setUserData({
       email,
       password,
@@ -46,18 +47,18 @@ export function SignUpStepOne() {
       birthday: null,
       avatarUrl: ''
     })
-    navigate('signupsteptwo');
-  },[])
+    navigate('/signupsteptwo');
+  }, [])
 
 
   useEffect(() => {
     setStep(1);
     console.log('SignUpStepOne')
-  },[])
+  }, [])
 
   return (
     <ScreenAnimationWrapper>
-      <StepLevel/>
+      <StepLevel />
       <Container>
         {/* <Image source={LogoImage} resizeMode="cover" style={styles.logo}/> */}
         <Form>
@@ -66,14 +67,14 @@ export function SignUpStepOne() {
             rules={{
               required: true,
               maxLength: 40,
-              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ 
+              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <Input 
+              <Input
                 onChangeText={onChange}
                 onBlur={onBlur}
-                value={value} 
-                autoComplete='email' 
+                value={value}
+                autoComplete='email'
                 labelText="Seu Email"
               />
             )}
@@ -87,22 +88,22 @@ export function SignUpStepOne() {
               required: true,
               maxLength: 20,
             }}
-            render={({ field: { onChange,onBlur, value } }) => (
-              <Input 
-                onChangeText={onChange} 
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                onChangeText={onChange}
                 onBlur={onBlur}
-                value={value} 
-                autoComplete='password' 
+                value={value}
+                autoComplete='password'
                 secureTextEntry
                 labelText="Sua senha"
               />
             )}
             name="password"
-          />  
+          />
           {errors.password?.type === 'required' && <MessageError>password is required</MessageError>}
           <SectionButtonForm>
-            <ButtonGoBack onPress={() => goBack()}>
-              <ButtonGoBackText style={{fontFamily: FONTS.Roboto.Medium}}>Voltar</ButtonGoBackText>
+            <ButtonGoBack onPress={() => navigate('/')}>
+              <ButtonGoBackText style={{ fontFamily: FONTS.Roboto.Medium }}>Voltar</ButtonGoBackText>
             </ButtonGoBack>
             <Button
               text="proximo passo"
@@ -119,10 +120,10 @@ export function SignUpStepOne() {
 }
 
 const styles = StyleSheet.create({
-  logo:{
+  logo: {
     marginBottom: 58,
   },
-  text:{
+  text: {
     fontFamily: FONTS.Roboto.Medium
   },
 });

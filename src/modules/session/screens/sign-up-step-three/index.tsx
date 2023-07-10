@@ -20,19 +20,21 @@ import { Avatar } from '../../components/avatar';
 import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import { ScreenAnimationWrapper } from '@modules/session/components/screen-wrapper-animation';
+import { useNavigate } from 'react-router-native';
+import { useToastNotificaitonProvider } from '@shared/contexts/toast-notification';
 
 type OnSubmitProps = {
   avatarUrl: string;
 }
 
 export function SignUpStepThree() {
-  const navigation = useNavigation()
-  const [itemIndex, setItemIndex] = useState(0)
+  const navigate = useNavigate();
+  const [itemIndex, setItemIndex] = useState(0);
   const { setStep } = useAuthStepsContextProvider();
-  const [avatars, setAvatars] = useState<string[]>([])
+  const [avatars, setAvatars] = useState<string[]>([]);
   const { userData, setUserData } = useCreateUserStepsContextProvider();
   const { signUp } = useAuthContextProvider()
-
+  const { addToastNotifications } = useToastNotificaitonProvider();;
 
   const onSubmit = useCallback(({ avatarUrl }: OnSubmitProps) => {
     console.log({ avatarUrl })
@@ -67,9 +69,14 @@ export function SignUpStepThree() {
   const fetchAvatarsData = async () => {
     try {
       const avatarsDataResponse = await api.get("/avatars")
+      console.log(avatarsDataResponse.data)
       setAvatars(avatarsDataResponse.data)
     } catch (err) {
-      console.log({ err })
+      addToastNotifications({
+        title: "Erro ao recuperar dados",
+        type: 'error',
+        mode: "temporary",
+      })
     }
   }
 
@@ -94,7 +101,7 @@ export function SignUpStepThree() {
         </SectionSelectAvatar>
         <Form>
           <SectionButtonForm>
-            <ButtonGoBack onPress={() => navigation.navigate("signupsteptwo")}>
+            <ButtonGoBack onPress={() => navigate("/signupsteptwo")}>
               <ButtonGoBackText style={{ fontFamily: FONTS.Roboto.Medium }}>Voltar</ButtonGoBackText>
             </ButtonGoBack>
             <Button

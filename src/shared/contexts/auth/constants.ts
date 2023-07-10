@@ -11,7 +11,7 @@ const signInNotificationContentTypeServerError: ToastContentType = {
   type: "error"
 }
 const signInNotificationContentTypeNetworkError: ToastContentType = {
-  title: "Error ao conectar com o servidor",
+  title: "Erro ao conectar com servidor",
   description: "parece que nossos servidores estão off-line",
   position: "center",
   type: "error"
@@ -22,6 +22,15 @@ const signInNotificationContentTypeUserDataUndefined: ToastContentType = {
   description: "parece que tivemos um erro interno no servidor, estamos resolvendo o mais rapido possivel",
   position: "center",
   type: "error"
+}
+
+
+const signInNotificationContentTypeUserNotExists: ToastContentType = {
+  title: "A sua conta não existe",
+  description: "asdfasdf",
+  position: "center",
+  type: "error",
+  mode: "temporary"
 }
 
 const signInNotificationContentTypeUserNotExistsOrIncorrectData: ToastContentType = {
@@ -62,7 +71,7 @@ const signUpNotificationContentTypeNetworkError: ToastContentType = {
 const AppAuthenticatoinKeyValue = "kjkljçlkjçlkjçkljçlkjçlkj";
 
 
-const  sharedStorageFreferencies: RNSensitiveInfoOptions = {
+const sharedStorageFreferencies: RNSensitiveInfoOptions = {
   sharedPreferencesName: 'mySharedPrefs',
   keychainService: 'myKeychain',
 }
@@ -73,6 +82,7 @@ export {
   signInNotificationContentTypeNetworkError,
   signInNotificationContentTypeUserDataUndefined,
   signInNotificationContentTypeUserNotExistsOrIncorrectData,
+  signInNotificationContentTypeUserNotExists,
   signUpNotificationContentTypeServerError,
   signUpNotificationContentTypeCreateUserSucess,
   signUpNotificationContentTypeUsersDoesNotExists,

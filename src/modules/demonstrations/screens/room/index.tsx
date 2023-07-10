@@ -75,25 +75,24 @@ const questions: QuestionType[] = [
   },
 ]
 
-export const Room = () => {
+export const Room = ({ navigation: { navigate }, route }: any) => {
   const [data, setData] = useState<QuestionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const route = useRoute()
 
-  // if (!route.params) {
-  //   return (
-  //     <ScreenAnimationWrapper>
-  //       <ContainerRoomNotFound>
-  //         <TitleRoomNotFound style={fonts.titleRoomNotFound}>Ops,sala não encontrada</TitleRoomNotFound>
-  //         <DescriptionRoomNotFound style={fonts.descriptionRoomNotFound}>parece que a sala que você está buscando não existe, verifique se o codigo da sala está certo e tente novamente</DescriptionRoomNotFound>
-  //         <ButtonRoomNotFound onPress={() => navigate("dashboard")}>
-  //           <ButtonRoomNotFoundText style={fonts.buttonRoomNotFoundText}>Home</ButtonRoomNotFoundText>
-  //         </ButtonRoomNotFound>
-  //         {/* <LottieView style={{width: 400,height:400}}  source={"HamburgerArrow"} /> */}
-  //       </ContainerRoomNotFound>
-  //     </ScreenAnimationWrapper>
-  //   )
-  // }
+  if (!route.params.id) {
+    return (
+      <ScreenAnimationWrapper>
+        <ContainerRoomNotFound>
+          <TitleRoomNotFound style={fonts.titleRoomNotFound}>Ops,sala não encontrada</TitleRoomNotFound>
+          <DescriptionRoomNotFound style={fonts.descriptionRoomNotFound}>parece que a sala que você está buscando não existe, verifique se o codigo da sala está certo e tente novamente</DescriptionRoomNotFound>
+          <ButtonRoomNotFound onPress={() => navigate("dashboard")}>
+            <ButtonRoomNotFoundText style={fonts.buttonRoomNotFoundText}>Home</ButtonRoomNotFoundText>
+          </ButtonRoomNotFound>
+          <LottieView style={{ width: 400, height: 400 }} source={"Not Found"} />
+        </ContainerRoomNotFound>
+      </ScreenAnimationWrapper>
+    )
+  }
 
   useEffect(() => {
 
@@ -105,10 +104,6 @@ export const Room = () => {
     return () => clearTimeout(timer);
   })
 
-
-  const {
-    roomId,
-  } = route.params as RoomParamsType;
 
   const renderItem = ({ item }: { item: QuestionType, index?: number }): JSX.Element => (
     <Question
@@ -126,7 +121,7 @@ export const Room = () => {
   return (
     <ScreenAnimationWrapper>
       <Container>
-        <Header roomId={roomId} />
+        <Header roomId={route.params.id} />
         <SubHeaderContent>
           <Text style={fonts.titleRoom}>Sala React Q&A</Text>
           <AmountOfQuestions>

@@ -14,11 +14,31 @@ const MyTheme: Theme = {
 };
 
 
+const config = {
+  screens: {
+    room: {
+      path: 'room/:id',
+      exact: true,
+      parse: {
+        id: (id: string) => `user-${id}`,
+      },
+      stringify: {
+        id: (id: string) => id.replace(/^user-/, ''),
+      },
+    },
+  },
+};
+
+const linking = {
+  prefixes: ['reactativeustomallery://'],
+  config,
+};
+
 
 export const Main = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer theme={MyTheme}>
+      <NavigationContainer linking={linking} theme={MyTheme}>
         <ToastNotificaitonProvider>
           <AppProvider>
             <Router />
