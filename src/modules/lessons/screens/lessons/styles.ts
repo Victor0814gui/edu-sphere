@@ -21,11 +21,33 @@ export const additionalStyles = StyleSheet.create({
 
 export const Container  = styled.ScrollView`
   flex: 1;
-`;
-
+  `;
 
 export const BackgroundImageContainer = styled.View`
- 
+  margin-top: 43px;
+  height: 330px;
+  border-radius: 21px;
+  width: 100%;
+  background-color: ${COLORS.grey_270};
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 21px;
+  flex-direction: row;
+  gap: 12px;
+`;
+
+export const Button = styled.View`
+  height: 42px;
+  padding: 0 32px;
+  background-color: ${COLORS.green_500};
+  width: 200px;
+  border-radius: 21px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonText = styled.Text`
+  color: ${COLORS.grey_270};
 `;
 
 export const BackgroundImageContent = styled.View`
@@ -41,8 +63,6 @@ export const BackgroundImage = styled.Image`
 `;
 
 export const SectionHeaderContainer = styled.View`
-  width: 80%;
-  margin: 0 auto;
   padding: 21px 0;
   flex-direction: row;
 

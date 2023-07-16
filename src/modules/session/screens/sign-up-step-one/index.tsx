@@ -7,6 +7,7 @@ import LogoImage from "../../assets/images/logo.svg";
 import { Input } from '../../components/input';
 import { StepLevel } from '../../components/step-level';
 import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
+import { fullscreen } from "react-native-custom-window"
 
 import {
   Container,
@@ -21,6 +22,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { MessageError } from '../../components/message-error';
 import { ScreenAnimationWrapper } from '@modules/session/components/screen-wrapper-animation';
 import { useNavigate } from 'react-router-native';
+import { background as Background } from '@modules/session/assets/images';
 
 type OnSubmitProps = {
   email: string;
@@ -54,10 +56,17 @@ export function SignUpStepOne() {
   useEffect(() => {
     setStep(1);
     console.log('SignUpStepOne')
+    fullscreen.addBackButton()
+    // fullscreen.full()
+
+    return () => {[
+      fullscreen.removeBackButton()
+    ]}
   }, [])
 
   return (
     <ScreenAnimationWrapper>
+      {/* <Image source={Background} style={{position: "absolute",top: 0, right: 0, bottom: 0,left: 0, zIndex: 0}}/> */}
       <StepLevel />
       <Container>
         {/* <Image source={LogoImage} resizeMode="cover" style={styles.logo}/> */}
@@ -126,4 +135,4 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: FONTS.Roboto.Medium
   },
-});
+}); 

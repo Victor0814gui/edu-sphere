@@ -12,6 +12,12 @@
 // Includes from @react-native-picker/picker
 #include <winrt/ReactNativePicker.h>
 
+// Includes from react-native-custom-window
+#include <winrt/ReactNativeCustomWindow.h>
+
+// Includes from react-native-fs
+#include <winrt/RNFS.h>
+
 // Includes from react-native-screens
 #include <winrt/RNScreens.h>
 
@@ -35,6 +41,10 @@ void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collecti
     packageProviders.Append(winrt::progress_view::ReactPackageProvider());
     // IReactPackageProviders from @react-native-picker/picker
     packageProviders.Append(winrt::ReactNativePicker::ReactPackageProvider());
+    // IReactPackageProviders from react-native-custom-window
+    packageProviders.Append(winrt::ReactNativeCustomWindow::ReactPackageProvider());
+    // IReactPackageProviders from react-native-fs
+    packageProviders.Append(winrt::RNFS::ReactPackageProvider());
     // IReactPackageProviders from react-native-screens
     packageProviders.Append(winrt::RNScreens::ReactPackageProvider());
     // IReactPackageProviders from react-native-sensitive-info

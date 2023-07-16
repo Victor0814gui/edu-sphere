@@ -1,7 +1,8 @@
+import { useEffect, useLayoutEffect } from "react";
 import Video from "react-native-video";
-import { useWindowDimensions } from "react-native";
+import { Button, useWindowDimensions } from "react-native";
 import { useNavigation,useRoute } from "@react-navigation/native";
-
+import { fullscreen } from "react-native-custom-window";
 import { 
   fonts,
   Container,
@@ -10,6 +11,7 @@ import {
   DescriptionRoomNotFound,
   ButtonRoomNotFound,
   ButtonRoomNotFoundText,
+  Content,
 } from './styles';
 
 export interface OnProgressData {
@@ -48,93 +50,31 @@ export function PlayerWindows() {
     width,
     height,
   } = useWindowDimensions();
-  // const viewRef = useRef<View>(null);
-  // const [ paused,setPaused ] = useState(true);
-  // const [ fullscreen,setFullscreen ] = useState(false);
-  // const videoRef = useRef<Video>(null);
-  // const animatedView = useRef(new Animated.Value(-40)).current;
-  
-  // const bigScale = () => {
-  //   Animated.spring(animatedView,{
-  //     toValue: 300,
-  //     useNativeDriver: true,
-  //   }).start()
-  // }
 
-  // const nomalScale = () => {
-  //   Animated.spring(animatedView,{
-  //     toValue: 0,
-  //     useNativeDriver: true,
-  //   }).start();
-  // }
-
-  // const smallScale = () => {
-  //   Animated.spring(animatedView,{
-  //     toValue: -120,
-  //     useNativeDriver: true,
-  //   }).start();
-  // }
-
-  // const onKeyDown = ({nativeEvent}) => {
-  //   console.log(nativeEvent.key)
-    
-  //   if(nativeEvent.key === "Control"){
-  //     bigScale()
-  //   }
-  //   if(nativeEvent.key === "F"){
-  //     nomalScale()
-  //   }
-  //   if(nativeEvent.key === " "){
-  //     setPaused(!paused)
-  //   }
-  //   if(nativeEvent.key === "O"){
-  //     console.log("fullscreen")
-  //     setFullscreen(true)
-  //   }
-
-  //   if(nativeEvent.key === "Escape"){
-  //     setFullscreen(false)
-  //   }
-  // }
-
-  // const handleControlsWrapper = () => {
-  //   // setPaused(!paused) 
-  //   viewRef?.current?.focus?.()
-  // }
-
-  // useEffect(() => {
-  //   viewRef?.current?.focus?.();
-  // }, []);
-
+  useEffect(() => {
+    fullscreen.addBackButton();
+    fullscreen.disableExtend();
+  },[])
 
   return (
-    <Container
-      // ref={viewRef}
-      // // style={{flex: 1}}
-      // onMagicTap={() => viewRef?.current?.focus?.()}
-      // focusable={true}
-      // enableFocusRing={true}
-      // onTouchEndCapture={(e) => console.log(e)}
-      // validKeysDown={['Enter', 'Esc', 'rightArrow']}
-      // onKeyDown={onKeyDown}
-    >
+    <Container>
       <Video
         style={{
           width,
-          height
+          height:height
         }}
         // ref={videoRef}
-        controls={true}
+        controls={false}
         playInBackground={true}
         // paused={paused}
         allowsExternalPlayback
         onLoad={(e) => console.log(e)}
-        paused={false}
+        paused={true}
         resizeMode="contain"
         // fullscreen={fullscreen}
         // onVideoLoad={(e) => console.log(e)}
         // onSeek={(e) => console.log(e)}
-        // onProgress={(e) => console.log(e.nativeEvent)}
+        onProgress={(e) => console.log(e.nativeEvent)}
         // onLoad={(e) => console.log(e)}
         source={{
           uri: url
@@ -142,25 +82,9 @@ export function PlayerWindows() {
         muted={false}
 
       />
-      {/* <VideoContainerControls onPress={handleControlsWrapper}>
-        <DescriptionContainer>
-          {/* <Description style={aditionalStyles.description}>
-            No trailer, é possível ver um paralelo com o filme 2001 — um clássico dos cinemas que tenta trazer uma explicação para a evolução da humanidade. Em tom de sátira, o teaser mostra que a Barbie agiu na evolução das meninas e mulheres da mesma forma que o monolito da ficção científica.
-          </Description> 
-           <ProgressView 
-            progress={0.3}
-            progressTintColor={COLORS.green_500}
-            trackTintColor={COLORS.grey_180}
-          /> 
-        </DescriptionContainer>
-        <Controls style={{
-          transform:[{ translateY: animatedView }]
-        }}>
-          <Pressable onPress={() => setPaused(!paused)}>
-            {paused ? <Icon name="play" color={COLORS.grey_400} size={35} /> : <Icon name="pause" color={COLORS.grey_400} size={35} />}
-          </Pressable>
-        </Controls>
-      </VideoContainerControls> */}
+    <Content>
+    <Button title="fullscreen" color={"red"} onPress={() => fullscreen.full()}/>
+    </Content>
     </Container>
   );
 }

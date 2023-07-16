@@ -17,9 +17,10 @@ import multiavatarSnakeHarrison from "./Multiavatar-Snake-Harrison.png";
 import multiavatarSonnyZen from "./Multiavatar-Sonny-Zen.png";
 import multiavatarSquarepusher from "./Multiavatar-Squarepusher.png";
 import multiavatarTuco from "./Multiavatar-Tuco.png";
-
+import background from "./background.jpg"
 
 export {
+  background,
   multiavatarAphexMaiden,
   multiavatarBattleWooster,
   multiavatarBigBrother,

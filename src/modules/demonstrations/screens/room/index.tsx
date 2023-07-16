@@ -17,7 +17,7 @@ import {
   ButtonRoomNotFoundText,
 } from "./styles";
 import { ScreenAnimationWrapper } from "@modules/demonstrations/components/screen-wrapper-animation";
-// import LottieView  from "lottie-react-native";
+import LottieView  from "lottie-react-native";
 
 type RoomParamsType = {
   roomId: string;
@@ -79,6 +79,13 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
   const [data, setData] = useState<QuestionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    console.log("montou")
+    return () => {
+      console.log("desmontou")
+    }
+  },[])
+
   if (!route.params.id) {
     return (
       <ScreenAnimationWrapper>
@@ -88,7 +95,7 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
           <ButtonRoomNotFound onPress={() => navigate("dashboard")}>
             <ButtonRoomNotFoundText style={fonts.buttonRoomNotFoundText}>Home</ButtonRoomNotFoundText>
           </ButtonRoomNotFound>
-          <LottieView style={{ width: 400, height: 400 }} source={"Not Found"} />
+          <LottieView autoPlay loop style={{ width: 400, height: 400 }} source={"Not Found"} />
         </ContainerRoomNotFound>
       </ScreenAnimationWrapper>
     )
@@ -100,8 +107,9 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
     const timer = setTimeout(() => {
       setIsLoading(true);
     }, 400)
-
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    }
   })
 
 

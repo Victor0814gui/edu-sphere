@@ -4,7 +4,7 @@ import { CardRoom } from "../../components/card-room";
 import { api, baseUrl } from "@shared/services/api";
 import { useToastNotificaitonProvider } from "@shared/contexts/toast-notification";
 import { useOpenAndCloseNavbarOnKeyPressContextProvider } from "@shared/contexts/open-and-close-navbar-on-key-press";
-
+import { fullscreen } from "react-native-custom-window";
 import LottieView from "lottie-react-native";
 import { errorConnectingToServerDataToast } from "@shared/contexts/toast-notification/constants";
 import { ScreenAnimationWrapper } from "@modules/demonstrations/components/screen-wrapper-animation";
@@ -64,6 +64,9 @@ export const Dashboard = () => {
     if (!isLoading) {
       fetchRoomsData();
     }
+    fullscreen.removeBackButton();
+    fullscreen.enableExtend();
+    fullscreen.TitlebarColor(0,0,0,0)
   })
 
   return (

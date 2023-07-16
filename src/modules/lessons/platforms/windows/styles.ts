@@ -60,3 +60,12 @@ export const ButtonRoomNotFoundText = styled.Text`
   align-self: center;
 `;
 
+
+export const Content = styled.View`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 41px;
+`;

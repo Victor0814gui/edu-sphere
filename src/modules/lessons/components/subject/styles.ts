@@ -2,7 +2,7 @@ import styled,{ css } from "styled-components/native";
 import { COLORS,FONTS } from "../../../../shared/theme";
 
 
-import { StyleSheet } from "react-native";
+import { StyleSheet,Animated } from "react-native";
 
 export const additionalStyles = StyleSheet.create({
   subjectContainerContentTitle:{
@@ -18,14 +18,14 @@ export const additionalStyles = StyleSheet.create({
 })
 
 
-export const SubjectContainer = styled.Pressable<{isPressed: boolean,onHover: boolean}>`
+export const Container = styled(Animated.View)<{isPressed: boolean,onHover: boolean}>`
   padding: 12px;
   border-radius: 12px;
   flex-direction: row;
   align-items: center;
-
-  
-  margin: 3px;
+  min-height: 300px;
+  width: 200px;
+  margin-right: 14px;
 
   ${({onHover,isPressed}) => 
     isPressed && css` background-color: ${COLORS.grey_200}; `
@@ -33,6 +33,11 @@ export const SubjectContainer = styled.Pressable<{isPressed: boolean,onHover: bo
     || css` background-color: ${COLORS.grey_270} `
   }
 `;
+
+export const Content  = styled.View`
+  
+`;
+
 export const IconSubjectContainer = styled.View`
   margin: 0 12px;
 `;
