@@ -1,3 +1,6 @@
+
+## Features
+
 - [ ] - Fóruns de Discussão: Além do chat em tempo real, adicionar fóruns de discussão em cada sala de aula pode oferecer uma plataforma para discussões mais aprofundadas e organizadas sobre tópicos específicos. Os alunos podem criar tópicos de discussão e responder a eles ao longo do tempo, permitindo interações assíncronas e mais estruturadas.
 
 - [ ] - Notas e Avaliações: Permitir que os professores atribuam notas e avaliações aos alunos para suas atividades, tarefas e testes. Os alunos podem acompanhar seu desempenho e o feedback recebido, enquanto os professores podem monitorar o progresso individual de cada aluno.
