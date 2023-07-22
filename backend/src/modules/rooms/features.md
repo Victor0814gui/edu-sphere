@@ -1,6 +1,6 @@
 ## descrição
 
-## 2.*Módulo de Salas de Aula:
+## 2.Módulo de Salas de Aula:
 - Criação de Salas de Aula: Os professores têm a capacidade de criar novas salas de aula virtuais. Ao criar uma sala de aula, o professor deve fornecer informações como o nome da sala, uma descrição para identificação, horários de aulas regulares, entre outros dados relevantes.
 
 - Gerenciamento de Salas de Aula: O módulo permite que os professores gerenciem as salas de aula criadas por eles. Isso inclui listar todas as salas de aula que o professor criou, permitir que ele visualize detalhes da sala e suas configurações.
