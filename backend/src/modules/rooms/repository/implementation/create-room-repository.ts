@@ -36,18 +36,21 @@ export class CreateRoomRepository implements ICreateRoomRepository.Implementatio
     return responseQuestions;
   }
 
-  async delete(props: ICreateRoomRepository.Delete.Params): Promise<ICreateRoomRepository.Delete.Response> {
+  async delete(props: ICreateRoomRepository.Delete.Params):
+    Promise<ICreateRoomRepository.Delete.Response> {
 
     const response = {} as Promise<ICreateRoomRepository.Delete.Response>;
     return response;
   }
-  async listMany(props: ICreateRoomRepository.ListMany.Params): Promise<ICreateRoomRepository.ListMany.Response> {
+  async listMany(props: ICreateRoomRepository.ListMany.Params):
+    Promise<ICreateRoomRepository.ListMany.Response> {
 
     const response = {} as Promise<ICreateRoomRepository.ListMany.Response>;
     return response;
   }
 
-  async listUnique(props: ICreateRoomRepository.ListUnique.Params): Promise<ICreateRoomRepository.ListUnique.Response> {
+  async listUnique(props: ICreateRoomRepository.ListUnique.Params):
+    Promise<ICreateRoomRepository.ListUnique.Response> {
 
     const response = {} as Promise<ICreateRoomRepository.ListUnique.Response>;
     return response;
