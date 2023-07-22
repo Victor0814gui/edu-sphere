@@ -3,7 +3,7 @@ import { ICreateRoomValidator } from "../validators/create-room-validators";
 
 
 
-export namespace ICreateRooom {
+export namespace IListRooom {
   export type Params = {
     name: string;
     description: string;
@@ -22,22 +22,20 @@ export namespace ICreateRooom {
   }
 }
 
-export class CreateRoomUseCase {
+export class ListRoomsUseCase {
   constructor(
-    private createRoomRepository: ICreateRoomRepository.Implementation,
-    private createRoomValidator: ICreateRoomValidator
+    private listRoomsRepository: IListRoomsRepository.Implementation,
   ) { }
 
-  async execute(props: ICreateRooom.Params): Promise<ICreateRooom.Response> {
-    this.createRoomValidator.validade(props);
+  async execute(props: IListRooom.Params): Promise<IListRooom.Response> {
 
-    const createRoomResponse = await this.createRoomRepository.create({
+    const listRoomsResponse = await this.listRoomsRepository.create({
       description: props.description,
       name: props.name,
       teacherId: props.teacherId,
       title: props.title,
     })
 
-    return createRoomResponse;
+    return listRoomsResponse;
   }
 }

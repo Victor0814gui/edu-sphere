@@ -6,10 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-
 
 
 model Room {
@@ -60,7 +59,7 @@ model Lesson {
   createdAt String
   start DateTime
   end DateTime
-  Material String[]
+  materials Material[]
   duration Int
   Type String
 }
@@ -71,4 +70,14 @@ model Matriculation {
   romId String
   createAd DateTime
   students Student[]
+}
+
+
+model Material {
+  id String @id @unique
+  title String 
+  description String?
+  createdAt DateTime
+  updatedAt DateTime?
+  lessons Lesson[]
 }

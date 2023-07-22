@@ -18,7 +18,6 @@ namespace ICreateRoomRepository {
       id: string;
       name: string;
       description: string;
-      title: string;
       teacherId: string
     }
     export interface Response extends Room { };
@@ -45,10 +44,7 @@ namespace ICreateRoomRepository {
 
   export interface Implementation {
     create: (props: ICreateRoomRepository.Create.Params) => Promise<ICreateRoomRepository.Create.Response>;
-    update: (props: ICreateRoomRepository.Update.Params) => Promise<ICreateRoomRepository.Update.Response>;
-    delete: (props: ICreateRoomRepository.Delete.Params) => Promise<ICreateRoomRepository.Delete.Response>;
-    listMany: (props: ICreateRoomRepository.ListMany.Params) => Promise<ICreateRoomRepository.ListMany.Response>;
-    listUnique: (props: ICreateRoomRepository.ListUnique.Params) => Promise<ICreateRoomRepository.ListUnique.Response>;
+    listUnique: (props: ICreateRoomRepository.ListUnique.Params) => Promise<ICreateRoomRepository.ListUnique.Response | null>;
   }
 }
 
