@@ -1,23 +1,18 @@
 import { Permission } from "../../../aplication/entities/permission";
+import { Role } from "../../../aplication/entities/role";
+import { User } from "../../../aplication/entities/user";
 
 
 
 
-export namespace ICreateStudentAccountRepository {
+export namespace ICreateUserAccountRepository {
 
   export namespace FindUniqueRole {
     export interface Params {
       level: number;
     }
 
-    export interface Response {
-      id: string;
-      name: string;
-      level: number;
-      description: string;
-      createdAt: Date;
-      updatedAt: Date | null;
-    }
+    export interface Response extends Role { }
   }
 
   export namespace FindPermissions {
@@ -32,15 +27,7 @@ export namespace ICreateStudentAccountRepository {
       id: string;
     }
 
-    export interface Response {
-      id: string;
-      name: string;
-      email: string;
-      createtAt: Date;
-      udpatedAt: Date | null;
-      avatarUrl: string;
-      password: string;
-    }
+    export interface Response extends User { }
   }
 
   export namespace Create {
@@ -52,13 +39,7 @@ export namespace ICreateStudentAccountRepository {
       level: number
     }
 
-    export interface Response {
-      id: string;
-      name: string;
-      email: string;
-      password: string;
-      createtAt: Date;
-    }
+    export interface Response extends User { }
   }
 
   export interface Implementation {

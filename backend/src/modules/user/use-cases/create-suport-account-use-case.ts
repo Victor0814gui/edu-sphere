@@ -1,46 +1,38 @@
-import { User } from "../../../aplication/entities/user";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
-import { inject, injectable } from "tsyringe"
 
 
-namespace ICreateStudentAccountUseCase {
+namespace ICreateSuportAccountUseCase {
   export interface Params {
     name: string;
     email: string;
     password: string;
     avatarUrl: string;
   }
-
-  export interface Response extends User { }
 }
 
 
-@injectable()
-export class CreateStudentAccountUseCase {
+export class CreateSuportAccountUseCase {
   constructor(
-    @inject("CreateUserAccountRepository")
-    @inject("database")
     private createUserAccountRepository: ICreateUserAccountRepository.Implementation
   ) { }
 
-  async execute(props: ICreateStudentAccountUseCase.Params):
-    Promise<ICreateStudentAccountUseCase.Response> {
-
+  async execute(props: ICreateSuportAccountUseCase.Params) {
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
       id: props.email
     })
 
     if (!verifyUserAlreayExists?.id) {
-      throw new Error("estudent already exists");
+      throw new Error("eSuport already exists");
     }
 
-    const createStudentResponse = await this.createUserAccountRepository.create({
+    const createSuportResponse = await this.createUserAccountRepository.create({
       avatarUrl: props.avatarUrl,
       email: props.email,
       name: props.name,
       password: props.password,
-      level: 0,
+      level: 2,
     })
-    return createStudentResponse;
+
+    return createSuportResponse;
   }
 }
