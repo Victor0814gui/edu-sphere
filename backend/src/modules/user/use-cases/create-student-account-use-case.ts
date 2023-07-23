@@ -1,4 +1,4 @@
-import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
+import { ICreateUserAccountRepository } from "../repositories/i-create-student-account-repository";
 
 
 namespace ICreateStudentAccountUseCaseParams {

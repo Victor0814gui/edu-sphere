@@ -3,7 +3,7 @@ import { Permission } from "../../../aplication/entities/permission";
 
 
 
-export namespace ICreateUserAccountRepository {
+export namespace ICreateStudentAccountRepository {
 
   export namespace FindUniqueRole {
     export interface Params {
