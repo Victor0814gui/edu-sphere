@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { api } from "../../services/api";
 import { AxiosError } from "axios";
 import RNSInfo from 'react-native-sensitive-info';
+
 import {
   signInNotificationContentTypeServerError,
   signInNotificationContentTypeNetworkError,
@@ -17,6 +18,14 @@ import {
   sharedStorageFreferencies,
   signInNotificationContentTypeUserNotExists,
 } from "./constants";
+
+type ErrorMessageType = {
+  data: {
+    message: {
+      code: number
+    }
+  }
+}
 
 const ContextAuthContext = createContext<ContextAuthContextType>(
   {} as ContextAuthContextType
@@ -61,20 +70,18 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       }
 
     } catch (err) {
-      const error = err as unknown as { code: string }
-
-      console.log(err)
       if (err instanceof AxiosError) {
-        console.log(err)
+        err.response as ErrorMessageType;
+
         if (err.code === "ERR_NETWORK") {
           addToastNotifications(signInNotificationContentTypeNetworkError);
         }
 
-        if (err.response.data.message.code === 422) {
+        if (err.response!.data.message.code === 422) {
           addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
         }
 
-        if (err.response.data.message.code === 404) {
+        if (err.response!.data.message.code === 404) {
           addToastNotifications(signInNotificationContentTypeUserNotExists);
         }
       }

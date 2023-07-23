@@ -8,7 +8,7 @@ import { Player } from '../../../modules/lessons/screens/player';
 import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
 import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
-
+import { CreateRoomScreen } from '@modules/rooms/screens/create-room';
 
 
 type UserDrawerType = {
@@ -18,6 +18,7 @@ type UserDrawerType = {
   player: undefined;
   lessons: undefined;
   playlistlessons: undefined;
+  CreateRoomScreen: undefined;
 }
 
 const drawerNavigationOptions: DrawerNavigationOptions = {
@@ -54,6 +55,7 @@ export function UserDrawerRoutes() {
       <UserDrawer.Screen name="room" component={Room} />
       <UserDrawer.Screen name="player" options={{ drawerType: "slide" }} component={Player} />
       <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
+      <UserDrawer.Screen options={{ drawerType: "slide" }} name="CreateRoomScreen" component={CreateRoomScreen} />
     </UserDrawer.Navigator>
   );
 }

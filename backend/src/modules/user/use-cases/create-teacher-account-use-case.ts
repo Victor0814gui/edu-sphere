@@ -1,5 +1,7 @@
 import { User } from "../../../aplication/entities/user";
+import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
+import { inject, injectable } from "tsyringe"
 
 
 namespace ICreateTeacherAccountUseCase {
@@ -13,20 +15,26 @@ namespace ICreateTeacherAccountUseCase {
   export interface Response extends User { };
 }
 
-
+@injectable()
 export class CreateTeacherAccountUseCase {
   constructor(
+    @inject("UserValidatorParams")
+    private userValidatorParams: UserValidatorParams,
+    @inject("CreateUserAccountRepository")
     private createUserAccountRepository: ICreateUserAccountRepository.Implementation
   ) { }
 
   async execute(props: ICreateTeacherAccountUseCase.Params):
     Promise<ICreateTeacherAccountUseCase.Response> {
+
+    this.userValidatorParams.validate(props)
+
     const verifyTeacherAlreayExists = await this.createUserAccountRepository.findUnique({
       id: props.email
     })
 
     if (!verifyTeacherAlreayExists?.id) {
-      throw new Error("teacher already exists");
+      throw new Error("account already exists");
     }
 
     const createTeachertResponse = await this.createUserAccountRepository.create({

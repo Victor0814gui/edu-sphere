@@ -1,3 +1,4 @@
+import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
 import { inject, injectable } from "tsyringe"
 
@@ -14,17 +15,22 @@ namespace ICreateAdminAccountUseCase {
 @injectable()
 export class CreateAdminAccountUseCase {
   constructor(
+    @inject("UserValidatorParams")
+    private userValidatorParams: UserValidatorParams,
     @inject("CreateUserAccountRepository")
-    private createUserAccountRepository: ICreateUserAccountRepository.Implementation
+    private createUserAccountRepository: ICreateUserAccountRepository.Implementation,
   ) { }
 
-  async execute(props: ICreateAdminAccountUseCase.Params) {
+  public async execute(props: ICreateAdminAccountUseCase.Params) {
+
+    this.userValidatorParams.validate(props)
+
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
       id: props.email
     })
 
     if (!verifyUserAlreayExists?.id) {
-      throw new Error("eAdmin already exists");
+      throw new Error("account already exists");
     }
 
     const createAdminResponse = await this.createUserAccountRepository.create({

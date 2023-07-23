@@ -1,13 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
-import { Text, Animated, Linking, Platform , NativeModules, StyleSheet } from "react-native";
-import { FONTS, COLORS } from "@shared/theme"
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet } from "react-native";
+import { FONTS } from "@shared/theme"
 //@ts-ignore
-import LogoImage from "../../assets/images/logo.svg";
 import { Input } from '../../components/input';
 import { StepLevel } from '../../components/step-level';
 import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
-import { fullscreen } from "react-native-custom-window"
 
 
 import {
@@ -23,7 +20,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { MessageError } from '../../components/message-error';
 import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import { useNavigate } from 'react-router-native';
-import { background as Background } from '@modules/session/assets/images';
 
 type OnSubmitProps = {
   email: string;
@@ -50,40 +46,7 @@ export function SignUpStepOne() {
       birthday: null,
       avatarUrl: ''
     })
-    navigate('/signupsteptwo');
   }, [])
-
-
-  const getContantsOAuthModule = () => {
-    const response = new Promise((resolve, reject) => {
-      const ephemeralSession = false
-      const closeOnLoad = false
-      const url = "https://github.com"
-      const urlHandler = event => {
-        NativeModules.A0Auth0.hide();
-        resolve(event.url);
-      };
-      const params =
-        Platform.OS === 'windows' ? [] :
-        Platform.OS === 'ios' ? [ephemeralSession, closeOnLoad] : [closeOnLoad];
-      Linking.addEventListener('url', urlHandler);
-      NativeModules.A0Auth0.showUrl(url, ...params, (error, redirectURL) => {
-        if (error) {
-          reject(error);
-        } else if (redirectURL) {
-          resolve(redirectURL);
-        } else if (closeOnLoad) {
-          resolve();
-        }
-      });
-    });
-  
-
-    response.then(e => {
-      console.log(e)
-    })
-    
-  }
 
 
   useEffect(() => {
@@ -144,13 +107,6 @@ export function SignUpStepOne() {
             <Button
               text="proximo passo"
               onPress={handleSubmit(onSubmit)}
-              style={{
-                marginTop: 12,
-              }}
-            />
-             <Button
-              text="get constants"
-              onPress={getContantsOAuthModule}
               style={{
                 marginTop: 12,
               }}

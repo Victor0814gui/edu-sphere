@@ -3,7 +3,7 @@
 #include "NativeModules.h"
 
 
-#include "FirebaseModule.h"
+#include "Notification.h"
 
 using namespace winrt::Microsoft::ReactNative;
 
