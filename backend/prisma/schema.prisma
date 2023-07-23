@@ -10,74 +10,91 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Room {
-  id String @id @unique
-  name String
+  id          String    @id @unique
+  name        String
   description String
-  teacherId String
-  students Student[]
-  createdAt DateTime
-  updateAt DateTime?
-  lessons Lesson[]
+  type        String
+  teacherId   String
+  published   Boolean
+  createdAt   DateTime
+  closed      Boolean
+  updateAt    DateTime?
+  users       User[]
+  lessons     Lesson[]
 }
 
-model Student {
-  id String @id @unique
-  name String
-  email String
-  password String
-  rooms Room[]
-  createtAt DateTime
+model User {
+  id             String          @id @unique
+  name           String
+  email          String
+  password       String
+  createtAt      DateTime
+  udpatedAt      DateTime?
+  avatarUrl      String
+  rooms          Room[]
   matriculations Matriculation[]
-}
-
-model Teacher {
-  id String @id @unique
-  name String
-  email String
-  password String
-  rooms String
-  createAt DateTime
-  updatedAt DateTime
+  permissions    Permission[]
+  roles          Role[]
 }
 
 model Message {
-  id String @id @unique
-  content String
+  id       String @id @unique
+  content  String
   authorId String
-  roomId String
+  roomId   String
   createAt String
 }
 
 model Lesson {
-  id String @id @unique
-  title String
+  id          String     @id @unique
+  title       String
   description String
-  roomId String @unique
-  room Room @relation(fields: [roomId], references: [id])
-  createdAt String
-  start DateTime
-  end DateTime
-  materials Material[]
-  duration Int
-  Type String
+  roomId      String     @unique
+  room        Room       @relation(fields: [roomId], references: [id])
+  createdAt   String
+  start       DateTime
+  end         DateTime
+  materials   Material[]
+  duration    Int
+  Type        String
 }
 
 model Matriculation {
-  id String  @id @unique
+  id        String   @id @unique
   studentId String
-  romId String
-  createAd DateTime
-  students Student[]
+  romId     String
+  createAd  DateTime
+  users     User[]
 }
 
-
 model Material {
-  id String @id @unique
-  title String 
+  id          String    @id @unique
+  title       String
   description String?
-  createdAt DateTime
-  updatedAt DateTime?
-  lessons Lesson[]
+  createdAt   DateTime
+  updatedAt   DateTime?
+  lessons     Lesson[]
+}
+
+model Role {
+  id          String       @id @unique
+  name        String       @unique
+  level       Int          @unique
+  description String
+  createdAt   DateTime
+  updatedAt   DateTime?
+  users       User[]
+  permissions Permission[]
+}
+
+model Permission {
+  id          String    @id @unique
+  name        String    @unique
+  level       Int       @unique
+  createdAt   DateTime
+  description String
+  updatedAt   DateTime?
+  roles       Role[]
+  users       User[]
 }

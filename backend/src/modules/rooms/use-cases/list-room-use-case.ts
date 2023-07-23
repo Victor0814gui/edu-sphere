@@ -1,15 +1,8 @@
-import { ICreateRoomRepository } from "../repository/i-create-room-repository";
-import { ICreateRoomValidator } from "../validators/create-room-validators";
-
+import { IListRoomsRepository } from "../repository/i-list-room-respository";
 
 
 export namespace IListRooom {
-  export type Params = {
-    name: string;
-    description: string;
-    title: string;
-    teacherId: string
-  }
+  export type Params = {}
 
   export type Response = {
     id: string;
@@ -27,14 +20,9 @@ export class ListRoomsUseCase {
     private listRoomsRepository: IListRoomsRepository.Implementation,
   ) { }
 
-  async execute(props: IListRooom.Params): Promise<IListRooom.Response> {
+  async execute(props: IListRooom.Params): Promise<IListRoomsRepository.Response | null> {
 
-    const listRoomsResponse = await this.listRoomsRepository.create({
-      description: props.description,
-      name: props.name,
-      teacherId: props.teacherId,
-      title: props.title,
-    })
+    const listRoomsResponse = await this.listRoomsRepository.listMany({})
 
     return listRoomsResponse;
   }

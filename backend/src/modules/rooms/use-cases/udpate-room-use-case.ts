@@ -1,10 +1,9 @@
-import { ICreateRoomRepository } from "../repository/i-create-room-repository";
-import { ICreateRoomValidator } from "../validators/create-room-validators";
-
+import { IUpdateRoomRepository } from "../repository/i-update-room-respository";
 
 
 export namespace IListRooom {
   export type Params = {
+    id: string;
     name: string;
     description: string;
     title: string;
@@ -25,17 +24,15 @@ export namespace IListRooom {
 export class UpdateRoomUseCase {
   constructor(
     private updateRoomRepository: IUpdateRoomRepository.Implementation,
-    private updateRoomValidator: IUpdateRoomValidator
   ) { }
 
   async execute(props: IListRooom.Params): Promise<IListRooom.Response> {
-    this.updateRoomValidator.validade(props);
 
-    const udpateRoomResponse = await this.updateRoomRepository.create({
+    const udpateRoomResponse = await this.updateRoomRepository.update({
       description: props.description,
       name: props.name,
       teacherId: props.teacherId,
-      title: props.title,
+      id: props.id,
     })
 
     return udpateRoomResponse;

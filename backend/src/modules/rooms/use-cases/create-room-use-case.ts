@@ -7,7 +7,7 @@ export namespace ICreateRooom {
   export type Params = {
     name: string;
     description: string;
-    title: string;
+    type: string;
     teacherId: string
   }
 
@@ -35,7 +35,7 @@ export class CreateRoomUseCase {
       description: props.description,
       name: props.name,
       teacherId: props.teacherId,
-      title: props.title,
+      type: props.type,
     })
 
     return createRoomResponse;

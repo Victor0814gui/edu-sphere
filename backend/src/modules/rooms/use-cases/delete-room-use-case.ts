@@ -1,15 +1,10 @@
-import { ICreateRoomRepository } from "../repository/i-create-room-repository";
 import { IDeleteRoomRepository } from "../repository/i-delete-room-respository";
-import { IupdateRoomValidator } from "../validators/create-room-validators";
 
 
 
-export namespace IListRooom {
+export namespace IDeleteRoomUseCase {
   export type Params = {
-    name: string;
-    description: string;
-    title: string;
-    teacherId: string
+    id: string
   }
 
   export type Response = {
@@ -26,19 +21,15 @@ export namespace IListRooom {
 export class DeleteRoomsUseCase {
   constructor(
     private deleteRoomRepository: IDeleteRoomRepository.Implementation,
-    private updateRoomValidator: IUpdateRoomValidator
   ) { }
 
-  async execute(props: IListRooom.Params): Promise<IListRooom.Response> {
-    this.updateRoomValidator.validade(props);
+  async execute(props: IDeleteRoomUseCase.Params):
+    Promise<IDeleteRoomUseCase.Response> {
 
-    const udpateRoomResponse = await this.deleteRoomRepository.create({
-      description: props.description,
-      name: props.name,
-      teacherId: props.teacherId,
-      title: props.title,
+    const deleteRoomResponse = await this.deleteRoomRepository.delete({
+      id: props.id,
     })
 
-    return udpateRoomResponse;
+    return deleteRoomResponse;
   }
 }

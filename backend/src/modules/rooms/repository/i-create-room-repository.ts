@@ -7,7 +7,7 @@ namespace ICreateRoomRepository {
     export interface Params {
       name: string;
       description: string;
-      title: string;
+      type: string;
       teacherId: string
     }
     export interface Response extends Room { };
