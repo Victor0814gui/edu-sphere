@@ -10,6 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id             String          @id @unique
+  name           String
+  email          String          @unique
+  password       String
+  createdAt      DateTime
+  udpatedAt      DateTime?
+  avatarUrl      String
+  role           Role            @relation(fields: [id], references: [id])
+  permissions    Permission[]
+  rooms          Room[]
+  matriculations Matriculation[]
+  refreshTokens  RefreshToken[]
+}
+
 model Room {
   id          String    @id @unique
   name        String
@@ -22,20 +37,6 @@ model Room {
   updateAt    DateTime?
   users       User[]
   lessons     Lesson[]
-}
-
-model User {
-  id             String          @id @unique
-  name           String
-  email          String          @unique
-  password       String
-  createdAt      DateTime
-  udpatedAt      DateTime?
-  avatarUrl      String
-  rooms          Room[]
-  matriculations Matriculation[]
-  permissions    Permission[]
-  role           Role            @relation(fields: [id], references: [id])
 }
 
 model Message {
@@ -97,4 +98,12 @@ model Permission {
   updatedAt   DateTime?
   roles       Role[]
   users       User[]
+}
+
+model RefreshToken {
+  id           String   @id @unique
+  refreshToken String   @unique
+  state        String
+  expiryDate   DateTime
+  users        User[]
 }

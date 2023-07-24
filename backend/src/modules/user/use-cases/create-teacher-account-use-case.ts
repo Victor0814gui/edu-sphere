@@ -1,4 +1,4 @@
-import { User } from "../../../aplication/entities/user";
+import { User } from "@aplication/entities/user";
 import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
 import { inject, injectable } from "tsyringe"
