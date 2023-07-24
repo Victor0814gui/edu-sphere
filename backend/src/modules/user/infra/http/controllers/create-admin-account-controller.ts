@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 import { container } from "tsyringe"
-import { CreateAdminAccountUseCase } from "../../../use-cases/create-admin-account-use-case";
+import { CreateAdminAccountUseCase } from "../../../use-cases";
 import { User } from "../../../../../aplication/entities/user";
 
 
