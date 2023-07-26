@@ -25,7 +25,7 @@ export class CreateSuportAccountController {
 
     const createSuportAccountUseCase = container.resolve(CreateSuportAccountUseCase);
 
-    const createSuportAccountUseCaseResponse = createSuportAccountUseCase.execute({
+    const createSuportAccountUseCaseResponse = await createSuportAccountUseCase.execute({
       avatarUrl,
       password,
       email,

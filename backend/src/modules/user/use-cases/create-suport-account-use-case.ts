@@ -1,7 +1,8 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
 import { UserValidatorParams } from "../infra/validators/create";
-
+import { User } from "@/src/aplication/entities/user";
+import crypto from "crypto";
 
 namespace ICreateSuportAccountUseCase {
   export interface Params {
@@ -10,6 +11,8 @@ namespace ICreateSuportAccountUseCase {
     password: string;
     avatarUrl: string;
   }
+  export interface Response extends User { }
+
 }
 
 @injectable()
@@ -21,7 +24,8 @@ export class CreateSuportAccountUseCase {
     private createUserAccountRepository: ICreateUserAccountRepository.Implementation
   ) { }
 
-  async execute(props: ICreateSuportAccountUseCase.Params) {
+  public async execute(props: ICreateSuportAccountUseCase.Params):
+    Promise<ICreateSuportAccountUseCase.Response> {
     this.userValidatorParams.validate(props)
 
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
@@ -33,6 +37,8 @@ export class CreateSuportAccountUseCase {
     }
 
     const createSuportResponse = await this.createUserAccountRepository.create({
+      id: crypto.randomUUID(),
+
       avatarUrl: props.avatarUrl,
       email: props.email,
       name: props.name,

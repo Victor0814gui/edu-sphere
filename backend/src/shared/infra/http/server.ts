@@ -1,28 +1,27 @@
-import "dotenv";
 import "reflect-metadata";
+
 import express from "express"
+import 'express-async-errors';
+import { captureErrorsMiddlewrare } from "../middlewares/app-error-middlewrare";
+import { routes } from "./routes";
+import "@user/infra/injection"
+import http from "http";
 
-const PORT = process.env.PORT || 5000;
 const app = express();
-app.use(express.json())
-
-app.get("/", (request, response) => {
-  const content = {
-    messsage: "123-4-asdf-4-asdasdasd-4-234",
-    name: "kjaçslkdjçlfkadf",
-  }
-  return response.json(content);
-})
+const serverHttp = http.createServer(app);
 
 
-app.get("/asdf", (request, response) => {
-  return response.json({
-    message: "2345-1234-1234asdfasdf"
-  });
-})
+app.use(express.json());
+app.use(routes);
 
-const log = () => {
-  console.log(`✅server running on port ${PORT}`)
+
+app.use((req, res, next) => {
+  res.status(404).send("route not found");
+});
+
+
+app.use(captureErrorsMiddlewrare);
+
+export {
+  serverHttp
 }
-
-app.listen(PORT, log);

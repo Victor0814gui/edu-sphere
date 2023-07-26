@@ -1,8 +1,9 @@
 
 import { Request, Response } from "express";
 import { container } from "tsyringe"
-import { CreateAdminAccountUseCase } from "../../../use-cases";
-import { User } from "../../../../../aplication/entities/user";
+import { CreateAdminAccountUseCase } from "../../../use-cases/create-admin-account-use-case";
+import { User } from "@aplication/entities/user";
+import { UserValidatorParams } from "../../validators/create";
 
 
 
@@ -25,7 +26,7 @@ export class CreateAdminAccountController {
 
     const createAdminAccountUseCase = container.resolve(CreateAdminAccountUseCase);
 
-    const createAdminAccountUseCaseResponse = createAdminAccountUseCase.execute({
+    const createAdminAccountUseCaseResponse = await createAdminAccountUseCase.execute({
       avatarUrl,
       password,
       email,

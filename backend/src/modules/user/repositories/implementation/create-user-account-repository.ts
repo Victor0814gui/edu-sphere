@@ -46,7 +46,7 @@ export class CreateUserAccountRepository
 
     const createUserResponse = await database.user.create({
       data: {
-        id: crypto.randomUUID(),
+        id: props.id,
         password: props.password,
         name: props.name,
         avatarUrl: props.avatarUrl,
@@ -56,7 +56,7 @@ export class CreateUserAccountRepository
           connect: [
             { level: props.level }
           ]
-        }
+        },
       },
       include: {
         permissions: true,

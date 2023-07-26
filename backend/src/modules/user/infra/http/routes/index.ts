@@ -17,9 +17,9 @@ const UserRoutes = Router();
 
 UserRoutes.post("/create/teacher", createTeacherAccountController.handler);
 
-UserRoutes.post("/create/student", createSuportAccountController.handler);
+UserRoutes.post("/create/student", createStudentAccountController.handler);
 
-UserRoutes.post("/create/suport", createStudentAccountController.handler);
+UserRoutes.post("/create/suport", createSuportAccountController.handler);
 
 UserRoutes.post("/create/admin", createAdminAccountController.handler);
 

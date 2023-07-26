@@ -1,3 +1,4 @@
+import AppErrors from "@/src/shared/infra/errors/app-errors";
 
 
 
@@ -10,9 +11,9 @@ interface IUserValidatorParams {
 
 
 export class UserValidatorParams {
-  public validate(props: IUserValidatorParams) {
-    if (!props.email || !props.password || !props.avatarUrl) {
-      throw new Error("The name, email, password, and avatarUrl properties are required");
+  validate(props: IUserValidatorParams) {
+    if (!props.email && !props.password && !props.avatarUrl) {
+      throw new AppErrors("The name, email, password, and avatarUrl properties are required", 204);
     }
   }
 }

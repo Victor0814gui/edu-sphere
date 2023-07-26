@@ -32,6 +32,7 @@ export namespace ICreateUserAccountRepository {
 
   export namespace Create {
     export interface Params {
+      id: string;
       name: string;
       email: string;
       password: string

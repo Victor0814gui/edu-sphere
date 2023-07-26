@@ -1,46 +1,26 @@
-import { UserValidatorParams } from "../infra/validators/create";
-import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
-import { inject, injectable } from "tsyringe"
+import { container, inject } from "tsyringe"
+import { CreateUserAccountRepositoryFake } from "../repositories/fakes/create-user-account-repository-fake";
+import crypto from "crypto";
 
 
-namespace ICreateAdminAccountUseCase {
-  export interface Params {
-    name: string;
-    email: string;
-    password: string;
-    avatarUrl: string;
-  }
-}
 
-@injectable()
-export class CreateAdminAccountUseCase {
-  constructor(
-    @inject("UserValidatorParams")
-    private userValidatorParams: UserValidatorParams,
-    @inject("CreateUserAccountRepository")
-    private createUserAccountRepository: ICreateUserAccountRepository.Implementation,
-  ) { }
+let createUserAccountRepositoryFakeInstance: CreateUserAccountRepositoryFake;
 
-  public async execute(props: ICreateAdminAccountUseCase.Params) {
 
-    this.userValidatorParams.validate(props)
+describe("Should be able create an admin account", () => {
 
-    const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
-      id: props.email
-    })
+  it("Create admin account", async () => {
+    createUserAccountRepositoryFakeInstance = container.resolve(CreateUserAccountRepositoryFake);
 
-    if (!verifyUserAlreayExists?.id) {
-      throw new Error("account already exists");
-    }
-
-    const createAdminResponse = await this.createUserAccountRepository.create({
-      avatarUrl: props.avatarUrl,
-      email: props.email,
-      name: props.name,
-      password: props.password,
+    const createUserAccountRepositoryFakeInstanceResult = await createUserAccountRepositoryFakeInstance.create({
+      id: crypto.randomUUID(),
+      avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
+      email: "asdlfkjaklsdf@gmail.com",
+      name: "askdjfçlkajsdf",
+      password: "alkjdçflkjaçsdf",
       level: 4,
     })
 
-    return createAdminResponse;
-  }
-}
+    expect(createUserAccountRepositoryFakeInstanceResult);
+  })
+})

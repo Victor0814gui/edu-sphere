@@ -25,7 +25,7 @@ export class CreateStudentAccountController {
 
     const createStudentAccountUseCase = container.resolve(CreateStudentAccountUseCase);
 
-    const createStudentAccountUseCaseResponse = createStudentAccountUseCase.execute({
+    const createStudentAccountUseCaseResponse = await createStudentAccountUseCase.execute({
       avatarUrl,
       password,
       email,

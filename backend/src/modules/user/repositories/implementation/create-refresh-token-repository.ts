@@ -9,7 +9,7 @@ enum RefreshTokenState {
   Warning = "warning"
 }
 
-export class PrismaRefreshTokenRepository
+export class CreateRefreshTokenRepository
   implements ICreateRefreshTokenRepository.Implementation {
 
   async create(props: ICreateRefreshTokenRepository.Create.Params):
