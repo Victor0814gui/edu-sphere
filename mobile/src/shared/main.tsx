@@ -8,6 +8,7 @@ import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
+import { Modal } from "./components/modal";
 const MyTheme: Theme = {
   ...DefaultTheme,
   colors: {
@@ -39,26 +40,26 @@ const linking = {
 
 
 export const Main = () => {
-  const [ isRendering,setIsRendering ] = useState(true);
+  const [isRendering, setIsRendering] = useState(true);
 
   const onAnimationFinish = () => setIsRendering(false);
 
-  if(isRendering){
+  if (isRendering) {
 
     return (
-      <View style={{flex: 1, alignItems: "center",justifyContent: "center", backgroundColor: COLORS.grey_180}}>
-        <LottieView 
-        resizeMode="contain"
-        loop={false}
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: COLORS.grey_180 }}>
+        <LottieView
+          resizeMode="contain"
+          loop={false}
           autoPlay={true}
-          style={{height: 220,width: 220}}
+          style={{ height: 220, width: 220 }}
           source={"Message"}
           onAnimationFinish={onAnimationFinish}
         />
       </View>
     )
   }
-  
+
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

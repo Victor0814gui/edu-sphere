@@ -6,6 +6,8 @@ import { ICreateRefreshTokenRepository } from "../../repositories/i-create-refre
 import { UserValidatorParams } from "../validators/create";
 import { ICreateRoleRepository } from "../../repositories/i-create-role-repository";
 import { CreateRoleRepository } from "../../repositories/implementation/create-role-repository";
+import { ICreatePermissionRepository } from "../../repositories/i-create-permission-repository";
+import { CreatePermissionRepository } from "../../repositories/implementation/create-permission-repository";
 
 
 container.registerSingleton<ICreateUserAccountRepository.Implementation>(
@@ -21,9 +23,14 @@ container.registerSingleton<ICreateRefreshTokenRepository.Implementation>(
 container.registerSingleton<UserValidatorParams>(
   "UserValidatorParams",
   UserValidatorParams,
-)
+);
 
 container.registerSingleton<ICreateRoleRepository.Implementation>(
   "CreateRoleRepository",
   CreateRoleRepository,
-)
+);
+
+container.registerSingleton<ICreatePermissionRepository.Implementation>(
+  "CreatePermissionRepository",
+  CreatePermissionRepository,
+);

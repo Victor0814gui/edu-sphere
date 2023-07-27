@@ -28,11 +28,20 @@ export class CreateAdminAccountUseCase {
     Promise<ICreateAdminAccountUseCase.Response> {
     this.userValidatorParams.validate(props);
 
+    const verifyRoleAlreayExists = await this.createUserAccountRepository.findUniqueRole({
+      name: process.env.ROLE_ADMIN as string,
+    })
+
+    if (verifyRoleAlreayExists?.id) {
+      throw new AppErrors("role already exists", 409)
+    }
+
+
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
-      id: props.email
+      email: props.email
     });
 
-    if (!verifyUserAlreayExists?.id) {
+    if (verifyUserAlreayExists?.id) {
       throw new AppErrors("account already exists");
     }
 
@@ -42,9 +51,14 @@ export class CreateAdminAccountUseCase {
       email: props.email,
       name: props.name,
       password: props.password,
-      level: 4,
+      createdAt: new Date(),
     });
 
-    return createAdminResponse;
+    const updateStudentAddRoleAndPermissionsResponse = await this.createUserAccountRepository.update({
+      id: createAdminResponse.id,
+      permissions: verifyRoleAlreayExists!.permissions,
+      role: verifyRoleAlreayExists!.name,
+    })
+    return updateStudentAddRoleAndPermissionsResponse;
   }
 }

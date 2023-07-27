@@ -35,10 +35,16 @@ export namespace ICreateRoleRepository {
     export interface Response { }
   }
 
+  export namespace List {
+    export interface Params { }
+
+    export interface Response extends Array<Role> { }
+  }
 
   export interface Implementation {
     delete: (props: Delete.Params) => Promise<Delete.Response>;
     findUnique: (props: FindUnique.Params) => Promise<FindUnique.Response | null>;
     create: (props: Create.Params) => Promise<Create.Response>;
+    list: (props: List.Params) => Promise<List.Response | null>;
   }
 }

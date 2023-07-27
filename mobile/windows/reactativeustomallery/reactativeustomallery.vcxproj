@@ -222,6 +222,7 @@
     <LottieAnimation Include="..\..\src\shared\assets\animations\Offline.json" Name="Offline" />
     <LottieAnimation Include="..\..\src\shared\assets\animations\Welcome.json" Name="Welcome" />
     <LottieAnimation Include="..\..\src\shared\assets\animations\Page-Not-Found.json" Name="Not Found" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Lock.json" Name="Lock" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />

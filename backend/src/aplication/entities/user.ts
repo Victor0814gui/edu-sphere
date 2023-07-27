@@ -13,6 +13,7 @@ export interface User {
   createdAt: Date;
   updatedAt?: Date | null;
   avatarUrl: string
-  permissions: Permission[];
-  role: Role;
+  // permissions: Permission[];
+  // role: Role[];
+  // roleId: number;
 }

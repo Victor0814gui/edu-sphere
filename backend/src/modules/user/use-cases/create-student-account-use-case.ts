@@ -31,8 +31,16 @@ export class CreateStudentAccountUseCase {
 
     this.userValidatorParams.validate(props)
 
+    const verifyRoleAlreayExists = await this.createUserAccountRepository.findUniqueRole({
+      name: process.env.ROLES_STUDENT as string,
+    })
+
+    if (!verifyRoleAlreayExists?.id) {
+      throw new AppErrors("role does not exists", 404);
+    }
+
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
-      id: props.email
+      email: props.email
     })
 
     if (verifyUserAlreayExists?.id) {
@@ -40,13 +48,19 @@ export class CreateStudentAccountUseCase {
     }
 
     const createStudentResponse = await this.createUserAccountRepository.create({
-      id: await crypto.randomUUID(),
+      id: crypto.randomUUID(),
       avatarUrl: props.avatarUrl,
       email: props.email,
       name: props.name,
       password: props.password,
-      level: 0,
+      createdAt: new Date(),
     })
-    return createStudentResponse;
+
+    const updateStudentAddRoleAndPermissionsResponse = await this.createUserAccountRepository.update({
+      id: createStudentResponse.id,
+      permissions: verifyRoleAlreayExists.permissions,
+      role: verifyRoleAlreayExists.name,
+    })
+    return updateStudentAddRoleAndPermissionsResponse;
   }
 }

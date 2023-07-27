@@ -17,7 +17,7 @@ import {
   ButtonRoomNotFoundText,
 } from "./styles";
 import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
-import LottieView  from "lottie-react-native";
+import LottieView from "lottie-react-native";
 import { Button } from "@shared/components/button";
 
 type RoomParamsType = {
@@ -80,14 +80,7 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
   const [data, setData] = useState<QuestionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    console.log("montou")
-    return () => {
-      console.log("desmontou")
-    }
-  },[])
-
-  if (!route.params.id) {
+  if (route.params.id) {
     return (
       <ScreenAnimationWrapper>
         <ContainerRoomNotFound>
@@ -100,15 +93,15 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
     )
   }
 
-  useEffect(() => {
+  useFocusEffect(() => {
 
     setData(questions)
-    const timer = setTimeout(() => {
-      setIsLoading(true);
-    }, 400)
-    return () => {
-      clearTimeout(timer);
-    }
+    setIsLoading(true);
+    // const timer = setTimeout(() => {
+    // }, 400)
+    // return () => {
+    //   clearTimeout(timer);
+    // }
   })
 
 

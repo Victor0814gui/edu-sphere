@@ -15,6 +15,24 @@ type CreateRoomScreenProps = {
   navigation: RootDrawerNavigationProp<"CreateRoomScreen">
 }
 
+// REACT_METHOD(AllowDrop, L"allowDrop")
+// void AllowDrop(winrt:: Microsoft:: ReactNative:: ReactPromise < void> promise) noexcept {
+//   context.UIDispatcher().Post([] {
+//     winrt:: Windows:: UI:: Xaml:: Controls:: Frame frame;
+
+//     frame.AllowDrop(true);
+//   });
+// }
+
+// REACT_METHOD(DisableDrop, L"disableDrop")
+// void DisableDrop(winrt:: Microsoft:: ReactNative:: ReactPromise < void> promise) noexcept {
+//   context.UIDispatcher().Post([] {
+//     winrt:: Windows:: UI:: Xaml:: Controls:: Frame frame;
+
+//     frame.AllowDrop(false);
+//   });
+// }
+
 
 export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
 
@@ -34,7 +52,17 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
   const onSubmit = (data) => console.log(data)
 
   useFocusEffect(() => {
-    fullscreen.addBackButton();
+    const addNativeModulesMethod = async () => {
+      const backButtonIsVisibleResponse = await fullscreen.backButtonIsVisible()
+      await fullscreen.removeBackButton();
+      if (!backButtonIsVisibleResponse) {
+      } else {
+        // await fullscreen.addBackButton();
+      }
+      console.log({ backButtonIsVisibleResponse })
+      // fullscreen.disableDrop();
+    }
+    addNativeModulesMethod();
   })
 
   return (
@@ -67,7 +95,7 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
           labelText="tipo da sala"
         />
         <Button.Default
-          onPress={() => { }}
+          onPress={() => navigation.goBack()}
         >
           CRIAR NOVA SALA
         </Button.Default>

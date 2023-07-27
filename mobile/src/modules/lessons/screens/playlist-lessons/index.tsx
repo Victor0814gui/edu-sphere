@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { COLORS } from "../../../../shared/theme";
 import { api } from "../../../../shared/services/api";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   additionalStyles,
   Container,
@@ -27,6 +27,7 @@ type LessonsTypes = {
   subtitle: string;
   thumb: string;
   title: string;
+  duration: number;
 }
 
 type RenderItemProps = {
@@ -44,8 +45,9 @@ const LessonSubject = ({ item, index }: RenderItemProps) => {
 
   const handlerPress = () => {
     setIsPressed(true)
-    navigate("player", { url: item.sources[0] })
+    navigate("player", { url: item.sources[0], duration: item.duration })
   }
+
   const onPressIn = () => {
     setIsPressed(true)
   }
@@ -87,7 +89,7 @@ export const PlaylistLessons = () => {
     <LessonSujectContainerContentText>ainda aulas disponiveis aqui</LessonSujectContainerContentText>
   )
 
-  useEffect(() => {
+  useFocusEffect(() => {
     const getDataLessons = async () => {
       try {
         const lessons = await api.get("lessons") as { data: LessonsTypes[] };
@@ -97,7 +99,7 @@ export const PlaylistLessons = () => {
       }
     }
     getDataLessons();
-  }, [])
+  });
 
   return (
     <ScreenAnimationWrapper>

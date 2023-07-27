@@ -18,7 +18,7 @@ describe("Should be able create an admin account", () => {
       email: "asdlfkjaklsdf@gmail.com",
       name: "askdjfçlkajsdf",
       password: "alkjdçflkjaçsdf",
-      level: 4,
+      createdAt: new Date(),
     })
 
     expect(createUserAccountRepositoryFakeInstanceResult);

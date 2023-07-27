@@ -1,25 +1,25 @@
 import styled from "styled-components/native";
-import { FONTS,COLORS } from "../../../../shared/theme";
+import { FONTS, COLORS } from "../../../../shared/theme";
 import { StyleSheet } from "react-native";
 
 export const fonts = StyleSheet.create({
-  titleRoom:{
+  titleRoom: {
     color: COLORS.white,
     fontFamily: FONTS.Poppins.Bold,
     fontSize: 24,
   },
-  titleRoomText:{
+  titleRoomText: {
     color: COLORS.grey_180,
     fontFamily: FONTS.Roboto.Medium,
     fontSize: 14,
   },
-  titleRoomNotFound:{
+  titleRoomNotFound: {
     fontFamily: FONTS.Roboto.Medium,
   },
-  descriptionRoomNotFound:{
+  descriptionRoomNotFound: {
     fontFamily: FONTS.Roboto.Medium,
   },
-  buttonRoomNotFoundText:{
+  buttonRoomNotFoundText: {
     fontFamily: FONTS.Roboto.Medium,
   },
 });
@@ -63,7 +63,7 @@ export const ContainerRoomNotFound = styled.View`
 `;
 export const TitleRoomNotFound = styled.Text`
   color: ${COLORS.grey_970};
-  font-size: 18px;
+  font-size: 22px;
 `;
 
 export const DescriptionRoomNotFound = styled.Text`

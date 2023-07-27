@@ -45,4 +45,11 @@ export class CreateRoleRepository
 
     return deleteRoleResposne;
   }
+
+  async list(props: ICreateRoleRepository.List.Params):
+    Promise<ICreateRoleRepository.List.Response | null> {
+    const listRolesResposne = await database.role.findMany()
+
+    return listRolesResposne;
+  }
 }

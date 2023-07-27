@@ -43,12 +43,12 @@ export const Profile = (): JSX.Element => {
     try {
       const filePathResponse = await FilePicker.pickerFolder();
       setFolder(filePathResponse)
-      console.log({filePathResponse});
+      console.log({ filePathResponse });
     } catch (err) {
       console.log(err);
       addToastNotifications({
-        title:"você não selecionou nenhum pasta",
-        type:"warning",
+        title: "você não selecionou nenhum pasta",
+        type: "warning",
       });
     }
   }
@@ -57,30 +57,28 @@ export const Profile = (): JSX.Element => {
     try {
       const filePathResponse = await FilePicker.pickFile();
       setFile(filePathResponse)
-      console.log({filePathResponse});
     } catch (err) {
-      console.log(err);
       addToastNotifications({
-        title:"você não selecionou nenhum arquivo",
-        type:"warning",
+        title: "você não selecionou nenhum arquivo",
+        type: "warning",
       });
     }
   }
 
-  const readFile = async() => {
-    try{
+  const readFile = async () => {
+    try {
       const readFileResponse = await RNFS.readFile(file, 'utf8')
       console.log(readFileResponse);
-    }catch(err){
-      console.log({err})
+    } catch (err) {
+      console.log({ err })
     }
   }
 
   const createFile = async () => {
-    try{
+    try {
       const fileCreateResponse = await RNFS.writeFile(`${folder}-new-file-gallery-rnw-2.txt`, 'Lorem ipsum dolor sit amet', 'utf8');
       console.log(fileCreateResponse);
-    }catch(err){
+    } catch (err) {
       console.log(err);
       console.log({
         fsPath: RNFS.DownloadDirectoryPath,
@@ -88,19 +86,19 @@ export const Profile = (): JSX.Element => {
       })
     }
   }
-  
+
   const createFolder = async () => {
-    try{
+    try {
       const response = await RNFS.mkdir(`${folder}/new-file-gallery-rnw-asdfasdf`);
       console.log(`[createFolder]- [response]`)
       // await Linking.openURL(`explorer /select,${folder}`)
-    }catch(err){
+    } catch (err) {
       // const error = err as unknown as {message: string};
       // console.log(`[createFolder] - ${error.message}`)
-        addToastNotifications({
-          title:"você não selecionou nenhum arquivo",
-          type:"warning",
-        });
+      addToastNotifications({
+        title: "você não selecionou nenhum arquivo",
+        type: "warning",
+      });
     }
   }
 
@@ -128,10 +126,10 @@ export const Profile = (): JSX.Element => {
             )}
           </Pressable>
 
-          {file && <Image 
-          style={{height: 100,width:100}} 
-          source={{uri:"C:/User/agcoi/Downloads/Thumbnail.png"}}
-          onError={(e) => console.log({image:e})}
+          {file && <Image
+            style={{ height: 100, width: 100 }}
+            source={{ uri: "C:/User/agcoi/Downloads/Thumbnail.png" }}
+            onError={(e) => console.log({ image: e })}
           />}
           <Pressable onPress={createFile}>
             {({ pressed }) => (
@@ -150,7 +148,7 @@ export const Profile = (): JSX.Element => {
                   style={aditionalStyles.buttonSingnOutText}>createFolder</ButtonSingnOutText>
               </ButtonSingnOut>
             )}
-          </Pressable>          
+          </Pressable>
           <Expander label="criar mensagens com dados moveis" />
           <Expander label="tornar perfil publico ao criar e editar questions" />
           <Expander label="tonar minhas questions editaveis ao publico" />

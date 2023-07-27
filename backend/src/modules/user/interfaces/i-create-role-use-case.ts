@@ -1,4 +1,4 @@
-import { Role } from "@prisma/client";
+import { Role } from "@/src/aplication/entities/role";
 
 
 

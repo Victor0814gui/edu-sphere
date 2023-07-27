@@ -3,6 +3,7 @@ import { ICreateUserAccountRepository } from "../repositories/i-create-user-acco
 import { UserValidatorParams } from "../infra/validators/create";
 import { User } from "@/src/aplication/entities/user";
 import crypto from "crypto";
+import AppErrors from "@/src/shared/infra/errors/app-errors";
 
 namespace ICreateSuportAccountUseCase {
   export interface Params {
@@ -28,8 +29,16 @@ export class CreateSuportAccountUseCase {
     Promise<ICreateSuportAccountUseCase.Response> {
     this.userValidatorParams.validate(props)
 
+    const verifyRoleAlreayExists = await this.createUserAccountRepository.findUniqueRole({
+      name: process.env.ROLES_SUPORT as string,
+    })
+
+    if (!verifyRoleAlreayExists?.id) {
+      throw new AppErrors("role does not exists", 404);
+    }
+
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
-      id: props.email
+      email: props.email
     })
 
     if (!verifyUserAlreayExists?.id) {
@@ -38,14 +47,18 @@ export class CreateSuportAccountUseCase {
 
     const createSuportResponse = await this.createUserAccountRepository.create({
       id: crypto.randomUUID(),
-
+      createdAt: new Date(),
       avatarUrl: props.avatarUrl,
       email: props.email,
       name: props.name,
       password: props.password,
-      level: 2,
     })
 
-    return createSuportResponse;
+    const updateStudentAddRoleAndPermissionsResponse = await this.createUserAccountRepository.update({
+      id: createSuportResponse.id,
+      permissions: verifyRoleAlreayExists.permissions,
+      role: verifyRoleAlreayExists.name,
+    })
+    return updateStudentAddRoleAndPermissionsResponse;
   }
 }

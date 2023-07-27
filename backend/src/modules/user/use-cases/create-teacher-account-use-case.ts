@@ -3,6 +3,7 @@ import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-account-repository";
 import { inject, injectable } from "tsyringe"
 import crypto from "crypto";
+import AppErrors from "@/src/shared/infra/errors/app-errors";
 
 
 namespace ICreateTeacherAccountUseCase {
@@ -30,24 +31,36 @@ export class CreateTeacherAccountUseCase {
 
     this.userValidatorParams.validate(props);
 
+    const verifyRoleAlreayExists = await this.createUserAccountRepository.findUniqueRole({
+      name: process.env.ROLES_TEACHER as string,
+    })
+
+    if (!verifyRoleAlreayExists?.id) {
+      throw new AppErrors("role does not exists", 404);
+    }
+
     const verifyTeacherAlreayExists = await this.createUserAccountRepository.findUnique({
-      id: props.email
+      email: props.email
     });
 
-    if (!verifyTeacherAlreayExists?.id) {
-      throw new Error("account already exists");
+    if (verifyTeacherAlreayExists?.id) {
+      throw new AppErrors("account already exists");
     }
 
     const createTeachertResponse = await this.createUserAccountRepository.create({
       id: crypto.randomUUID(),
-
+      createdAt: new Date(),
       avatarUrl: props.avatarUrl,
       email: props.email,
       name: props.name,
       password: props.password,
-      level: 1,
     });
 
-    return createTeachertResponse;
+    const updateStudentAddRoleAndPermissionsResponse = await this.createUserAccountRepository.update({
+      id: createTeachertResponse.id,
+      permissions: verifyRoleAlreayExists.permissions,
+      role: verifyRoleAlreayExists.name,
+    })
+    return updateStudentAddRoleAndPermissionsResponse;
   }
 }

@@ -18,15 +18,17 @@ model User {
   createdAt      DateTime
   udpatedAt      DateTime?
   avatarUrl      String
-  role           Role            @relation(fields: [id], references: [id])
+  role           Role[]
   permissions    Permission[]
   rooms          Room[]
   matriculations Matriculation[]
   refreshTokens  RefreshToken[]
+
+  @@index([id])
 }
 
 model Room {
-  id          String    @id @unique
+  id          String    @id
   name        String
   description String
   type        String
@@ -40,7 +42,7 @@ model Room {
 }
 
 model Message {
-  id       String @id @unique
+  id       String @id
   content  String
   authorId String
   roomId   String
@@ -62,7 +64,7 @@ model Lesson {
 }
 
 model Matriculation {
-  id        String   @id @unique
+  id        String   @id
   studentId String
   romId     String
   createAd  DateTime
@@ -70,7 +72,7 @@ model Matriculation {
 }
 
 model Material {
-  id          String    @id @unique
+  id          String    @id
   title       String
   description String?
   createdAt   DateTime
@@ -79,7 +81,7 @@ model Material {
 }
 
 model Role {
-  id          String       @id @unique
+  id          String       @id
   name        String       @unique
   level       Int          @unique
   description String
@@ -90,7 +92,7 @@ model Role {
 }
 
 model Permission {
-  id          String    @id @unique
+  id          String    @id
   name        String    @unique
   level       Int       @unique
   createdAt   DateTime
@@ -101,7 +103,7 @@ model Permission {
 }
 
 model RefreshToken {
-  id           String   @id @unique
+  id           String   @id
   refreshToken String   @unique
   state        String
   expiryDate   DateTime

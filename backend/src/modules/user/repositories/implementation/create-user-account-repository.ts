@@ -18,7 +18,16 @@ export class CreateUserAccountRepository
 
     const findUniqueUserResponse = await database.role.findFirst({
       where: {
-        level: props.level
+        name: props.name,
+      },
+      select: {
+        id: true,
+        name: true,
+        permissions: {
+          select: {
+            id: true,
+          }
+        }
       }
     });
 
@@ -30,7 +39,7 @@ export class CreateUserAccountRepository
 
     const findUniqueUserResponse = await database.user.findFirst({
       where: {
-        id: props.id
+        email: props.email
       },
       include: {
         permissions: true,
@@ -51,11 +60,29 @@ export class CreateUserAccountRepository
         name: props.name,
         avatarUrl: props.avatarUrl,
         email: props.email,
-        createdAt: new Date(),
+        createdAt: props.createdAt,
+      },
+    });
+
+    return createUserResponse;
+  }
+
+  async update(props: ICreateUserAccountRepository.Update.Params):
+    Promise<ICreateUserAccountRepository.Update.Response> {
+
+    const createUserResponse = await database.user.update({
+      where: {
+        id: props.id,
+
+      },
+      data: {
+        role: {
+          connect: {
+            name: props.role,
+          }
+        },
         permissions: {
-          connect: [
-            { level: props.level }
-          ]
+          connect: props.permissions
         },
       },
       include: {

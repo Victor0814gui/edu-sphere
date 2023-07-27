@@ -18,6 +18,7 @@ import {
   ContentContainerListEmptyText,
   HeaderSectionTitle,
 } from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
 
 type CardType = {
   title: string;
@@ -36,7 +37,7 @@ var myInit = { method: 'GET', }
 
 export const Dashboard = () => {
   const [roomsData, setRoomsData] = useState<CardType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToastNotifications } = useToastNotificaitonProvider();
   const { onFocus } = useOpenAndCloseNavbarOnKeyPressContextProvider()
@@ -44,11 +45,9 @@ export const Dashboard = () => {
   const fetchRoomsData = async () => {
     try {
       const roomsDataResponse = await fetch(`${baseUrl}/rooms`, myInit);
-      console.log("Dashboard.fetchRoomsData")
       const response = await roomsDataResponse.json()
       const responseJson = await response[0].data
-      console.log(responseJson)
-      console.log("Dashboard.fetchRoomsData", "end")
+      console.log("Dashboard - [fetchRoomsData]")
 
       setRoomsData(responseJson);
     } catch (err) {
@@ -56,17 +55,15 @@ export const Dashboard = () => {
     }
   }
 
-  console.log("Dashboard.fetchRoomsData")
-
-
-  useEffect(() => {
-    setIsLoading(true)
-    if (!isLoading) {
+  useFocusEffect(() => {
+    if (isLoading) {
+      setIsLoading(false)
       fetchRoomsData();
     }
+    console.log("Dashboard")
     fullscreen.removeBackButton();
     fullscreen.enableExtend();
-    fullscreen.TitlebarColor(0,0,0,0)
+    fullscreen.TitlebarColor(0, 0, 0, 0);
   })
 
   return (
@@ -78,7 +75,7 @@ export const Dashboard = () => {
             <Text style={fonts.TitleRoomText}>42 perguntas</Text>
           </AmountOfQuestions>
         </SubHeaderContent>
-        {isLoading ? <FlatList
+        {!isLoading ? <FlatList
           data={roomsData}
           keyExtractor={(item, index) => `${index}`}
           renderItem={({ item, index }) => <CardRoom index={index} {...item} />}
