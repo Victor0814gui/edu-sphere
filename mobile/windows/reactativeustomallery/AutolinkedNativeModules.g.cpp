@@ -12,9 +12,6 @@
 // Includes from @react-native-picker/picker
 #include <winrt/ReactNativePicker.h>
 
-// Includes from react-native-custom-window
-#include <winrt/ReactNativeCustomWindow.h>
-
 // Includes from react-native-fs
 #include <winrt/RNFS.h>
 
@@ -30,6 +27,12 @@
 // Includes from react-native-video
 #include <winrt/ReactNativeVideoCPP.h>
 
+// Includes from react-native-xaml
+#include <winrt/ReactNativeXaml.h>
+
+// Includes from react-native-custom-window
+#include <winrt/ReactNativeCustomWindow.h>
+
 namespace winrt::Microsoft::ReactNative
 {
 
@@ -41,8 +44,6 @@ void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collecti
     packageProviders.Append(winrt::progress_view::ReactPackageProvider());
     // IReactPackageProviders from @react-native-picker/picker
     packageProviders.Append(winrt::ReactNativePicker::ReactPackageProvider());
-    // IReactPackageProviders from react-native-custom-window
-    packageProviders.Append(winrt::ReactNativeCustomWindow::ReactPackageProvider());
     // IReactPackageProviders from react-native-fs
     packageProviders.Append(winrt::RNFS::ReactPackageProvider());
     // IReactPackageProviders from react-native-screens
@@ -53,6 +54,10 @@ void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collecti
     packageProviders.Append(winrt::RNSVG::ReactPackageProvider());
     // IReactPackageProviders from react-native-video
     packageProviders.Append(winrt::ReactNativeVideoCPP::ReactPackageProvider());
+    // IReactPackageProviders from react-native-xaml
+    packageProviders.Append(winrt::ReactNativeXaml::ReactPackageProvider());
+    // IReactPackageProviders from react-native-custom-window
+    packageProviders.Append(winrt::ReactNativeCustomWindow::ReactPackageProvider());
 }
 
 }

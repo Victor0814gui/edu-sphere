@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { Button } from "../../components/button";
+import { View } from "react-native"
 //@ts-ignore
 import { Input } from '../../components/input';
 import {
@@ -18,7 +19,6 @@ import BackgroundIlustrationSvg from "../../assets/images/background-ilustration
 import BackgroundIlustrationRightSvg from "../../assets/images/background-ilustration-right.svg";
 import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
-import { fullscreen, FilePicker } from "react-native-custom-window";
 
 type OnSubmitProps = {
   password: string;
@@ -45,11 +45,11 @@ export function AuthenticateUserAccount() {
   }, []);
 
 
-  useEffect(() => {    
+  useEffect(() => {
     // fullscreen.removeBackButton();
     // fullscreen.full();
     // fullscreen.setSize(1080,800)
-  },[])
+  }, [])
 
   return (
     <React.Fragment>

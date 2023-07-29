@@ -14,7 +14,7 @@ import {
   Difficulty,
 } from "./styles";
 
-import { Clock,User,ChartBar,Play } from "phosphor-react-native"
+import { Clock, User, ChartBar, Play } from "phosphor-react-native"
 
 
 
@@ -26,7 +26,7 @@ export const CardRoomComponent = (props: {
   tags: string[],
   index: number
 }) => {
-  const [ onHover,setOnHover ] = useState(false);
+  const [onHover, setOnHover] = useState(false);
   const [isPressed, setIsPressed] = useState(false)
   const { navigate } = useNavigation()
 
@@ -70,11 +70,11 @@ export const CardRoomComponent = (props: {
         </Header>
         <Content>
           <Clock size={18} color="#f2f2f2" weight="light" />
-          <Duration>14:21min</Duration>
+          <Duration style={font.duration}>14:21min</Duration>
           <User size={18} color="#f2f2f2" weight="light" />
-          <Author>Victor Guilherme</Author>
+          <Author style={font.author}>Victor Guilherme</Author>
           <ChartBar size={18} color="#f2f2f2" weight="light" />
-          <Difficulty>Alta</Difficulty>
+          <Difficulty style={font.difficulty}>Alta</Difficulty>
           <Tag>
             <Play size={18} color="#f2f2f2" weight="light" />
             <TagText>Não assitido</TagText>

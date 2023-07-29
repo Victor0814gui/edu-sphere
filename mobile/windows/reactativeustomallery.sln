@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeCustomWindow", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RNFS", "..\node_modules\react-native-fs\windows\RNFS\RNFS.vcxproj", "{4F89A807-A843-4DF0-8D74-A04A3F48FEF9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeXaml", "..\node_modules\react-native-xaml\windows\ReactNativeXaml\ReactNativeXaml.vcxproj", "{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -173,6 +175,18 @@ Global
 		{4F89A807-A843-4DF0-8D74-A04A3F48FEF9}.Release|x86.Build.0 = Release|Win32
 		{4F89A807-A843-4DF0-8D74-A04A3F48FEF9}.Release|ARM64.ActiveCfg = Release|ARM64
 		{4F89A807-A843-4DF0-8D74-A04A3F48FEF9}.Release|ARM64.Build.0 = Release|ARM64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Debug|x64.ActiveCfg = Debug|x64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Debug|x64.Build.0 = Debug|x64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Debug|x86.ActiveCfg = Debug|Win32
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Debug|x86.Build.0 = Debug|Win32
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Debug|ARM64.Build.0 = Debug|ARM64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Release|x64.ActiveCfg = Release|x64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Release|x64.Build.0 = Release|x64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Release|x86.ActiveCfg = Release|Win32
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Release|x86.Build.0 = Release|Win32
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Release|ARM64.ActiveCfg = Release|ARM64
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.Release|ARM64.Build.0 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,7 @@
 <Project>
+  <PropertyGroup Label="NuGet" Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
+    <ResolveNuGetPackages>false</ResolveNuGetPackages>
+  </PropertyGroup>
   <PropertyGroup>
     <!-- Outras configurações comuns aqui -->
     <WinUIVersion>2.7.0</WinUIVersion>

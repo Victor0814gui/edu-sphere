@@ -8,7 +8,7 @@ import { fullscreen } from "react-native-custom-window";
 import LottieView from "lottie-react-native";
 import { errorConnectingToServerDataToast } from "@shared/contexts/toast-notification/constants";
 import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
-
+import { COLORS } from "@shared/theme";
 import {
   fonts,
   Container,
@@ -61,9 +61,16 @@ export const Dashboard = () => {
       fetchRoomsData();
     }
     console.log("Dashboard")
-    fullscreen.removeBackButton();
-    fullscreen.enableExtend();
-    fullscreen.TitlebarColor(0, 0, 0, 0);
+    const changeWindowProperties = async () => {
+      try {
+        await fullscreen.enableExtend();
+        await fullscreen.TitlebarColor("#f2f2f2", COLORS.grey_180, COLORS.grey_180, "#f2f2f2");
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    changeWindowProperties();
   })
 
   return (

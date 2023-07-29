@@ -50,7 +50,7 @@ const ItemNavbar = ({ icon: Icon, routeName, isActive }: ItemNavbar) => {
       isActive={isActive}
       onHover={onHover}
     >
-      <Icon size={24} color={isActive ? COLORS.grey_240 : COLORS.white} weight="duotone" />
+      <Icon size={24} color={isActive ? COLORS.grey_240 : COLORS.white} weight="fill" />
       <Text style={[fonts.containerNavbarText, !isActive && { color: COLORS.grey_970 }]}>{routeName}</Text>
     </Container>
   )
@@ -92,7 +92,7 @@ export const CustomNavbar = ({ navigation, state }: CustomNavbarProps) => {
   return (
     <View style={{ flex: 1 }}>
       <SectionProfileClient>
-        {!user?.avatarUrl
+        {user?.avatarUrl
           ? <ProfileImage source={{ uri: user?.avatarUrl }} />
           : <ProfileIconImageSubstitute />
         }

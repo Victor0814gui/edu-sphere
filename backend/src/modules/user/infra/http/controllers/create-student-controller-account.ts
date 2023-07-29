@@ -1,13 +1,14 @@
 
 import { Request, Response } from "express";
 import { container } from "tsyringe"
-import { CreateStudentAccountUseCase } from "../../../use-cases/create-student-account-use-case";
-import { User } from "../../../../../aplication/entities/user";
+import { CreateStudentAccountUseCase } from "@user/use-cases/create-student-account-use-case";
+import { User } from "@aplication/entities/user";
 
 
 
 namespace ICreateStudentAccountController {
   export interface Request {
+    role: string;
     name: string;
     email: string;
     password: string;

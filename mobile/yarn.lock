@@ -8953,9 +8953,9 @@ react-native-codegen@^0.71.5:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
-react-native-custom-window@Victor0814gui/react-native-custom-window#main:
+react-native-custom-window@victor0814gui/react-native-custom-window:
   version "1.0.0"
-  resolved "git+ssh://git@github.com/Victor0814gui/react-native-custom-window.git#c8444b34c0061a6bf8aa58f95614e65d150ae468"
+  resolved "git+ssh://git@github.com/victor0814gui/react-native-custom-window.git#644e8cc14ab7734b9ec0130d322eca4daf89fd89"
 
 react-native-eject@^0.2.0:
   version "0.2.0"
@@ -9147,6 +9147,15 @@ react-native-windows@0.71.22:
     use-sync-external-store "^1.0.0"
     whatwg-fetch "^3.0.0"
     ws "^6.2.2"
+
+react-native-xaml@^0.0.74:
+  version "0.0.74"
+  resolved "https://registry.yarnpkg.com/react-native-xaml/-/react-native-xaml-0.0.74.tgz#fc747308320eb1fda6dd69f5317bfeae37686b57"
+  integrity sha512-4F/kcx2//uUTOFJpePgRyu+yRje1lk9zSIhRUY5ZRIGXkkccS109uE9J+q5LqvMU8KuDEpDElE8n3UsYHZ0pKQ==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    typescript "^4.4.3"
 
 react-native@0.71.7:
   version "0.71.7"
@@ -10409,7 +10418,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.8.3:
+typescript@^4.4.3, typescript@^4.8.3:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==

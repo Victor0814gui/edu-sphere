@@ -33,6 +33,9 @@
     -->
     <UseExperimentalNuget>true</UseExperimentalNuget>
 
+    <!-- Outras configurações comuns aqui -->
+    <WinUI2xVersion>2.7.0</WinUI2xVersion>
+
     <ReactExperimentalFeaturesSet>true</ReactExperimentalFeaturesSet>
   
   </PropertyGroup>

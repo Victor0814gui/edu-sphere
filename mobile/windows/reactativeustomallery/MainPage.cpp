@@ -18,3 +18,5 @@ namespace winrt::reactativeustomallery::implementation
         ReactRootView().ReactNativeHost(app->Host());
     }
 }
+
+

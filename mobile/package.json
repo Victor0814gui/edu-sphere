@@ -33,7 +33,6 @@
     "react-hook-form": "^7.43.2",
     "react-native": "0.71.7",
     "react-native-chart-kit": "^6.12.0",
-    "react-native-custom-window": "Victor0814gui/react-native-custom-window#main",
     "react-native-eject": "^0.2.0",
     "react-native-fs": "itinance/react-native-fs#master",
     "react-native-gesture-handler": "^2.9.0",
@@ -47,6 +46,8 @@
     "react-native-video": "^5.2.1",
     "react-native-web": "^0.19.6",
     "react-native-windows": "0.71.22",
+    "react-native-xaml": "^0.0.74",
+    "react-native-custom-window": "victor0814gui/react-native-custom-window",
     "react-router-native": "^6.14.1",
     "styled-components": "^5.3.6",
     "uuid": "^9.0.0"

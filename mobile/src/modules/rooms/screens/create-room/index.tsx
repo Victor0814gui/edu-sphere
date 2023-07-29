@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 
 import {
   Container,
@@ -8,8 +8,17 @@ import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animat
 import { Button } from '@shared/components/button';
 import { RootDrawerNavigationProp } from '@types/navigation';
 import { Controller, useForm } from 'react-hook-form';
-import { fullscreen } from "react-native-custom-window"
+// import { fullscreen } from "react-native-custom-window"
 import { useFocusEffect } from "@react-navigation/native"
+
+import {
+  Viewbox, Border,
+  TextBlock,
+  WinUI,
+  Visibility,
+  WinUIEnums,
+} from "react-native-xaml";
+import { View } from 'react-native';
 
 type CreateRoomScreenProps = {
   navigation: RootDrawerNavigationProp<"CreateRoomScreen">
@@ -35,7 +44,7 @@ type CreateRoomScreenProps = {
 
 
 export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
-
+  const [pointerMoved, setPointerMoved] = useState(false);
 
   const {
     control,
@@ -53,14 +62,7 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
 
   useFocusEffect(() => {
     const addNativeModulesMethod = async () => {
-      const backButtonIsVisibleResponse = await fullscreen.backButtonIsVisible()
-      await fullscreen.removeBackButton();
-      if (!backButtonIsVisibleResponse) {
-      } else {
-        // await fullscreen.addBackButton();
-      }
-      console.log({ backButtonIsVisibleResponse })
-      // fullscreen.disableDrop();
+      // await fullscreen.removeBackButton();
     }
     addNativeModulesMethod();
   })
@@ -68,6 +70,21 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
   return (
     <ScreenAnimationWrapper>
       <Container>
+        <WinUI.InfoBar
+          message="the message"
+          title="the title"
+          isOpen={true}
+          visibility={Visibility.Visible}
+          severity={WinUIEnums.InfoBarSeverity.Success}
+        />
+        <Border
+          onPointerMoved={() => console.log("moved-1")}
+          allowDrop
+          onDrop={(e) => console.log(e)}
+          background="paleturquoise"
+        >
+          <TextBlock text="this is a textblock" foreground='red' textAlignment="center" />
+        </Border>
         <Controller
           control={control}
           rules={{
@@ -95,7 +112,7 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
           labelText="tipo da sala"
         />
         <Button.Default
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate("dashboard")}
         >
           CRIAR NOVA SALA
         </Button.Default>

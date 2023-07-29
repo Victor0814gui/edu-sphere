@@ -4,9 +4,9 @@ import { SignUpStepThree } from '@modules/session/screens/sign-up-step-three';
 import { SignUpStepTwo } from "@modules/session/screens/sign-up-step-two";
 import { SignUpStepOne } from '@modules/session/screens/sign-up-step-one';
 import { AuthenticateUserAccount } from '@modules/session/screens/authenticate-user-account';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { UserDrawerType } from '../../types';
-import { enableScreens, enableFreeze } from "react-native-screens"
+// import { createDrawerNavigator } from '@react-navigation/drawer';
+// import { UserDrawerType } from '../../types';
+// import { enableScreens, enableFreeze } from "react-native-screens"
 import { AuthStepsContextProvider } from '@modules/session/contexts/auth-steps';
 import { CreateUserStepsContextProvider } from '../../contexts/create-user-steps';
 import { View } from "react-native";
@@ -15,10 +15,10 @@ import { COLORS } from "@shared/theme";
 
 
 
-const AuthDrawer = createDrawerNavigator<UserDrawerType>();
+// const AuthDrawer = createDrawerNavigator<UserDrawerType>();
 
-enableScreens(true)
-enableFreeze(false);
+// enableScreens(true)
+// enableFreeze(false);
 export function AuthRoutes() {
   return (
     <AuthStepsContextProvider>
@@ -35,6 +35,5 @@ export function AuthRoutes() {
         </View>
       </CreateUserStepsContextProvider>
     </AuthStepsContextProvider>
-
   );
 }

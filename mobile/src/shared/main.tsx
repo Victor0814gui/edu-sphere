@@ -9,6 +9,7 @@ import { ToastNotificaitonProvider } from "./contexts/toast-notification";
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
 import { Modal } from "./components/modal";
+import { Animations } from "./utils/contants";
 const MyTheme: Theme = {
   ...DefaultTheme,
   colors: {
@@ -53,13 +54,12 @@ export const Main = () => {
           loop={false}
           autoPlay={true}
           style={{ height: 220, width: 220 }}
-          source={"Message"}
+          source={Animations.Message.getSource()}
           onAnimationFinish={onAnimationFinish}
         />
       </View>
     )
   }
-
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
