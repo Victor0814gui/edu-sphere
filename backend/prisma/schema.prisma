@@ -18,7 +18,8 @@ model User {
   createdAt      DateTime
   udpatedAt      DateTime?
   avatarUrl      String
-  role           Role[]
+  roleName String
+  role           Role @relation(fields: [roleName],references: [name])
   permissions    Permission[]
   rooms          Room[]
   matriculations Matriculation[]

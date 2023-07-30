@@ -1,6 +1,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import { ICreatePermissionRepository } from "../i-create-permission-repository";
+import crypto from "crypto";
 
 
 const database = new PrismaClient();
@@ -44,5 +45,12 @@ export class CreatePermissionRepository
     })
 
     return deletePermissionResposne;
+  }
+
+  async list(props: ICreatePermissionRepository.List.Params):
+    Promise<ICreatePermissionRepository.List.Response | null> {
+    const listRolesResposne = await database.permission.findMany()
+
+    return listRolesResposne;
   }
 }

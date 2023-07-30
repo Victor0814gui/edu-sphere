@@ -12,8 +12,9 @@ export interface User {
   studentList?: any[]
   createdAt: Date;
   updatedAt?: Date | null;
-  avatarUrl: string
-  // permissions: Permission[];
-  // role: Role[];
-  // roleId: number;
+  avatarUrl: string;
+  roleName: string;
 }
+
+
+export interface Customer extends User { }

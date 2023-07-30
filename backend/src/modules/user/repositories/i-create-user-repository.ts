@@ -1,11 +1,15 @@
 import { Permission } from "../../../aplication/entities/permission";
-import { Role } from "../../../aplication/entities/role";
 import { User } from "../../../aplication/entities/user";
 
+interface Role {
+  name: string;
+  id: string;
+}
 
 interface Permissions {
-  id: string
+  name: string;
 }
+
 
 export namespace ICreateUserAccountRepository {
 
@@ -17,7 +21,6 @@ export namespace ICreateUserAccountRepository {
     export interface Response {
       permissions: Permissions[];
       name: string;
-      id: string;
     }
   }
 
@@ -39,6 +42,7 @@ export namespace ICreateUserAccountRepository {
   export namespace Create {
     export interface Params {
       id: string;
+      role: string;
       name: string;
       email: string;
       password: string
@@ -57,9 +61,17 @@ export namespace ICreateUserAccountRepository {
     }
 
     export interface Response extends User {
-      role: Role[]
-      permissions: Permission[]
+      role: Role;
+      permissions: Permissions[]
     }
+  }
+
+  export namespace Delete {
+    export interface Params {
+      id: string;
+    }
+
+    export interface Response { }
   }
 
   export interface Implementation {
@@ -68,5 +80,6 @@ export namespace ICreateUserAccountRepository {
     findUnique: (props: FindUnique.Params) => Promise<FindUnique.Response | null>
     create: (props: Create.Params) => Promise<Create.Response>
     update: (props: Update.Params) => Promise<Update.Response>
+    delete: (props: Delete.Params) => Promise<Delete.Response>
   }
 }

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ICreateUserAccountRepository } from "../i-create-user-account-repository";
+import { ICreateUserAccountRepository } from "../i-create-user-repository";
 
 const database = new PrismaClient();
 
@@ -25,7 +25,7 @@ export class CreateUserAccountRepository
         name: true,
         permissions: {
           select: {
-            id: true,
+            name: true,
           }
         }
       }
@@ -40,10 +40,6 @@ export class CreateUserAccountRepository
     const findUniqueUserResponse = await database.user.findFirst({
       where: {
         email: props.email
-      },
-      include: {
-        permissions: true,
-        role: true,
       }
     });
 
@@ -55,6 +51,7 @@ export class CreateUserAccountRepository
 
     const createUserResponse = await database.user.create({
       data: {
+        roleName: props.role,
         id: props.id,
         password: props.password,
         name: props.name,
@@ -70,10 +67,10 @@ export class CreateUserAccountRepository
   async update(props: ICreateUserAccountRepository.Update.Params):
     Promise<ICreateUserAccountRepository.Update.Response> {
 
+    console.log(props.permissions)
     const createUserResponse = await database.user.update({
       where: {
         id: props.id,
-
       },
       data: {
         role: {
@@ -82,15 +79,36 @@ export class CreateUserAccountRepository
           }
         },
         permissions: {
-          connect: props.permissions
+          connect: [...props.permissions]
         },
       },
       include: {
-        permissions: true,
-        role: true,
+        permissions: {
+          select: {
+            name: true,
+          }
+        },
+        role: {
+          select: {
+            name: true,
+            id: true,
+          }
+        },
       }
     });
 
-    return createUserResponse;
+    return createUserResponse!;
+  }
+
+  async delete(props: ICreateUserAccountRepository.Delete.Params):
+    Promise<ICreateUserAccountRepository.Delete.Response> {
+
+    await database.user.delete({
+      where: {
+        id: props.id,
+      },
+    });
+
+    return {};
   }
 }

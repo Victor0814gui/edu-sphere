@@ -1,4 +1,4 @@
-import { ICreateUserAccountRepository } from "../i-create-user-account-repository";
+import { ICreateUserAccountRepository } from "../i-create-user-repository";
 
 
 

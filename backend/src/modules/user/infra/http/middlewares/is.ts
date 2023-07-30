@@ -2,9 +2,9 @@ import { Request, Response, NextFunction } from "express";
 
 function is(requiredRoles: string) {
   return async (request: Request, response: Response, next: NextFunction) => {
-    const { roles } = request;
+    const { role } = request;
 
-    if (!roles) {
+    if (!role) {
       return response.status(404).json({
         message: "roles does not exists",
         type: "error"
@@ -12,7 +12,7 @@ function is(requiredRoles: string) {
     }
 
 
-    const permissionsExists = requiredRoles.includes(roles);
+    const permissionsExists = requiredRoles.includes(role);
 
     if (!permissionsExists) {
       return response.status(403).json({

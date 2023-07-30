@@ -5,8 +5,9 @@ export namespace ICreateRefreshTokenRepository {
 
   export namespace Create {
     export interface Params {
-      refreshToken: Date;
-      expiryDate: string;
+      refreshToken: string;
+      expiryDate: number;
+      id: string;
     }
 
     export interface Response extends RefreshToken { }

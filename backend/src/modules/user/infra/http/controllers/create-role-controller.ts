@@ -17,7 +17,7 @@ namespace ICreateRoleController {
 
 
 export class CreateRoleController {
-  async handler(request: Request, response: Response) {
+  async handler(request: Request, response: Response): Promise<Response> {
     const { description, level, name } = request.body as ICreateRoleController.Params;
     const createRoleUseCaseIntance = container.resolve(CreateRoleUseCase);
 

@@ -1,31 +1,32 @@
 import { sign } from "jsonwebtoken";
+import crypto from "crypto";
 
 
 
 export namespace ICreateSessionTokenSecurity {
   export interface Params {
     userId: string;
-    roles: string[];
+    role: string;
     permissions: string[]
   }
 
-  export interface Response extends String { };
+  export interface Implementation {
+    execute: (props: ICreateSessionTokenSecurity.Params) => string;
+  }
 }
 
-class CreateSessionTokenSecurity {
-  async execute({ userId, roles, permissions }: ICreateSessionTokenSecurity.Params):
-    Promise<ICreateSessionTokenSecurity.Response> {
-
-
+class CreateSessionTokenSecurity
+  implements ICreateSessionTokenSecurity.Implementation {
+  execute(props: ICreateSessionTokenSecurity.Params): string {
     const token = sign(
       {
-        roles,
-        permissions,
-        userId,
+        role: props.role,
+        permissions: props.permissions,
+        userId: props.userId,
       },
       process.env.JWT_SECRET as string,
       {
-        subject: userId,
+        subject: props.userId,
         expiresIn: process.env.JWT_EXPIRATION_TIME,
       }
     );

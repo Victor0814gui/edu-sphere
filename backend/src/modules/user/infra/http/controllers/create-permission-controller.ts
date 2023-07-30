@@ -18,7 +18,7 @@ namespace ICreatePermissionController {
 
 
 export class CreatePermissionController {
-  async handler(request: Request, response: Response) {
+  async handler(request: Request, response: Response): Promise<Response> {
     const { description, level, name } = request.body as ICreatePermissionController.Params;
     const createPermissionUseCaseIntance = container.resolve(CreatePermissionUseCase);
 
