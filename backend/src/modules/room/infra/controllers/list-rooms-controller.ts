@@ -4,13 +4,6 @@ import { ListRoomsUseCase } from "../../use-cases/list-room-use-case";
 
 
 
-interface IListRoomsController {
-  name: string;
-  description: string;
-  title: string;
-  teacherId: string
-}
-
 
 
 export class ListRoomsContoller {

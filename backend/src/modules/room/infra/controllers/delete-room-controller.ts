@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { DeleteRoomsUseCase } from "../../use-cases/delete-room-use-case";
+import { container } from "tsyringe";
 
 
 
 
 interface IDeleteRoomController {
-  id: string
+  code: string
 }
 
 
@@ -15,10 +16,11 @@ export class DeleteRoomContoller {
     private deleteRoomUseCase: DeleteRoomsUseCase
   ) { }
   async handler(request: Request, response: Response) {
-    const data = request.body as IDeleteRoomController;
+    const body = request.body as IDeleteRoomController;
 
-    const deleteRoomUseCaseResponse = this.deleteRoomUseCase.execute(data);
+    const deleteRoomUseCaseInstance = container.resolve(DeleteRoomsUseCase);
+    const deleteRoomUseCaseInstanceResponse = deleteRoomUseCaseInstance.execute(body);
 
-    return response.status(201).json(deleteRoomUseCaseResponse)
+    return response.status(201).json(deleteRoomUseCaseInstanceResponse);
   }
 }
