@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { ListRoomsUseCase } from "../../use-cases/list-room-use-case";
-import { container } from "tsyringe";
+import { container, injectable } from "tsyringe";
 
 
 
 
 
-
+@injectable()
 export class ListRoomsContoller {
-  async handler(request: Request, response: Response) {
+  public async handler(request: Request, response: Response) {
 
     const listRoomsUseCaseInstance = container.resolve(ListRoomsUseCase);
 

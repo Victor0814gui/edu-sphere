@@ -10,8 +10,9 @@ interface IDeleteRoomController {
 }
 
 
+@injectable()
 export class DeleteRoomContoller {
-  async handler(request: Request, response: Response) {
+  public async handler(request: Request, response: Response) {
     const body = request.body as IDeleteRoomController;
 
     const deleteRoomUseCaseInstance = container.resolve(DeleteRoomsUseCase);

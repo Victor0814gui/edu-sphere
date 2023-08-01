@@ -17,7 +17,7 @@ interface ICreateRoomContollerRequest {
 
 @injectable()
 export class CreateRoomContoller {
-  async handler(request: Request, response: Response) {
+  public async handler(request: Request, response: Response) {
     const body = request.body as ICreateRoomContollerRequest;
 
     const createRoomUseCaseInstance = container.resolve(CreateRoomUseCase);

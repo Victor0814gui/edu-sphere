@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UpdateRoomUseCase } from "../../use-cases/udpate-room-use-case";
-import { container } from "tsyringe";
+import { container, injectable } from "tsyringe";
 
 
 
@@ -13,8 +13,9 @@ interface IUpdateRoomController {
   published: boolean;
 }
 
+@injectable()
 export class UpdateRoomContoller {
-  async handler(request: Request, response: Response) {
+  public async handler(request: Request, response: Response) {
     const data = request.body as IUpdateRoomController;
 
     const updateRoomUseCaseInstance = container.resolve(UpdateRoomUseCase);
