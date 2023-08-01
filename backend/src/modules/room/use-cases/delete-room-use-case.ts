@@ -1,24 +1,11 @@
 import { IDeleteRoomRepository } from "../repository/i-delete-room-respository";
 import RoomBusinessException from "@room/infra/exceptions/business-exception";
+import { IDeleteRoomUseCase } from "../interfaces/i-delete-room-use-case";
 
 
-export namespace IDeleteRoomUseCase {
-  export type Params = {
-    code: string;
-  }
 
-  export type Response = {
-    id: string;
-    name: string;
-    description: string;
-    createdAt: Date;
-    updatedAt?: Date | null;
-    teacherId: string;
-    studentList?: any[]
-  }
-}
-
-export class DeleteRoomsUseCase {
+export class DeleteRoomsUseCase
+  implements IDeleteRoomUseCase.Implementation {
   constructor(
     private deleteRoomRepository: IDeleteRoomRepository.Implementation,
   ) { }

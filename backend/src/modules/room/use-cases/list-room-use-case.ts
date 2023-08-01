@@ -1,26 +1,17 @@
+import { IListRooomUseCase } from "../interfaces/i-list-room-use-case";
 import { IListRoomsRepository } from "../repository/i-list-room-respository";
 
 
-export namespace IListRooom {
-  export type Params = {}
 
-  export type Response = {
-    id: string;
-    name: string;
-    description: string;
-    createdAt: Date;
-    updatedAt?: Date | null;
-    teacherId: string;
-    studentList?: any[]
-  }
-}
 
-export class ListRoomsUseCase {
+export class ListRoomsUseCase
+  implements IListRooomUseCase.Implementation {
   constructor(
     private listRoomsRepository: IListRoomsRepository.Implementation,
   ) { }
 
-  async execute(props: IListRooom.Params): Promise<IListRoomsRepository.Response | null> {
+  async execute(props: IListRooomUseCase.Params):
+    Promise<IListRoomsRepository.Response | null> {
 
     const listRoomsResponse = await this.listRoomsRepository.listMany({})
 
