@@ -1,4 +1,3 @@
-
 import { injectable, inject } from "tsyringe";
 import { IListCustomersUseCase } from "../interfaces/i-list-customers-use-case";
 import { IListCustomersRepository } from "../repositories/i-list-customers-repository";

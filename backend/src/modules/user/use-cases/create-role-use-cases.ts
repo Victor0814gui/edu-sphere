@@ -2,7 +2,7 @@
 import { injectable, inject } from "tsyringe";
 import { ICreateRoleUseCase } from "../interfaces/i-create-role-use-case";
 import { ICreateRoleRepository } from "../repositories/i-create-role-repository";
-import AppErrors from "@/src/shared/infra/errors/app-errors";
+import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
 import crypto from "crypto";
 
 
@@ -22,7 +22,7 @@ export class CreateRoleUseCase
     })
 
     if (verifyRoleAlreayExists?.id) {
-      throw new AppErrors("role already exists", 409)
+      throw new UserBusinessException("role already exists", 409)
     }
 
     const createRoleServiceResponse = await this.createRoleRepository.create({

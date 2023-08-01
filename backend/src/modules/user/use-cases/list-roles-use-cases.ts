@@ -1,4 +1,3 @@
-
 import { injectable, inject } from "tsyringe";
 import { IListRoleUseCase } from "../interfaces/i-list-role-use-case";
 import { ICreateRoleRepository } from "../repositories/i-create-role-repository";

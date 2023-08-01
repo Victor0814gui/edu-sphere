@@ -10,7 +10,7 @@ export class DeleteRoomRepository implements IDeleteRoomRepository.Implementatio
     private prisma: PrismaClient
   ) { }
 
-  async delete(props: IDeleteRoomRepository.Delete.Params):
+  async findByCode(props: IDeleteRoomRepository.Delete.Params):
     Promise<IDeleteRoomRepository.Delete.Response> {
 
     const updateRoomResponse = await this.prisma.room.delete({
@@ -22,7 +22,7 @@ export class DeleteRoomRepository implements IDeleteRoomRepository.Implementatio
     return updateRoomResponse;
   }
 
-  async listUnique(props: IDeleteRoomRepository.ListUnique.Params):
+  async delete(props: IDeleteRoomRepository.FindByCode.Params):
     Promise<ICreateRoomRepository.ListUnique.Response | null> {
 
     const listUniqueRoomResponse = await this.prisma.room.findFirst({

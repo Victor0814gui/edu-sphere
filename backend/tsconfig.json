@@ -115,7 +115,7 @@
         "@shared/*":["./src/shared/*"],
         "@aplication/*":["./src/aplication/*"],
         "@user/*":["./src/modules/user/*"],
-        "@room/*":["./src/modules/room/*"],
+        "@room/*":["./src/modules/room/*"]
       }
   },
   "include": [

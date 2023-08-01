@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { container, inject, injectable } from "tsyringe"
-import AppErrors from "@/src/shared/infra/errors/app-errors";
+import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
 import { User } from "@aplication/entities/user";
 import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-repository";
@@ -47,7 +47,7 @@ export class CreateUserAccountUseCase {
     })
 
     if (!verifyRoleAlreayExists?.name) {
-      throw new AppErrors("role does not exists", 404);
+      throw new UserBusinessException("role does not exists", 404);
     }
 
     const verifyUserAlreayExists = await this.createUserAccountRepository.findUnique({
@@ -55,7 +55,7 @@ export class CreateUserAccountUseCase {
     })
 
     if (verifyUserAlreayExists?.id) {
-      throw new AppErrors("user already exists", 400);
+      throw new UserBusinessException("user already exists", 400);
     }
 
     const createUserResponse = await this.createUserAccountRepository.create({

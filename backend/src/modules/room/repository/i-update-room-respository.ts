@@ -9,19 +9,20 @@ namespace IUpdateRoomRepository {
       name: string;
       description: string;
       teacherId: string
+      updatedAt: Date;
     }
     export interface Response extends Room { };
   }
 
-  export namespace ListUnique {
+  export namespace FindByCode {
     export interface Params {
-      id: string;
+      code: string;
     }
     export interface Response extends Room { };
   }
 
   export interface Implementation {
-    listUnique: (props: IUpdateRoomRepository.ListUnique.Params) => Promise<IUpdateRoomRepository.ListUnique.Response | null>;
+    findByCode: (props: IUpdateRoomRepository.FindByCode.Params) => Promise<IUpdateRoomRepository.FindByCode.Response | null>;
     update: (props: IUpdateRoomRepository.Update.Params) => Promise<IUpdateRoomRepository.Update.Response>;
   }
 }

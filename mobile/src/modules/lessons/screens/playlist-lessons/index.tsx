@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { COLORS } from "../../../../shared/theme";
-import { api } from "../../../../shared/services/api";
+import { COLORS } from "@shared/theme";
+import { api } from "@shared/services/api";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   additionalStyles,

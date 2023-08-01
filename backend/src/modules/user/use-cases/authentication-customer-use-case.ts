@@ -1,9 +1,7 @@
-
-import { Request, Response } from "express"
+import UserBusinessException from "@user/infra/exception/business-exception";
 import { IAuthenticationCustomerUserCase } from "../interfaces/i-authenticate-customer-use-case";
 import { container, inject, injectable } from "tsyringe";
 import { IAuthenticationCustomerRepository } from "../repositories/i-authentication-customer-repository";
-import AppErrors from "@/src/shared/infra/errors/app-errors";
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
 import { UserValidatorParams } from "../infra/validators/create";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
@@ -28,15 +26,15 @@ export class AuthenticationCustomerUserCase
     });
 
     if (!verifyCustomerAlreayExists) {
-      throw new AppErrors("customer does not exists", 404);
+      throw new UserBusinessException("customer does not exists", 404);
     }
 
     if (verifyCustomerAlreayExists.email != props.email) {
-      throw new AppErrors("email or password has incorrect", 403);
+      throw new UserBusinessException("email or password has incorrect", 403);
     }
 
     if (verifyCustomerAlreayExists.password != props.password) {
-      throw new AppErrors("email or password has incorrect", 403);
+      throw new UserBusinessException("email or password has incorrect", 403);
     }
 
     const permisisons = verifyCustomerAlreayExists.permissions.map(permission => permission.name);

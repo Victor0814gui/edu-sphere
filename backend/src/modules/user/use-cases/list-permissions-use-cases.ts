@@ -1,4 +1,3 @@
-
 import { injectable, inject } from "tsyringe";
 import { IListPermissionsUseCase } from "../interfaces/i-list-permissions-use-case";
 import { ICreatePermissionRepository } from "../repositories/i-create-permission-repository";

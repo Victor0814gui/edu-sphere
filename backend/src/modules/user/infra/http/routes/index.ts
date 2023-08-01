@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { is } from "../middlewares/is";
 
 import { CreateUserAccountController } from "../controllers/create-user-controller-account"
 import { CreateRoleController } from "../controllers/create-role-controller";
@@ -6,7 +7,6 @@ import { ListPermissionsController } from "../controllers/list-permissions-contr
 import { ListRolesController } from "../controllers/list-roles-controller";
 import { CreatePermissionController } from "../controllers/create-permission-controller";
 import { DeleteUserAccountController } from "../controllers/delete-user-controller-account";
-import { is } from "../middlewares/is";
 import { ListCustomersController } from "../controllers/list-customers-controller";
 import { UpdateRoleController } from "../controllers/update-role-controller";
 import { AuthenticationCustomerController } from "../controllers/authenticate-user-account";

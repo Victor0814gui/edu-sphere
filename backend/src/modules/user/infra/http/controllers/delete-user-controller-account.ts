@@ -1,9 +1,8 @@
 
 import { Request, Response } from "express";
 import { container } from "tsyringe"
-import { CreateUserAccountUseCase } from "@/src/modules/user/use-cases/create-customer-account-use-case";
 import { User } from "@aplication/entities/user";
-import { DeleteUserAccountUseCase } from "../../../use-cases/delete-customer-account-use-case";
+import { DeleteUserAccountUseCase } from "@user/use-cases/delete-customer-account-use-case";
 
 
 
@@ -11,13 +10,11 @@ namespace IDeleteUserAccountController {
   export interface Request {
     email: string;
   }
-
   export interface Response extends User { }
 }
 
 
 export class DeleteUserAccountController {
-
   async handler(request: Request, response: Response): Promise<Response> {
     const body = request.body as IDeleteUserAccountController.Request;
 

@@ -11,16 +11,16 @@ namespace IDeleteRoomRepository {
     export interface Response extends Room { };
   }
 
-  export namespace ListUnique {
+  export namespace FindByCode {
     export interface Params {
-      id: string;
+      code: string;
     }
     export interface Response extends Room { };
   }
 
   export interface Implementation {
     delete: (props: IDeleteRoomRepository.Delete.Params) => Promise<IDeleteRoomRepository.Delete.Response>;
-    listUnique: (props: IDeleteRoomRepository.ListUnique.Params) => Promise<IDeleteRoomRepository.ListUnique.Response | null>;
+    findByCode: (props: IDeleteRoomRepository.FindByCode.Params) => Promise<IDeleteRoomRepository.FindByCode.Response | null>;
   }
 }
 

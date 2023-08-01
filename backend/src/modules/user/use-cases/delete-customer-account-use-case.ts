@@ -1,11 +1,7 @@
-import crypto from "crypto";
 import { inject, injectable } from "tsyringe"
-import AppErrors from "@/src/shared/infra/errors/app-errors";
-import { User } from "@aplication/entities/user";
+import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
 import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-repository";
-import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
-import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
 
 namespace IDeleteUserAccountUseCase {
   export interface Params {
@@ -33,7 +29,7 @@ export class DeleteUserAccountUseCase {
     })
 
     if (!verifyUserAlreayExists?.id) {
-      throw new AppErrors("user does not exists", 400);
+      throw new UserBusinessException("user does not exists", 400);
     }
 
     await this.createUserAccountRepository.delete({

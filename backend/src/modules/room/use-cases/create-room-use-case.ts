@@ -1,14 +1,18 @@
+import crypto from "crypto";
+import { inject, injectable } from "tsyringe";
 import { ICreateRoomRepository } from "../repository/i-create-room-repository";
 import { ICreateRoomValidator } from "../validators/create-room-validators";
+import AppErrors from "@/src/shared/infra/errors/app-errors";
 
 
 
 export namespace ICreateRooom {
   export type Params = {
     name: string;
-    description: string;
     type: string;
-    teacherId: string
+    description: string;
+    teacherId: string;
+    published: boolean;
   }
 
   export type Response = {
@@ -22,16 +26,24 @@ export namespace ICreateRooom {
   }
 }
 
+
+@injectable()
 export class CreateRoomUseCase {
   constructor(
+    @inject("CreateRoomRepository")
     private createRoomRepository: ICreateRoomRepository.Implementation,
-    private createRoomValidator: ICreateRoomValidator
   ) { }
 
   async execute(props: ICreateRooom.Params): Promise<ICreateRooom.Response> {
-    this.createRoomValidator.validade(props);
+    if (!props.teacherId && !props.description && !props.type && !props.name) {
+      throw new AppErrors("the data is invalid", 403)
+    }
 
     const createRoomResponse = await this.createRoomRepository.create({
+      id: crypto.randomUUID(),
+      createdAt: new Date(),
+      closed: false,
+      published: props.published,
       description: props.description,
       name: props.name,
       teacherId: props.teacherId,

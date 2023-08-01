@@ -1,8 +1,7 @@
-
 import { injectable, inject } from "tsyringe";
 import { ICreatePermissionUseCase } from "../interfaces/i-create-permission-use-case";
 import { ICreatePermissionRepository } from "../repositories/i-create-permission-repository";
-import AppErrors from "@/src/shared/infra/errors/app-errors";
+import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
 import crypto from "crypto";
 
 
@@ -22,7 +21,7 @@ export class CreatePermissionUseCase
     })
 
     if (verifyPermissionAlreayExists?.id) {
-      throw new AppErrors("Permission already exists", 409)
+      throw new UserBusinessException("Permission already exists", 409)
     }
 
     const createPermissionServiceResponse = await this.createPermissionRepository.create({

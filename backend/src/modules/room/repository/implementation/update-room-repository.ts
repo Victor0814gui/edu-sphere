@@ -7,7 +7,6 @@ export class UpdateRoomRepository implements IUpdateRoomRepository.Implementatio
   constructor(
     private prisma: PrismaClient
   ) { }
-
   async update(props: IUpdateRoomRepository.Update.Params):
     Promise<IUpdateRoomRepository.Update.Response> {
     const updateRoomResponse = await this.prisma.room.update({
@@ -24,16 +23,13 @@ export class UpdateRoomRepository implements IUpdateRoomRepository.Implementatio
     return updateRoomResponse;
   }
 
-  async listUnique(props: IUpdateRoomRepository.ListUnique.Params):
-    Promise<IUpdateRoomRepository.ListUnique.Response | null> {
+  async findByCode(props: IUpdateRoomRepository.FindByCode.Params):
+    Promise<IUpdateRoomRepository.FindByCode.Response | null> {
 
     const listUniqueRoomResponse = await this.prisma.room.findFirst({
       where: {
-        id: props.id,
+        id: props.code,
       },
-      include: {
-        students: true,
-      }
     });
 
     return listUniqueRoomResponse;

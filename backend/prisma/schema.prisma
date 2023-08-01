@@ -36,6 +36,7 @@ model Room {
   teacherId   String
   published   Boolean
   createdAt   DateTime
+  updatedAt   DateTime?
   closed      Boolean
   updateAt    DateTime?
   users       User[]
