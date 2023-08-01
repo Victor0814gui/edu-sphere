@@ -1,6 +1,3 @@
-import RoomBusinessException from "@room/infra/exceptions/business-exception";
-import { inject, injectable } from "tsyringe";
-import { IUpdateRoomRepository } from "../repository/i-update-room-respository";
 
 
 export namespace IUpdateRooomUseCase {

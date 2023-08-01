@@ -1,25 +1,26 @@
 import { Request, Response } from "express";
 import { UpdateRoomUseCase } from "../../use-cases/udpate-room-use-case";
+import { container } from "tsyringe";
 
 
 
 interface IUpdateRoomController {
+  code: string;
   name: string;
+  type: string;
   description: string;
-  title: string;
   teacherId: string;
-  id: string;
+  published: boolean;
 }
 
 export class UpdateRoomContoller {
-  constructor(
-    private updateRoomUseCase: UpdateRoomUseCase
-  ) { }
   async handler(request: Request, response: Response) {
     const data = request.body as IUpdateRoomController;
 
-    const updateRoomUseCaseResponse = this.updateRoomUseCase.execute(data);
+    const updateRoomUseCaseInstance = container.resolve(UpdateRoomUseCase);
 
-    return response.status(201).json(updateRoomUseCaseResponse)
+    const updateRoomUseCaseInstanceResponse = await updateRoomUseCaseInstance.execute(data);
+
+    return response.status(201).json(updateRoomUseCaseInstanceResponse)
   }
 }
