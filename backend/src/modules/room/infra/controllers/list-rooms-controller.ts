@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ListRoomsUseCase } from "../../use-cases/list-room-use-case";
+import { ListRoomsUseCase } from "@/src/modules/room/use-cases/list-rooms-use-case";
 import { container, injectable } from "tsyringe";
 
 

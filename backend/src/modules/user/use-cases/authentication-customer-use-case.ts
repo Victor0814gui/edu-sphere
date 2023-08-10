@@ -1,19 +1,16 @@
+import { container, inject, injectable } from "tsyringe";
 import UserBusinessException from "@user/infra/exception/business-exception";
 import { IAuthenticationCustomerUserCase } from "../interfaces/i-authenticate-customer-use-case";
-import { container, inject, injectable } from "tsyringe";
 import { IAuthenticationCustomerRepository } from "../repositories/i-authentication-customer-repository";
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
-import { UserValidatorParams } from "../infra/validators/create";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
 
 @injectable()
 export class AuthenticationCustomerUserCase
   implements IAuthenticationCustomerUserCase.Implementation {
   constructor(
-    @inject('AuthenticationCustomerUserCase')
-    private authenticationCustomerUserCase: IAuthenticationCustomerRepository.Implementation,
-    @inject("UserValidatorParams")
-    private userValidatorParams: UserValidatorParams,
+    @inject('AuthenticationCustomerRepository')
+    private authenticationCustomerRepository: IAuthenticationCustomerRepository.Implementation,
     @inject("CreateSessionTokenSecurity")
     private createSessionTokenSecurity: CreateSessionTokenSecurity,
   ) { }
@@ -21,7 +18,7 @@ export class AuthenticationCustomerUserCase
     Promise<IAuthenticationCustomerUserCase.Response> {
     const generateRefreshToken = container.resolve(GenerateRefreshToken);
 
-    const verifyCustomerAlreayExists = await this.authenticationCustomerUserCase.findUnique({
+    const verifyCustomerAlreayExists = await this.authenticationCustomerRepository.findUnique({
       email: props.email,
     });
 

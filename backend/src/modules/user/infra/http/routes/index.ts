@@ -10,6 +10,7 @@ import { DeleteUserAccountController } from "../controllers/delete-user-controll
 import { ListCustomersController } from "../controllers/list-customers-controller";
 import { UpdateRoleController } from "../controllers/update-role-controller";
 import { AuthenticationCustomerController } from "../controllers/authenticate-user-account";
+import { userBusinessMiddleware } from "../middlewares/business-middleware";
 
 
 const createUserAccountController = new CreateUserAccountController();
@@ -25,7 +26,7 @@ const UserRoutes = Router();
 
 
 UserRoutes.post(
-  "/create/user",
+  "/customer/create",
   createUserAccountController.handler
 );
 
@@ -65,9 +66,11 @@ UserRoutes.put(
 );
 
 UserRoutes.post(
-  "/signin/customer",
+  "/customer/signin",
   authenticationCustomerController.handler
 )
+
+UserRoutes.use("/", userBusinessMiddleware)
 
 
 export { UserRoutes }

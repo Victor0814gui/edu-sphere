@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { COLORS } from "@shared/theme";
-import { api } from "@shared/services/api";
+import { api,baseUrl } from "@shared/services/api";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   additionalStyles,
@@ -92,8 +92,10 @@ export const PlaylistLessons = () => {
   useFocusEffect(() => {
     const getDataLessons = async () => {
       try {
-        const lessons = await api.get("lessons") as { data: LessonsTypes[] };
-        setLessonsData(lessons.data);
+        const lessons = await fetch(`${baseUrl}/lessons`)  
+        const lessonsResponse = await lessons.json() as { data: LessonsTypes[] };
+        console.log(lessons.json())
+        setLessonsData(lessonsResponse);
       } catch (err) {
 
       }

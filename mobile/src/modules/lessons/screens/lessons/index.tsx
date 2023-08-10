@@ -40,6 +40,7 @@ export const Lessons = () => {
     <ScreenAnimationWrapper>
       <Container>
         <BackgroundImageContainer>
+          <BackgroundImage resizeMode="cover"  source={{uri: "https://cdn.discordapp.com/attachments/1008571074981658694/1138478042944110624/Cindy.Y_Please_generate_a_real_life_photo_of_Playground_on_a_wh_8184e6bd-a8e7-41d9-bebe-0c2611964bd9.png"}} />
           <Button>
             <ButtonText>Assistir</ButtonText>
           </Button>

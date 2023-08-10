@@ -67,7 +67,6 @@ export class CreateUserAccountRepository
   async update(props: ICreateUserAccountRepository.Update.Params):
     Promise<ICreateUserAccountRepository.Update.Response> {
 
-    console.log(props.permissions)
     const createUserResponse = await database.user.update({
       where: {
         id: props.id,
@@ -86,12 +85,6 @@ export class CreateUserAccountRepository
         permissions: {
           select: {
             name: true,
-          }
-        },
-        role: {
-          select: {
-            name: true,
-            id: true,
           }
         },
       }

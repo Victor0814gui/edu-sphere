@@ -16,7 +16,7 @@ const captureErrorsMiddlewrare = (
 
   if (error instanceof AppErrors) {
     return response.status(error.code).json({
-      status: 'error',
+      status: error.type,
       message: error.message,
     });
   }

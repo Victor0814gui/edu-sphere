@@ -18,8 +18,8 @@ model User {
   createdAt      DateTime
   udpatedAt      DateTime?
   avatarUrl      String
-  roleName String
-  role           Role @relation(fields: [roleName],references: [name])
+  roleName       String
+  role           Role            @relation(fields: [roleName], references: [name])
   permissions    Permission[]
   rooms          Room[]
   matriculations Matriculation[]
@@ -30,7 +30,8 @@ model User {
 
 model Room {
   id          String    @id
-  name        String
+  title       String
+  slug        String
   description String
   type        String
   teacherId   String
@@ -38,17 +39,16 @@ model Room {
   createdAt   DateTime
   updatedAt   DateTime?
   closed      Boolean
-  updateAt    DateTime?
   users       User[]
   lessons     Lesson[]
 }
 
 model Message {
-  id       String @id
-  content  String
-  authorId String
-  roomId   String
-  createAt String
+  id        String   @id
+  content   String
+  authorId  String
+  roomId    String
+  createdAt DateTime
 }
 
 model Lesson {

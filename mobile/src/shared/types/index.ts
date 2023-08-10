@@ -34,9 +34,7 @@ type ContextAuthContextType = {
 
 type UserDrawerType = {
   signin: undefined;
-  signupstepone: undefined;
-  signupsteptwo: undefined;
-  signinstepthree: undefined;
+  createCustomer: undefined;
 }
 
 type ToastContentType = {

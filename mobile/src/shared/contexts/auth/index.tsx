@@ -70,8 +70,13 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       }
 
     } catch (err) {
+      console.log(err)
       if (err instanceof AxiosError) {
         err.response as ErrorMessageType;
+
+        if(err.code === "ERR_BAD_REQUEST"){
+          addToastNotifications(signInNotificationContentTypeUserNotExists);
+        }
 
         if (err.code === "ERR_NETWORK") {
           addToastNotifications(signInNotificationContentTypeNetworkError);
@@ -81,12 +86,9 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
           addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
         }
 
-        if (err.response!.data.message.code === 404) {
-          addToastNotifications(signInNotificationContentTypeUserNotExists);
-        }
       }
 
-      addToastNotifications(signInNotificationContentTypeNetworkError);
+      // addToastNotifications(signInNotificationContentTypeNetworkError);
     } finally {
       setSendResponseToServer(false);
     }

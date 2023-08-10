@@ -7,7 +7,7 @@ export namespace IDeleteRoomUseCase {
 
   export type Response = {
     id: string;
-    name: string;
+    title: string;
     description: string;
     createdAt: Date;
     updatedAt?: Date | null;

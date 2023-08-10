@@ -19,14 +19,15 @@ import BackgroundIlustrationSvg from "../../assets/images/background-ilustration
 import BackgroundIlustrationRightSvg from "../../assets/images/background-ilustration-right.svg";
 import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { fullscreen } from 'react-native-custom-window';
 
 type OnSubmitProps = {
   password: string;
   email: string;
 }
 
-export function AuthenticateUserAccount() {
-  const history = useNavigate()
+export function AuthenticateUserAccount({ navigation }: any) {
   const { signIn } = useAuthContextProvider();
 
   const { control, handleSubmit, formState: { errors }, } = useForm({
@@ -41,15 +42,15 @@ export function AuthenticateUserAccount() {
   }, [])
 
   const handlePress = useCallback(async () => {
-    history('/signupstepone');
+    navigation.navigate('createCustomer');
   }, []);
 
 
-  useEffect(() => {
-    // fullscreen.removeBackButton();
+  useFocusEffect(() => {
+    fullscreen.removeBackButton();
     // fullscreen.full();
     // fullscreen.setSize(1080,800)
-  }, [])
+  })
 
   return (
     <React.Fragment>

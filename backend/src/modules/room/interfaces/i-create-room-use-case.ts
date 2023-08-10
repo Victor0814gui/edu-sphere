@@ -1,19 +1,15 @@
+import { Room } from "@/src/aplication/entities/room";
+
 export namespace ICreateRooomUseCase {
-  export type Params = {
-    name: string;
+  export interface Params {
+    title: string;
     type: string;
     description: string;
     teacherId: string;
     published: boolean;
   }
 
-  export type Response = {
-    id: string;
-    name: string;
-    description: string;
-    createdAt: Date;
-    updatedAt?: Date | null;
-    teacherId: string;
+  export interface Response extends Room {
     studentList?: any[]
   }
 

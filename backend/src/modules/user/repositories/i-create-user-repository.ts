@@ -61,7 +61,6 @@ export namespace ICreateUserAccountRepository {
     }
 
     export interface Response extends User {
-      role: Role;
       permissions: Permissions[]
     }
   }

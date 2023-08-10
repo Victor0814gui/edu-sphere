@@ -6,10 +6,11 @@ namespace IUpdateRoomRepository {
   export namespace Update {
     export interface Params {
       id: string;
-      name: string;
+      title: string;
       description: string;
       teacherId: string
       updatedAt: Date;
+      slug: string;
     }
     export interface Response extends Room { };
   }

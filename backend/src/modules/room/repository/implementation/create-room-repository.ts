@@ -5,7 +5,8 @@ import { PrismaClient } from '@prisma/client'
 
 const database = new PrismaClient();
 
-export class CreateRoomRepository implements ICreateRoomRepository.Implementation {
+export class CreateRoomRepository
+  implements ICreateRoomRepository.Implementation {
 
   async create(props: ICreateRoomRepository.Create.Params):
     Promise<ICreateRoomRepository.Create.Response> {
@@ -15,7 +16,8 @@ export class CreateRoomRepository implements ICreateRoomRepository.Implementatio
         id: props.id,
         closed: props.closed,
         type: props.type,
-        name: props.name,
+        title: props.title,
+        slug: props.slug,
         published: props.published,
         teacherId: props.teacherId,
         description: props.description,
@@ -26,13 +28,13 @@ export class CreateRoomRepository implements ICreateRoomRepository.Implementatio
     return createRoomResponse;
   }
 
-  async findByCode(props: ICreateRoomRepository.FindByCode.Params):
-    Promise<ICreateRoomRepository.FindByCode.Response | null> {
+  async findByTitle(props: ICreateRoomRepository.FindByTitle.Params):
+    Promise<ICreateRoomRepository.FindByTitle.Response | null> {
 
     const listManyRoomsResponse = await database.room.findFirst({
       where: {
-        id: props.code,
-      }
+        slug: props.slug
+      },
     });
 
     return listManyRoomsResponse;

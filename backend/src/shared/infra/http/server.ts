@@ -4,11 +4,10 @@ import express from "express"
 import 'express-async-errors';
 import { captureErrorsMiddlewrare } from "../middlewares/app-error-middlewrare";
 import { routes } from "./routes";
-import "@user/infra/injection"
 import http from "http";
 
 const app = express();
-const serverHttp = http.createServer(app);
+const httpServer = http.createServer(app);
 
 
 app.use(express.json());
@@ -23,5 +22,5 @@ app.use((req, res, next) => {
 app.use(captureErrorsMiddlewrare);
 
 export {
-  serverHttp
+  httpServer
 }

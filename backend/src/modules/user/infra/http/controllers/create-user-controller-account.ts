@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import { container } from "tsyringe"
 import { CreateUserAccountUseCase } from "@/src/modules/user/use-cases/create-customer-account-use-case";

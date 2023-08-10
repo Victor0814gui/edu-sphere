@@ -1,21 +1,21 @@
 import { PrismaClient } from '@prisma/client'
 import { IUpdateRoomRepository } from "../i-update-room-respository";
 
+const database = new PrismaClient();
 
 
 export class UpdateRoomRepository implements IUpdateRoomRepository.Implementation {
-  constructor(
-    private prisma: PrismaClient
-  ) { }
+
   async update(props: IUpdateRoomRepository.Update.Params):
     Promise<IUpdateRoomRepository.Update.Response> {
-    const updateRoomResponse = await this.prisma.room.update({
+    const updateRoomResponse = await database.room.update({
       where: {
         id: props.id
       },
       data: {
-        updateAt: new Date(),
-        name: props.name,
+        slug: props.slug,
+        updatedAt: new Date(),
+        title: props.title,
         description: props.description,
       }
     })
@@ -26,7 +26,7 @@ export class UpdateRoomRepository implements IUpdateRoomRepository.Implementatio
   async findByCode(props: IUpdateRoomRepository.FindByCode.Params):
     Promise<IUpdateRoomRepository.FindByCode.Response | null> {
 
-    const listUniqueRoomResponse = await this.prisma.room.findFirst({
+    const listUniqueRoomResponse = await database.room.findFirst({
       where: {
         id: props.code,
       },

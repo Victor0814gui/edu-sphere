@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
-import { CreateRoomUseCase } from "../../use-cases/create-room-use-case";
-import { container, inject, injectable } from "tsyringe";
-import { ICreateRooomUseCase } from "../../interfaces/i-create-room-use-case";
+import { CreateRoomUseCase } from "@room/use-cases/create-room-use-case";
+import { container, injectable } from "tsyringe";
 
 
 
 
 interface ICreateRoomContollerRequest {
-  name: string;
+  title: string;
   description: string;
   type: string;
   teacherId: string
@@ -24,7 +23,7 @@ export class CreateRoomContoller {
 
 
     const createRoomUseCaseInstanceResponse = await createRoomUseCaseInstance.execute({
-      name: body.name,
+      title: body.title,
       description: body.description,
       type: body.type,
       teacherId: body.teacherId,

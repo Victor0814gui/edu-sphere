@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteRoomsUseCase } from "../../use-cases/delete-room-use-case";
+import { DeleteRoomsUseCase } from "@room/use-cases/delete-room-use-case";
 import { container, injectable } from "tsyringe";
 
 

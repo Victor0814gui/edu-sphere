@@ -79,8 +79,9 @@ export class CreateUserAccountUseCase {
     const genetateTokenProvider = this.createSessionTokenSecurity.execute({
       userId: updateUserAddRoleAndPermissionsResponse.id,
       permissions: permisisons,
-      role: updateUserAddRoleAndPermissionsResponse.role.name,
+      role: updateUserAddRoleAndPermissionsResponse.roleName,
     });
+
 
     const refreshToken = await generateRefreshToken.execute(updateUserAddRoleAndPermissionsResponse.id);
 

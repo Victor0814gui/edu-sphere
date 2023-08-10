@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { UpdateRoomUseCase } from "../../use-cases/udpate-room-use-case";
 import { container, injectable } from "tsyringe";
+import { UpdateRoomUseCase } from "@/src/modules/room/use-cases/update-room-use-case";
 
 
 
 interface IUpdateRoomController {
   code: string;
-  name: string;
+  title: string;
   type: string;
   description: string;
   teacherId: string;

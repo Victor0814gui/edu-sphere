@@ -13,6 +13,8 @@ import { IListCustomersRepository } from "../../repositories/i-list-customers-re
 import { CreateSessionTokenSecurity, ICreateSessionTokenSecurity } from "../security/create-session-token-security";
 import { IUpdateRoleRepository } from "../../repositories/i-update-role-repository";
 import { UpdateRoleRepository } from "../../repositories/implementation/update-role-repository";
+import { AuthenticationCustomerRepository } from "../../repositories/implementation/authentication-customer-repository";
+import { IAuthenticationCustomerRepository } from "../../repositories/i-authentication-customer-repository";
 
 
 container.registerSingleton<ICreateUserAccountRepository.Implementation>(
@@ -54,3 +56,8 @@ container.registerSingleton<IUpdateRoleRepository.Implementation>(
   "UpdateRoleRepository",
   UpdateRoleRepository,
 );
+
+container.registerSingleton<IAuthenticationCustomerRepository.Implementation>(
+  "AuthenticationCustomerRepository",
+  AuthenticationCustomerRepository
+)

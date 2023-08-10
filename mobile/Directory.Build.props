@@ -4,6 +4,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <!-- Outras configurações comuns aqui -->
-    <WinUIVersion>2.7.0</WinUIVersion>
+    <!-- <WinUIVersion>2.7.0</WinUIVersion> -->
   </PropertyGroup>
 </Project>

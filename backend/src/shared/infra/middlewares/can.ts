@@ -3,11 +3,11 @@ import { Request, Response, NextFunction } from "express";
 function can(requiredPermissions: string) {
   return async (request: Request, response: Response, next: NextFunction) => {
     let permissionsArray: string[] = [];
-    const { userId, roles, permissions } = request;
+    const { userId, role, permissions } = request;
 
     permissions.find(permission => permissionsArray.push(permission))
 
-    if (!userId && !roles && !permissions) {
+    if (!userId && !role && !permissions) {
       return response.status(400).json({
         message: "User does not exists",
         type: "error"

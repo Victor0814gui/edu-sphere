@@ -17,8 +17,18 @@ export class CreateRoomUseCase
   async execute(props: ICreateRooomUseCase.Params):
     Promise<ICreateRooomUseCase.Response> {
 
-    if (!props.teacherId && !props.description && !props.type && !props.name) {
+    if (!props.teacherId && !props.description && !props.type && !props.title) {
       throw new RoomBusinessException("data is invalid", 403)
+    }
+
+    const slug = props.title.replace(/ /g, "-").toLowerCase();
+
+    const verifyRoomAlareadyExists = await this.createRoomRepository.findByTitle({
+      slug: slug,
+    })
+
+    if (!!verifyRoomAlareadyExists?.id) {
+      throw new RoomBusinessException("the room already exists", 403);
     }
 
     const createRoomResponse = await this.createRoomRepository.create({
@@ -27,7 +37,8 @@ export class CreateRoomUseCase
       closed: false,
       published: props.published,
       description: props.description,
-      name: props.name,
+      title: props.title,
+      slug: slug,
       teacherId: props.teacherId,
       type: props.type,
     })

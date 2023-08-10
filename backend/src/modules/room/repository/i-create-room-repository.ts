@@ -1,4 +1,4 @@
-import { Room } from "../../../aplication/entities/room"
+import { Room } from "@aplication/entities/room"
 
 
 
@@ -7,26 +7,27 @@ namespace ICreateRoomRepository {
     export interface Params {
       id: string;
       closed: boolean;
-      name: string;
+      title: string;
       type: string;
       published: boolean;
       createdAt: Date;
       teacherId: string
       description: string;
+      slug: string;
     }
     export interface Response extends Room { };
   }
 
-  export namespace FindByCode {
+  export namespace FindByTitle {
     export interface Params {
-      code: string;
+      slug: string;
     }
     export interface Response extends Room { };
   }
 
   export interface Implementation {
     create: (props: ICreateRoomRepository.Create.Params) => Promise<ICreateRoomRepository.Create.Response>;
-    findByCode: (props: ICreateRoomRepository.FindByCode.Params) => Promise<ICreateRoomRepository.FindByCode.Response | null>;
+    findByTitle: (props: ICreateRoomRepository.FindByTitle.Params) => Promise<ICreateRoomRepository.FindByTitle.Response | null>;
   }
 }
 
