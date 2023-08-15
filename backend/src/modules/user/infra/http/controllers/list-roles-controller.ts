@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { container } from "tsyringe"
-import { ListRoleUseCase } from "@modules/user/use-cases/list-roles-use-cases";
+import { ListRoleUseCase } from "@/src/modules/user/use-cases/list-roles-use-case";
 
 
 

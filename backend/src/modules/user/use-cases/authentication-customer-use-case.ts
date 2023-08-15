@@ -14,7 +14,8 @@ export class AuthenticationCustomerUserCase
     @inject("CreateSessionTokenSecurity")
     private createSessionTokenSecurity: CreateSessionTokenSecurity,
   ) { }
-  async execute(props: IAuthenticationCustomerUserCase.Params):
+  
+  public async execute(props: IAuthenticationCustomerUserCase.Params):
     Promise<IAuthenticationCustomerUserCase.Response> {
     const generateRefreshToken = container.resolve(GenerateRefreshToken);
 

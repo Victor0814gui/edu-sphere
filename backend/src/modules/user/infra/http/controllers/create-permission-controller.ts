@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { container } from "tsyringe"
-import { CreatePermissionUseCase } from "../../../use-cases/create-permission-use-cases"
+import { CreatePermissionUseCase } from "../../../use-cases/create-permission-use-case"
 import { Permission } from "@/src/aplication/entities/permission";
 
 

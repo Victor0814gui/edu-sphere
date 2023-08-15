@@ -16,3 +16,5 @@
 - [ ] - Notificações Personalizadas: Permitir que os usuários personalizem suas preferências de notificação, recebendo alertas por e-mail ou notificações no aplicativo para eventos específicos, como novas mensagens no chat ou atualizações nas aulas.
 
 - [ ] - Gravação de Aulas: Oferecer a opção de gravar as aulas para que os alunos possam revisitar o conteúdo posteriormente ou para fornecer acesso a alunos ausentes.
+
+- [ ] - Meios de pagamentos, para permitir o uso de features do sistema como acesso premium a algumas salas

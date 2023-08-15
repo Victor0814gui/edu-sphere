@@ -12,6 +12,7 @@ export class UpdateRoleUseCase
     @inject("UpdateRoleRepository")
     private updateRoleRepository: IUpdateRoleRepository.Implementation,
   ) { }
+  
   async execute(props: IUpdateRoleUseCase.Params):
     Promise<IUpdateRoleUseCase.Response | null> {
     const verifyRoleAlreayExists = await this.updateRoleRepository.findUnique({

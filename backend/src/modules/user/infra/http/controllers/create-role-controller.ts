@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { container } from "tsyringe"
 import { Role } from "@/src/aplication/entities/role";
-import { CreateRoleUseCase } from "@modules/user/use-cases/create-role-use-cases";
+import { CreateRoleUseCase } from "@/src/modules/user/use-cases/create-role-use-case";
 
 
 namespace ICreateRoleController {

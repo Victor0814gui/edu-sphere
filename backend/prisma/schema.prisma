@@ -24,6 +24,10 @@ model User {
   rooms          Room[]
   matriculations Matriculation[]
   refreshTokens  RefreshToken[]
+  penaltys       Penalty[]
+  subscriptionId String?
+  subscription   Subscription?   @relation(fields: [subscriptionId], references: [id])
+  transaction    Transaction[]
 
   @@index([id])
 }
@@ -57,7 +61,7 @@ model Lesson {
   description String
   roomId      String     @unique
   room        Room       @relation(fields: [roomId], references: [id])
-  createdAt   String
+  createdAt   DateTime
   start       DateTime
   end         DateTime
   materials   Material[]
@@ -94,14 +98,15 @@ model Role {
 }
 
 model Permission {
-  id          String    @id
-  name        String    @unique
-  level       Int       @unique
-  createdAt   DateTime
-  description String
-  updatedAt   DateTime?
-  roles       Role[]
-  users       User[]
+  id            String         @id
+  name          String         @unique
+  level         Int            @unique
+  createdAt     DateTime
+  description   String
+  updatedAt     DateTime?
+  roles         Role[]
+  users         User[]
+  subscriptions Subscription[]
 }
 
 model RefreshToken {
@@ -110,4 +115,49 @@ model RefreshToken {
   state        String
   expiryDate   DateTime
   users        User[]
+}
+
+model Subscription {
+  id             String        @id
+  userId         Int // Referência ao usuário associado à assinatura
+  type           String // Tipo de assinatura (básica, premium, etc.)
+  status         String // Status da assinatura (ativo, cancelado, etc.)
+  startDate      DateTime // Data de início da assinatura
+  endDate        DateTime // Data de término ou cancelamento da assinatura
+  paymentMethod  String // Método de pagamento (cartão de crédito, PayPal, etc.)
+  price          Float // Valor da assinatura
+  billingCycle   String // Ciclo de cobrança (mensal, anual, etc.)
+  nextBilling    DateTime // Próxima data de cobrança
+  autoRenew      Boolean // Renovação automática
+  permissions    Permission[] // Permissões e acessos específicos (como um JSON)
+  paymentDetails String // Detalhes do pagamento (últimos dígitos do cartão, etc.)
+  createdAt      DateTime      @default(now()) // Data de criação da assinatura
+  updatedAt      DateTime      @updatedAt // Data de atualização da assinatura
+  transactions   Transaction[]
+  users          User[]
+}
+
+model Transaction {
+  id             String   @id
+  userId         String // Referência ao usuário associado à transação
+  paymentIntent  String? // ID do pagamento no Stripe (para compras únicas)
+  subscriptionId String? // Referência à assinatura (para compras recorrentes)
+  amount         Int // Valor da transação
+  currency       String // Moeda da transação (por exemplo, "USD", "EUR")
+  status         String // Status da transação (pago, pendente, falha, etc.)
+  createdAt      DateTime @default(now())
+
+  // Relação com User (opcional, dependendo das suas necessidades)
+  user         User          @relation(fields: [userId], references: [id])
+  // Relação com Subscription (opcional, dependendo das suas necessidades)
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+}
+
+model Penalty {
+  id    String @id
+  users User[] // Referência ao usuário penalizado
+
+  reason      String // Motivo da penalização
+  description String? // Descrição detalhada da penalização (opcional)
+  createdAt   DateTime @default(now())
 }

@@ -6,26 +6,14 @@ import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-repository";
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
+import { ICreateUserAccountUseCase } from "../interfaces/i-create-customer-account-use-case";
 
-namespace ICreateUserAccountUseCase {
-  export interface Params {
-    role: string;
-    name: string;
-    email: string;
-    password: string;
-    avatarUrl: string;
-  }
-
-  export interface Response extends User {
-    token: string;
-    refreshToken: string;
-    permissions: string[];
-  }
-}
+ 
 
 
 @injectable()
-export class CreateUserAccountUseCase {
+export class CreateUserAccountUseCase
+  implements ICreateUserAccountUseCase.Implementation {
   constructor(
     @inject("UserValidatorParams")
     private userValidatorParams: UserValidatorParams,

@@ -2,18 +2,14 @@ import { inject, injectable } from "tsyringe"
 import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
 import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-repository";
-
-namespace IDeleteUserAccountUseCase {
-  export interface Params {
-    email: string;
-  }
-
-  export interface Response { }
-}
+import { IDeleteUserAccountUseCase } from "../interfaces/i-delete-customer-account-use-case";
+ 
 
 
 @injectable()
-export class DeleteUserAccountUseCase {
+export class DeleteUserAccountUseCase
+  implements IDeleteUserAccountUseCase.Implementation {
+
   constructor(
     @inject("UserValidatorParams")
     private userValidatorParams: UserValidatorParams,
@@ -36,6 +32,9 @@ export class DeleteUserAccountUseCase {
       id: verifyUserAlreayExists.id,
     })
 
-    return {};
+    return {
+      message: "customer deleted successfully",
+      code: 200,
+    };
   }
 }

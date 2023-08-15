@@ -12,6 +12,11 @@ Cadastro de Usuários: Neste módulo, você implementaria a funcionalidade que p
 
 - [ ] - **Gerenciamento de Contas:** Neste módulo, você implementaria as funcionalidades relacionadas ao gerenciamento de contas de usuário. Isso inclui a possibilidade de alterar a senha, excluir a conta e outras ações relacionadas à conta do usuário.
 
+- [ ] - **Gerenciamento de Assinaturas:** Nesssa funcionalidade o cliente podera gerenciar as assinaturas e o hitorico de assinaturas.
+
+- [ ] - **Hotorico de Penalidades:** Nesta funcionalidade o usuario poderava ver as penalidades que sofreu devido as suas ações burlando o sistema ou aplicadas pelos professores ou diretores da organização.
+
+
 - [ ] - **Papéis de Usuário:** Você implementaria a lógica para atribuir papéis específicos a cada usuário, como "Professor" ou "Aluno", permitindo que a plataforma conceda as permissões adequadas com base no papel de cada usuário.
 
 - [ ] - **Privacidade e Segurança:** Neste módulo, você garantiria a privacidade e segurança dos dados dos usuários, utilizando práticas de criptografia para armazenar senhas de forma segura e implementando mecanismos para proteger os dados pessoais dos usuários contra acesso não autorizado.
