@@ -10,10 +10,10 @@ export namespace IListCustomersRepository {
   export namespace FindMany {
     export interface Params { }
 
-    export interface Response extends Array<Customer & IPermissions> { }
+    export type Response = Promise<Array<Customer & IPermissions> | null>;
   }
 
   export interface Implementation {
-    findMany(props: FindMany.Params): Promise<FindMany.Response | null>;
+    findMany: (props: FindMany.Params) => IListCustomersRepository.FindMany.Response;
   }
 }

@@ -1,14 +1,12 @@
 import crypto from "crypto";
 import { container, inject, injectable } from "tsyringe"
-import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
-import { User } from "@aplication/entities/user";
+import { UserBusinessException } from "@/src/modules/user/infra/exception/business-exception";
 import { UserValidatorParams } from "../infra/validators/create";
 import { ICreateUserAccountRepository } from "../repositories/i-create-user-repository";
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
 import { ICreateUserAccountUseCase } from "../interfaces/i-create-customer-account-use-case";
 
- 
 
 
 @injectable()

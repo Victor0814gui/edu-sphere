@@ -26,7 +26,7 @@ model User {
   refreshTokens  RefreshToken[]
   penaltys       Penalty[]
   subscriptionId String?
-  subscription   Subscription?   @relation(fields: [subscriptionId], references: [id])
+  subscription   Product?        @relation(fields: [subscriptionId], references: [id])
   transaction    Transaction[]
 
   @@index([id])
@@ -98,15 +98,15 @@ model Role {
 }
 
 model Permission {
-  id            String         @id
-  name          String         @unique
-  level         Int            @unique
+  id            String    @id
+  name          String    @unique
+  level         Int       @unique
   createdAt     DateTime
   description   String
   updatedAt     DateTime?
   roles         Role[]
   users         User[]
-  subscriptions Subscription[]
+  subscriptions Product[]
 }
 
 model RefreshToken {
@@ -117,9 +117,10 @@ model RefreshToken {
   users        User[]
 }
 
-model Subscription {
+model Product {
   id             String        @id
-  userId         Int // Referência ao usuário associado à assinatura
+  name           String        @unique
+  userId         String // Referência ao usuário associado à assinatura
   type           String // Tipo de assinatura (básica, premium, etc.)
   status         String // Status da assinatura (ativo, cancelado, etc.)
   startDate      DateTime // Data de início da assinatura
@@ -132,7 +133,7 @@ model Subscription {
   permissions    Permission[] // Permissões e acessos específicos (como um JSON)
   paymentDetails String // Detalhes do pagamento (últimos dígitos do cartão, etc.)
   createdAt      DateTime      @default(now()) // Data de criação da assinatura
-  updatedAt      DateTime      @updatedAt // Data de atualização da assinatura
+  updatedAt      DateTime?
   transactions   Transaction[]
   users          User[]
 }
@@ -148,9 +149,9 @@ model Transaction {
   createdAt      DateTime @default(now())
 
   // Relação com User (opcional, dependendo das suas necessidades)
-  user         User          @relation(fields: [userId], references: [id])
+  user         User     @relation(fields: [userId], references: [id])
   // Relação com Subscription (opcional, dependendo das suas necessidades)
-  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  subscription Product? @relation(fields: [subscriptionId], references: [id])
 }
 
 model Penalty {

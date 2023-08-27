@@ -7,9 +7,9 @@ import { Customer } from "@/src/aplication/entities/user";
 export namespace IListCustomersUseCase {
   export interface Params { }
 
-  export interface Response extends Array<Customer> { }
+  export type Response = Promise<Array<Customer> | null>;
 
   export interface Implementation {
-    execute: (props: IListCustomersUseCase.Params) => Promise<IListCustomersUseCase.Response | null>;
+    execute: (props: IListCustomersUseCase.Params) => IListCustomersUseCase.Response;
   }
 }

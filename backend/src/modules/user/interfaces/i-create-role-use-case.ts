@@ -10,9 +10,9 @@ export namespace ICreateRoleUseCase {
     level: number;
   }
 
-  export interface Response extends Role { }
+  export type Response = Promise<Role>;
 
   export interface Implementation {
-    execute: (props: ICreateRoleUseCase.Params) => Promise<ICreateRoleUseCase.Response>;
+    execute: (props: ICreateRoleUseCase.Params) => ICreateRoleUseCase.Response;
   }
 }

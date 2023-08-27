@@ -1,4 +1,4 @@
-class BusinessException {
+class UserBusinessException {
   public readonly message: string;
   public readonly code: number;
   public readonly type?: string;
@@ -13,4 +13,5 @@ class BusinessException {
   }
 }
 
-export default BusinessException;
+export default UserBusinessException;
+export { UserBusinessException }

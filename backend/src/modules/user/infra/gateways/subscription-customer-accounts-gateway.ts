@@ -9,8 +9,9 @@ import { ISubscriptionCustomerAccountsGateway } from "./contracts/i-subscription
 
 export class SubscriptionCustomerAccountsGateway
   implements ISubscriptionCustomerAccountsGateway.Implementation {
+
   public async execute(props: ISubscriptionCustomerAccountsGateway.Params):
-    Promise<ISubscriptionCustomerAccountsGateway.Response>{
+    ISubscriptionCustomerAccountsGateway.Response{
 
     const session = await stripe.checkout.sessions.create({
       line_items: [...props],
@@ -19,11 +20,11 @@ export class SubscriptionCustomerAccountsGateway
       cancel_url: process.env.DOMAIN_SUBSCRIPTION_URL as string,
     });
 
-    const response = {
+    const subscriptionCreatedResponse = {
       code: 303,
       url: session.url
     };
 
-    return response;
+    return subscriptionCreatedResponse;
   }
 }

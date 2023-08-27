@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { container } from "tsyringe";
 import { is } from "../middlewares/is";
 
 import { CreateUserAccountController } from "../controllers/create-user-controller-account"
@@ -11,6 +12,7 @@ import { ListCustomersController } from "../controllers/list-customers-controlle
 import { UpdateRoleController } from "../controllers/update-role-controller";
 import { AuthenticationCustomerController } from "../controllers/authenticate-user-account";
 import { userBusinessMiddleware } from "../middlewares/business-middleware";
+import { CreateProductController } from "../controllers/create-product-controller";
 
 
 const createUserAccountController = new CreateUserAccountController();
@@ -22,6 +24,7 @@ const deleteUserAccountController = new DeleteUserAccountController();
 const listCustomersController = new ListCustomersController();
 const updateRoleController = new UpdateRoleController();
 const authenticationCustomerController = new AuthenticationCustomerController();
+const createProductController = container.resolve(CreateProductController);
 const UserRoutes = Router();
 
 
@@ -68,9 +71,15 @@ UserRoutes.put(
 UserRoutes.post(
   "/customer/signin",
   authenticationCustomerController.handler
-)
+);
 
-UserRoutes.use("/", userBusinessMiddleware)
+UserRoutes.post(
+  "/subscription/create",
+  createProductController.handler
+);
 
 
-export { UserRoutes }
+UserRoutes.use("/", userBusinessMiddleware);
+
+
+export { UserRoutes };

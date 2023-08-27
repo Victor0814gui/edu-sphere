@@ -11,10 +11,10 @@ export class ListCustomersUseCase
     @inject("ListCustomersRepository")
     private listCustomersRepository: IListCustomersRepository.Implementation,
   ) { }
-  async execute(props: IListCustomersUseCase.Params):
-    Promise<IListCustomersUseCase.Response | null> {
+  async execute(props: IListCustomersUseCase.Params): IListCustomersUseCase.Response {
 
-    const createCustomersServiceResponse = await this.listCustomersRepository.findMany({})
-    return createCustomersServiceResponse;
+    const listCustomersRepositoryResponse = await this.listCustomersRepository.findMany({})
+
+    return listCustomersRepositoryResponse;
   }
 } 

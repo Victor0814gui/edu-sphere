@@ -1,9 +1,8 @@
-
+import crypto from "crypto";
 import { injectable, inject } from "tsyringe";
 import { ICreateRoleUseCase } from "../interfaces/i-create-role-use-case";
 import { ICreateRoleRepository } from "../repositories/i-create-role-repository";
 import UserBusinessException from "@/src/modules/user/infra/exception/business-exception";
-import crypto from "crypto";
 
 
 
@@ -14,12 +13,11 @@ export class CreateRoleUseCase
     @inject("CreateRoleRepository")
     private createRoleRepository: ICreateRoleRepository.Implementation,
   ) { }
-  async execute(props: ICreateRoleUseCase.Params):
-    Promise<ICreateRoleUseCase.Response> {
+  async execute(props: ICreateRoleUseCase.Params): ICreateRoleUseCase.Response {
 
     const verifyRoleAlreayExists = await this.createRoleRepository.findUnique({
       name: props.name,
-    })
+    });
 
     if (verifyRoleAlreayExists?.id) {
       throw new UserBusinessException("role already exists", 409)
@@ -31,7 +29,7 @@ export class CreateRoleUseCase
       level: props.level,
       createdAt: new Date(),
       id: crypto.randomUUID(),
-    })
+    });
 
     return createRoleServiceResponse;
   }

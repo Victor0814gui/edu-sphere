@@ -7,7 +7,7 @@ export class ListCustomersRepository
   implements IListCustomersRepository.Implementation {
 
   async findMany(props: IListCustomersRepository.FindMany.Params):
-    Promise<IListCustomersRepository.FindMany.Response | null> {
+    IListCustomersRepository.FindMany.Response {
 
     const findUniqueUserResponse = await database.user.findMany({
       include: {

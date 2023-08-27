@@ -9,16 +9,16 @@ interface IProduct {
   quantity: number;
 }
 
-export namespace ISubscriptionCustomerAccountsGateway {
+export namespace ISubscriptionCustomerAccountGateway {
   export interface Params extends Array<IProduct> {}
 
-  export type Response = {
+  export type Response = Promise<{
     code: number;
     url: string | null;
-  };
+  }>;
 
   export interface Implementation {
-    execute: (props: ISubscriptionCustomerAccountsGateway.Params) => 
-      Promise<ISubscriptionCustomerAccountsGateway.Response>;
+    execute: (props: ISubscriptionCustomerAccountGateway.Params) 
+    => ISubscriptionCustomerAccountGateway.Response;
   }
 }
