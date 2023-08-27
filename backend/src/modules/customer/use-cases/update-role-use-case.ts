@@ -1,0 +1,45 @@
+import { injectable, inject } from "tsyringe";
+import { IUpdateRoleUseCase } from "../interfaces/i-update-role-use-case";
+import { IUpdateRoleRepository } from "../repositories/i-update-role-repository";
+import UserBusinessException from "@customer/";
+
+
+
+@injectable()
+export class UpdateRoleUseCase
+  implements IUpdateRoleUseCase.Implementation {
+  constructor(
+    @inject("UpdateRoleRepository")
+    private updateRoleRepository: IUpdateRoleRepository.Implementation,
+  ) { }
+
+  async execute(props: IUpdateRoleUseCase.Params):
+    Promise<IUpdateRoleUseCase.Response | null> {
+    const verifyRoleAlreayExists = await this.updateRoleRepository.findUnique({
+      name: props.name
+    })
+
+    if (!verifyRoleAlreayExists?.id) {
+      throw new UserBusinessException("role does not exists", 404);
+    }
+
+    const permissions = props.permissions.map((permission: string) => ({ name: permission }))
+    console.log({ permissions })
+
+    const updateRoleServiceResponse = await this.updateRoleRepository.update({
+      ...props,
+      updatedAt: new Date(),
+      permissions,
+    })
+
+    const permissionsServiceResponse = updateRoleServiceResponse
+      .permissions
+      .map((permission) => permission.name)
+
+
+    return {
+      ...updateRoleServiceResponse,
+      permissions: permissionsServiceResponse
+    };
+  }
+} 

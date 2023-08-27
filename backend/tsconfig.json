@@ -111,10 +111,10 @@
     "baseUrl":".",
     "paths":{
         "@/*":["./*"],
-        "@modules/*":["./src/modules/*"],
         "@shared/*":["./src/shared/*"],
+        "@modules/*":["./src/modules/*"],
         "@aplication/*":["./src/aplication/*"],
-        "@user/*":["./src/modules/user/*"],
+        "@customer/*":["./src/modules/customer/*"],
         "@room/*":["./src/modules/room/*"]
       }
   },

@@ -1,2 +1,2 @@
-import "@user/infra/injection"
+import "@customer/infra/injection"
 import "@room/infra/injection"
