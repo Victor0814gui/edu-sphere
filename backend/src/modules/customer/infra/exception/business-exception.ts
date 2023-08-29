@@ -1,7 +1,8 @@
-class UserBusinessException {
+class CustomerBusinessException {
   public readonly message: string;
   public readonly code: number;
   public readonly type?: string;
+
   constructor(
     message: string,
     statusCode = 400,
@@ -11,7 +12,8 @@ class UserBusinessException {
     this.code = statusCode;
     this.type = type;
   }
+
 }
 
-export default UserBusinessException;
-export { UserBusinessException }
+export default CustomerBusinessException;
+export { CustomerBusinessException };

@@ -25,9 +25,10 @@ model User {
   matriculations Matriculation[]
   refreshTokens  RefreshToken[]
   penaltys       Penalty[]
-  subscriptionId String?
-  subscription   Product?        @relation(fields: [subscriptionId], references: [id])
+  subscriptionId String
+  subscription   Product         @relation(fields: [subscriptionId], references: [id])
   transaction    Transaction[]
+  status         String
 
   @@index([id])
 }

@@ -6,34 +6,6 @@ const database = new PrismaClient();
 export class CreateCustomerAccountRepository
   implements ICreateCustomerAccountRepository.Implementation {
 
-  async findPermissions(props: ICreateCustomerAccountRepository.FindPermissions.Params):
-    Promise<ICreateCustomerAccountRepository.FindPermissions.Response | null> {
-
-    const findUniqueCustomerResponse = await database.permission.findMany();
-    return findUniqueCustomerResponse;
-  }
-
-  async findUniqueRole(props: ICreateCustomerAccountRepository.FindUniqueRole.Params):
-    Promise<ICreateCustomerAccountRepository.FindUniqueRole.Response | null> {
-
-    const findUniqueCustomerResponse = await database.role.findFirst({
-      where: {
-        name: props.name,
-      },
-      select: {
-        id: true,
-        name: true,
-        permissions: {
-          select: {
-            name: true,
-          }
-        }
-      }
-    });
-
-    return findUniqueCustomerResponse;
-  }
-
   async findUnique(props: ICreateCustomerAccountRepository.FindUnique.Params):
     Promise<ICreateCustomerAccountRepository.FindUnique.Response | null> {
 
@@ -47,10 +19,12 @@ export class CreateCustomerAccountRepository
   }
 
   async create(props: ICreateCustomerAccountRepository.Create.Params):
-    Promise<ICreateCustomerAccountRepository.Create.Response> {
+    ICreateCustomerAccountRepository.Create.Response {
 
     const createCustomerResponse = await database.user.create({
       data: {
+        status: props.status,
+        subscriptionId: props.subscriptionId,
         roleName: props.role,
         id: props.id,
         password: props.password,
@@ -91,17 +65,5 @@ export class CreateCustomerAccountRepository
     });
 
     return createCustomerResponse!;
-  }
-
-  async delete(props: ICreateCustomerAccountRepository.Delete.Params):
-    Promise<ICreateCustomerAccountRepository.Delete.Response> {
-
-    await database.user.delete({
-      where: {
-        id: props.id,
-      },
-    });
-
-    return {};
   }
 }

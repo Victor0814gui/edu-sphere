@@ -14,6 +14,7 @@ export interface User {
   updatedAt?: Date | null;
   avatarUrl: string;
   roleName: string;
+  subscriptionId: string | null;
 }
 
 

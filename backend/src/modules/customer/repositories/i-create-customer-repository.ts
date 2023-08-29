@@ -1,36 +1,12 @@
-import { Permission } from "../../../aplication/entities/permission";
-import { Customer } from "../../../aplication/entities/user";
+import { Permission } from "@aplication/entities/permission";
+import { Customer } from "@aplication/entities/user";
 
-interface Role {
-  name: string;
-  id: string;
-}
 
 interface Permissions {
   name: string;
 }
 
-
 export namespace ICreateCustomerAccountRepository {
-
-  export namespace FindUniqueRole {
-    export interface Params {
-      name: string;
-    }
-
-    export interface Response {
-      permissions: Permissions[];
-      name: string;
-    }
-  }
-
-  export namespace FindPermissions {
-    export interface Params {
-    }
-
-    export interface Response extends Array<Permission> { }
-  }
-
   export namespace FindUnique {
     export interface Params {
       email: string;
@@ -48,9 +24,11 @@ export namespace ICreateCustomerAccountRepository {
       password: string
       avatarUrl: string;
       createdAt: Date;
+      status: string;
+      subscriptionId: string;
     }
 
-    export interface Response extends Customer { }
+    export type Response = Promise<Customer>;
   }
 
   export namespace Update {
@@ -62,23 +40,12 @@ export namespace ICreateCustomerAccountRepository {
 
     export type Response = Customer & {
       permissions: Permissions[]
-    } | null;
-  }
-
-  export namespace Delete {
-    export interface Params {
-      id: string;
-    }
-
-    export interface Response { }
+    };
   }
 
   export interface Implementation {
-    findPermissions: (props: FindPermissions.Params) => Promise<FindPermissions.Response | null>
-    findUniqueRole: (props: FindUniqueRole.Params) => Promise<FindUniqueRole.Response | null>
     findUnique: (props: FindUnique.Params) => Promise<FindUnique.Response | null>
-    create: (props: Create.Params) => Promise<Create.Response>
+    create: (props: Create.Params) => Create.Response
     update: (props: Update.Params) => Promise<Update.Response>
-    delete: (props: Delete.Params) => Promise<Delete.Response>
   }
 }

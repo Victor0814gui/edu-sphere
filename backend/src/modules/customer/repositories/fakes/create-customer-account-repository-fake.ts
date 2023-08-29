@@ -1,9 +1,12 @@
+import { Customer } from "@/src/aplication/entities/user";
 import { ICreateCustomerAccountRepository } from "../i-create-customer-repository";
 
 
 
 export class CreateCustomerAccountRepositoryFake
   implements ICreateCustomerAccountRepository.Implementation {
+  private database = {} as Customer;
+
   async update(props: ICreateCustomerAccountRepository.Update.Params):
     Promise<ICreateCustomerAccountRepository.Update.Response> {
     const response = {} as Promise<ICreateCustomerAccountRepository.Update.Response>
@@ -35,8 +38,20 @@ export class CreateCustomerAccountRepositoryFake
   };
 
   create(props: ICreateCustomerAccountRepository.Create.Params):
-    Promise<ICreateCustomerAccountRepository.Create.Response> {
-    const response = {} as Promise<ICreateCustomerAccountRepository.Create.Response>;
-    return response;
+    ICreateCustomerAccountRepository.Create.Response {
+
+    const result: ICreateCustomerAccountRepository.Create.Response =
+      new Promise((resolve, reject) => {
+        this.database = {
+          ...props,
+          roleName: props.role,
+          createdAt: new Date(),
+          updatedAt: null,
+
+        }
+        resolve(this.database);
+      });
+
+    return result;
   };
 }

@@ -1,21 +1,19 @@
 import { Customer } from "@aplication/entities/user";
 
+
 export namespace ICreateCustomerAccountUseCase {
-  export interface Params {
+  export type Params = {
     role: string;
     name: string;
     email: string;
     password: string;
     avatarUrl: string;
+    subscriptionId: string;
   }
 
-  export interface Response extends Customer {
-    token: string;
-    refreshToken: string;
-    permissions: string[];
-  }
+  export type Response = Promise<Customer>
 
   export interface Implementation {
-    execute: (props: ICreateCustomerAccountUseCase.Params) => Promise<ICreateCustomerAccountUseCase.Response>;
+    execute: (props: ICreateCustomerAccountUseCase.Params) => ICreateCustomerAccountUseCase.Response;
   }
 }

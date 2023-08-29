@@ -10,9 +10,9 @@ interface Permission {
 }
 
 export namespace ICreateProductRepository {
-  
+
   export namespace FindByName {
-    export type Params  = {
+    export type Params = {
       name: string;
     };
 
@@ -20,7 +20,7 @@ export namespace ICreateProductRepository {
   }
 
   export namespace Create {
-    export type Params  = Product & {
+    export type Params = Product & {
       permissions: Permission[];
     };
 
@@ -30,10 +30,10 @@ export namespace ICreateProductRepository {
   }
 
   export type Implementation = {
-    findByName: (props: ICreateProductRepository.FindByName.Params) 
-    => ICreateProductRepository.FindByName.Response;
-    
+    findByName: (props: ICreateProductRepository.FindByName.Params)
+      => ICreateProductRepository.FindByName.Response;
+
     create: (props: ICreateProductRepository.Create.Params)
-    => ICreateProductRepository.Create.Response;
+      => ICreateProductRepository.Create.Response;
   }
 }
