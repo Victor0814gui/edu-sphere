@@ -115,7 +115,8 @@
         "@modules/*":["./src/modules/*"],
         "@aplication/*":["./src/aplication/*"],
         "@customer/*":["./src/modules/customer/*"],
-        "@room/*":["./src/modules/room/*"]
+        "@room/*":["./src/modules/room/*"],
+        "@lessons/*":["./src/modules/lessons/*"],
       }
   },
   "include": [

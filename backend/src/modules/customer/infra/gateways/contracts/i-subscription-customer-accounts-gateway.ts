@@ -9,16 +9,29 @@ interface IProduct {
   quantity: number;
 }
 
+interface ICreateResponse {
+  code: number;
+  url: string | null;
+}
+
 export namespace ISubscriptionCustomerAccountGateway {
-  export interface Params extends Array<IProduct> {}
+  export namespace Create {
+    export interface Params extends Array<IProduct> { }
 
-  export type Response = Promise<{
-    code: number;
-    url: string | null;
-  }>;
+    export type Response = Promise<ICreateResponse>;
+  }
 
+  export namespace FindById {
+    export interface Params {
+      productId: string
+    }
+
+    export type Response = Promise<IProduct>;
+  }
   export interface Implementation {
-    execute: (props: ISubscriptionCustomerAccountGateway.Params) 
-    => ISubscriptionCustomerAccountGateway.Response;
+    create: (props: ISubscriptionCustomerAccountGateway.Create.Params)
+      => ISubscriptionCustomerAccountGateway.Create.Response;
+    findById: (props: ISubscriptionCustomerAccountGateway.FindById.Params)
+      => ISubscriptionCustomerAccountGateway.FindById.Response;
   }
 }

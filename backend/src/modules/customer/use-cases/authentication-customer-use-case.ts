@@ -13,11 +13,12 @@ export class AuthenticationCustomerUserCase
     private authenticationCustomerRepository: IAuthenticationCustomerRepository.Implementation,
     @inject("CreateSessionTokenSecurity")
     private createSessionTokenSecurity: CreateSessionTokenSecurity,
+    @inject("GenerateRefreshToken")
+    private generateRefreshToken: GenerateRefreshToken,
   ) { }
 
   public async execute(props: IAuthenticationCustomerUserCase.Params):
-    Promise<IAuthenticationCustomerUserCase.Response> {
-    const generateRefreshToken = container.resolve(GenerateRefreshToken);
+    IAuthenticationCustomerUserCase.Response {
 
     const verifyCustomerAlreayExists = await this.authenticationCustomerRepository.findUnique({
       email: props.email,
@@ -43,7 +44,7 @@ export class AuthenticationCustomerUserCase
       role: verifyCustomerAlreayExists.roleName,
     });
 
-    const refreshToken = await generateRefreshToken.execute(verifyCustomerAlreayExists.id);
+    const refreshToken = await this.generateRefreshToken.execute(verifyCustomerAlreayExists.id);
 
     return {
       ...verifyCustomerAlreayExists,

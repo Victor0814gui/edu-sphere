@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { ICreateProductUseCase } from "../interfaces/i-create-product-use-case";
 import { ICreateProductRepository } from "../repositories/i-create-product-repository";
 import UserBusinessException from "../infra/exception/business-exception";
+import { ISubscriptionCustomerAccountGateway } from "../infra/gateways/contracts/i-subscription-customer-accounts-gateway";
 
 
 
@@ -10,8 +11,11 @@ export class CreateProductUseCase implements
   ICreateProductUseCase.Implementation {
   constructor(
     @inject("CreateProductRepository")
-    private createProductRepository: ICreateProductRepository.Implementation
+    private createProductRepository: ICreateProductRepository.Implementation,
+    @inject("SubscriptionCustomerAccountsGateway")
+    private subscriptionCustomerAccountsGateway: ISubscriptionCustomerAccountGateway.Implementation,
   ) { }
+
   async execute(props: ICreateProductUseCase.Params):
     ICreateProductUseCase.Response {
 
@@ -22,7 +26,16 @@ export class CreateProductUseCase implements
       throw new UserBusinessException("Product alredy exists", 403);
     }
 
-    const permissionsObject = props.permiissions.map((e: string) => ({ name: e }))
+    const verifyProductAlreadyExists =
+      await this.subscriptionCustomerAccountsGateway.findById({
+        productId: props.name
+      })
+
+    const permissionsObject = props.permissions.map((e: string) => ({ name: e }))
+
+    if (!!verifyProductAlreadyExists.price) {
+      throw new UserBusinessException("Poduct already exists on the gateway", 403);
+    }
 
     const createProductRepositoryResponse =
       await this.createProductRepository.create({

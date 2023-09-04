@@ -10,8 +10,6 @@ export namespace ISubscriptionCustomerUseCase {
     quantity: number
   }
 
-
-
   export type Response = Promise<{
     url: string | null;
     code: number;

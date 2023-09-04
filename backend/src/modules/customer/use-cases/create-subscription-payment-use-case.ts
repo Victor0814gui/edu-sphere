@@ -19,7 +19,7 @@ export class SubscriptionCustomerUseCase
     ISubscriptionCustomerUseCase.Response {
 
     const subscriptionCustomerAccountGatewayService =
-      await this.subscriptionCustomerAccountGateway.execute([{
+      await this.subscriptionCustomerAccountGateway.create([{
         price: props.priceId,
         quantity: props.quantity,
       }])

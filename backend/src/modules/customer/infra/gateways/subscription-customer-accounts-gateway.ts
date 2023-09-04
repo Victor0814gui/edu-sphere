@@ -1,5 +1,5 @@
 import { stripe } from "@/src/shared/infra/services/stripe";
-import { ISubscriptionCustomerAccountsGateway } from "./contracts/i-subscription-customer-accounts-gateway";
+import { ISubscriptionCustomerAccountGateway } from "./contracts/i-subscription-customer-accounts-gateway";
 
 
 
@@ -8,23 +8,36 @@ import { ISubscriptionCustomerAccountsGateway } from "./contracts/i-subscription
 
 
 export class SubscriptionCustomerAccountsGateway
-  implements ISubscriptionCustomerAccountsGateway.Implementation {
+  implements ISubscriptionCustomerAccountGateway.Implementation {
 
-  public async execute(props: ISubscriptionCustomerAccountsGateway.Params):
-    ISubscriptionCustomerAccountsGateway.Response{
+  public async create(props: ISubscriptionCustomerAccountGateway.Create.Params):
+    ISubscriptionCustomerAccountGateway.Create.Response {
 
-    const session = await stripe.checkout.sessions.create({
-      line_items: [...props],
-      mode: 'payment',
-      success_url: process.env.DOMAIN_SUBSCRIPTION_URL as string,
-      cancel_url: process.env.DOMAIN_SUBSCRIPTION_URL as string,
+    const stripeGatewayCreateProductResponse = await stripe.products.create({
+      name: 'Starter Subscription',
+      description: '$12/Month subscription',
+    })
+
+    const stripeGatewayCreatePriceProductResponse = stripe.prices.create({
+      unit_amount: 1200,
+      currency: 'usd',
+      recurring: {
+        interval: 'month',
+      },
+      product: stripeGatewayCreateProductResponse.id,
     });
 
-    const subscriptionCreatedResponse = {
-      code: 303,
-      url: session.url
+    return {
+      code: 200,
+      url: "akjsdklfjçaksjdfkjasdf"
     };
+  }
 
-    return subscriptionCreatedResponse;
+  public async findById(props: ISubscriptionCustomerAccountGateway.FindById.Params):
+    ISubscriptionCustomerAccountGateway.FindById.Response {
+
+    const response = {} as ISubscriptionCustomerAccountGateway.FindById.Response
+
+    return response;
   }
 }

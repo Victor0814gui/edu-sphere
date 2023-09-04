@@ -14,7 +14,7 @@ export class CreatePermissionUseCase
     private createPermissionRepository: ICreatePermissionRepository.Implementation,
   ) { }
   async execute(props: ICreatePermissionUseCase.Params):
-    Promise<ICreatePermissionUseCase.Response> {
+    ICreatePermissionUseCase.Response {
 
     const verifyPermissionAlreayExists = await this.createPermissionRepository.findUnique({
       name: props.name,

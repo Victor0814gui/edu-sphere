@@ -11,12 +11,13 @@ export namespace IAuthenticationCustomerUserCase {
     password: string;
   }
 
-  export interface Response extends Customer {
+  export type Response = Promise<Customer & {
     token: string;
     refreshToken: string;
-  }
+  }>
 
   export interface Implementation {
-    execute: (props: IAuthenticationCustomerUserCase.Params) => Promise<IAuthenticationCustomerUserCase.Response>
+    execute: (props: IAuthenticationCustomerUserCase.Params)
+      => IAuthenticationCustomerUserCase.Response;
   }
 }

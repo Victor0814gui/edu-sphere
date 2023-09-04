@@ -1,7 +1,7 @@
 import { injectable, inject } from "tsyringe";
 import { IUpdateRoleUseCase } from "../interfaces/i-update-role-use-case";
 import { IUpdateRoleRepository } from "../repositories/i-update-role-repository";
-import UserBusinessException from "@customer/";
+import { CustomerBusinessException } from "../infra/exception/business-exception";
 
 
 
@@ -20,7 +20,7 @@ export class UpdateRoleUseCase
     })
 
     if (!verifyRoleAlreayExists?.id) {
-      throw new UserBusinessException("role does not exists", 404);
+      throw new CustomerBusinessException("role does not exists", 404);
     }
 
     const permissions = props.permissions.map((permission: string) => ({ name: permission }))

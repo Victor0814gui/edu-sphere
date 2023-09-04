@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ICreateCustomerAccountRepository } from "../i-create-customer-repository";
+import { ICreateCustomerAccountRepository } from "../i-create-customer-account-repository";
 
 const database = new PrismaClient();
 
@@ -7,7 +7,7 @@ export class CreateCustomerAccountRepository
   implements ICreateCustomerAccountRepository.Implementation {
 
   async findUnique(props: ICreateCustomerAccountRepository.FindUnique.Params):
-    Promise<ICreateCustomerAccountRepository.FindUnique.Response | null> {
+    ICreateCustomerAccountRepository.FindUnique.Response {
 
     const findUniqueCustomerResponse = await database.user.findFirst({
       where: {
@@ -39,9 +39,11 @@ export class CreateCustomerAccountRepository
   }
 
   async update(props: ICreateCustomerAccountRepository.Update.Params):
-    Promise<ICreateCustomerAccountRepository.Update.Response> {
+    ICreateCustomerAccountRepository.Update.Response {
 
-    const createCustomerResponse = await database.user.update({
+    const permissions = props.permissions.map((permission) => ({ name: permission }));
+
+    let createCustomerResponse = await database.user.update({
       where: {
         id: props.id,
       },
@@ -52,7 +54,7 @@ export class CreateCustomerAccountRepository
           }
         },
         permissions: {
-          connect: [...props.permissions]
+          connect: [...permissions]
         },
       },
       include: {
@@ -64,6 +66,12 @@ export class CreateCustomerAccountRepository
       }
     });
 
-    return createCustomerResponse!;
+    const permissionsResult = createCustomerResponse.permissions
+      .map((permission) => permission.name);
+
+    return {
+      ...createCustomerResponse,
+      permissions: permissionsResult
+    };
   }
 }

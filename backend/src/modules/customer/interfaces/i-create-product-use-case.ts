@@ -3,15 +3,17 @@ import { Product } from "@/src/aplication/entities/product";
 
 
 
-
+enum ProductType {
+  Recurrent = "recurrent",
+}
 
 
 export namespace ICreateProductUseCase {
   export type Params = {
     userId: string;
-    permiissions: string[];
+    permissions: string[];
     name: string;
-    type: string;
+    type: ProductType.Recurrent;
     status: string;
     startDate: Date;
     endDate: Date;
@@ -22,6 +24,7 @@ export namespace ICreateProductUseCase {
     autoRenew: boolean;
     paymentDetails: string;
   }
+
   export type Response = Promise<Product>
 
   export type Implementation = {

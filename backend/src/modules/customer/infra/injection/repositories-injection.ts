@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
 import { CreateCustomerAccountRepository } from "../../repositories/implementation/create-customer-account-repository";
-import { ICreateCustomerAccountRepository } from "../../repositories/i-create-customer-repository";
+import { ICreateCustomerAccountRepository } from "../../repositories/i-create-customer-account-repository";
 import { CreateRefreshTokenRepository } from "../../repositories/implementation/create-refresh-token-repository";
 import { ICreateRefreshTokenRepository } from "../../repositories/i-create-refresh-token-repository";
 import { CustomerValidatorParams } from "../validators/create";
@@ -20,18 +20,13 @@ import { CreateProductRepository } from "../../repositories/implementation/creat
 
 
 container.registerSingleton<ICreateCustomerAccountRepository.Implementation>(
-  'CreateUserAccountRepository',
+  'CreateCustomerAccountRepository',
   CreateCustomerAccountRepository
 );
 
 container.registerSingleton<ICreateRefreshTokenRepository.Implementation>(
   'CreateRefreshTokenRepository',
   CreateRefreshTokenRepository
-);
-
-container.registerSingleton<CustomerValidatorParams>(
-  "UserValidatorParams",
-  CustomerValidatorParams,
 );
 
 container.registerSingleton<ICreateRoleRepository.Implementation>(

@@ -10,7 +10,7 @@ export namespace IDeleteUserAccountUseCase {
   }
 
   export interface Implementation {
-    execute: (props: IDeleteUserAccountUseCase.Params) => 
-    Promise<IDeleteUserAccountUseCase.Response>;
+    execute: (props: IDeleteUserAccountUseCase.Params) =>
+      Promise<IDeleteUserAccountUseCase.Response>;
   }
 }
