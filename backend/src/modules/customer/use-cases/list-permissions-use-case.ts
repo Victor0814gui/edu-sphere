@@ -12,10 +12,10 @@ export class ListPermissionsUseCase
     private createPermissionRepository: ICreatePermissionRepository.Implementation,
   ) { }
   async execute(props: IListPermissionsUseCase.Params):
-    Promise<IListPermissionsUseCase.Response | null> {
+    IListPermissionsUseCase.Response {
 
-    const createPermissionsServiceResponse = await this.createPermissionRepository.list({})
-
+    const createPermissionsServiceResponse =
+      await this.createPermissionRepository.list({})
 
     return createPermissionsServiceResponse;
   }

@@ -6,6 +6,7 @@ import { ICreateCustomerAccountUseCase } from "../interfaces/i-create-customer-a
 import { AccountStatusEnum } from "../interfaces/enums/account-status-enum";
 import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
+import { IEncryptDataService } from "../infra/services/contracts/i-encrypt-data-service";
 
 
 
@@ -20,7 +21,9 @@ export class CreateCustomerAccountUseCase
     @inject("CreateUUIDTokenService")
     private createUUIDTokenService: ICreateUUIDTokenService.Implementation,
     @inject("CreateNewDateService")
-    private createNewDateService: ICreateNewDateService.Implementation
+    private createNewDateService: ICreateNewDateService.Implementation,
+    @inject("EncryptDataService")
+    private encryptDataService: IEncryptDataService.Implementation,
   ) { }
 
   public async execute(props: ICreateCustomerAccountUseCase.Params):
@@ -37,13 +40,20 @@ export class CreateCustomerAccountUseCase
     }
 
     const customerId = this.createUUIDTokenService.create(null);
-    const createnewDate = this.createNewDateService.create(null);
+    const createNewDate = this.createNewDateService.create(null);
+
+    const passwordHash = await this.encryptDataService.execute(props.password);
+
+    if (!passwordHash) {
+      throw new CustomerBusinessException("Hash password error", 400);
+    }
 
     const createCustomerAccountResponse = await this.createCustomerAccountRepository.create({
       ...props,
       id: customerId,
+      password: passwordHash,
       status: AccountStatusEnum.Pending,
-      createdAt: createnewDate,
+      createdAt: createNewDate,
     });
 
     return createCustomerAccountResponse;

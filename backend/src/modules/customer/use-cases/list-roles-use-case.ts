@@ -12,7 +12,7 @@ export class ListRoleUseCase
     private createRoleRepository: ICreateRoleRepository.Implementation,
   ) { }
   async execute(props: IListRoleUseCase.Params):
-    Promise<IListRoleUseCase.Response | null> {
+    IListRoleUseCase.Response {
 
     const createRoleServiceResponse = await this.createRoleRepository.list({})
 

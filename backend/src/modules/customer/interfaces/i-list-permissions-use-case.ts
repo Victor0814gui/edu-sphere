@@ -3,11 +3,12 @@ import { Permission } from "@/src/aplication/entities/permission";
 
 
 export namespace IListPermissionsUseCase {
-  export interface Params { }
+  export type Params = {}
 
-  export interface Response extends Array<Permission> { }
+  export type Response = Promise<Permission[] | null>
 
-  export interface Implementation {
-    execute: (props: IListPermissionsUseCase.Params) => Promise<IListPermissionsUseCase.Response | null>;
+  export type Implementation = {
+    execute: (props: IListPermissionsUseCase.Params)
+      => IListPermissionsUseCase.Response;
   }
 }

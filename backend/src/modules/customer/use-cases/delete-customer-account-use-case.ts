@@ -18,7 +18,7 @@ export class DeleteUserAccountUseCase
   ) { }
 
   public async execute(props: IDeleteUserAccountUseCase.Params):
-    Promise<IDeleteUserAccountUseCase.Response> {
+    IDeleteUserAccountUseCase.Response {
 
     const verifyUserAlreayExists = await this.createCustomerAccountRepository.findUnique({
       email: props.email,

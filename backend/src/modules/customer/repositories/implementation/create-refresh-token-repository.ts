@@ -14,14 +14,12 @@ export class CreateRefreshTokenRepository
 
   async create(props: ICreateRefreshTokenRepository.Create.Params):
     Promise<ICreateRefreshTokenRepository.Create.Response> {
-    const expiresDate = new Date();
-    expiresDate.setDate(expiresDate.getDate() + 15);
 
     const savedRefreshToken = await client.refreshToken.create({
       data: {
         id: props.id,
         state: RefreshTokenState.Active,
-        expiryDate: expiresDate,
+        expiryDate: props.expiryDate,
         refreshToken: props.refreshToken,
       },
     });

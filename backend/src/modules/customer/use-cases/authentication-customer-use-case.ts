@@ -1,9 +1,10 @@
-import { container, inject, injectable } from "tsyringe";
+import { injectable, inject } from "tsyringe";
 import { CustomerBusinessException } from "@customer/infra/exception/business-exception";
 import { IAuthenticationCustomerUserCase } from "../interfaces/i-authenticate-customer-use-case";
 import { IAuthenticationCustomerRepository } from "../repositories/i-authentication-customer-repository";
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
+import { ICompareEncryptDataService } from "../infra/services/contracts/i-compare-encrypt-data-service";
 
 @injectable()
 export class AuthenticationCustomerUserCase
@@ -15,6 +16,8 @@ export class AuthenticationCustomerUserCase
     private createSessionTokenSecurity: CreateSessionTokenSecurity,
     @inject("GenerateRefreshToken")
     private generateRefreshToken: GenerateRefreshToken,
+    @inject("CompareEncryptDataService")
+    private compareEncryptDataService: ICompareEncryptDataService.Implementation
   ) { }
 
   public async execute(props: IAuthenticationCustomerUserCase.Params):
@@ -32,7 +35,12 @@ export class AuthenticationCustomerUserCase
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
-    if (verifyCustomerAlreayExists.password != props.password) {
+    const isPasswordHasCorrect = await this.compareEncryptDataService.execute({
+      data: props.password,
+      encrypted: verifyCustomerAlreayExists.password,
+    })
+
+    if (isPasswordHasCorrect) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
@@ -44,7 +52,9 @@ export class AuthenticationCustomerUserCase
       role: verifyCustomerAlreayExists.roleName,
     });
 
-    const refreshToken = await this.generateRefreshToken.execute(verifyCustomerAlreayExists.id);
+    const refreshToken = await this.generateRefreshToken.execute({
+      customerId: verifyCustomerAlreayExists.id
+    });
 
     return {
       ...verifyCustomerAlreayExists,

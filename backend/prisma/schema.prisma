@@ -13,13 +13,12 @@ model User {
   email          String          @unique
   password       String
   createdAt      DateTime
-  udpatedAt      DateTime?
+  updatedAt      DateTime?
   avatarUrl      String
   roleName       String
-  subscriptionId String
   status         String
   transaction    Transaction[]
-  subscription   Product         @relation(fields: [subscriptionId], references: [id])
+  subscription   Product[]
   role           Role            @relation(fields: [roleName], references: [name])
   matriculations Matriculation[] @relation("MatriculationToUser")
   penaltys       Penalty[]       @relation("PenaltyToUser")

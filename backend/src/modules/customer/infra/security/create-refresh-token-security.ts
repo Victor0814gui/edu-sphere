@@ -1,31 +1,38 @@
-import dayjs from "dayjs"
+import crypto from "crypto";
 import { inject, injectable } from "tsyringe";
 import { ICreateRefreshTokenRepository } from "@customer/repositories/i-create-refresh-token-repository";
-import crypto from "crypto";
+import { IGenerateRefreshToken } from "./contracts/i-create-refresh-tocken-security";
+import { ICreateUUIDTokenService } from "../services/contracts/i-create-uuid-token-service";
 
 @injectable()
-class GenerateRefreshToken {
+class GenerateRefreshToken
+  implements IGenerateRefreshToken.Implementation {
   constructor(
     @inject('CreateRefreshTokenRepository')
-    private createSessionTokenSecurity: ICreateRefreshTokenRepository.Implementation
+    private createSessionTokenSecurity: ICreateRefreshTokenRepository.Implementation,
+    @inject("CreateUUIDTokenService")
+    private createUUIDTokenService: ICreateUUIDTokenService.Implementation
   ) { }
 
-  async execute(userId: string): Promise<string> {
+  async execute(props: IGenerateRefreshToken.Params):
+    IGenerateRefreshToken.Response {
     const expiryDate = parseInt(process.env.REFRESH_TOKEN_EXPIRES_TIME as string);
-    const expiresIn = dayjs().add(expiryDate, "hour").unix()
 
-    const refreshTokenAlreadyExists = await this.createSessionTokenSecurity.findById({
-      refreshTokenId: userId
-    })
+    // const refreshTokenAlreadyExists = await this.createSessionTokenSecurity.findById({
+    //   refreshTokenId: props.customerId
+    // })
 
-    if (refreshTokenAlreadyExists?.id) {
-      return refreshTokenAlreadyExists.refreshToken;
-    }
+    // if (!!refreshTokenAlreadyExists?.id) {
+    //   return refreshTokenAlreadyExists.refreshToken;
+    // }
+
+    const expiresIn = new Date();
+    expiresIn.setDate(expiresIn.getDate() + expiryDate);
 
     const generateRefreshToken = await this.createSessionTokenSecurity.create({
-      refreshToken: userId,
+      refreshToken: this.createUUIDTokenService.create({}),
       expiryDate: expiresIn,
-      id: crypto.randomUUID(),
+      id: this.createUUIDTokenService.create({}),
     })
 
     return generateRefreshToken.refreshToken;

@@ -18,3 +18,5 @@
 - [ ] - Gravação de Aulas: Oferecer a opção de gravar as aulas para que os alunos possam revisitar o conteúdo posteriormente ou para fornecer acesso a alunos ausentes.
 
 - [ ] - Meios de pagamentos, para permitir o uso de features do sistema como acesso premium a algumas salas
+
+- [ ] - Uma loja interna onde será possivel comprar produtos relacionados, incluindo incrições customizadas

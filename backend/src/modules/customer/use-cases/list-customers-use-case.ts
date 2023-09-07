@@ -3,7 +3,6 @@ import { IListCustomersUseCase } from "../interfaces/i-list-customers-use-case";
 import { IListCustomersRepository } from "../repositories/i-list-customers-repository";
 
 
-
 @injectable()
 export class ListCustomersUseCase
   implements IListCustomersUseCase.Implementation {

@@ -4,11 +4,12 @@ import { Role } from "@/src/aplication/entities/role";
 
 
 export namespace IListRoleUseCase {
-  export interface Params { }
+  export type Params = {}
 
-  export interface Response extends Array<Role> { }
+  export type Response = Promise<Role[] | null>
 
-  export interface Implementation {
-    execute: (props: IListRoleUseCase.Params) => Promise<IListRoleUseCase.Response | null>;
+  export type Implementation = {
+    execute: (props: IListRoleUseCase.Params)
+      => IListRoleUseCase.Response
   }
 }

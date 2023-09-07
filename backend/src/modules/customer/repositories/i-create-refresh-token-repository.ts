@@ -6,7 +6,7 @@ export namespace ICreateRefreshTokenRepository {
   export namespace Create {
     export interface Params {
       refreshToken: string;
-      expiryDate: number;
+      expiryDate: Date;
       id: string;
     }
 

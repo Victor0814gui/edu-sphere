@@ -11,10 +11,9 @@ export interface User {
   password: string;
   studentList?: any[]
   createdAt: Date;
-  updatedAt?: Date | null;
+  updatedAt: Date | null;
   avatarUrl: string;
   roleName: string;
-  subscriptionId: string | null;
 }
 
 

@@ -14,7 +14,7 @@ export class UpdateRoleUseCase
   ) { }
 
   async execute(props: IUpdateRoleUseCase.Params):
-    Promise<IUpdateRoleUseCase.Response | null> {
+    IUpdateRoleUseCase.Response {
     const verifyRoleAlreayExists = await this.updateRoleRepository.findUnique({
       name: props.name
     })
@@ -35,7 +35,6 @@ export class UpdateRoleUseCase
     const permissionsServiceResponse = updateRoleServiceResponse
       .permissions
       .map((permission) => permission.name)
-
 
     return {
       ...updateRoleServiceResponse,

@@ -6,7 +6,7 @@ const database = new PrismaClient();
 export class CreateCustomerAccountRepository
   implements ICreateCustomerAccountRepository.Implementation {
 
-  async findUnique(props: ICreateCustomerAccountRepository.FindUnique.Params):
+  public async findUnique(props: ICreateCustomerAccountRepository.FindUnique.Params):
     ICreateCustomerAccountRepository.FindUnique.Response {
 
     const findUniqueCustomerResponse = await database.user.findFirst({
@@ -18,27 +18,26 @@ export class CreateCustomerAccountRepository
     return findUniqueCustomerResponse;
   }
 
-  async create(props: ICreateCustomerAccountRepository.Create.Params):
+  public async create(props: ICreateCustomerAccountRepository.Create.Params):
     ICreateCustomerAccountRepository.Create.Response {
 
     const createCustomerResponse = await database.user.create({
       data: {
-        status: props.status,
-        subscriptionId: props.subscriptionId,
-        roleName: props.role,
         id: props.id,
-        password: props.password,
         name: props.name,
-        avatarUrl: props.avatarUrl,
         email: props.email,
+        password: props.password,
         createdAt: props.createdAt,
+        avatarUrl: props.avatarUrl,
+        roleName: props.role,
+        status: props.status,
       },
     });
 
     return createCustomerResponse;
   }
 
-  async update(props: ICreateCustomerAccountRepository.Update.Params):
+  public async update(props: ICreateCustomerAccountRepository.Update.Params):
     ICreateCustomerAccountRepository.Update.Response {
 
     const permissions = props.permissions.map((permission) => ({ name: permission }));

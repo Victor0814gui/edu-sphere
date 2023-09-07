@@ -24,7 +24,6 @@ export namespace ICreateCustomerAccountRepository {
       avatarUrl: string;
       createdAt: Date;
       status: string;
-      subscriptionId: string;
     }
 
     export type Response = Promise<Customer>;

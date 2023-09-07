@@ -1,16 +1,19 @@
 
+
+type Message = {
+  code: number;
+  message: string;
+}
+
 export namespace IDeleteUserAccountUseCase {
-  export interface Params {
+  export type Params = {
     email: string;
   }
 
-  export interface Response {
-    code: number;
-    message: string;
-  }
+  export type Response = Promise<Message>;
 
-  export interface Implementation {
-    execute: (props: IDeleteUserAccountUseCase.Params) =>
-      Promise<IDeleteUserAccountUseCase.Response>;
+  export type Implementation = {
+    execute: (props: IDeleteUserAccountUseCase.Params)
+      => IDeleteUserAccountUseCase.Response;
   }
 }

@@ -17,6 +17,8 @@ import { AuthenticationCustomerRepository } from "../../repositories/implementat
 import { IAuthenticationCustomerRepository } from "../../repositories/i-authentication-customer-repository";
 import { ICreateProductRepository } from "../../repositories/i-create-product-repository";
 import { CreateProductRepository } from "../../repositories/implementation/create-product-repository";
+import { IPurchaseProductToCustomerRepository } from "../../repositories/i-purchase-product-to-customer-repository";
+import { PurchaseProductToCustomerRepository } from "../../repositories/implementation/purchase-product-to-customer-repository";
 
 
 container.registerSingleton<ICreateCustomerAccountRepository.Implementation>(
@@ -62,4 +64,9 @@ container.registerSingleton<IAuthenticationCustomerRepository.Implementation>(
 container.registerSingleton<ICreateProductRepository.Implementation>(
   "CreateProductRepository",
   CreateProductRepository,
+)
+
+container.registerSingleton<IPurchaseProductToCustomerRepository.Implementation>(
+  "PurchaseProductToCustomerRepository",
+  PurchaseProductToCustomerRepository,
 )

@@ -8,7 +8,6 @@ export namespace ICreateCustomerAccountUseCase {
     email: string;
     password: string;
     avatarUrl: string;
-    subscriptionId: string;
   }
 
   export type Response = Promise<Customer>

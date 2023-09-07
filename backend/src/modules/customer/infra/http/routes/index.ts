@@ -13,6 +13,8 @@ import { UpdateRoleController } from "../controllers/update-role-controller";
 import { AuthenticationCustomerController } from "../controllers/authenticate-user-account";
 import { userBusinessMiddleware } from "../middlewares/business-middleware";
 import { CreateProductController } from "../controllers/create-product-controller";
+import { PurchaseProductToCustomerController } from "../controllers/purchase-product-to-customer-controller";
+import { customerAuthenticationCheck } from "../middlewares/customer-authentication-check";
 
 
 const createCustomerAccountController = new CreateCustomerAccountController();
@@ -25,61 +27,69 @@ const listCustomersController = new ListCustomersController();
 const updateRoleController = new UpdateRoleController();
 const authenticationCustomerController = new AuthenticationCustomerController();
 const createProductController = container.resolve(CreateProductController);
-const UserRoutes = Router();
+const purchaseProductToCustomerController = container.resolve(PurchaseProductToCustomerController);
+const userRoutes = Router();
 
 
-UserRoutes.post(
+userRoutes.post(
   "/customer/create",
   createCustomerAccountController.handler
 );
 
-UserRoutes.post(
+userRoutes.post(
   "/create/role",
   createRoleController.handler,
 );
 
-UserRoutes.get(
+userRoutes.get(
   "/list/role",
   listRolesController.handler
 );
 
-UserRoutes.get(
+userRoutes.get(
   "/list/permission",
   listPermissionsController.handler
 );
 
-UserRoutes.post(
+userRoutes.post(
   "/create/permission",
   createPermissionController.handler
 );
 
-UserRoutes.delete(
+userRoutes.delete(
   "/delete/customer",
   deleteUserAccountController.handler
 );
 
-UserRoutes.get(
+userRoutes.get(
   "/list/customers",
   listCustomersController.handler
 );
 
-UserRoutes.put(
+userRoutes.put(
   "/update/role",
   updateRoleController.handler
 );
 
-UserRoutes.post(
+userRoutes.post(
   "/customer/signin",
   authenticationCustomerController.handler
 );
 
-UserRoutes.post(
+userRoutes.post(
   "/subscription/create",
   createProductController.handler
 );
 
 
-UserRoutes.use("/", userBusinessMiddleware);
+userRoutes.use("/", userBusinessMiddleware);
 
 
-export { UserRoutes };
+userRoutes.use(
+  "/purchase/product",
+  customerAuthenticationCheck,
+  purchaseProductToCustomerController.handler,
+)
+
+
+export { userRoutes };

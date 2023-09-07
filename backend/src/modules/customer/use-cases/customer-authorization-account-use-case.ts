@@ -9,7 +9,8 @@ import { CustomerBusinessException } from "../infra/exception/business-exception
 export class CustomerAuthorizationAccountUseCase
   implements ICustomerAuthorizationAccountUseCase.Implementation {
   constructor(
-    private customerAuthorizationAccountRepository: ICustomerAuthorizationAccountRepository.Implementation
+    private customerAuthorizationAccountRepository:
+      ICustomerAuthorizationAccountRepository.Implementation
   ) { }
 
   async execute(props: ICustomerAuthorizationAccountUseCase.Params):

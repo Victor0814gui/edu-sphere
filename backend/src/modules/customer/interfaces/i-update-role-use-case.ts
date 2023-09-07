@@ -3,16 +3,18 @@ import { Role } from "@/src/aplication/entities/role";
 import { Customer } from "@/src/aplication/entities/user";
 
 
+
 export namespace IUpdateRoleUseCase {
-  export interface Params extends Role {
+  export type Params = {
     permissions: string[];
-  }
+  } & Role
 
-  export interface Response extends Role {
+  export type Response = Promise<{
     permissions: string[];
-  }
+  } & Role>
 
-  export interface Implementation {
-    execute: (props: IUpdateRoleUseCase.Params) => Promise<IUpdateRoleUseCase.Response | null>;
+  export type Implementation = {
+    execute: (props: IUpdateRoleUseCase.Params)
+      => IUpdateRoleUseCase.Response;
   }
 }
