@@ -1,51 +1,50 @@
 import { PrismaClient } from "@prisma/client";
 import { ICreateRefreshTokenRepository } from "../i-create-refresh-token-repository";
 
-const client = new PrismaClient();
-
-enum RefreshTokenState {
-  Active = "active",
-  Expired = "expired",
-  Warning = "warning"
-}
+const database = new PrismaClient();
 
 export class CreateRefreshTokenRepository
   implements ICreateRefreshTokenRepository.Implementation {
 
   async create(props: ICreateRefreshTokenRepository.Create.Params):
-    Promise<ICreateRefreshTokenRepository.Create.Response> {
+    ICreateRefreshTokenRepository.Create.Response {
 
-    const savedRefreshToken = await client.refreshToken.create({
+    const savedRefreshToken = await database.refreshToken.create({
       data: {
         id: props.id,
-        state: RefreshTokenState.Active,
+        state: props.state,
         expiryDate: props.expiryDate,
         refreshToken: props.refreshToken,
+        customerId: props.customerId,
       },
     });
 
     return savedRefreshToken;
   }
 
-  async findById(props: ICreateRefreshTokenRepository.FindUnique.Params):
-    Promise<ICreateRefreshTokenRepository.FindUnique.Response | null> {
+  async findByIdUser(props: ICreateRefreshTokenRepository.FindUniqueUser.Params):
+    ICreateRefreshTokenRepository.FindUniqueUser.Response {
 
-    const foundRefreshToken = await client.refreshToken.findFirst({
+    const foundRefreshToken = await database.user.findFirst({
       where: {
-        id: props.refreshTokenId,
+        id: props.customerId,
       },
+      include: {
+        refreshTokens: true,
+      }
     });
 
-    return foundRefreshToken;
+    foundRefreshToken
+
+    return foundRefreshToken?.refreshTokens!;
   }
 
   async deleteMany(props: ICreateRefreshTokenRepository.DeleteMany.Params):
-    Promise<ICreateRefreshTokenRepository.DeleteMany.Response> {
-    const response = await client.refreshToken.deleteMany({
+    ICreateRefreshTokenRepository.DeleteMany.Response {
+
+    await database.refreshToken.deleteMany({
       where: {
       },
     });
-
-    return response;
   }
 }

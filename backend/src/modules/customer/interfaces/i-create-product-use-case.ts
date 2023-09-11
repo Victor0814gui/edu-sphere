@@ -13,7 +13,7 @@ export namespace ICreateProductUseCase {
     userId: string;
     permissions: string[];
     name: string;
-    type: ProductType.Recurrent;
+    type: string;
     status: string;
     startDate: Date;
     endDate: Date;

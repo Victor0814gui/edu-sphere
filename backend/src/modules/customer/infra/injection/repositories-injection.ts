@@ -39,7 +39,7 @@ container.registerSingleton<ICreateRoleRepository.Implementation>(
 container.registerSingleton<ICreateSessionTokenSecurity.Implementation>(
   "CreateSessionTokenSecurity",
   CreateSessionTokenSecurity,
-)
+);
 
 container.registerSingleton<ICreatePermissionRepository.Implementation>(
   "CreatePermissionRepository",
@@ -59,14 +59,14 @@ container.registerSingleton<IUpdateRoleRepository.Implementation>(
 container.registerSingleton<IAuthenticationCustomerRepository.Implementation>(
   "AuthenticationCustomerRepository",
   AuthenticationCustomerRepository
-)
+);
 
 container.registerSingleton<ICreateProductRepository.Implementation>(
   "CreateProductRepository",
   CreateProductRepository,
-)
+);
 
 container.registerSingleton<IPurchaseProductToCustomerRepository.Implementation>(
   "PurchaseProductToCustomerRepository",
   PurchaseProductToCustomerRepository,
-)
+);

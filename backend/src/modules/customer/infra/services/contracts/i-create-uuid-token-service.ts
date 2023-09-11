@@ -3,7 +3,7 @@
 
 export namespace ICreateUUIDTokenService {
 
-  export type Params = {} | null;
+  export type Params = void;
 
   export type Response = string;
 

@@ -9,42 +9,45 @@ import { Role } from "@/src/aplication/entities/role";
 
 export namespace ICreateRoleRepository {
 
-
   export namespace FindUnique {
-    export interface Params {
+    export type Params = {
       name: string;
     }
-    export interface Response extends Role { }
+    export type Response = Promise<Role | null>;
   }
 
   export namespace Create {
-    export interface Params {
+    export type Params = {
       id: string;
       name: string;
       description: string;
       level: number;
       createdAt: Date;
     }
-    export interface Response extends Role { }
+    export type Response = Promise<Role>;
   }
 
   export namespace Delete {
-    export interface Params {
+    export type Params = {
       name: string;
     }
-    export interface Response { }
+    export type Response = Promise<Role>;
   }
 
   export namespace List {
-    export interface Params { }
+    export type Params = void;
 
-    export interface Response extends Array<Role> { }
+    export type Response = Promise<Role[]>
   }
 
-  export interface Implementation {
-    delete: (props: Delete.Params) => Promise<Delete.Response>;
-    findUnique: (props: FindUnique.Params) => Promise<FindUnique.Response | null>;
-    create: (props: Create.Params) => Promise<Create.Response>;
-    list: (props: List.Params) => Promise<List.Response | null>;
+  export type Implementation = {
+    delete: (props: ICreateRoleRepository.Delete.Params)
+      => ICreateRoleRepository.Delete.Response;
+    findUnique: (props: ICreateRoleRepository.FindUnique.Params)
+      => ICreateRoleRepository.FindUnique.Response;
+    create: (props: ICreateRoleRepository.Create.Params)
+      => ICreateRoleRepository.Create.Response;
+    list: (props: ICreateRoleRepository.List.Params)
+      => ICreateRoleRepository.List.Response
   }
 }

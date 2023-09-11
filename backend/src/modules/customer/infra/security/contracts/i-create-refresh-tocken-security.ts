@@ -1,7 +1,9 @@
-import dayjs from "dayjs"
-import { inject, injectable } from "tsyringe";
-import { ICreateRefreshTokenRepository } from "@customer/repositories/i-create-refresh-token-repository";
-import crypto from "crypto";
+
+
+export enum RefreshTokenState {
+  Active = "active",
+  Expired = "expired",
+}
 
 export namespace IGenerateRefreshToken {
   export type Params = {

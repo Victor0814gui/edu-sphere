@@ -1,12 +1,9 @@
-import { User } from "./user";
-
-
 
 
 
 export interface RefreshToken {
-  id: string;
-  refreshToke: string;
-  state: string;
+  id: string
+  refreshToken: string
+  state: string
   expiryDate: Date
 }

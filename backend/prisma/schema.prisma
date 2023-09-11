@@ -23,7 +23,7 @@ model User {
   matriculations Matriculation[] @relation("MatriculationToUser")
   penaltys       Penalty[]       @relation("PenaltyToUser")
   permissions    Permission[]    @relation("PermissionToUser")
-  refreshTokens  RefreshToken[]  @relation("RefreshTokenToUser")
+  refreshTokens  RefreshToken[]
   rooms          Room[]          @relation("RoomToUser")
 
   @@index([id])
@@ -112,7 +112,8 @@ model RefreshToken {
   refreshToken String   @unique
   state        String
   expiryDate   DateTime
-  users        User[]   @relation("RefreshTokenToUser")
+  customerId   String   @unique
+  users        User     @relation(fields: [customerId], references: [id])
 }
 
 model Product {
@@ -124,7 +125,7 @@ model Product {
   startDate      DateTime
   endDate        DateTime
   paymentMethod  String
-  price          Float
+  price          Int
   billingCycle   String
   nextBilling    DateTime
   autoRenew      Boolean

@@ -14,7 +14,7 @@ export class ListRoleUseCase
   async execute(props: IListRoleUseCase.Params):
     IListRoleUseCase.Response {
 
-    const createRoleServiceResponse = await this.createRoleRepository.list({})
+    const createRoleServiceResponse = await this.createRoleRepository.list()
 
     return createRoleServiceResponse;
   }

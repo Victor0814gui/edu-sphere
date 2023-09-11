@@ -1,38 +1,43 @@
-import { RefreshToken } from "@prisma/client";
+import { RefreshToken, } from "@/src/aplication/entities/refresh-token";
+
 
 
 export namespace ICreateRefreshTokenRepository {
 
   export namespace Create {
-    export interface Params {
+    export type Params = {
       refreshToken: string;
       expiryDate: Date;
       id: string;
+      state: string;
+      customerId: string;
     }
 
-    export interface Response extends RefreshToken { }
+    export type Response = Promise<RefreshToken>;
   }
 
-  export namespace FindUnique {
-    export interface Params {
-      refreshTokenId: string;
+  export namespace FindUniqueUser {
+    export type Params = {
+      customerId: string;
     }
 
-    export interface Response extends RefreshToken { }
+    export type Response = Promise<RefreshToken[] | null>
   }
 
   export namespace DeleteMany {
-    export interface Params {
+    export type Params = {
       refreshTokenId: string;
     }
 
-    export interface Response { }
-
+    export type Response = Promise<void>;
   }
 
-  export interface Implementation {
-    create(props: Create.Params): Promise<Create.Response>;
-    findById(props: FindUnique.Params): Promise<FindUnique.Response | null>;
-    deleteMany(props: DeleteMany.Params): Promise<DeleteMany.Response>;
+  export type Implementation = {
+    create: (props: ICreateRefreshTokenRepository.Create.Params)
+      => ICreateRefreshTokenRepository.Create.Response;
+    findByIdUser: (props: ICreateRefreshTokenRepository.FindUniqueUser.Params)
+      => ICreateRefreshTokenRepository.FindUniqueUser.Response;
+    deleteMany: (props: ICreateRefreshTokenRepository.DeleteMany.Params)
+      => ICreateRefreshTokenRepository.DeleteMany.Response;
   }
 }

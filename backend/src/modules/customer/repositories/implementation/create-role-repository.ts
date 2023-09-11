@@ -8,8 +8,8 @@ const database = new PrismaClient();
 export class CreateRoleRepository
   implements ICreateRoleRepository.Implementation {
 
-  async findUnique(props: ICreateRoleRepository.FindUnique.Params):
-    Promise<ICreateRoleRepository.FindUnique.Response | null> {
+  public async findUnique(props: ICreateRoleRepository.FindUnique.Params):
+    ICreateRoleRepository.FindUnique.Response {
     const findUniqueRoleResposne = await database.role.findFirst({
       where: {
         name: props.name,
@@ -20,7 +20,7 @@ export class CreateRoleRepository
   }
 
   async create(props: ICreateRoleRepository.Create.Params):
-    Promise<ICreateRoleRepository.Create.Response> {
+    ICreateRoleRepository.Create.Response {
     const createRoleResposne = await database.role.create({
       data: {
         id: props.id,
@@ -35,8 +35,8 @@ export class CreateRoleRepository
     return createRoleResposne;
   }
 
-  async delete(props: ICreateRoleRepository.Delete.Params):
-    Promise<ICreateRoleRepository.Delete.Response> {
+  public async delete(props: ICreateRoleRepository.Delete.Params):
+    ICreateRoleRepository.Delete.Response {
     const deleteRoleResposne = await database.role.delete({
       where: {
         name: props.name,
@@ -46,9 +46,9 @@ export class CreateRoleRepository
     return deleteRoleResposne;
   }
 
-  async list(props: ICreateRoleRepository.List.Params):
-    Promise<ICreateRoleRepository.List.Response | null> {
-    const listRolesResposne = await database.role.findMany({
+  public async list(props: ICreateRoleRepository.List.Params):
+    ICreateRoleRepository.List.Response {
+    const listRolesResponse = await database.role.findMany({
       include: {
         permissions: {
           select: {
@@ -58,6 +58,6 @@ export class CreateRoleRepository
       }
     })
 
-    return listRolesResposne;
+    return listRolesResponse;
   }
 }

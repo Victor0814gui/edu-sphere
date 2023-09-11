@@ -52,14 +52,14 @@ export class AuthenticationCustomerUserCase
       role: verifyCustomerAlreayExists.roleName,
     });
 
-    const refreshToken = await this.generateRefreshToken.execute({
+    const refreshTokenServiceResponse = await this.generateRefreshToken.execute({
       customerId: verifyCustomerAlreayExists.id
     });
 
     return {
       ...verifyCustomerAlreayExists,
       token: genetateTokenProvider,
-      refreshToken: refreshToken,
+      refreshToken: refreshTokenServiceResponse,
     }
 
   }

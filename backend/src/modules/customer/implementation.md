@@ -25,3 +25,5 @@ Cadastro de Usuários: Neste módulo, você implementaria a funcionalidade que p
 Nesse caso deve ser analizado a possivel substituição de permissões e roles por permissões baseadas em assinaturas, onde o sistema  se tornaria mais claro e consiso (A verificar)
 
 - [ ] - **Criar funcionalidade  para adicionar usuarios**
+
+- [ ] - **Funcionalidade para comprar Produto**

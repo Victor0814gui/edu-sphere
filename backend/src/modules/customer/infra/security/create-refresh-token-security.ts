@@ -1,11 +1,11 @@
 import crypto from "crypto";
 import { inject, injectable } from "tsyringe";
 import { ICreateRefreshTokenRepository } from "@customer/repositories/i-create-refresh-token-repository";
-import { IGenerateRefreshToken } from "./contracts/i-create-refresh-tocken-security";
+import { IGenerateRefreshToken, RefreshTokenState } from "./contracts/i-create-refresh-tocken-security";
 import { ICreateUUIDTokenService } from "../services/contracts/i-create-uuid-token-service";
 
 @injectable()
-class GenerateRefreshToken
+export class GenerateRefreshToken
   implements IGenerateRefreshToken.Implementation {
   constructor(
     @inject('CreateRefreshTokenRepository')
@@ -18,18 +18,19 @@ class GenerateRefreshToken
     IGenerateRefreshToken.Response {
     const expiryDate = parseInt(process.env.REFRESH_TOKEN_EXPIRES_TIME as string);
 
-    // const refreshTokenAlreadyExists = await this.createSessionTokenSecurity.findById({
-    //   refreshTokenId: props.customerId
-    // })
+    const refreshTokenAlreadyExists = await this.createSessionTokenSecurity.findByIdUser({
+      customerId: props.customerId
+    })
 
-    // if (!!refreshTokenAlreadyExists?.id) {
-    //   return refreshTokenAlreadyExists.refreshToken;
-    // }
+    if (refreshTokenAlreadyExists ?) {
+      return refreshTokenAlreadyExists.refreshToken;
+    }
 
     const expiresIn = new Date();
     expiresIn.setDate(expiresIn.getDate() + expiryDate);
 
     const generateRefreshToken = await this.createSessionTokenSecurity.create({
+      state: RefreshTokenState.Active,
       refreshToken: this.createUUIDTokenService.create({}),
       expiryDate: expiresIn,
       id: this.createUUIDTokenService.create({}),
@@ -38,5 +39,3 @@ class GenerateRefreshToken
     return generateRefreshToken.refreshToken;
   }
 }
-
-export { GenerateRefreshToken };

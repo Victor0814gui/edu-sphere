@@ -6,7 +6,7 @@ import { CreateProductUseCase } from "@customer/use-cases/create-product-use-cas
 
 interface CreateProductControllerRequest {
   userId: string;
-  permiissions: string[];
+  permissions: string[];
   name: string;
   type: string;
   status: string;
@@ -26,21 +26,7 @@ export class CreateProductController {
     const createProductUseCaseIntance = container.resolve(CreateProductUseCase);
 
     const createProductUseCaseIntanceResponse =
-      await createProductUseCaseIntance.execute({
-        permiissions: body.permiissions,
-        name: body.name,
-        userId: body.userId,
-        type: body.type,
-        status: body.status,
-        startDate: body.startDate,
-        endDate: body.endDate,
-        paymentMethod: body.paymentMethod,
-        price: body.price,
-        billingCycle: body.billingCycle,
-        nextBilling: body.nextBilling,
-        autoRenew: body.autoRenew,
-        paymentDetails: body.paymentDetails,
-      })
+      await createProductUseCaseIntance.execute(body);
 
     return response.json(createProductUseCaseIntanceResponse);
   }

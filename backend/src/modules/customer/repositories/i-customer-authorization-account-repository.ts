@@ -7,9 +7,9 @@ import { Customer } from "@/src/aplication/entities/user";
 
 export namespace ICustomerAuthorizationAccountRepository {
 
-  export namespace FindByEmail {
+  export namespace FindById {
     export type Params = {
-      email: string;
+      customerId: string;
     };
 
     export type Response = Promise<Customer | null>;
@@ -25,8 +25,8 @@ export namespace ICustomerAuthorizationAccountRepository {
   }
 
   export type Implementation = {
-    findByEmail: (props: ICustomerAuthorizationAccountRepository.FindByEmail.Params)
-      => ICustomerAuthorizationAccountRepository.FindByEmail.Response;
+    findById: (props: ICustomerAuthorizationAccountRepository.FindById.Params)
+      => ICustomerAuthorizationAccountRepository.FindById.Response;
     update: (props: ICustomerAuthorizationAccountRepository.Update.Params)
       => ICustomerAuthorizationAccountRepository.Update.Response;
   }

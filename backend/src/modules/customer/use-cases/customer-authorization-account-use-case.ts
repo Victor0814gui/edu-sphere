@@ -13,34 +13,33 @@ export class CustomerAuthorizationAccountUseCase
       ICustomerAuthorizationAccountRepository.Implementation
   ) { }
 
-  async execute(props: ICustomerAuthorizationAccountUseCase.Params):
+  public async execute(props: ICustomerAuthorizationAccountUseCase.Params):
     ICustomerAuthorizationAccountUseCase.Response {
 
     const [, token] = props.token.split(" ");
 
     const { sub } = verify(token, process.env.JWT_SECRET as string);
-    const constumerEmail = sub?.toString()!;
+    const customerId = sub?.toString()!;
 
-    if (!constumerEmail) {
+    if (!customerId) {
       throw new CustomerBusinessException("Customer does not exist", 404);
     }
 
     const verifyCustomerAlreadyExists =
-      await this.customerAuthorizationAccountRepository.findByEmail({
-        email: constumerEmail
+      await this.customerAuthorizationAccountRepository.findById({
+        customerId: customerId,
       });
 
     if (!verifyCustomerAlreadyExists?.id) {
       throw new CustomerBusinessException("Customer does not exist", 404);
     }
 
-    await this.customerAuthorizationAccountRepository.update({
-      email: constumerEmail,
-      status: AccountStatusEnum.Active,
-    });
+    const customerAuthorizationAccountResponse =
+      await this.customerAuthorizationAccountRepository.update({
+        email: verifyCustomerAlreadyExists.email,
+        status: AccountStatusEnum.Active,
+      });
 
-    const customerAuthorizationAccount = {};
-
-    return customerAuthorizationAccount;
+    return customerAuthorizationAccountResponse;
   };
 }

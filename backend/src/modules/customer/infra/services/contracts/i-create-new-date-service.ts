@@ -4,7 +4,7 @@
 
 
 export namespace ICreateNewDateService {
-  export type Params = {} | null
+  export type Params = void;
 
   export type Response = Date;
 

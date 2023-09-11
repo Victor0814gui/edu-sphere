@@ -42,18 +42,18 @@ export class PurchaseProductToCustomerUseCase
         customerId: props.customerId
       });
 
-    const sessionPurchaseProductGatwayResponse =
-      await this.sessionPurchaseProductGatway.execute({
-        successUrl: "",
-        customerId: "",
-        productId: "",
-        productQuantity: 0,
-        cancelUrl: ""
-      });
+    // const sessionPurchaseProductGatwayResponse =
+    //   await this.sessionPurchaseProductGatway.execute({
+    //     successUrl: "",
+    //     customerId: "",
+    //     productId: "",
+    //     productQuantity: 0,
+    //     cancelUrl: ""
+    //   });
 
-    if (!sessionPurchaseProductGatwayResponse?.customerEmail) {
-      throw new CustomerBusinessException("Error processing your payment", 500);
-    }
+    // if (!sessionPurchaseProductGatwayResponse?.customerEmail) {
+    //   throw new CustomerBusinessException("Error processing your payment", 500);
+    // }
 
     return purchaseProductToCustomerResponse;
   };
