@@ -3,11 +3,6 @@ import { Button } from "../../components/button";
 import { View } from "react-native"
 //@ts-ignore
 import { Input } from '../../components/input';
-import {
-  styles,
-  Container,
-  Form,
-} from './styles';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import { HiperLink } from '../../components/hiper-link';
 import { useForm, Controller } from 'react-hook-form';
@@ -21,6 +16,11 @@ import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animat
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { fullscreen } from 'react-native-custom-window';
+import {
+  styles,
+  Container,
+  Form,
+} from './styles';
 
 type OnSubmitProps = {
   password: string;
@@ -41,7 +41,7 @@ export function AuthenticateUserAccount({ navigation }: any) {
     signIn({ email, password });
   }, [])
 
-  const handlePress = useCallback(async () => {
+  const handlePress = useCallback(() => {
     navigation.navigate('createCustomer');
   }, []);
 

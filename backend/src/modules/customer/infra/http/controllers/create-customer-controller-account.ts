@@ -5,23 +5,19 @@ import { User } from "@aplication/entities/user";
 
 
 
-namespace ICreateUserAccountController {
-  export interface Request {
-    role: string;
-    name: string;
-    email: string;
-    password: string;
-    avatarUrl: string;
-  }
-
-  export interface Response extends User { }
+interface ICreateUserAccountControllerParams {
+  role: string;
+  name: string;
+  email: string;
+  password: string;
+  avatarUrl: string;
 }
 
 
 export class CreateCustomerAccountController {
 
   async handler(request: Request, response: Response): Promise<Response> {
-    const body = request.body as ICreateUserAccountController.Request;
+    const body = request.body as ICreateUserAccountControllerParams;
 
     const createCustomerAccountUseCase = container.resolve(CreateCustomerAccountUseCase);
 

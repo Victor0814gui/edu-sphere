@@ -39,8 +39,8 @@ export class CreateCustomerAccountUseCase
       throw new CustomerBusinessException("Customer already exists", 400);
     }
 
-    const customerId = this.createUUIDTokenService.create(null);
-    const createNewDate = this.createNewDateService.create(null);
+    const customerId = this.createUUIDTokenService.create();
+    const createNewDate = this.createNewDateService.create();
 
     const passwordHash = await this.encryptDataService.execute(props.password);
 
