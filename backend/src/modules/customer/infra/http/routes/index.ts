@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { is } from "../middlewares/is";
 
 import { CreateCustomerAccountController } from "../controllers/create-customer-controller-account"
 import { CreateRoleController } from "../controllers/create-role-controller";
@@ -10,11 +9,14 @@ import { CreatePermissionController } from "../controllers/create-permission-con
 import { DeleteUserAccountController } from "../controllers/delete-customer-controller-account";
 import { ListCustomersController } from "../controllers/list-customers-controller";
 import { UpdateRoleController } from "../controllers/update-role-controller";
-import { AuthenticationCustomerController } from "../controllers/authenticate-user-account";
+import { AuthenticationCustomerAccountController } from "../controllers/authenticate-customer-account-controller";
 import { userBusinessMiddleware } from "../middlewares/business-middleware";
 import { CreateProductController } from "../controllers/create-product-controller";
 import { PurchaseProductToCustomerController } from "../controllers/purchase-product-to-customer-controller";
 import { customerAuthenticationCheck } from "../middlewares/customer-authentication-check";
+import { rolesMiddleware } from "../middlewares/roles-middleware";
+import { permissionsMiddleware } from "../middlewares/permissions-middleware";
+import { gatewayMiddleware } from "../middlewares/gateway-middleware";
 
 
 const createCustomerAccountController = new CreateCustomerAccountController();
@@ -25,11 +27,11 @@ const listPermissionsController = new ListPermissionsController();
 const deleteUserAccountController = new DeleteUserAccountController();
 const listCustomersController = new ListCustomersController();
 const updateRoleController = new UpdateRoleController();
-const authenticationCustomerController = new AuthenticationCustomerController();
 const createProductController = container.resolve(CreateProductController);
 const purchaseProductToCustomerController = container.resolve(PurchaseProductToCustomerController);
-const userRoutes = Router();
+const authenticationCustomerAccountController = container.resolve(AuthenticationCustomerAccountController);
 
+const userRoutes = Router();
 
 userRoutes.post(
   "/customer/create",
@@ -38,58 +40,92 @@ userRoutes.post(
 
 userRoutes.post(
   "/create/role",
+  // customerAuthenticationCheck,
+  // rolesMiddleware("admin"),
+  // permissionsMiddleware(["admin.create"]),
   createRoleController.handler,
 );
 
 userRoutes.get(
   "/list/role",
+  // customerAuthenticationCheck,
+  // rolesMiddleware("admin"),
+  // permissionsMiddleware(["admin.list"]),
   listRolesController.handler
 );
 
 userRoutes.get(
   "/list/permission",
+  customerAuthenticationCheck,
+  rolesMiddleware("admin"),
+  permissionsMiddleware(["admin.list"]),
   listPermissionsController.handler
 );
 
 userRoutes.post(
   "/create/permission",
+  customerAuthenticationCheck,
+  rolesMiddleware("admin"),
+  permissionsMiddleware(["admin.create"]),
   createPermissionController.handler
 );
 
 userRoutes.delete(
   "/delete/customer",
+  customerAuthenticationCheck,
+  rolesMiddleware("admin"),
+  permissionsMiddleware(["admin.delete"]),
   deleteUserAccountController.handler
 );
 
 userRoutes.get(
   "/list/customers",
+  customerAuthenticationCheck,
+  rolesMiddleware("admin"),
+  permissionsMiddleware(["admin.list"]),
   listCustomersController.handler
 );
 
 userRoutes.put(
   "/update/role",
+  customerAuthenticationCheck,
+  rolesMiddleware("admin"),
+  permissionsMiddleware(["admin.update"]),
   updateRoleController.handler
 );
 
 userRoutes.post(
   "/customer/signin",
-  authenticationCustomerController.handler
+  authenticationCustomerAccountController.handler
 );
 
 userRoutes.post(
   "/subscription/create",
+  customerAuthenticationCheck,
+  rolesMiddleware("student"),
+  permissionsMiddleware(["student.create"]),
   createProductController.handler
 );
-
-
-userRoutes.use("/", userBusinessMiddleware);
-
 
 userRoutes.use(
   "/purchase/product",
   customerAuthenticationCheck,
+  rolesMiddleware("student"),
+  permissionsMiddleware(["student.purchase"]),
   purchaseProductToCustomerController.handler,
 )
+
+userRoutes.use(
+  "/purchase/subscription",
+  customerAuthenticationCheck,
+  purchaseProductToCustomerController.handler,
+)
+
+userRoutes.use(
+  "/",
+  gatewayMiddleware,
+  userBusinessMiddleware,
+);
 
 
 export { userRoutes };

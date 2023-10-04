@@ -14,7 +14,7 @@ interface IUpdateRoomController {
 }
 
 @injectable()
-export class UpdateRoomContoller {
+export class UpdateRoomController {
   public async handler(request: Request, response: Response) {
     const data = request.body as IUpdateRoomController;
 

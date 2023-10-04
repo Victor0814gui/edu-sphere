@@ -1,10 +1,11 @@
 import { container } from "tsyringe"
-import { SessionPurchaseProductGatway } from "../gateways/sessions-purchase-product-gatway"
-import { ISessionPurchaseProductGatway } from "../gateways/contracts/i-sessions-purchase-product-gatway";
+import { SessionPurchaseProductGateway } from "../gateways/sessions-purchase-product-gateway"
+import { ISessionPurchaseProductGateway } from "../gateways/contracts/i-sessions-purchase-product-gateway";
 
 
 
-container.registerSingleton<ISessionPurchaseProductGatway.Implementation>(
-  "SessionPurchaseProductGatway",
-  SessionPurchaseProductGatway
+container.registerSingleton<ISessionPurchaseProductGateway.Implementation>(
+  "SessionPurchaseProductGateway",
+  SessionPurchaseProductGateway
 );
+

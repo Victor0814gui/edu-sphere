@@ -22,18 +22,19 @@ export class GenerateRefreshToken
       customerId: props.customerId
     })
 
-    if (refreshTokenAlreadyExists ?) {
-      return refreshTokenAlreadyExists.refreshToken;
+    if (!!refreshTokenAlreadyExists![0]?.id) {
+      return refreshTokenAlreadyExists![0].refreshToken!;
     }
 
     const expiresIn = new Date();
     expiresIn.setDate(expiresIn.getDate() + expiryDate);
 
     const generateRefreshToken = await this.createSessionTokenSecurity.create({
+      customerId: props.customerId,
       state: RefreshTokenState.Active,
-      refreshToken: this.createUUIDTokenService.create({}),
+      refreshToken: this.createUUIDTokenService.create(),
       expiryDate: expiresIn,
-      id: this.createUUIDTokenService.create({}),
+      id: this.createUUIDTokenService.create(),
     })
 
     return generateRefreshToken.refreshToken;

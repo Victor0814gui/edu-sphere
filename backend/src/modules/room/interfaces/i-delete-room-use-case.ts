@@ -1,3 +1,4 @@
+import { Room } from "@/src/aplication/entities/room";
 
 
 export namespace IDeleteRoomUseCase {
@@ -5,18 +6,12 @@ export namespace IDeleteRoomUseCase {
     code: string;
   }
 
-  export type Response = {
-    id: string;
-    title: string;
-    description: string;
-    createdAt: Date;
-    updatedAt?: Date | null;
-    teacherId: string;
-    studentList?: any[]
-  }
+  export type Response = Promise<Room>
 
   export interface Implementation {
-    execute: (props: IDeleteRoomUseCase.Params) =>
-      Promise<IDeleteRoomUseCase.Response>
+    // findById: (props: IDeleteRoomUseCase.Params)
+    //   => IDeleteRoomUseCase.Response; 
+    execute: (props: IDeleteRoomUseCase.Params)
+      => IDeleteRoomUseCase.Response;
   }
 }

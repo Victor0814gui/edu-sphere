@@ -4,7 +4,7 @@ import { Room } from "@aplication/entities/room"
 
 namespace ICreateRoomRepository {
   export namespace Create {
-    export interface Params {
+    export type Params = {
       id: string;
       closed: boolean;
       title: string;
@@ -15,19 +15,19 @@ namespace ICreateRoomRepository {
       description: string;
       slug: string;
     }
-    export interface Response extends Room { };
+    export type Response = Promise<Room>;
   }
 
   export namespace FindByTitle {
-    export interface Params {
+    export type Params = {
       slug: string;
     }
-    export interface Response extends Room { };
+    export type Response = Promise<Room | null>;
   }
 
-  export interface Implementation {
-    create: (props: ICreateRoomRepository.Create.Params) => Promise<ICreateRoomRepository.Create.Response>;
-    findByTitle: (props: ICreateRoomRepository.FindByTitle.Params) => Promise<ICreateRoomRepository.FindByTitle.Response | null>;
+  export type Implementation = {
+    create: (props: ICreateRoomRepository.Create.Params) => ICreateRoomRepository.Create.Response;
+    findByTitle: (props: ICreateRoomRepository.FindByTitle.Params) => ICreateRoomRepository.FindByTitle.Response;
   }
 }
 

@@ -17,17 +17,17 @@ export class CreateLessonUseCase
   async execute(props: ICreateLessonUseCase.Params):
     ICreateLessonUseCase.Response {
 
-    const tranformTitleInSlug = props.title
+    const transformTitleInSlug = props.title
       .trim()
       .toLowerCase()
       .replace(/[^a-zA-Z0-9\s]/g, "")
       .replace(/\s+/g, "-");
 
-    const verifyLessonAlreayExists = await this.createLessonRepository.findByTitle({
-      slug: tranformTitleInSlug,
+    const verifyLessonAlreadyExists = await this.createLessonRepository.findByTitle({
+      slug: transformTitleInSlug,
     })
 
-    if (!!verifyLessonAlreayExists?.id) {
+    if (!!verifyLessonAlreadyExists?.id) {
       throw new LessonBusinessException("Lesson already exists", 403);
     }
 
@@ -42,7 +42,7 @@ export class CreateLessonUseCase
       createdAt: new Date(),
       start: startDate,
       end: endDate,
-      slug: tranformTitleInSlug,
+      slug: transformTitleInSlug,
       duration: duration,
     })
 

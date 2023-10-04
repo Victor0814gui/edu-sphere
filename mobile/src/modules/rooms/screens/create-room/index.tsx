@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 
-import {
-  Container,
-} from "./styles";
 import { Input } from '@modules/session/components/input';
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import { Button } from '@shared/components/button';
-import { RootDrawerNavigationProp } from '@types/navigation';
 import { Controller, useForm } from 'react-hook-form';
 // import { fullscreen } from "react-native-custom-window"
 import { useFocusEffect } from "@react-navigation/native"
@@ -18,30 +13,16 @@ import {
   Visibility,
   WinUIEnums,
 } from "react-native-xaml";
-import { View } from 'react-native';
+
+import {
+  Container,
+} from "./styles";
+
+import { Trasition } from '@shared/components/transition';
 
 type CreateRoomScreenProps = {
-  navigation: RootDrawerNavigationProp<"CreateRoomScreen">
+  navigation: any;
 }
-
-// REACT_METHOD(AllowDrop, L"allowDrop")
-// void AllowDrop(winrt:: Microsoft:: ReactNative:: ReactPromise < void> promise) noexcept {
-//   context.UIDispatcher().Post([] {
-//     winrt:: Windows:: UI:: Xaml:: Controls:: Frame frame;
-
-//     frame.AllowDrop(true);
-//   });
-// }
-
-// REACT_METHOD(DisableDrop, L"disableDrop")
-// void DisableDrop(winrt:: Microsoft:: ReactNative:: ReactPromise < void> promise) noexcept {
-//   context.UIDispatcher().Post([] {
-//     winrt:: Windows:: UI:: Xaml:: Controls:: Frame frame;
-
-//     frame.AllowDrop(false);
-//   });
-// }
-
 
 export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
   const [pointerMoved, setPointerMoved] = useState(false);
@@ -58,7 +39,7 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
     },
   })
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data: any) => console.log(data)
 
   useFocusEffect(() => {
     const addNativeModulesMethod = async () => {
@@ -68,7 +49,7 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
   })
 
   return (
-    <ScreenAnimationWrapper>
+    <Trasition>
       <Container>
         <WinUI.InfoBar
           message="the message"
@@ -83,7 +64,7 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
           onDrop={(e) => console.log(e)}
           background="paleturquoise"
         >
-          <TextBlock text="this is a textblock" foreground='red' textAlignment="center" />
+          <TextBlock text="this is a textblock" foreground='red' />
         </Border>
         <Controller
           control={control}
@@ -117,6 +98,6 @@ export function CreateRoomScreen({ navigation }: CreateRoomScreenProps) {
           CRIAR NOVA SALA
         </Button.Default>
       </Container>
-    </ScreenAnimationWrapper>
+    </Trasition>
   );
 }

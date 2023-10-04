@@ -7,7 +7,7 @@ import { container, injectable } from "tsyringe";
 
 
 @injectable()
-export class ListRoomsContoller {
+export class ListRoomsController {
   public async handler(request: Request, response: Response) {
 
     const listRoomsUseCaseInstance = container.resolve(ListRoomsUseCase);

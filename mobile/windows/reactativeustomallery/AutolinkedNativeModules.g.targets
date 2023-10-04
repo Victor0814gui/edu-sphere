@@ -14,6 +14,10 @@
     <ProjectReference Include="$(ProjectDir)..\..\node_modules\@react-native-picker\picker\windows\ReactNativePicker\ReactNativePicker.vcxproj">
       <Project>{bedcc600-4541-41f2-aa46-9e058202b6ad}</Project>
     </ProjectReference>
+    <!-- Projects from react-native-custom-window -->
+    <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-custom-window\windows\ReactNativeCustomWindow\ReactNativeCustomWindow.vcxproj">
+      <Project>{63b6ab0f-3c32-4404-9115-5040047b6057}</Project>
+    </ProjectReference>
     <!-- Projects from react-native-fs -->
     <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-fs\windows\RNFS\RNFS.vcxproj">
       <Project>{4f89a807-a843-4df0-8d74-a04a3f48fef9}</Project>
@@ -37,10 +41,6 @@
     <!-- Projects from react-native-xaml -->
     <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-xaml\windows\ReactNativeXaml\ReactNativeXaml.vcxproj">
       <Project>{0ff7027a-222c-4ffb-8f17-91d18bbaf7a8}</Project>
-    </ProjectReference>
-    <!-- Projects from react-native-custom-window -->
-    <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-custom-window\windows\ReactNativeCustomWindow\ReactNativeCustomWindow.vcxproj">
-      <Project>{63b6ab0f-3c32-4404-9115-5040047b6057}</Project>
     </ProjectReference>
   </ItemGroup>
 </Project>

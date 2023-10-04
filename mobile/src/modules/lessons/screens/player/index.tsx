@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Video, { VideoProperties } from "react-native-video";
-import { ActivityIndicator, Button, useWindowDimensions } from "react-native";
-import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
-import { fullscreen } from "react-native-custom-window";
+import { Button, useWindowDimensions } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import {
   fonts,
   Container,
@@ -12,14 +11,10 @@ import {
   ButtonRoomNotFound,
   ButtonRoomNotFoundText,
   Content,
-  Card,
-  DescriptionLesson,
   Controls,
 } from './styles';
 import { View } from "react-native";
-import { Text } from "react-native";
-import { COLORS } from "@shared/theme";
-import { Seekbar } from "@modules/lessons/components/seekbar";
+import { Seekbar } from "../../components/seekbar";
 
 export interface OnProgressData {
   currentTime: number;
@@ -62,7 +57,7 @@ export function Player({ navigation: { navigate }, route }: any) {
 
   useFocusEffect(() => {
     const enterScreen = async () => {
-      await fullscreen.addBackButton();
+      // await fullscreen.addBackButton();
       setIsPlaying(true);
     }
     enterScreen();
@@ -76,7 +71,9 @@ export function Player({ navigation: { navigate }, route }: any) {
           width,
           height: height
         }}
+        //@ts-ignore
         ref={videoReference}
+        //@ts-ignore
         onLoad={(e) => setOnLoad(e.nativeEvent)}
         controls={false}
         playInBackground={false}
@@ -84,6 +81,7 @@ export function Player({ navigation: { navigate }, route }: any) {
         // onLoad={(e) => console.log(e)}
         paused={!isPlaying}
         resizeMode="contain"
+        //@ts-ignore
         onProgress={(e) => setOnProgress(e.nativeEvent)}
         source={{
           uri: route.params.url
@@ -111,7 +109,7 @@ export function Player({ navigation: { navigate }, route }: any) {
               color={"red"}
               onPress={() => setIsPlaying(true)}
             />}
-          <Button title="fullscreen" color={"red"} onPress={async () => await fullscreen.full()} />
+          <Button title="fullscreen" color={"red"} onPress={async () => { }} />
         </Controls>
         <Seekbar
           currentTime={onProgress.currentTime}

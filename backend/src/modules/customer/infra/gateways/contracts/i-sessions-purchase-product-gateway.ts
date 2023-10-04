@@ -1,5 +1,3 @@
-import { stripe } from "@/src/shared/infra/services/stripe";
-
 type ProductInfo = {
   amountSubtotal: number | null;
   amountTotal: number | null;
@@ -9,7 +7,7 @@ type ProductInfo = {
   currency: string | null;
 }
 
-export namespace ISessionPurchaseProductGatway {
+export namespace ISessionPurchaseProductGateway {
 
   export type Params = {
     customerId: string;
@@ -22,7 +20,7 @@ export namespace ISessionPurchaseProductGatway {
   export type Response = Promise<ProductInfo | null>;
 
   export type Implementation = {
-    execute: (props: ISessionPurchaseProductGatway.Params) =>
-      ISessionPurchaseProductGatway.Response
+    execute: (props: ISessionPurchaseProductGateway.Params) =>
+      ISessionPurchaseProductGateway.Response
   }
 }

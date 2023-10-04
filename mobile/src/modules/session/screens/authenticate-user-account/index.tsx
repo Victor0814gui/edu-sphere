@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { Button } from "../../components/button";
-import { View } from "react-native"
+import { Text, View } from "react-native"
 //@ts-ignore
 import { Input } from '../../components/input';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
@@ -12,15 +12,13 @@ import { useNavigate, useNavigation } from "react-router-native"
 import BackgroundIlustrationSvg from "../../assets/images/background-ilustration.svg";
 //@ts-ignore
 import BackgroundIlustrationRightSvg from "../../assets/images/background-ilustration-right.svg";
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
-import { useFocusEffect } from '@react-navigation/native';
-import { fullscreen } from 'react-native-custom-window';
 import {
   styles,
   Container,
   Form,
 } from './styles';
+import { Trasition } from '../../../../shared/components/transition';
 
 type OnSubmitProps = {
   password: string;
@@ -46,17 +44,11 @@ export function AuthenticateUserAccount({ navigation }: any) {
   }, []);
 
 
-  useFocusEffect(() => {
-    fullscreen.removeBackButton();
-    // fullscreen.full();
-    // fullscreen.setSize(1080,800)
-  })
-
   return (
     <React.Fragment>
       <BackgroundIlustrationSvg style={styles.backgroundLeft} />
       <BackgroundIlustrationRightSvg style={styles.backgroundRight} />
-      <ScreenAnimationWrapper>
+      <Trasition>
         <Container>
           <Form>
             <Controller
@@ -116,7 +108,7 @@ export function AuthenticateUserAccount({ navigation }: any) {
             onPress={handlePress}
           />
         </Container>
-      </ScreenAnimationWrapper>
+      </Trasition>
     </React.Fragment>
   );
 }

@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe"
-import { CustomerBusinessException } from "@customer/infra/exception/business-exception";
+import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
 import { CustomerValidatorParams } from "../infra/validators/create";
 import { ICreateCustomerAccountRepository } from "../repositories/i-create-customer-account-repository";
 import { IDeleteUserAccountUseCase } from "../interfaces/i-delete-customer-account-use-case";

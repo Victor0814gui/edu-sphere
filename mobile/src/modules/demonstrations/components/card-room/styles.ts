@@ -82,14 +82,17 @@ export const Content = styled.View`
 
 export const Duration = styled.Text`
   margin-right: 10px;
+  color: ${COLORS.grey_680};
 `;
 
 export const Author = styled.Text`
   margin-right: 10px;
+  color: ${COLORS.grey_680};
 `;
 
 export const Difficulty = styled.Text`
   margin-right: 10px;
+  color: ${COLORS.grey_680};
 `;
 
 export const Tag = styled.View`

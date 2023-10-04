@@ -1,7 +1,7 @@
 import { injectable, inject } from "tsyringe";
 import { IUpdateRoleUseCase } from "../interfaces/i-update-role-use-case";
 import { IUpdateRoleRepository } from "../repositories/i-update-role-repository";
-import { CustomerBusinessException } from "../infra/exception/business-exception";
+import { CustomerBusinessException } from "../infra/exceptions/business-exception";
 
 
 

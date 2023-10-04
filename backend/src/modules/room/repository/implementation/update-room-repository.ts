@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { IUpdateRoomRepository } from "../i-update-room-respository";
+import { IUpdateRoomRepository } from "../i-update-room-repository";
 
 const database = new PrismaClient();
 

@@ -1,15 +1,15 @@
 import { stripe } from "@/src/shared/infra/services/stripe";
-import { ISessionPurchaseProductGatway } from "./contracts/i-sessions-purchase-product-gatway";
+import { ISessionPurchaseProductGateway } from "./contracts/i-sessions-purchase-product-gateway";
 
 
 
 
 
-export class SessionPurchaseProductGatway
-  implements ISessionPurchaseProductGatway.Implementation {
+export class SessionPurchaseProductGateway
+  implements ISessionPurchaseProductGateway.Implementation {
 
-  async execute(props: ISessionPurchaseProductGatway.Params):
-    ISessionPurchaseProductGatway.Response {
+  async execute(props: ISessionPurchaseProductGateway.Params):
+    ISessionPurchaseProductGateway.Response {
     const stripeCheckoutSessionResponse = await stripe.checkout.sessions.create({
       customer: props.customerId,
       mode: 'payment',

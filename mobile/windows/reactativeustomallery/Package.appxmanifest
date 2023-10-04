@@ -4,16 +4,14 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
-  IgnorableNamespaces="uap mp rescap uap3">
+  IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="f305f3dd-6f7d-460d-a89c-021e4ff8bae4"
+    Name="5d04155b-053d-4cae-9a44-5c1095851d1e"
     Publisher="CN=agcoi"
-    Version="1.0.1.0" />
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="f305f3dd-6f7d-460d-a89c-021e4ff8bae4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="5d04155b-053d-4cae-9a44-5c1095851d1e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>reactativeustomallery</DisplayName>
@@ -40,57 +38,13 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="reactativeustomallery"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#2e2e2e"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
-      <Extensions>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="reactativeustomallery">
-            <uap:DisplayName>reactativeustomallery</uap:DisplayName>
-          </uap:Protocol>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileOpenPicker">
-          <uap:FileOpenPicker>
-            <uap:SupportedFileTypes>
-              <uap:SupportsAnyFileType/>
-            </uap:SupportedFileTypes>
-          </uap:FileOpenPicker>
-        </uap:Extension>
-        <uap:Extension Category="windows.mediaPlayback">
-          <uap:MediaPlayback>
-            <uap:Codec Name=".mp4"/>
-            <uap:Codec Name=".mp3"/>
-            <uap:Codec Name=".mkv"/>
-          </uap:MediaPlayback>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name="reactativeustomallery">
-            <uap:SupportedFileTypes>
-              <uap:FileType>.jpg</uap:FileType>
-              <uap:FileType>.png</uap:FileType>
-              <uap:FileType>.webp</uap:FileType>
-              <uap:FileType>.ofx</uap:FileType>
-            </uap:SupportedFileTypes>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileSavePicker">
-          <uap:FileSavePicker>
-            <uap:SupportedFileTypes>
-              <uap:SupportsAnyFileType/>
-            </uap:SupportedFileTypes>
-          </uap:FileSavePicker>
-        </uap:Extension>
-      </Extensions>
     </Application>
   </Applications>
 
   <Capabilities>
-    <rescap:Capability Name="broadFileSystemAccess" />
-    <uap:Capability Name="documentsLibrary"/>
-    <rescap:Capability Name="internetClient" />
-    <uap:Capability Name="picturesLibrary"/>
-    <uap:Capability Name="musicLibrary"/>
-    <uap:Capability Name="videosLibrary"/>
-    <uap3:Capability Name="backgroundMediaPlayback"/>
+    <Capability Name="internetClient" />
   </Capabilities>
 </Package>

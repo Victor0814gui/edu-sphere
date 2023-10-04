@@ -4,7 +4,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 import { COLORS } from "./theme";
 import { AppProvider } from "./contexts";
-import { ToastNotificaitonProvider } from "./contexts/toast-notification";
+import { ToastNotificationProvider } from "./contexts/toast-notification";
+import { titleBar, window } from "react-native-custom-window";
 
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
@@ -42,8 +43,23 @@ const linking = {
 
 export const Main = () => {
   const [isRendering, setIsRendering] = useState(true);
-
   const onAnimationFinish = () => setIsRendering(false);
+
+  useEffect(() => {
+    const handlerChangeTitleBar = async () => {
+      await titleBar.enableExtend();
+      await window.setSize(1080, 720)
+      await titleBar.TitlebarColor({
+        //@ts-ignore
+        BackgroundColor: COLORS.grey_180,
+        ButtonBackgroundColor: "transparent",
+        ButtonForegroundColor: COLORS.white,
+        buttonHoverBackgroundColor: COLORS.grey_400,
+        ButtonHoverForegroundColor: COLORS.grey_480,
+      });
+    }
+    handlerChangeTitleBar();
+  }, [])
 
   if (isRendering) {
 
@@ -64,11 +80,11 @@ export const Main = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer linking={linking} theme={MyTheme}>
-        <ToastNotificaitonProvider>
+        <ToastNotificationProvider>
           <AppProvider>
             <Router />
           </AppProvider>
-        </ToastNotificaitonProvider>
+        </ToastNotificationProvider>
       </NavigationContainer>
     </GestureHandlerRootView>
   )

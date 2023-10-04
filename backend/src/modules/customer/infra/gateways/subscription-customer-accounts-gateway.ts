@@ -1,5 +1,6 @@
 import { stripe } from "@/src/shared/infra/services/stripe";
 import { ISubscriptionCustomerAccountGateway } from "./contracts/i-subscription-customer-accounts-gateway";
+import CustomerBusinessException from "../exceptions/business-exception";
 
 
 
@@ -14,22 +15,28 @@ export class SubscriptionCustomerAccountsGateway
     ISubscriptionCustomerAccountGateway.Create.Response {
 
     const stripeGatewayCreateProductResponse = await stripe.products.create({
-      name: 'Starter Subscription',
-      description: '$12/Month subscription',
-    })
+      name: props.name,
+      description: props.description,
+    });
 
-    const stripeGatewayCreatePriceProductResponse = stripe.prices.create({
-      unit_amount: 1200,
+    const stripeGatewayCreatePriceProductResponse = await stripe.prices.create({
+      unit_amount: props.price,
       currency: 'usd',
       recurring: {
-        interval: 'month',
+        interval: props.recurrence,
       },
       product: stripeGatewayCreateProductResponse.id,
     });
 
+    stripeGatewayCreatePriceProductResponse.id
+
+    if (!stripeGatewayCreatePriceProductResponse.created) {
+      throw new CustomerBusinessException("Product not created", 500);
+    }
+
     return {
       code: 200,
-      url: "akjsdklfjçaksjdfkjasdf"
+      url: stripeGatewayCreatePriceProductResponse.id
     };
   }
 

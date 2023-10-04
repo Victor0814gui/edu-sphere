@@ -35,7 +35,7 @@ model Room {
   slug        String
   description String
   type        String
-  teacherId   String
+  authorId    String
   published   Boolean
   createdAt   DateTime
   updatedAt   DateTime?
@@ -119,18 +119,17 @@ model RefreshToken {
 model Product {
   id             String        @id
   name           String        @unique
-  userId         String
   type           String
   status         String
-  startDate      DateTime
-  endDate        DateTime
+  startDate      DateTime?
+  endDate        DateTime?
   paymentMethod  String
   price          Int
   billingCycle   String
   nextBilling    DateTime
   autoRenew      Boolean
   paymentDetails String
-  createdAt      DateTime      @default(now())
+  createdAt      DateTime
   updatedAt      DateTime?
   transactions   Transaction[]
   users          User[]

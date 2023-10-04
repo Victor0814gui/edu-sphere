@@ -1,19 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 
-function can(requiredPermissions: string) {
-  return async (request: Request, response: Response, next: NextFunction) => {
-    const { permissions } = request;
 
-    if (permissions.length == 0) {
+function rolesMiddleware(requiredRoles: string) {
+  return async (request: Request, response: Response, next: NextFunction) => {
+    const { role } = request;
+
+    if (!role) {
       return response.status(404).json({
-        message: "User does not exists",
+        message: "roles does not exists",
         type: "error"
       })
     }
 
-    const permissionsExists = permissions.some(permission =>
-      requiredPermissions.includes(permission)
-    );
+
+    const permissionsExists = requiredRoles.includes(role);
 
     if (!permissionsExists) {
       return response.status(403).json({
@@ -25,4 +25,4 @@ function can(requiredPermissions: string) {
   }
 }
 
-export { can }
+export { rolesMiddleware }

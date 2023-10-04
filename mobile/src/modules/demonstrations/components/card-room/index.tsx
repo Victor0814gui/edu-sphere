@@ -18,7 +18,7 @@ import { Clock, User, ChartBar, Play } from "phosphor-react-native"
 
 
 
-export const CardRoomComponent = (props: {
+export const CardRoom = (props: {
   id: string
   title: string,
   avatarUrl: string,
@@ -31,7 +31,8 @@ export const CardRoomComponent = (props: {
   const { navigate } = useNavigation()
 
   const handleNavigationRoom = useCallback(() => {
-    navigate("room", { roomId: "ASD-ASDF-ASDF" })
+    // @ts-ignore
+    navigate("room", { questionId: "ASD-ASDF-ASDF", id: "ASD-ASDF-ASDF" })
   }, [])
 
   const containerTagsComponent = props.tags.map((tag) =>
@@ -84,5 +85,3 @@ export const CardRoomComponent = (props: {
     </Container>
   )
 }
-
-export const CardRoom = memo(CardRoomComponent);

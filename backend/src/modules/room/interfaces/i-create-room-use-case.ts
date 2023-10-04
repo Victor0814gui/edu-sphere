@@ -1,20 +1,18 @@
 import { Room } from "@/src/aplication/entities/room";
 
-export namespace ICreateRooomUseCase {
-  export interface Params {
+export namespace ICreateRoomUseCase {
+  export type Params = {
     title: string;
     type: string;
     description: string;
-    teacherId: string;
+    authorId: string;
     published: boolean;
   }
 
-  export interface Response extends Room {
-    studentList?: any[]
-  }
+  export type Response = Promise<Room>;
 
-  export interface Implementation {
-    execute: (props: ICreateRooomUseCase.Params) =>
-      Promise<ICreateRooomUseCase.Response>;
+  export type Implementation = {
+    execute: (props: ICreateRoomUseCase.Params) =>
+      ICreateRoomUseCase.Response;
   }
 }

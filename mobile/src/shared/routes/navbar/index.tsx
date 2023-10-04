@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import { DrawerNavigationHelpers } from '@react-navigation/drawer/lib/typescript/src/types';
 import { DrawerNavigationState, ParamListBase } from '@react-navigation/native';
-import { COLORS } from '@shared/theme';
 
 import Icon from "react-native-vector-icons/Feather";
 
@@ -23,9 +22,10 @@ import {
   CustomerRoleBadge,
   CustomerRoleBadgeIcon,
 } from "./styles";
-import { useAuthContextProvider } from "@shared/contexts/auth";
-import { IRoutes, UserRoutes } from "@shared/routes/user/routes";
 import { Gear, User } from "phosphor-react-native";
+import { useAuthContextProvider } from "../../contexts/auth";
+import { IRoutes, UserRoutes } from "../user/routes";
+import { COLORS } from "../../theme";
 
 
 type CustomNavbarProps = {

@@ -1,5 +1,5 @@
-import { Modal } from "@shared/components/modal";
 import { useState, useId, createContext, useContext, ReactNode } from "react";
+import { Modal } from "../../components/modal";
 
 
 
@@ -7,7 +7,7 @@ type ModalType = {
   title: string;
   description: string;
   actions?: any[];
-  type?: "warning" | "error" | "sucess" | "default";
+  type?: "warning" | "error" | "success" | "default";
 }
 
 type AddModalParams = {

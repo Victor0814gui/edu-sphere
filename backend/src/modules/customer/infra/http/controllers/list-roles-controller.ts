@@ -7,7 +7,7 @@ import { ListRoleUseCase } from "@customer/use-cases/list-roles-use-case";
 
 
 export class ListRolesController {
-  async handler(request: Request, response: Response):
+  public async handler(request: Request, response: Response):
     Promise<Response> {
     const listRoleUseCaseIntance = container.resolve(ListRoleUseCase);
 

@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe"
-import { CustomerBusinessException } from "../infra/exception/business-exception";
+import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
 import { CustomerValidatorParams } from "../infra/validators/create";
 import { ICreateCustomerAccountRepository } from "../repositories/i-create-customer-account-repository";
 import { ICreateCustomerAccountUseCase } from "../interfaces/i-create-customer-account-use-case";
@@ -31,11 +31,11 @@ export class CreateCustomerAccountUseCase
 
     this.customerValidatorParams.validate(props)
 
-    const verifyCustomerAlreayExists = await this.createCustomerAccountRepository.findUnique({
+    const verifyCustomerAlreadyExists = await this.createCustomerAccountRepository.findUnique({
       email: props.email
     })
 
-    if (verifyCustomerAlreayExists?.id) {
+    if (verifyCustomerAlreadyExists?.id) {
       throw new CustomerBusinessException("Customer already exists", 400);
     }
 
@@ -52,8 +52,8 @@ export class CreateCustomerAccountUseCase
       ...props,
       id: customerId,
       password: passwordHash,
-      status: AccountStatusEnum.Pending,
       createdAt: createNewDate,
+      status: AccountStatusEnum.Pending,
     });
 
     return createCustomerAccountResponse;

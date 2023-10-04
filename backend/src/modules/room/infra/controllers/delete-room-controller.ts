@@ -11,7 +11,7 @@ interface IDeleteRoomController {
 
 
 @injectable()
-export class DeleteRoomContoller {
+export class DeleteRoomController {
   public async handler(request: Request, response: Response) {
     const body = request.body as IDeleteRoomController;
 

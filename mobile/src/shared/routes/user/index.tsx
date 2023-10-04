@@ -8,8 +8,6 @@ import { Player } from '../../../modules/lessons/screens/player';
 import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
 import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
-import { CreateRoomScreen } from '@modules/rooms/screens/create-room';
-import { ModalQueueContextProvider } from "@shared/contexts/modal-queue";
 import { createStackNavigator } from '@react-navigation/stack';
 type UserDrawerType = {
   dashboard: undefined;

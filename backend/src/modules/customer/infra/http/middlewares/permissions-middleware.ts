@@ -1,18 +1,20 @@
 import { Request, Response, NextFunction } from "express";
 
-function is(requiredRoles: string) {
-  return async (request: Request, response: Response, next: NextFunction) => {
-    const { role } = request;
 
-    if (!role) {
+function permissionsMiddleware(requiredPermissions: string[]) {
+  return async (request: Request, response: Response, next: NextFunction) => {
+    const { permissions } = request;
+
+    if (permissions.length == 0) {
       return response.status(404).json({
-        message: "roles does not exists",
+        message: "User does not exists",
         type: "error"
       })
     }
 
-
-    const permissionsExists = requiredRoles.includes(role);
+    const permissionsExists = permissions.some(permission =>
+      requiredPermissions.includes(permission)
+    );
 
     if (!permissionsExists) {
       return response.status(403).json({
@@ -24,4 +26,4 @@ function is(requiredRoles: string) {
   }
 }
 
-export { is }
+export { permissionsMiddleware }

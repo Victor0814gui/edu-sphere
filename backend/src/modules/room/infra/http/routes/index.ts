@@ -1,40 +1,58 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { CreateRoomContoller } from "@room/infra/controllers/create-room-controller";
-import { DeleteRoomContoller } from "@room/infra/controllers/delete-room-controller";
-import { UpdateRoomContoller } from "@room/infra/controllers/update-room-controller";
-import { ListRoomsContoller } from "@room/infra/controllers/list-rooms-controller";
+import { CreateRoomController } from "@room/infra/controllers/create-room-controller";
+import { DeleteRoomController } from "@room/infra/controllers/delete-room-controller";
+import { UpdateRoomController } from "@room/infra/controllers/update-room-controller";
+import { ListRoomsController } from "@room/infra/controllers/list-rooms-controller";
 import { roomBusinessMiddleware } from "../middleware/business-middleware";
+import { roomAuthenticationCheck } from "../middleware/room-authentication-check";
+import { uploadFileMiddleware } from "../middleware/upload-files-middleware";
+import { rolesMiddleware } from "../middleware/roles-middleware";
+import { permissionsMiddleware } from "../middleware/permissions-middleware";
+import { ManagerPermission, TeacherPermission } from "@room/interfaces/security/permissions";
+import { Roles } from "@room/interfaces/security/roles";
 
 
-const RoomRoutes = Router();
+const roomRoutes = Router();
 
-const createRoomContoller = container.resolve(CreateRoomContoller);
-const deleteRoomContoller = container.resolve(DeleteRoomContoller);
-const updateRoomContoller = container.resolve(UpdateRoomContoller);
-const listRoomsContoller = container.resolve(ListRoomsContoller);
+const createRoomController = container.resolve(CreateRoomController);
+const deleteRoomController = container.resolve(DeleteRoomController);
+const updateRoomController = container.resolve(UpdateRoomController);
+const listRoomsController = container.resolve(ListRoomsController);
 
-RoomRoutes.get(
+roomRoutes.get(
   "/room/list",
-  listRoomsContoller.handler
+  roomAuthenticationCheck,
+  listRoomsController.handler
 )
 
-RoomRoutes.post(
+roomRoutes.post(
   "/room/create",
-  createRoomContoller.handler
+  roomAuthenticationCheck,
+  rolesMiddleware(Roles.teacher),
+  permissionsMiddleware([TeacherPermission.create]),
+  uploadFileMiddleware,
+  createRoomController.handler
 )
 
-RoomRoutes.put(
+roomRoutes.put(
   "/room/update",
-  updateRoomContoller.handler
+  roomAuthenticationCheck,
+  uploadFileMiddleware,
+  rolesMiddleware(Roles.teacher),
+  permissionsMiddleware([TeacherPermission.update]),
+  updateRoomController.handler
 )
 
-RoomRoutes.delete(
+roomRoutes.delete(
   "/room/delete",
-  deleteRoomContoller.handler
+  roomAuthenticationCheck,
+  rolesMiddleware(Roles.manager),
+  permissionsMiddleware([ManagerPermission.delete]),
+  deleteRoomController.handler
 )
 
-RoomRoutes.use("/room", roomBusinessMiddleware);
+roomRoutes.use("/room", roomBusinessMiddleware);
 
 
-export { RoomRoutes };
+export { roomRoutes };

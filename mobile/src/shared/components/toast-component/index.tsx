@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 
-import { COLORS } from "@shared/theme";
 import { aditionalStyles } from "../aditional-styles"
 import {
   Container,
@@ -16,8 +15,8 @@ import {
   ToastRemoveButton,
 } from '../styles';
 import { XCircle } from 'phosphor-react-native';
-import { useToastNotificaitonProvider, ToastContentType, } from '@shared/contexts/toast-notification';
-import { Flyout } from 'react-native-windows';
+import { ToastContentType, useToastNotificationProvider } from '../../contexts/toast-notification';
+import { COLORS } from '../../theme';
 
 
 
@@ -33,7 +32,7 @@ export const ToastItem = ({
 }: ToastContentType) => {
   const animateEnterAndLeaveToastItem = useRef(new Animated.Value(-20)).current
   const animationScale = useRef(new Animated.Value(1)).current
-  const { removeToastNotication } = useToastNotificaitonProvider();
+  const { removeToastNotification } = useToastNotificationProvider();
 
   const animateEnterToastItem = () => {
     if (mode === "temporary") {
@@ -57,7 +56,7 @@ export const ToastItem = ({
           toValue: 1,
           useNativeDriver: nativeDriverIsTrue,
         }).stop();
-        removeToastNotication(id!)
+        removeToastNotification(id!)
       }
     })
   }
@@ -122,7 +121,7 @@ export const ToastItem = ({
 }
 
 export function ToastComponent() {
-  const { toastNotifications } = useToastNotificaitonProvider();
+  const { toastNotifications } = useToastNotificationProvider();
 
   if (!toastNotifications) {
     return <View />

@@ -4,8 +4,8 @@ import { Container } from "./styles";
 import { ButtonBorder } from "../button-header";
 import { Modal } from "../../../../shared/components/modal";
 import { modalType } from "../../../../shared/types"
-import { useModalQueueContextProvider } from "@shared/contexts/modal-queue";
-import { useToastNotificaitonProvider } from "@shared/contexts/toast-notification";
+import { useModalQueueContextProvider } from "../../../../shared/contexts/modal-queue";
+import { useToastNotificationProvider } from "../../../../shared/contexts/toast-notification";
 
 type modalContentType = {
   title: string;
@@ -24,7 +24,7 @@ export const Header = (props: {
 }) => {
 
   const { addModal } = useModalQueueContextProvider();
-  const { addToastNotifications } = useToastNotificaitonProvider();
+  const { addToastNotifications } = useToastNotificationProvider();
 
   return (
     <Container>
@@ -33,7 +33,7 @@ export const Header = (props: {
           onPress={() => addToastNotifications({
             title: "codigo copiado",
             description: "codigo copiado com sucesso para a area de tranferência",
-            type: "sucess",
+            type: "success",
           })}
           label={props.roomId || "#AHAPQNASDJ"}
           borderActive

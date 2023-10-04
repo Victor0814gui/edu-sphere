@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Text, NativeModules } from "react-native";
+import React, { useState, useCallback } from "react";
+import { Text } from "react-native";
 import { Header } from "../../components/header";
 import { Question } from "../../components/question";
-import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import { ProgressView } from "@react-native-community/progress-view";
 import {
   fonts,
@@ -13,12 +13,10 @@ import {
   ContainerRoomNotFound,
   TitleRoomNotFound,
   DescriptionRoomNotFound,
-  ButtonRoomNotFound,
-  ButtonRoomNotFoundText,
 } from "./styles";
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import LottieView from "lottie-react-native";
-import { Button } from "@shared/components/button";
+import { Trasition } from "../../../../shared/components/transition";
+import { Button } from "../../../../shared/components/button";
 
 type RoomParamsType = {
   roomId: string;
@@ -80,16 +78,16 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
   const [data, setData] = useState<QuestionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  if (route.params.id) {
+  if (!route.params.id) {
     return (
-      <ScreenAnimationWrapper>
+      <Trasition>
         <ContainerRoomNotFound>
+          <LottieView autoPlay loop style={{ width: 400, height: 400 }} source={"Not Found"} />
           <TitleRoomNotFound style={fonts.titleRoomNotFound}>Ops,sala não encontrada</TitleRoomNotFound>
           <DescriptionRoomNotFound style={fonts.descriptionRoomNotFound}>parece que a sala que você está buscando não existe, verifique se o codigo da sala está certo e tente novamente</DescriptionRoomNotFound>
           <Button.Default onPress={() => navigate("dashboard")}>Home</Button.Default>
-          <LottieView autoPlay loop style={{ width: 400, height: 400 }} source={"Not Found"} />
         </ContainerRoomNotFound>
-      </ScreenAnimationWrapper>
+      </Trasition>
     )
   }
 
@@ -98,14 +96,14 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
     setData(questions)
     setIsLoading(true);
     // const timer = setTimeout(() => {
-    // }, 400)
+    // }, 400);
     // return () => {
     //   clearTimeout(timer);
     // }
   })
 
 
-  const renderItem = ({ item }: { item: QuestionType, index?: number }): JSX.Element => (
+  const renderItem = useCallback(({ item }: { item: QuestionType, index?: number }): JSX.Element => (
     <Question
       nickname={item.nickname}
       message={item.message}
@@ -114,12 +112,12 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
       messageVideoUrl={item.messageVideoUrl}
       isPrivate={item.isPrivate}
     />
-  )
+  ), [])
 
   const keyExtractor = (item: unknown, index: number) => `${index}-${item}`;
 
   return (
-    <ScreenAnimationWrapper>
+    <Trasition>
       <Container>
         <Header roomId={route.params.id} />
         <SubHeaderContent>
@@ -141,6 +139,6 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
           //@ts-ignore
           : <ProgressView isIndeterminate={true} />}
       </Container>
-    </ScreenAnimationWrapper>
+    </Trasition>
   );
 }

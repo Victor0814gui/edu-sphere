@@ -18,7 +18,7 @@ import {
 } from "./styles";
 import { COLORS } from "@shared/theme";
 import { useAuthContextProvider } from "@shared/contexts/auth";
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
+import { Trasition } from '@shared/components/transition';
 import { Expander } from "@modules/demonstrations/components/expander";
 import { useToastNotificaitonProvider } from "@shared/contexts/toast-notification";
 
@@ -41,9 +41,9 @@ export const Profile = (): JSX.Element => {
 
   const pickFolder = async () => {
     try {
-      const filePathResponse = await FilePicker.pickerFolder();
-      setFolder(filePathResponse)
-      console.log({ filePathResponse });
+      // const filePathResponse = await FilePicker.pickerFolder();
+      // setFolder(filePathResponse)
+      // console.log({ filePathResponse });
     } catch (err) {
       console.log(err);
       addToastNotifications({
@@ -104,7 +104,7 @@ export const Profile = (): JSX.Element => {
 
   return (
     <ScrollView>
-      <ScreenAnimationWrapper>
+      <Trasition>
         <Container>
           <TextContainer>Profile</TextContainer>
           <Pressable onPress={pickFile}>
@@ -163,7 +163,7 @@ export const Profile = (): JSX.Element => {
             </OptionsDescription>
           </Expander>
         </Container>
-      </ScreenAnimationWrapper>
+      </Trasition>
     </ScrollView>
   )
 }

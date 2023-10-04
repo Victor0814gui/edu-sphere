@@ -1,14 +1,17 @@
 import { verify } from "jsonwebtoken";
+import { injectable, inject } from "tsyringe";
 import { AccountStatusEnum } from "../interfaces/enums/account-status-enum";
 import { ICustomerAuthorizationAccountUseCase } from "../interfaces/i-customer-authorization-account-use-case";
 import { ICustomerAuthorizationAccountRepository } from "../repositories/i-customer-authorization-account-repository";
-import { CustomerBusinessException } from "../infra/exception/business-exception";
+import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
 
 
 
+@injectable()
 export class CustomerAuthorizationAccountUseCase
   implements ICustomerAuthorizationAccountUseCase.Implementation {
   constructor(
+    @inject("CustomerAuthorizationAccountRepository")
     private customerAuthorizationAccountRepository:
       ICustomerAuthorizationAccountRepository.Implementation
   ) { }

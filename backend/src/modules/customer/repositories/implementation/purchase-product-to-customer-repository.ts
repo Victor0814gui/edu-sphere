@@ -45,7 +45,7 @@ export class PurchaseProductToCustomerRepository
     const findProductResponse = await database.product.findUnique({
       where: {
         id: props.productId,
-      }
+      },
     })
 
     return findProductResponse;

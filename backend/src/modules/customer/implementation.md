@@ -21,9 +21,17 @@ Cadastro de Usuários: Neste módulo, você implementaria a funcionalidade que p
 
 - [ ] - **Privacidade e Segurança:** Neste módulo, você garantiria a privacidade e segurança dos dados dos usuários, utilizando práticas de criptografia para armazenar senhas de forma segura e implementando mecanismos para proteger os dados pessoais dos usuários contra acesso não autorizado.
 
-- [ ] - **Permissões baseadas em Assinaturas:**🎈
-Nesse caso deve ser analizado a possivel substituição de permissões e roles por permissões baseadas em assinaturas, onde o sistema  se tornaria mais claro e consiso (A verificar)
+- [ ] - **Permissões baseadas em Assinaturas:**
+Nesse caso deve ser analizado a possivel substituição de permissões e roles por permissões baseadas em assinaturas, onde o sistema  se tornaria mais claro e consiso (A verificar)🎈
 
 - [ ] - **Criar funcionalidade  para adicionar usuarios**
 
 - [ ] - **Funcionalidade para comprar Produto**
+
+
+Permissões do sistema
+Admin
+Suport
+Student
+Teacher
+Manager

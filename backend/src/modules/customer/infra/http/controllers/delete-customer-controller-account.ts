@@ -6,17 +6,14 @@ import { DeleteUserAccountUseCase } from "@customer/use-cases/delete-customer-ac
 
 
 
-namespace IDeleteUserAccountController {
-  export interface Request {
-    email: string;
-  }
-  export interface Response extends User { }
+interface IDeleteUserAccountControllerParams {
+  email: string;
 }
 
 
 export class DeleteUserAccountController {
   async handler(request: Request, response: Response): Promise<Response> {
-    const body = request.body as IDeleteUserAccountController.Request;
+    const body = request.body as IDeleteUserAccountControllerParams;
 
     const deleteUserAccountUseCaseInstance = container.resolve(DeleteUserAccountUseCase);
 

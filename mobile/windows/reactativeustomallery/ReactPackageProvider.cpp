@@ -2,9 +2,6 @@
 #include "ReactPackageProvider.h"
 #include "NativeModules.h"
 
-
-#include "Notification.h"
-
 using namespace winrt::Microsoft::ReactNative;
 
 namespace winrt::reactativeustomallery::implementation

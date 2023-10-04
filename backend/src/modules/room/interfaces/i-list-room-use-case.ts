@@ -1,21 +1,14 @@
-import { IListRoomsRepository } from "../repository/i-list-room-respository";
+import { Room } from "@/src/aplication/entities/room";
+import { IListRoomsRepository } from "../repository/i-list-room-repository";
 
 
-export namespace IListRooomUseCase {
-  export type Params = {}
+export namespace IListRoomUseCase {
+  export type Params = void;
 
-  export type Response = {
-    id: string;
-    title: string;
-    description: string;
-    createdAt: Date;
-    updatedAt?: Date | null;
-    teacherId: string;
-    studentList?: any[]
-  }
+  export type Response = Promise<Room[] | null>;
 
   export interface Implementation {
-    execute: (props: IListRooomUseCase.Params) =>
-      Promise<IListRoomsRepository.Response | null>
+    execute: (props: IListRoomUseCase.Params)
+      => IListRoomsRepository.Response;
   }
 }

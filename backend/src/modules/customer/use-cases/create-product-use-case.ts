@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateProductUseCase } from "../interfaces/i-create-product-use-case";
 import { ICreateProductRepository } from "../repositories/i-create-product-repository";
-import { CustomerBusinessException } from "../infra/exception/business-exception";
+import { CustomerBusinessException } from "../infra/exceptions/business-exception";
 import { ISubscriptionCustomerAccountGateway } from "../infra/gateways/contracts/i-subscription-customer-accounts-gateway";
 import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
@@ -43,8 +43,8 @@ export class CreateProductUseCase implements
       throw new CustomerBusinessException("Poduct already exists on the gateway", 403);
     }
 
-    const productId = this.createUUIDTokenService.create(null)
-    const productCreatedAt = this.createNewDateService.create(null)
+    const productId = this.createUUIDTokenService.create()
+    const productCreatedAt = this.createNewDateService.create()
 
     const createProductRepositoryResponse =
       await this.createProductRepository.create({

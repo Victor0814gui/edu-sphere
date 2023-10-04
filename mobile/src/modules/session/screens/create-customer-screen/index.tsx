@@ -1,31 +1,24 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View } from "react-native";
-import { FONTS } from "../../../../shared/theme"
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { fullscreen } from "react-native-custom-window";
-import { api } from "@shared/services/api"
+import React, { useState, useCallback } from 'react';
+import { StyleSheet } from "react-native";
+import { useFocusEffect } from '@react-navigation/native';
+import { titleBar } from "react-native-custom-window";
+import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
+import { Controller, useForm } from 'react-hook-form';
+
 import {
   Container,
   SectionSelectAvatar,
   SectionSelectAvatarTitle,
   SelectAvatarList,
-  Form,
-  SectionButtonForm,
-  ButtonGoBack,
-  ButtonGoBackText,
   Button,
 } from './styles';
-import { StepLevel } from '../../components/step-level';
-import { useAuthStepsContextProvider } from '../../contexts/auth-steps';
-import { Avatar } from '../../components/avatar';
-import { useCreateUserStepsContextProvider } from '@shared/contexts/create-user-steps';
+import { useCreateUserStepsContextProvider } from '../../../../shared/contexts/create-user-steps';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
-import { useNavigate } from 'react-router-native';
-import { useToastNotificaitonProvider } from '@shared/contexts/toast-notification';
-import { Controller, useForm } from 'react-hook-form';
+import { Avatar } from '../../components/avatar';
+import { Trasition } from '../../../../shared/components/transition';
 import { Input } from '../../components/input';
-import { MessageError } from '@modules/session/components/message-error';
+import { MessageError } from '../../components/message-error';
+import { FONTS } from '../../../../shared/theme';
 
 type OnSubmitProps = {
   avatarUrl: string;
@@ -33,11 +26,9 @@ type OnSubmitProps = {
 
 export function CreateCustomerScreen() {
   const [itemIndex, setItemIndex] = useState(0);
-  const { setStep } = useAuthStepsContextProvider();
   const [avatars, setAvatars] = useState<string[]>([]);
   const { userData, setUserData } = useCreateUserStepsContextProvider();
   const { signUp } = useAuthContextProvider()
-  const { addToastNotifications } = useToastNotificaitonProvider();;
 
   const onSubmit = useCallback(({ avatarUrl }: OnSubmitProps) => {
     console.log({ avatarUrl })
@@ -69,43 +60,22 @@ export function CreateCustomerScreen() {
     />
   )
 
-  // const fetchAvatarsData = async () => {
-  //   try {
-  //     const avatarsDataResponse = await api.get("/avatars")
-  //     console.log(avatarsDataResponse.data)
-  //     setAvatars(avatarsDataResponse.data)
-  //   } catch (err) {
-  //     addToastNotifications({
-  //       title: "Erro ao recuperar dados",
-  //       type: 'error',
-  //       mode: "temporary",
-  //     })
-  //   }
-  // }
-
-
-
   const { control, handleSubmit, formState: { errors }, } = useForm({
     defaultValues: {
       email: '',
       password: ''
     }
   });
+  useFocusEffect(() => {
+    const addBackButtonTitleBar = async () => {
+      await titleBar.addBackButton()
+    }
 
-  // const removeBackButton = () => {
-  //   fullscreen.removeBackButton();
-  // }
-
-  // useFocusEffect(() => {
-  //   const addBackButton = async () => {
-  //     await fullscreen.addBackButton();
-  //   }
-  //   addBackButton();
-  //   fetchAvatarsData()
-  // })
+    addBackButtonTitleBar();
+  })
 
   return (
-    <ScreenAnimationWrapper>
+    <Trasition>
       <Container>
         <Controller
           control={control}
@@ -181,7 +151,7 @@ export function CreateCustomerScreen() {
         />
 
       </Container>
-    </ScreenAnimationWrapper>
+    </Trasition>
   );
 }
 

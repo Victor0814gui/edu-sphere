@@ -1,4 +1,3 @@
-import { injectable, inject } from "tsyringe";
 import { ICreateRoomRepository } from "../i-create-room-repository";
 import { PrismaClient } from '@prisma/client'
 
@@ -9,7 +8,7 @@ export class CreateRoomRepository
   implements ICreateRoomRepository.Implementation {
 
   async create(props: ICreateRoomRepository.Create.Params):
-    Promise<ICreateRoomRepository.Create.Response> {
+    ICreateRoomRepository.Create.Response {
 
     const createRoomResponse = await database.room.create({
       data: {
@@ -29,7 +28,7 @@ export class CreateRoomRepository
   }
 
   async findByTitle(props: ICreateRoomRepository.FindByTitle.Params):
-    Promise<ICreateRoomRepository.FindByTitle.Response | null> {
+    ICreateRoomRepository.FindByTitle.Response {
 
     const listManyRoomsResponse = await database.room.findFirst({
       where: {

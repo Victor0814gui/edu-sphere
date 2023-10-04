@@ -1,6 +1,6 @@
 
-import { Request, Response } from "express"
 import { container } from "tsyringe"
+import { Request, Response } from "express"
 import { AuthenticationCustomerUserCase } from "@customer/use-cases/authentication-customer-use-case"
 
 
@@ -10,7 +10,7 @@ interface AuthenticationCustomerControllerParams {
 }
 
 
-export class AuthenticationCustomerController {
+export class AuthenticationCustomerAccountController {
   async handler(request: Request, response: Response) {
 
     const body = request.body as AuthenticationCustomerControllerParams

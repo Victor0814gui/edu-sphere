@@ -16,3 +16,5 @@
 - **Participação nas Aulas**: O módulo permite que os alunos participem das aulas na sala de aula em tempo real, seja por meio de recursos de videoconferência ou outras formas de interação.
 
 - **Comunicação entre Professor e Alunos:** O módulo permite que o professor se comunique com os alunos e vice-versa. Isso pode ser feito por meio de mensagens internas na plataforma ou por meio de integração com ferramentas de comunicação externas.
+
+- **Permite a compra de produtos pernozalizados na sala:** Essa funcionalidade possibilita aos usuários a aquisição de produtos que foram customizados ou personalizados de alguma forma na sala. Isso oferece uma maneira eficaz de gerar receita a partir de itens que foram adaptados para atender a necessidades específicas, como exames personalizados ou ingressos feitos sob medida para participar de eventos específicos.

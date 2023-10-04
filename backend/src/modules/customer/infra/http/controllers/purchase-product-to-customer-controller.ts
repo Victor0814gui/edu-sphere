@@ -10,7 +10,7 @@ type IPurchaseProductToCustomerControllerParams = {
 }
 
 export class PurchaseProductToCustomerController {
-  async handler(request: Request, response: Response): Promise<Response> {
+  public async handler(request: Request, response: Response): Promise<Response> {
 
     const purchaseProductToCustomerUseCaseInstance =
       container.resolve(PurchaseProductToCustomerUseCase);

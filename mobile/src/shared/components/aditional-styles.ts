@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, FONTS } from "@shared/theme";
+import { COLORS, FONTS } from "../theme";
 
 export const aditionalStyles = StyleSheet.create({
   containerTitleFont: {

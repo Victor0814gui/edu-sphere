@@ -14,3 +14,4 @@ class RoomBusinessException {
 }
 
 export default RoomBusinessException;
+export { RoomBusinessException };

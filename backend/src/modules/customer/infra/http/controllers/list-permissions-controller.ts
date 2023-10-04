@@ -7,7 +7,7 @@ import { ListPermissionsUseCase } from "@customer/use-cases/list-permissions-use
 
 
 export class ListPermissionsController {
-  async handler(request: Request, response: Response):
+  public async handler(request: Request, response: Response):
     Promise<Response> {
     const listPermissionsUseCaseIntance = container.resolve(ListPermissionsUseCase);
 

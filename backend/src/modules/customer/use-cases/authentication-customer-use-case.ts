@@ -1,5 +1,5 @@
 import { injectable, inject } from "tsyringe";
-import { CustomerBusinessException } from "@customer/infra/exception/business-exception";
+import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
 import { IAuthenticationCustomerUserCase } from "../interfaces/i-authenticate-customer-use-case";
 import { IAuthenticationCustomerRepository } from "../repositories/i-authentication-customer-repository";
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
@@ -23,44 +23,43 @@ export class AuthenticationCustomerUserCase
   public async execute(props: IAuthenticationCustomerUserCase.Params):
     IAuthenticationCustomerUserCase.Response {
 
-    const verifyCustomerAlreayExists = await this.authenticationCustomerRepository.findUnique({
+    const verifyCustomerAlreadyExists = await this.authenticationCustomerRepository.findUnique({
       email: props.email,
     });
 
-    if (!verifyCustomerAlreayExists) {
+    if (!verifyCustomerAlreadyExists) {
       throw new CustomerBusinessException("Customer does not exists", 404);
     }
 
-    if (verifyCustomerAlreayExists.email != props.email) {
+    if (verifyCustomerAlreadyExists.email != props.email) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
     const isPasswordHasCorrect = await this.compareEncryptDataService.execute({
       data: props.password,
-      encrypted: verifyCustomerAlreayExists.password,
+      encrypted: verifyCustomerAlreadyExists.password,
     })
 
     if (isPasswordHasCorrect) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
-    const permisisons = verifyCustomerAlreayExists.permissions.map(permission => permission.name);
+    const permissions = verifyCustomerAlreadyExists.permissions.map(permission => permission.name);
 
-    const genetateTokenProvider = this.createSessionTokenSecurity.execute({
-      customerId: verifyCustomerAlreayExists.id,
-      permissions: permisisons,
-      role: verifyCustomerAlreayExists.roleName,
+    const generateTokenProvider = this.createSessionTokenSecurity.execute({
+      customerId: verifyCustomerAlreadyExists.id,
+      role: verifyCustomerAlreadyExists.roleName,
+      permissions: permissions,
     });
 
     const refreshTokenServiceResponse = await this.generateRefreshToken.execute({
-      customerId: verifyCustomerAlreayExists.id
+      customerId: verifyCustomerAlreadyExists.id
     });
 
     return {
-      ...verifyCustomerAlreayExists,
-      token: genetateTokenProvider,
+      ...verifyCustomerAlreadyExists,
+      token: generateTokenProvider,
       refreshToken: refreshTokenServiceResponse,
     }
-
   }
 }

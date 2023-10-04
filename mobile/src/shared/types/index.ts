@@ -1,5 +1,5 @@
 
-type modalType = 'default' | 'warning' | 'error' | 'sucess';
+type modalType = 'default' | 'warning' | 'error' | 'success';
 
 type UserType = {
   id: string;
@@ -24,6 +24,7 @@ type SignUpProps = {
 }
 
 type ContextAuthContextType = {
+  loadingLocalData: boolean;
   user: UserType | null;
   signIn: ({ email, password }: SignInMethodProps) => void;
   signUp: (state: SignUpProps) => void;
@@ -42,7 +43,7 @@ type ToastContentType = {
   title: string;
   description?: string;
   mode?: "permanent" | "temporary";
-  type: 'default' | 'warning' | 'error' | 'sucess';
+  type: 'default' | 'warning' | 'error' | 'success';
   position?: 'center' | 'right' | 'left' | 'top' | 'bottom';
 }
 
@@ -52,10 +53,10 @@ type ModalContentType = {
   type?: modalType
 }
 
-type ToastNotificaitonContextType = {
+type ToastNotificationContextType = {
   toastNotifications: ToastContentType[];
   addToastNotifications: (state: ToastContentType) => void;
-  removeToastNotication: (state: string) => void;
+  removeToastNotification: (state: string) => void;
 }
 type ModalContextType = {
   modalContent: ModalContentType | null;
@@ -71,7 +72,7 @@ export type {
   SignInMethodProps,
   ModalContextType,
   ContextAuthContextType,
-  ToastNotificaitonContextType,
+  ToastNotificationContextType,
   ToastContentType,
   ModalContentType,
   UserDrawerType,

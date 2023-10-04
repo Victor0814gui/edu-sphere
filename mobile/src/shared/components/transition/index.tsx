@@ -1,19 +1,22 @@
 import React from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   View,
   Animated,
   StyleSheet
 } from 'react-native';
 
-type ScreenAnimationWrapperPrpos = {
+import { styles } from "./styles";
+
+type TransitionProps = {
   children: React.ReactNode;
   duration?: number;
 }
 
-export function ScreenAnimationWrapper({
+function Trasition({
   children,
   duration = 500,
-}: ScreenAnimationWrapperPrpos) {
+}: TransitionProps) {
   const animatedScreenValue = React.useRef(new Animated.Value(20)).current;
 
   const animationEnter = () => {
@@ -23,9 +26,9 @@ export function ScreenAnimationWrapper({
     }).start();
   }
 
-  React.useEffect(() => {
+  useFocusEffect(() => {
     animationEnter();
-  }, [])
+  })
 
   return (
     <Animated.View style={[styles.container, { transform: [{ translateY: animatedScreenValue }] }]}>
@@ -34,8 +37,9 @@ export function ScreenAnimationWrapper({
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-})
+const Transition = Trasition;
+
+export {
+  Trasition,
+  Transition,
+}

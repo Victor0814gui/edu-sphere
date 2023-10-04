@@ -15,8 +15,7 @@ interface ICreateUserAccountControllerParams {
 
 
 export class CreateCustomerAccountController {
-
-  async handler(request: Request, response: Response): Promise<Response> {
+  public async handler(request: Request, response: Response): Promise<Response> {
     const body = request.body as ICreateUserAccountControllerParams;
 
     const createCustomerAccountUseCase = container.resolve(CreateCustomerAccountUseCase);

@@ -1,7 +1,7 @@
 import { injectable, inject } from "tsyringe";
 import { ICreateRoomRepository } from "../i-create-room-repository";
 import { PrismaClient } from '@prisma/client'
-import { IListRoomsRepository } from "../i-list-room-respository";
+import { IListRoomsRepository } from "../i-list-room-repository";
 
 const database = new PrismaClient();
 

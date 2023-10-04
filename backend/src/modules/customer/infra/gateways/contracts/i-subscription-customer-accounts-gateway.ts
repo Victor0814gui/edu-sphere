@@ -2,11 +2,13 @@
 
 
 
-
-
 interface IProduct {
-  price: string;
+  productId: string;
+  price: number;
   quantity: number;
+  recurrence: 'day' | 'month' | 'week' | 'year';
+  name: string;
+  description: string;
 }
 
 interface ICreateResponse {
@@ -16,7 +18,7 @@ interface ICreateResponse {
 
 export namespace ISubscriptionCustomerAccountGateway {
   export namespace Create {
-    export interface Params extends Array<IProduct> { }
+    export type Params = IProduct;
 
     export type Response = Promise<ICreateResponse>;
   }

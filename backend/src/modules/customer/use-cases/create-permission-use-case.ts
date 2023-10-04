@@ -1,10 +1,9 @@
 import { injectable, inject } from "tsyringe";
 import { ICreatePermissionUseCase } from "../interfaces/i-create-permission-use-case";
 import { ICreatePermissionRepository } from "../repositories/i-create-permission-repository";
-import UserBusinessException from "@customer/infra/exception/business-exception";
-import crypto from "crypto";
-import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
-import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
+import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
+import { ICreateNewDateService } from "@customer/infra/services/contracts/i-create-new-date-service";
+import { ICreateUUIDTokenService } from "@customer/infra/services/contracts/i-create-uuid-token-service";
 
 
 
@@ -27,11 +26,11 @@ export class CreatePermissionUseCase
     })
 
     if (verifyPermissionAlreayExists?.id) {
-      throw new UserBusinessException("Permission already exists", 409)
+      throw new CustomerBusinessException("Permission already exists", 409)
     }
 
-    const permissionId = this.createUUIDTokenService.create({})
-    const permissionCreatedAt = this.createNewDateService.create({})
+    const permissionId = this.createUUIDTokenService.create();
+    const permissionCreatedAt = this.createNewDateService.create();
 
 
     const createPermissionServiceResponse = await this.createPermissionRepository.create({

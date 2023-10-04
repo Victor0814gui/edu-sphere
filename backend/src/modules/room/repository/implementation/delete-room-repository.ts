@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { IDeleteRoomRepository } from "../i-delete-room-respository";
+import { IDeleteRoomRepository } from "../i-delete-room-repository";
 
 
 const database = new PrismaClient();

@@ -1,7 +1,7 @@
 import { Room } from "@/src/aplication/entities/room";
 
 
-export namespace IUpdateRooomUseCase {
+export namespace IUpdateRoomUseCase {
   export type Params = {
     code: string;
     title: string;
@@ -11,10 +11,10 @@ export namespace IUpdateRooomUseCase {
     published: boolean;
   }
 
-  export interface Response extends Room { }
+  export type Response = Promise<Room>;
 
-  export interface Implementation {
-    execute: (props: IUpdateRooomUseCase.Params) =>
-      Promise<IUpdateRooomUseCase.Response>
+  export type Implementation = {
+    execute: (props: IUpdateRoomUseCase.Params)
+      => IUpdateRoomUseCase.Response;
   }
 }

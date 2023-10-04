@@ -7,14 +7,20 @@ import {
   Title,
   Description,
 } from './styles';
-import { useModalQueueContextProvider } from '@shared/contexts/modal-queue';
 import { ButtonCloseModal } from './components/button-close-modal';
 import LottieView from "lottie-react-native";
+import { useModalQueueContextProvider } from '../../contexts/modal-queue';
+import { Input } from '../../../modules/rooms/screens/create-room/styles';
+
+type ModalProps = {
+  title: string;
+  description: string
+}
 
 export const Modal = ({
   title = "",
   description = "",
-}) => {
+}: ModalProps) => {
   const animationEnterModal = useRef(new Animated.Value(0.8)).current;
 
   const { removeModal } = useModalQueueContextProvider();
@@ -62,6 +68,7 @@ export const Modal = ({
           resizeMode="contain"
           style={{ height: 120, width: 120 }}
         />
+        <Input />
       </Content>
     </Container>
   );

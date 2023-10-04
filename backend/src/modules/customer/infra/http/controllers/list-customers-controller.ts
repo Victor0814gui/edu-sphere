@@ -7,7 +7,7 @@ import { ListCustomersUseCase } from "@customer/use-cases/list-customers-use-cas
 
 
 export class ListCustomersController {
-  async handler(request: Request, response: Response):
+  public async handler(request: Request, response: Response):
     Promise<Response> {
     const listCustomersUseCaseIntance = container.resolve(ListCustomersUseCase);
 
