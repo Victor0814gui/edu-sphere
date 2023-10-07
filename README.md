@@ -1,5 +1,10 @@
 # gallery-rnw
 
+<p align="center">
+  <img src="https://img.shields.io/static/v1?label=gallery-rnw&message=Education&color=25DA67&labelColor=202024" alt="Rocketseat Project" />
+  <a href="LICENSE"><img  src="https://img.shields.io/static/v1?label=version 0.20.0&message=MIT&color=25DA67&labelColor=202024" alt="License"></a>
+</p>
+
 ## Desktop
 <img src="preview.png" alt="preview desktop project" />
 
