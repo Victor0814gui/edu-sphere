@@ -33,12 +33,21 @@ export const Container = styled.View`
   background-color: ${COLORS.grey_180};
 `;
 
+export const Search = styled.TextInput`
+  width: 340px;
+  border-radius: 21px;
+  border-color: ${COLORS.grey_680};
+  border-width: 1px;
+  align-self: center;
+  background-color: ${COLORS.grey_270};
+`;
+
 export const SubHeaderContent = styled.View`
   flex-direction: row;
   margin-left: 4px;
   align-items: center;
   margin-bottom: 21px;
-  margin-top: 41px;
+  margin-top: 18px;
 `;
 
 export const SubHeaderContentLeftContent = styled.View`

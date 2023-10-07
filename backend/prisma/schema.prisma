@@ -156,3 +156,22 @@ model Penalty {
   createdAt   DateTime @default(now())
   users       User[]   @relation("PenaltyToUser")
 }
+
+model Feedback {
+  id          String   @id
+  label       String
+  description String
+  createdAt   DateTime
+  userId      String
+  answered    Boolean
+  tags        Tag[]
+}
+
+model Tag {
+  id          String     @id
+  label       String     @unique
+  description String
+  createdAt   DateTime
+  userId      String
+  feedbacks   Feedback[]
+}

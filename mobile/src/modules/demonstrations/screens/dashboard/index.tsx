@@ -2,11 +2,12 @@ import React, { useEffect, useState, useCallback } from "react";
 import { View, Text, Pressable, FlatList } from "react-native";
 import { CardRoom } from "../../components/card-room";
 import LottieView from "lottie-react-native";
-import { COLORS } from "../../../../shared/theme";
+import { COLORS, FONTS } from "../../../../shared/theme";
 
 import {
   fonts,
   Container,
+  Search,
   SubHeaderContent,
   SubHeaderContentLeftContent,
   ContentContainerListEmpty,
@@ -76,11 +77,14 @@ export const Dashboard = () => {
   return (
     <Transition>
       <Container>
+        <Search
+          placeholder="Digite o codigo da sala"
+          style={{ fontFamily: FONTS.Poppins.Medium }}
+        />
         <SubHeaderContent>
           <Text style={fonts.TitleRoom}>Company heathy hub</Text>
           <BadgeButton text={"42 Salas"} />
           <SubHeaderContentLeftContent>
-            <BadgeButton onPress={handlerCreateRoom} text={"Criar nova sala"} />
           </SubHeaderContentLeftContent>
         </SubHeaderContent>
         {!isLoading ? <FlatList

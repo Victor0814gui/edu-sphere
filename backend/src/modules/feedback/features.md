@@ -13,3 +13,5 @@ O Módulo de Avaliações e Feedback é uma funcionalidade essencial da Platafor
 - Feedback dos Professores para Alunos: Os professores podem fornecer feedback individual aos alunos, seja em resposta a perguntas ou com relação ao desempenho acadêmico. O feedback ajuda os alunos a identificar áreas de melhoria e reforçar aspectos positivos.
 
 - Feedback de Melhoria do Sistema: Os usuários têm a opção de fornecer feedback sobre a plataforma em si, como sugestões de melhorias, novas funcionalidades ou problemas técnicos encontrados. Isso permite que a equipe de desenvolvimento aprimore continuamente a plataforma com base no feedback dos usuários.
+
+- Tags: criar tags especificas para delimitar em qual area o problema foi relatado;

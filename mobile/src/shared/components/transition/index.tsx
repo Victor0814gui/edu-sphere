@@ -21,7 +21,7 @@ function Trasition({
 
   const animationEnter = () => {
     Animated.spring(animatedScreenValue, {
-      toValue: 0,
+      toValue: -20,
       useNativeDriver: true,
     }).start();
   }

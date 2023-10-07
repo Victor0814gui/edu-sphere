@@ -117,6 +117,7 @@
         "@customer/*":["./src/modules/customer/*"],
         "@room/*":["./src/modules/room/*"],
         "@lessons/*":["./src/modules/lessons/*"],
+        "@feedback/*":["./src/modules/feedback/*"],
       }
   },
   "include": [

@@ -8,6 +8,11 @@ export const font = StyleSheet.create({
     lineHeight: 16,
     fontSize: 14,
   },
+  description: {
+    fontFamily: `${FONTS.Poppins.Medium}`,
+    lineHeight: 16,
+    fontSize: 14,
+  },
   tagText: {
     fontFamily: `${FONTS.Poppins.Medium}`,
   },
@@ -47,6 +52,16 @@ export const ContainerContent = styled.View`
 
 export const Title = styled.Text`
 `;
+export const Description = styled.Text`
+  color: ${COLORS.grey_680};
+  margin: 5px 0;
+`;
+
+export const Separator = styled.View`
+  height: 1px;
+  align-self: stretch;
+  background-color: #979797;
+`;
 
 export const Footer = styled.View`
   flex-direction: row;
@@ -71,8 +86,19 @@ export const ContainerTags = styled.View`
 
 export const Header = styled.View`
  flex-direction: row;
- align-items: center;
+  /* align-items: flex-start; */
 `;
+
+export const HeaderData = styled.View`
+
+`;
+export const HeaderInfo = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 7px;
+`;
+
 
 export const Content = styled.View`
   flex-direction: row;

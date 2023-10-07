@@ -5,8 +5,12 @@ import {
   Container,
   ContainerContent,
   Title,
+  HeaderData,
+  HeaderInfo,
+  Description,
+  Separator,
   Header,
-  Tag,
+  Tag as TagLocal,
   TagText,
   Content,
   Duration,
@@ -15,17 +19,18 @@ import {
 } from "./styles";
 
 import { Clock, User, ChartBar, Play } from "phosphor-react-native"
+import { Tag } from "../tag";
 
-
-
-export const CardRoom = (props: {
+type CardRoomProps = {
   id: string
   title: string,
   avatarUrl: string,
   nickname: string,
   tags: string[],
   index: number
-}) => {
+}
+
+export const CardRoom = (props: CardRoomProps) => {
   const [onHover, setOnHover] = useState(false);
   const [isPressed, setIsPressed] = useState(false)
   const { navigate } = useNavigation()
@@ -67,8 +72,18 @@ export const CardRoom = (props: {
     >
       <ContainerContent>
         <Header>
-          <Title style={font.title}>{props.title}</Title>
+          <HeaderData>
+            <Title style={font.title}>{props.nickname}</Title>
+            <Description style={font.description}>{props.title}</Description>
+          </HeaderData>
+          <HeaderInfo>
+            {/* {props.index == 0 && <Tag label="author" />}
+            {props.index == 5 && <Tag label="author" />}
+            {props.index == 3 && <Tag type="red" label="banned" />} */}
+            {props.index == 1 && <Tag type="orange" label="pending" />}
+          </HeaderInfo>
         </Header>
+        <Separator />
         <Content>
           <Clock size={18} color="#f2f2f2" weight="light" />
           <Duration style={font.duration}>14:21min</Duration>
@@ -76,10 +91,10 @@ export const CardRoom = (props: {
           <Author style={font.author}>Victor Guilherme</Author>
           <ChartBar size={18} color="#f2f2f2" weight="light" />
           <Difficulty style={font.difficulty}>Alta</Difficulty>
-          <Tag>
+          {/* <TagLocal>
             <Play size={18} color="#f2f2f2" weight="light" />
             <TagText>Não assitido</TagText>
-          </Tag>
+          </TagLocal> */}
         </Content>
       </ContainerContent>
     </Container>
