@@ -22,7 +22,7 @@ export class CreateMessageUseCase
     private createNewDateService: ICreateNewDateService.Implementation,
   ) { }
 
-  async execute(props: ICreateMessageUseCase.Params):
+  public async execute(props: ICreateMessageUseCase.Params):
     Promise<ICreateMessageUseCase.Response> {
 
     const messageId = this.createUUIDTokenService.create()

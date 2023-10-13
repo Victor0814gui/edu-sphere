@@ -1,4 +1,4 @@
-import { Permission } from "@/src/aplication/entities/permission";
+import { Permission } from "@/src/shared/application/entities/permission";
 
 
 interface IPermissions {

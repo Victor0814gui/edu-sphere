@@ -9,7 +9,10 @@ declare namespace IMarkQuestionAsAnsweredRepository { }
 
 namespace IMarkQuestionAsAnsweredRepository {
   export namespace Mark {
-    export type Params = string;
+    export type Params = {
+      questionId: string;
+      answered: boolean;
+    };
     export type Response = Promise<Feedback>;
   }
 }

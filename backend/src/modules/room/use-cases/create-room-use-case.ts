@@ -14,7 +14,7 @@ export class CreateRoomUseCase
     private createRoomRepository: ICreateRoomRepository.Implementation,
   ) { }
 
-  async execute(props: ICreateRoomUseCase.Params):
+  public async execute(props: ICreateRoomUseCase.Params):
     ICreateRoomUseCase.Response {
 
     if (!props.authorId && !props.description && !props.type && !props.title) {
@@ -32,15 +32,15 @@ export class CreateRoomUseCase
     }
 
     const createRoomResponse = await this.createRoomRepository.create({
+      id: crypto.randomUUID(),
       slug: slug,
       closed: false,
+      createdAt: new Date(),
       type: props.type,
       title: props.title,
-      createdAt: new Date(),
-      id: crypto.randomUUID(),
       published: props.published,
       description: props.description,
-      authorId: props.authorId,
+      teacherId: props.authorId,
     })
 
     return createRoomResponse;

@@ -13,7 +13,7 @@ export class UpdateRoomUseCase
     private updateRoomRepository: IUpdateRoomRepository.Implementation,
   ) { }
 
-  async execute(props: IUpdateRoomUseCase.Params):
+  public async execute(props: IUpdateRoomUseCase.Params):
     IUpdateRoomUseCase.Response {
 
     if (!props.teacherId
@@ -39,7 +39,7 @@ export class UpdateRoomUseCase
       slug: slug,
       description: props.description,
       title: props.title,
-      authorId: props.teacherId,
+      teacherId: props.teacherId,
       updatedAt: new Date(),
       id: verifyRoomAlreadyExists.id,
     })

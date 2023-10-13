@@ -13,7 +13,7 @@ export class ListRoomsUseCase
     private listRoomsRepository: IListRoomsRepository.Implementation,
   ) { }
 
-  async execute(props: IListRoomUseCase.Params):
+  public async execute(props: IListRoomUseCase.Params):
     IListRoomUseCase.Response {
 
     const listRoomsResponse = await this.listRoomsRepository.listMany();

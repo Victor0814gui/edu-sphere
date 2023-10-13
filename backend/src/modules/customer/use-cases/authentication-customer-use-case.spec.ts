@@ -5,7 +5,7 @@ import { ICreateCustomerAccountUseCase } from "../interfaces/i-create-customer-a
 import { CreateCustomerAccountRepositoryFake } from "../repositories/fakes/create-customer-account-repository-fake";
 import { ICreateCustomerAccountRepository } from "../repositories/i-create-customer-account-repository";
 import { CreateCustomerAccountUseCase } from "./create-customer-account-use-case";
-import { Customer } from "@/src/aplication/entities/user";
+import { Customer } from "@/src/shared/application/entities/user";
 import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
 import { CreateUUIDTokenService } from "../infra/services/create-uuid-token-service";

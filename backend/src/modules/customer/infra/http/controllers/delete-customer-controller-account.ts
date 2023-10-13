@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 import { container } from "tsyringe"
-import { User } from "@aplication/entities/user";
+import { User } from "@/src/shared/application/entities/user";
 import { DeleteUserAccountUseCase } from "@customer/use-cases/delete-customer-account-use-case";
 
 

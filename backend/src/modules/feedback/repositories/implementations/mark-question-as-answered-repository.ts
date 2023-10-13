@@ -9,8 +9,14 @@ export class MarkQuestionAsAnsweredRepository
   async mark(params: IMarkQuestionAsAnsweredRepository.Mark.Params):
     IMarkQuestionAsAnsweredRepository.Mark.Response {
 
-    const createTagFeedback = await database.feedback.create({
-      data: params
+    const createTagFeedback = await database.feedback.update({
+      where: {
+        id: params.questionId,
+        answered: params.answered
+      },
+      data: {
+        answered: true,
+      }
     })
 
     return createTagFeedback;

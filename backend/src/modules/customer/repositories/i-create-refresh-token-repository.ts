@@ -1,4 +1,4 @@
-import { RefreshToken, } from "@/src/aplication/entities/refresh-token";
+import { RefreshToken, } from "@/src/shared/application/entities/refresh-token";
 
 
 

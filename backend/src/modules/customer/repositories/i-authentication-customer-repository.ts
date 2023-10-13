@@ -1,5 +1,5 @@
-import { Permission } from "@/src/aplication/entities/permission";
-import { Customer } from "@/src/aplication/entities/user";
+import { Permission } from "@/src/shared/application/entities/permission";
+import { Customer } from "@/src/shared/application/entities/user";
 
 
 interface IPermission {

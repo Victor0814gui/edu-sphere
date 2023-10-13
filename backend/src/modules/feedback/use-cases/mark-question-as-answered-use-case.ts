@@ -23,7 +23,10 @@ export class MarkQuestionAsAnsweredUseCase
     }
 
     const createQuestionResponse =
-      await this.markQuestionAsAnsweredRepository.mark(params.questionId);
+      await this.markQuestionAsAnsweredRepository.mark({
+        questionId: params.questionId,
+        answered: true,
+      });
 
     return createQuestionResponse;
   };

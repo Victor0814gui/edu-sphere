@@ -17,8 +17,13 @@ export class CreateTagsFeedbackRepository
 
   async findByName(params: ICreateTagsFeedbackRepository.FindByName.Params):
     ICreateTagsFeedbackRepository.FindByName.Response {
-    const response = {} as ICreateTagsFeedbackRepository.FindByName.Response;
 
-    return response;
+    const createTagFeedback = await database.tag.findFirst({
+      where: {
+        id: params,
+      }
+    })
+
+    return createTagFeedback;
   }
 }

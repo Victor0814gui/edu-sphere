@@ -5,7 +5,7 @@ import { CreateLessonUseCase } from "../../../use-cases/create-lesson-use-case";
 
 
 
-type CreateLessonControllerParams = {
+type ICreateLessonControllerParams = {
   title: string;
   description: string;
   roomId: string;
@@ -17,11 +17,13 @@ type CreateLessonControllerParams = {
 export class CreateLessonController {
 
   async handler(request: Request, response: Response) {
+    const body = request.body as ICreateLessonControllerParams;
+
     const createLessonUseCaseInstance = container.resolve(CreateLessonUseCase);
-    const body = request.body as CreateLessonControllerParams;
 
-    const createLessonUseCaseInstanceResponse = await createLessonUseCaseInstance.execute(body);
+    const createLessonUseCaseInstanceResponse =
+      await createLessonUseCaseInstance.execute(body);
 
-    return createLessonUseCaseInstanceResponse;
+    return response.json(createLessonUseCaseInstanceResponse);
   }
 }

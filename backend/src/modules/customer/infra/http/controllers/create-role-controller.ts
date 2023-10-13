@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { container } from "tsyringe"
-import { Role } from "@/src/aplication/entities/role";
+import { Role } from "@/src/shared/application/entities/role";
 import { CreateRoleUseCase } from "@customer/use-cases/create-role-use-case";
 
 

@@ -1,4 +1,4 @@
-import { Customer } from "@aplication/entities/user";
+import { Customer } from "@/src/shared/application/entities/user";
 
 
 export namespace ICreateCustomerAccountUseCase {

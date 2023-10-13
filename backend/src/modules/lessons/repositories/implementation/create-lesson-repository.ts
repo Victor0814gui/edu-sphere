@@ -1,4 +1,4 @@
-import { Lesson } from "@/src/aplication/entities/lesson";
+import { Lesson } from "@/src/shared/application/entities/lesson";
 import { ICreateLessonRepository } from "../i-create-lesson-repository";
 import { PrismaClient } from "@prisma/client";
 

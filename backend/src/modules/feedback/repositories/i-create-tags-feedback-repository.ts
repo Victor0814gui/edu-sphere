@@ -17,10 +17,7 @@ namespace ICreateTagsFeedbackRepository {
 
 namespace ICreateTagsFeedbackRepository {
   export namespace FindByName {
-    export type Params = {
-      label: string;
-      description: string;
-    }
+    export type Params = string;
     export type Response = Promise<Tag | null>;
   }
 }

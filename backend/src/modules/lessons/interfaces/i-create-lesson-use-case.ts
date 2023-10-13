@@ -1,4 +1,4 @@
-import { Lesson } from "@/src/aplication/entities/lesson";
+import { Lesson } from "@/src/shared/application/entities/lesson";
 import { inject, injectable } from "tsyringe";
 
 

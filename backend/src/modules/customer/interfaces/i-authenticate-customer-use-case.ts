@@ -1,4 +1,4 @@
-import { Customer } from "@/src/aplication/entities/user";
+import { Customer } from "@/src/shared/application/entities/user";
 
 
 

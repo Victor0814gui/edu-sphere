@@ -1,6 +1,6 @@
-import { Room } from "@aplication/entities/room"
+import { Room } from "@/src/shared/application/entities/room"
 
-
+declare namespace ICreateRoomRepository { }
 
 namespace ICreateRoomRepository {
   export namespace Create {
@@ -17,21 +17,26 @@ namespace ICreateRoomRepository {
     }
     export type Response = Promise<Room>;
   }
+}
 
+
+namespace ICreateRoomRepository {
   export namespace FindByTitle {
     export type Params = {
       slug: string;
     }
     export type Response = Promise<Room | null>;
   }
-
-  export type Implementation = {
-    create: (props: ICreateRoomRepository.Create.Params) => ICreateRoomRepository.Create.Response;
-    findByTitle: (props: ICreateRoomRepository.FindByTitle.Params) => ICreateRoomRepository.FindByTitle.Response;
-  }
 }
 
-
+namespace ICreateRoomRepository {
+  export type Implementation = {
+    create: (props: ICreateRoomRepository.Create.Params)
+      => ICreateRoomRepository.Create.Response;
+    findByTitle: (props: ICreateRoomRepository.FindByTitle.Params)
+      => ICreateRoomRepository.FindByTitle.Response;
+  }
+}
 
 
 export {

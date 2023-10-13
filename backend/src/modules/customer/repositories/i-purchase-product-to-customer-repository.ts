@@ -1,5 +1,5 @@
-import { Product } from "@/src/aplication/entities/product";
-import { Customer } from "@/src/aplication/entities/user";
+import { Product } from "@/src/shared/application/entities/product";
+import { Customer } from "@/src/shared/application/entities/user";
 
 
 

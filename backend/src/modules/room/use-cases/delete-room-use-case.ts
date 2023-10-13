@@ -16,7 +16,7 @@ export class DeleteRoomsUseCase
     IDeleteRoomUseCase.Response {
 
     if (!props.code) {
-      throw new RoomBusinessException("Room code does not exists", 403);
+      throw new RoomBusinessException("Room code is invalid", 403);
     }
 
     const verifyRoomAlreadyExists = await this.deleteRoomRepository.findByCode({

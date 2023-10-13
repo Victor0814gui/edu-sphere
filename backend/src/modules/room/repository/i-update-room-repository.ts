@@ -1,4 +1,4 @@
-import { Room } from "@aplication/entities/room"
+import { Room } from "@/src/shared/application/entities/room"
 
 
 

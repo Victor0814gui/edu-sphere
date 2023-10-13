@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { container } from "tsyringe"
 import { CreatePermissionUseCase } from "@customer/use-cases/create-permission-use-case"
-import { Permission } from "@/src/aplication/entities/permission";
+import { Permission } from "@/src/shared/application/entities/permission";
 
 
 interface ICreatePermissionControllerParams {

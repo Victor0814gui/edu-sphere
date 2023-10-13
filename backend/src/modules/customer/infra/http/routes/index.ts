@@ -81,8 +81,8 @@ userRoutes.delete(
 userRoutes.get(
   "/list/customers",
   customerAuthenticationCheck,
-  rolesMiddleware("admin"),
-  permissionsMiddleware(["admin.list"]),
+  rolesMiddleware("student"),
+  permissionsMiddleware(["student.list"]),
   listCustomersController.handler
 );
 

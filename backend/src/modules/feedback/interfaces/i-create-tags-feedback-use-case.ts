@@ -1,4 +1,5 @@
 import { Feedback } from "../infra/entities/feedback";
+import { Tag } from "../infra/entities/tag";
 
 
 
@@ -11,7 +12,7 @@ export namespace ICreateTagsFeedbackUseCase {
     userId: string;
   }
 
-  export type Response = Promise<Feedback>;
+  export type Response = Promise<Tag>;
 
   export type Implementation = {
     execute: (params: ICreateTagsFeedbackUseCase.Params)

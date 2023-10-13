@@ -1,4 +1,4 @@
-import { Role } from "@/src/aplication/entities/role";
+import { Role } from "@/src/shared/application/entities/role";
 
 
 

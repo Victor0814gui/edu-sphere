@@ -25,4 +25,4 @@ Contruido usando a tecnologia react native, suporta as plataformas ```android```
 
 ### Description
 
-Contruido usando a tecnologia nextjs suportando a plataforma```web``, torna o processo de contrução de plataforma rapido fácil, com as features mais recentes e poderosas que a web disponibiliza.
+Contruido usando a tecnologia nextjs suportando a plataforma```web```, torna o processo de contrução de plataforma rapido fácil, com as features mais recentes e poderosas que a web disponibiliza.

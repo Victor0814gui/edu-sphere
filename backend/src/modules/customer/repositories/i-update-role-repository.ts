@@ -1,5 +1,5 @@
-import { Role } from "@/src/aplication/entities/role";
-import { User } from "@aplication/entities/user";
+import { Role } from "@/src/shared/application/entities/role";
+import { User } from "@/src/shared/application/entities/user";
 
 
 

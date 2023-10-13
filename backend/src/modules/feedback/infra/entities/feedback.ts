@@ -8,4 +8,5 @@ export type Feedback = {
   description: string;
   createdAt: Date;
   userId: string;
+  answered: boolean;
 }

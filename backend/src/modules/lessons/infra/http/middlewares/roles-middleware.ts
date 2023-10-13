@@ -1,20 +1,18 @@
 import { Request, Response, NextFunction } from "express";
 
-
-function permissionsMiddleware(requiredPermissions: string[]) {
+function rolesMiddleware(requiredRoles: string) {
   return async (request: Request, response: Response, next: NextFunction) => {
-    const { permissions } = request;
+    const { role } = request;
 
-    if (permissions.length == 0) {
+    if (!role) {
       return response.status(404).json({
-        message: "You need to activate your account to proceed",
+        message: "roles does not exists",
         type: "error"
       })
     }
 
-    const permissionsExists = permissions.some(permission =>
-      requiredPermissions.includes(permission)
-    );
+
+    const permissionsExists = requiredRoles.includes(role);
 
     if (!permissionsExists) {
       return response.status(403).json({
@@ -26,4 +24,4 @@ function permissionsMiddleware(requiredPermissions: string[]) {
   }
 }
 
-export { permissionsMiddleware }
+export { rolesMiddleware }
