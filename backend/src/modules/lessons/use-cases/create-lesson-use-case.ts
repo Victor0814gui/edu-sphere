@@ -31,8 +31,8 @@ export class CreateLessonUseCase
       throw new LessonBusinessException("Lesson already exists", 403);
     }
 
-    const startDate = new Date(); // Data de início
-    const endDate = new Date(props.end);   // Data de término
+    const startDate = new Date();
+    const endDate = new Date(props.end);
     const durationInMilliseconds = startDate.getMilliseconds() - endDate.getMilliseconds();
     const duration = durationInMilliseconds / 60000;
 

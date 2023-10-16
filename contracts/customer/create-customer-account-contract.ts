@@ -1,7 +1,7 @@
 
 
 
-export interface CreateCustomerAccountContract {
+export type CreateCustomerAccountContract = {
   role: string;
   name: string;
   email: string;

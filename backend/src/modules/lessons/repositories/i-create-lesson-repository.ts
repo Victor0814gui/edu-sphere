@@ -1,33 +1,28 @@
 import { Lesson } from "@/src/shared/application/entities/lesson"
 
+declare namespace ICreateLessonRepository { }
 
 
 
-export namespace ICreateLessonRepository {
+namespace ICreateLessonRepository {
   export namespace FindByTitle {
     export type Params = {
       slug: string;
     }
 
-    export type Response = Promise<Lesson | null>
+    export type Response = Promise<Lesson | null>;
   }
+}
 
+namespace ICreateLessonRepository {
   export namespace Create {
-    export type Params = Lesson & {
-      // title: string;
-      // description: string;
-      // roomId: string;
-      // start: Date;
-      // end: Date;
-      // duration: number;
-      // type: string;
-      // createdAt: string;
-      // id: string;
-    }
+    export type Params = Lesson;
 
-    export type Response = Promise<Lesson>
+    export type Response = Promise<Lesson>;
   }
+}
 
+namespace ICreateLessonRepository {
   export type Implementation = {
     create: (props: ICreateLessonRepository.Create.Params)
       => ICreateLessonRepository.Create.Response;
@@ -35,3 +30,5 @@ export namespace ICreateLessonRepository {
       => ICreateLessonRepository.FindByTitle.Response;
   }
 }
+
+export { ICreateLessonRepository };

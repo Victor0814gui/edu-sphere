@@ -65,6 +65,19 @@ model Lesson {
   type        String
   room        Room       @relation(fields: [roomId], references: [id])
   materials   Material[] @relation("LessonToMaterial")
+  schedules   Schedule[]
+}
+
+model Schedule {
+  id          String    @id @unique
+  createdAt   DateTime
+  updatedAt   DateTime?
+  start       DateTime
+  end         DateTime
+  status      String
+  title       String
+  description String
+  lessons     Lesson[]
 }
 
 model Matriculation {

@@ -118,6 +118,7 @@
         "@room/*":["./src/modules/room/*"],
         "@lessons/*":["./src/modules/lessons/*"],
         "@feedback/*":["./src/modules/feedback/*"],
+        "@purchases/*":["./src/modules/purchases/*"],
       }
   },
   "include": [
