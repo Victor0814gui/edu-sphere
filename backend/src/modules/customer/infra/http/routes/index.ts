@@ -11,7 +11,7 @@ import { ListCustomersController } from "../controllers/list-customers-controlle
 import { UpdateRoleController } from "../controllers/update-role-controller";
 import { AuthenticationCustomerAccountController } from "../controllers/authenticate-customer-account-controller";
 import { userBusinessMiddleware } from "../middlewares/business-middleware";
-import { CreateProductController } from "../controllers/create-product-controller";
+import { CreateProductController } from "../../../../purchases/infra/http/controller/create-product-controller";
 import { PurchaseProductToCustomerController } from "../controllers/purchase-product-to-customer-controller";
 import { customerAuthenticationCheck } from "../middlewares/customer-authentication-check";
 import { rolesMiddleware } from "../middlewares/roles-middleware";

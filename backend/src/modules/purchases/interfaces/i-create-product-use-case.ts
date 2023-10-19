@@ -1,4 +1,4 @@
-import { Product } from "@/src/shared/application/entities/product";
+import { Product } from "../infra/entities/product";
 
 
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { CreateProductUseCase } from "@customer/use-cases/create-product-use-case";
+import { CreateProductUseCase } from "@/src/modules/purchases/use-cases/create-product-use-case";
 
 
 

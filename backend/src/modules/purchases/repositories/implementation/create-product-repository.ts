@@ -11,19 +11,19 @@ export class CreateProductRepository
   public async findByName(props: ICreateProductRepository.FindByName.Params):
     ICreateProductRepository.FindByName.Response {
 
-    const findUniqueProductResposne = await database.product.findFirst({
+    const findUniqueProductResponse = await database.product.findFirst({
       where: {
         name: props.name,
-      }
+      },
     })
 
-    return findUniqueProductResposne;
+    return findUniqueProductResponse;
   }
 
   public async create(props: ICreateProductRepository.Create.Params):
     ICreateProductRepository.Create.Response {
 
-    const createProductResposne = await database.product.create({
+    const createProductResponse = await database.product.create({
       data: {
         ...props,
         permissions: {
@@ -39,7 +39,7 @@ export class CreateProductRepository
       }
     })
 
-    return createProductResposne;
+    return createProductResponse;
   }
 
 }

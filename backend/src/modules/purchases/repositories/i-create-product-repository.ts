@@ -1,4 +1,4 @@
-import { Product } from "@/src/shared/application/entities/product";
+import { Product } from "../infra/entities/product";
 
 
 
@@ -9,7 +9,9 @@ interface Permission {
   name: string;
 }
 
-export namespace ICreateProductRepository {
+declare namespace ICreateProductRepository { }
+
+namespace ICreateProductRepository {
 
   export namespace FindByName {
     export type Params = {
@@ -18,7 +20,9 @@ export namespace ICreateProductRepository {
 
     export type Response = Promise<Product | null>
   }
+}
 
+namespace ICreateProductRepository {
   export namespace Create {
     export type Params = Product & {
       permissions: Permission[];
@@ -28,7 +32,9 @@ export namespace ICreateProductRepository {
       permissions: Permission[];
     }>
   }
+}
 
+namespace ICreateProductRepository {
   export type Implementation = {
     findByName: (props: ICreateProductRepository.FindByName.Params)
       => ICreateProductRepository.FindByName.Response;
@@ -37,3 +43,5 @@ export namespace ICreateProductRepository {
       => ICreateProductRepository.Create.Response;
   }
 }
+
+export { ICreateProductRepository };

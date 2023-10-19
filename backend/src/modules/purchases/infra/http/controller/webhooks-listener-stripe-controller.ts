@@ -31,28 +31,28 @@ export class WebhookListenerStripeController {
       return response.json(400);
     }
 
-    let serviceResposne;
+    let serviceResponse;
 
     switch (event.type) {
       case 'invoice.payment_succeeded':
-        serviceResposne = await invoicePaymentSucceededUseCase.execute(event);
+        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'invoice.payment_failed':
-        serviceResposne = await invoicePaymentSucceededUseCase.execute(event);
+        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'invoice.finalized':
-        serviceResposne = await invoicePaymentSucceededUseCase.execute(event);
+        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'customer.subscription.deleted':
-        serviceResposne = await invoicePaymentSucceededUseCase.execute(event);
+        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'customer.subscription.trial_will_end':
-        serviceResposne = await invoicePaymentSucceededUseCase.execute(event);
+        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       default:
       // Unexpected event type
     }
 
-    return response.json(serviceResposne);
+    return response.json(serviceResponse);
   }
 }

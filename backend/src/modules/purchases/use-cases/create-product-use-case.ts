@@ -1,10 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateProductUseCase } from "../interfaces/i-create-product-use-case";
 import { ICreateProductRepository } from "../repositories/i-create-product-repository";
-import { CustomerBusinessException } from "../infra/exceptions/business-exception";
-import { ISubscriptionCustomerAccountGateway } from "../infra/gateways/contracts/i-subscription-customer-accounts-gateway";
-import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
-import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
+import { CustomerBusinessException } from "../../customer/infra/exceptions/business-exception";
+import { ISubscriptionCustomerAccountGateway } from "../../customer/infra/gateways/contracts/i-subscription-customer-accounts-gateway";
+import { ICreateUUIDTokenService } from "../../customer/infra/services/contracts/i-create-uuid-token-service";
+import { ICreateNewDateService } from "../../customer/infra/services/contracts/i-create-new-date-service";
 
 
 
@@ -25,22 +25,22 @@ export class CreateProductUseCase implements
   public async execute(props: ICreateProductUseCase.Params):
     ICreateProductUseCase.Response {
 
-    const verifyProductAlreayExists =
+    const verifyProductAlreadyExists =
       await this.createProductRepository.findByName({ name: props.name });
 
-    if (!!verifyProductAlreayExists?.id) {
-      throw new CustomerBusinessException("Product alredy exists", 403);
+    if (!!verifyProductAlreadyExists?.id) {
+      throw new CustomerBusinessException("Product already exists", 403);
     }
 
-    const verifyProductAlreadyExists =
+    const verifyProductAlreadyExistsInGateway =
       await this.subscriptionCustomerAccountsGateway.findById({
         productId: props.name
       })
 
     const permissionsObject = props.permissions.map((e: string) => ({ name: e }))
 
-    if (!!verifyProductAlreadyExists.price) {
-      throw new CustomerBusinessException("Poduct already exists on the gateway", 403);
+    if (!!verifyProductAlreadyExistsInGateway.price) {
+      throw new CustomerBusinessException("Product already exists on the gateway", 403);
     }
 
     const productId = this.createUUIDTokenService.create()

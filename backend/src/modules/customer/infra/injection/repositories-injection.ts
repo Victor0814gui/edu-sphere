@@ -15,8 +15,6 @@ import { IUpdateRoleRepository } from "../../repositories/i-update-role-reposito
 import { UpdateRoleRepository } from "../../repositories/implementation/update-role-repository";
 import { AuthenticationCustomerRepository } from "../../repositories/implementation/authentication-customer-repository";
 import { IAuthenticationCustomerRepository } from "../../repositories/i-authentication-customer-repository";
-import { ICreateProductRepository } from "../../repositories/i-create-product-repository";
-import { CreateProductRepository } from "../../repositories/implementation/create-product-repository";
 import { IPurchaseProductToCustomerRepository } from "../../repositories/i-purchase-product-to-customer-repository";
 import { PurchaseProductToCustomerRepository } from "../../repositories/implementation/purchase-product-to-customer-repository";
 
@@ -59,11 +57,6 @@ container.registerSingleton<IUpdateRoleRepository.Implementation>(
 container.registerSingleton<IAuthenticationCustomerRepository.Implementation>(
   "AuthenticationCustomerRepository",
   AuthenticationCustomerRepository
-);
-
-container.registerSingleton<ICreateProductRepository.Implementation>(
-  "CreateProductRepository",
-  CreateProductRepository,
 );
 
 container.registerSingleton<IPurchaseProductToCustomerRepository.Implementation>(

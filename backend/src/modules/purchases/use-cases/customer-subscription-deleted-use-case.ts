@@ -1,10 +1,12 @@
+import { inject, injectable } from "tsyringe";
 import { ICustomerSubscriptionDeletedRepository } from "../repositories/i-customer-subscription-deleted-use-case";
 import { ICustomerSubscriptionDeletedUseCase } from "../interfaces/i-customer-subscription-deleted-use-case";
 
-
+@injectable()
 export class CustomerSubscriptionDeletedUseCase
   implements ICustomerSubscriptionDeletedUseCase.Implementation {
   constructor(
+    @inject("CustomerSubscriptionDeletedRepository")
     private customerSubscriptionDeletedRepository:
       ICustomerSubscriptionDeletedRepository.Implementation
   ) { }

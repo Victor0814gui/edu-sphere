@@ -5,6 +5,7 @@ import { container } from "tsyringe";
 import { CreateSubscriptionController } from "../controller/create-subscription-controller";
 import { CancelSubscriptionController } from "../controller/cancel-subscription-controller";
 import { UpdateSubscriptionController } from "../controller/update-subscription-controller";
+import { userBusinessMiddleware } from "../middlewares/business-middleware";
 
 
 export const purchasesRoutes = Router();
@@ -37,3 +38,7 @@ purchasesRoutes.delete(
   cancelSubscriptionController.handler,
 )
 
+purchasesRoutes.use(
+  "/",
+  userBusinessMiddleware,
+)

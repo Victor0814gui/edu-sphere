@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
 import AppErrors from "@/src/shared/infra/errors/app-errors";
+import { PurchaseBusinessException } from "../../exceptions/business-exception";
 
 
 const userBusinessMiddleware = <TError extends Error>(
@@ -12,7 +13,7 @@ const userBusinessMiddleware = <TError extends Error>(
 
   console.log(error);
 
-  if (error instanceof CustomerBusinessException) {
+  if (error instanceof PurchaseBusinessException) {
     throw new AppErrors(error.message, error.code, error.type);
   }
 
