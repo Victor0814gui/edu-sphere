@@ -15,8 +15,8 @@ import { IUpdateRoleRepository } from "../../repositories/i-update-role-reposito
 import { UpdateRoleRepository } from "../../repositories/implementation/update-role-repository";
 import { AuthenticationCustomerRepository } from "../../repositories/implementation/authentication-customer-repository";
 import { IAuthenticationCustomerRepository } from "../../repositories/i-authentication-customer-repository";
-import { IPurchaseProductToCustomerRepository } from "../../repositories/i-purchase-product-to-customer-repository";
-import { PurchaseProductToCustomerRepository } from "../../repositories/implementation/purchase-product-to-customer-repository";
+import { IPurchaseProductToCustomerRepository } from "../../../purchases/repositories/i-purchase-product-to-customer-repository";
+import { PurchaseProductToCustomerRepository } from "../../../purchases/repositories/implementation/purchase-product-to-customer-repository";
 
 
 container.registerSingleton<ICreateCustomerAccountRepository.Implementation>(

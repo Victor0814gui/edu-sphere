@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 import { IPurchaseProductToCustomerUseCase } from "../interfaces/i-purchase-product-to-customer-use-case";
 import { IPurchaseProductToCustomerRepository } from "../repositories/i-purchase-product-to-customer-repository";
-import { CustomerBusinessException } from "../infra/exceptions/business-exception";
-import { ISessionPurchaseProductGateway } from "../infra/gateways/contracts/i-sessions-purchase-product-gateway";
+import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
+import { ISessionPurchaseProductGateway } from "../../customer/infra/gateways/contracts/i-sessions-purchase-product-gateway";
 
 
 @injectable()
@@ -14,30 +14,30 @@ export class PurchaseProductToCustomerUseCase
     @inject("SessionPurchaseProductGateway")
     private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation
   ) { }
-  public async execute(props: IPurchaseProductToCustomerUseCase.Params):
+  public async execute(params: IPurchaseProductToCustomerUseCase.Params):
     IPurchaseProductToCustomerUseCase.Response {
 
     const verifyCustomerAlreadyExists =
       await this.purchaseProductToCustomerRepository.findCustomer({
-        customerId: props.customerId
+        customerId: params.customerId
       });
 
     if (!verifyCustomerAlreadyExists?.id) {
-      throw new CustomerBusinessException("Customer does not exists", 404);
+      throw new PurchaseBusinessException("Customer does not exists", 404);
     }
 
     const verifyProductAlreadyExists =
       await this.purchaseProductToCustomerRepository.findProduct({
-        productId: props.productId,
+        productId: params.productId,
       });
 
     if (!verifyProductAlreadyExists?.id) {
-      throw new CustomerBusinessException("Product does not exists", 404);
+      throw new PurchaseBusinessException("Product does not exists", 404);
     }
 
     const purchaseProductToCustomerResponse =
       await this.purchaseProductToCustomerRepository.findCustomer({
-        customerId: props.customerId
+        customerId: params.customerId
       });
 
     // const sessionPurchaseProductGatewayResponse =
@@ -50,7 +50,7 @@ export class PurchaseProductToCustomerUseCase
     //   });
 
     // if (!sessionPurchaseProductGateway?.customerEmail) {
-    //   throw new CustomerBusinessException("Error processing your payment", 500);
+    //   throw new PurchaseBusinessException("Error processing your payment", 500);
     // }
 
     return purchaseProductToCustomerResponse;

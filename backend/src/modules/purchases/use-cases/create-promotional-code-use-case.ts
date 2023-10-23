@@ -18,7 +18,6 @@ export class CreatePromotionalCodeUseCase
       coupon: coupon.id,
     });
 
-
     return promotionCode;
   }
 }

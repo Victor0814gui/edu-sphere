@@ -9,7 +9,6 @@ export interface Product {
   name: string;
   createdAt: Date;
   updatedAt: Date | null;
-  userId: string;
   type: string;
   status: string;
   startDate: Date;

@@ -31,9 +31,10 @@ export class CreateCustomerAccountUseCase
 
     this.customerValidatorParams.validate(props)
 
-    const verifyCustomerAlreadyExists = await this.createCustomerAccountRepository.findUnique({
-      email: props.email
-    })
+    const verifyCustomerAlreadyExists =
+      await this.createCustomerAccountRepository.findUnique({
+        email: props.email
+      });
 
     if (verifyCustomerAlreadyExists?.id) {
       throw new CustomerBusinessException("Customer already exists", 400);
@@ -48,13 +49,14 @@ export class CreateCustomerAccountUseCase
       throw new CustomerBusinessException("Hash password error", 400);
     }
 
-    const createCustomerAccountResponse = await this.createCustomerAccountRepository.create({
-      ...props,
-      id: customerId,
-      password: passwordHash,
-      createdAt: createNewDate,
-      status: AccountStatusEnum.Pending,
-    });
+    const createCustomerAccountResponse =
+      await this.createCustomerAccountRepository.create({
+        ...props,
+        id: customerId,
+        password: passwordHash,
+        createdAt: createNewDate,
+        status: AccountStatusEnum.Pending,
+      });
 
     return createCustomerAccountResponse;
   }

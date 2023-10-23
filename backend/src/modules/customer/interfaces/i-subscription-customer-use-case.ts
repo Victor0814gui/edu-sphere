@@ -1,21 +1,30 @@
+import { Product } from "../infra/entities/product";
 
 
 
 
 
 
-export namespace ISubscriptionCustomerUseCase {
-  export interface Params {
-    priceId: string;
-    quantity: number
-  }
+declare namespace ISubscriptionCustomerUseCase { }
 
-  export type Response = Promise<{
-    url: string | null;
-    code: number;
-  }>;
+type GatewayResponse = {
+  url: string | null;
+  code: number;
+}
 
-  export interface Implementation {
-    execute: (props: ISubscriptionCustomerUseCase.Params) => ISubscriptionCustomerUseCase.Response;
+namespace ISubscriptionCustomerUseCase {
+  export type Params = Product
+}
+
+namespace ISubscriptionCustomerUseCase {
+  export type Response = Promise<GatewayResponse>;
+}
+
+namespace ISubscriptionCustomerUseCase {
+  export type Implementation = {
+    execute: (props: ISubscriptionCustomerUseCase.Params)
+      => ISubscriptionCustomerUseCase.Response;
   }
 }
+
+export { ISubscriptionCustomerUseCase };

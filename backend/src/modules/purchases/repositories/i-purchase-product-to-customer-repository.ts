@@ -3,11 +3,9 @@ import { Customer } from "@/src/shared/application/entities/user";
 
 
 
+declare namespace IPurchaseProductToCustomerRepository { }
 
-
-
-
-export namespace IPurchaseProductToCustomerRepository {
+namespace IPurchaseProductToCustomerRepository {
   export namespace FindProduct {
     export type Params = {
       productId: string;
@@ -15,7 +13,9 @@ export namespace IPurchaseProductToCustomerRepository {
 
     export type Response = Promise<Product | null>;
   }
+}
 
+namespace IPurchaseProductToCustomerRepository {
   export namespace FindCustomer {
     export type Params = {
       customerId: string;
@@ -23,17 +23,20 @@ export namespace IPurchaseProductToCustomerRepository {
 
     export type Response = Promise<Customer | null>;
   }
-
+}
+namespace IPurchaseProductToCustomerRepository {
   export namespace Purchase {
     export type Params = {
       productId: string;
       customerId: string;
     }
 
+    //@ts-check testar funcionalidade
     export type Response = Promise<any>;
   }
+}
 
-
+namespace IPurchaseProductToCustomerRepository {
   export type Implementation = {
     findProduct: (props: IPurchaseProductToCustomerRepository.FindProduct.Params)
       => IPurchaseProductToCustomerRepository.FindProduct.Response;
@@ -43,3 +46,5 @@ export namespace IPurchaseProductToCustomerRepository {
       => IPurchaseProductToCustomerRepository.Purchase.Response;
   }
 }
+
+export { IPurchaseProductToCustomerRepository };

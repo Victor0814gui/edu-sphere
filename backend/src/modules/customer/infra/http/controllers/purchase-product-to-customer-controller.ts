@@ -1,7 +1,7 @@
 
 import { container } from "tsyringe";
 import { Request, Response } from "express";
-import { PurchaseProductToCustomerUseCase } from "@customer/use-cases/purchase-product-to-customer-use-case";
+import { PurchaseProductToCustomerUseCase } from "@/src/modules/purchases/use-cases/purchase-product-to-customer-use-case";
 
 
 
