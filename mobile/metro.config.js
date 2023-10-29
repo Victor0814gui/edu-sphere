@@ -7,14 +7,14 @@
 const fs = require('fs');
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
-const { getDefaultConfig } = require('metro-config');
+const {getDefaultConfig} = require('metro-config');
 const rnwPath = fs.realpathSync(
   path.resolve(require.resolve('react-native-windows/package.json'), '..'),
 );
 
 module.exports = (async () => {
   const {
-    resolver: { sourceExts, assetExts },
+    resolver: {sourceExts, assetExts},
   } = await getDefaultConfig();
 
   return {
@@ -40,6 +40,8 @@ module.exports = (async () => {
           inlineRequires: true,
         },
       }),
+      // This fixes the 'missing-asset-registry-path` error (see https://github.com/microsoft/react-native-windows/issues/11437)
+      assetRegistryPath: 'react-native/Libraries/Image/AssetRegistry',
     },
   };
 })();

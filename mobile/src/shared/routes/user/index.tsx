@@ -8,9 +8,7 @@ import { Player } from '../../../modules/lessons/screens/player';
 import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
 import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
-
-
-
+import { createStackNavigator } from '@react-navigation/stack';
 type UserDrawerType = {
   dashboard: undefined;
   profile: undefined;
@@ -18,6 +16,7 @@ type UserDrawerType = {
   player: undefined;
   lessons: undefined;
   playlistlessons: undefined;
+  CreateRoomScreen: undefined;
 }
 
 const drawerNavigationOptions: DrawerNavigationOptions = {
@@ -36,24 +35,31 @@ const drawerNavigationOptions: DrawerNavigationOptions = {
 }
 
 
-const UserDrawer = createDrawerNavigator<UserDrawerType>();
-enableScreens(false);
+const UserDrawer = createStackNavigator<UserDrawerType>();
+enableScreens(true);
 enableFreeze(false);
 
 export function UserDrawerRoutes() {
   return (
-    <UserDrawer.Navigator
-      screenOptions={drawerNavigationOptions}
-      drawerContent={props => <CustomNavbar {...props} />}
-      initialRouteName="dashboard"
-      key={"route-user-screens"}
-    >
-      <UserDrawer.Screen name="dashboard" component={Dashboard} />
-      <UserDrawer.Screen name="lessons" component={Lessons} />
-      <UserDrawer.Screen name="profile" component={Profile} />
-      <UserDrawer.Screen name="room" component={Room} />
-      <UserDrawer.Screen name="player" options={{ drawerType: "slide" }} component={Player} />
-      <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
-    </UserDrawer.Navigator>
+    <ModalQueueContextProvider>
+      <UserDrawer.Navigator
+        // screenOptions={drawerNavigationOptions}
+        initialRouteName="dashboard"
+        key={"route-user-screens"}
+        screenListeners={{
+          beforeRemove: (beforeRemoveEvent) => {
+            console.log(beforeRemoveEvent)
+          }
+        }}
+      >
+        <UserDrawer.Screen name="dashboard" component={Dashboard} />
+        <UserDrawer.Screen name="lessons" component={Lessons} />
+        <UserDrawer.Screen name="profile" component={Profile} />
+        <UserDrawer.Screen name="room" component={Room} />
+        <UserDrawer.Screen name="player" component={Player} />
+        <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
+        <UserDrawer.Screen name="CreateRoomScreen" component={CreateRoomScreen} />
+      </UserDrawer.Navigator>
+    </ModalQueueContextProvider>
   );
 }

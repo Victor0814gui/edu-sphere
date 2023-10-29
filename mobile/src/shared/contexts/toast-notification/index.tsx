@@ -1,42 +1,45 @@
-import { useState, useCallback, ReactNode, createContext,useContext } from "react";
+import { useState, useCallback, ReactNode, createContext, useContext } from "react";
 import { ToastComponent } from "../../components/toast-component";
-import { v4 as uuidV4 } from "uuid";
-import { ToastContentType, ToastNotificaitonContextType } from "../../../shared/types";
-import { nerageteId } from "../../services/generateId";
+import { ToastContentType, ToastNotificationContextType } from "../../../shared/types";
+import { generateId } from "../../services/generateId";
 
 
-const ToastNotificaitonContext = createContext<ToastNotificaitonContextType>(
-  {} as ToastNotificaitonContextType
+const ToastNotificationContext = createContext<ToastNotificationContextType>(
+  {} as ToastNotificationContextType
 );
 
-const ToastNotificaitonProvider = ({children}:{children: ReactNode}) => {
-  const [ toastNotifications,setToastNotifications ] = useState<ToastContentType[]>([])
+const ToastNotificationProvider = ({ children }: { children: ReactNode }) => {
+  const [toastNotifications, setToastNotifications] = useState<ToastContentType[]>([])
 
-  const addToastNotifications = useCallback((props:ToastContentType) => {
-    props.id = nerageteId();
-    setToastNotifications([...toastNotifications,props]);
-  },[])
+  const addToastNotifications = useCallback((props: ToastContentType) => {
+    props.id = generateId();
+    setToastNotifications([...toastNotifications, props]);
+  }, [])
 
-  const removeToastNotication = useCallback(async (id: string) => {
-    setToastNotifications(await toastNotifications.filter((item) => item.id !== id ));
-  },[])
+  const removeToastNotification = useCallback(async (id: string) => {
+    try {
+      setToastNotifications(await toastNotifications.filter((item) => item.id !== id));
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
 
-  return(
-    <ToastNotificaitonContext.Provider value={{
+  return (
+    <ToastNotificationContext.Provider value={{
       toastNotifications,
       addToastNotifications,
-      removeToastNotication,
-    }}> 
+      removeToastNotification,
+    }}>
       {children}
-      <ToastComponent/>
-    </ToastNotificaitonContext.Provider>
+      <ToastComponent />
+    </ToastNotificationContext.Provider>
   )
 }
 
-function useToastNotificaitonProvider(){
-  const toastContextExists = useContext(ToastNotificaitonContext);
-  if(!toastContextExists){
-    throw new Error('o [ToastNotificaitonContext] context não foi instanciado no escopo')
+function useToastNotificationProvider() {
+  const toastContextExists = useContext(ToastNotificationContext);
+  if (!toastContextExists) {
+    throw new Error('o [ToastNotificationContext] context não foi instanciado no escopo')
   }
   return toastContextExists;
 }
@@ -46,6 +49,6 @@ export type {
 }
 
 export {
-  ToastNotificaitonProvider,
-  useToastNotificaitonProvider,
+  ToastNotificationProvider,
+  useToastNotificationProvider,
 }

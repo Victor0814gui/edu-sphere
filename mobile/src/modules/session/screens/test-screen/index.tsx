@@ -1,6 +1,6 @@
 import { COLORS } from '@shared/theme';
-import React, {useState} from 'react';
-import {Alert, TouchableHighlight, StyleSheet, Text, Pressable, View} from 'react-native';
+import React, { useState } from 'react';
+import { Alert, TouchableHighlight, StyleSheet, Text, Pressable, View } from 'react-native';
 import { Flyout } from "react-native-windows";
 import { aditionalStyles, Description } from './styles';
 
@@ -32,7 +32,7 @@ export const TextScreen = () => {
             }}
             activeOpacity={0.2}
             underlayColor={COLORS.green_900}>
-              <Text>fechar</Text>
+            <Text>fechar</Text>
           </TouchableHighlight>
         </View>
       </Flyout>

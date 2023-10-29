@@ -1,10 +1,11 @@
 import { useContext, createContext, ReactNode, useState, useCallback, useEffect } from "react";
 import { ContextAuthContextType, SignInMethodProps, UserType, SignUpProps } from "../../types";
-import { useToastNotificaitonProvider } from "../toast-notification";
+import { useToastNotificationProvider } from "../toast-notification";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../../services/api";
 import { AxiosError } from "axios";
 import RNSInfo from 'react-native-sensitive-info';
+
 import {
   signInNotificationContentTypeServerError,
   signInNotificationContentTypeNetworkError,
@@ -18,6 +19,14 @@ import {
   signInNotificationContentTypeUserNotExists,
 } from "./constants";
 
+type ErrorMessageType = {
+  data: {
+    message: {
+      code: number
+    }
+  }
+}
+
 const ContextAuthContext = createContext<ContextAuthContextType>(
   {} as ContextAuthContextType
 );
@@ -25,29 +34,38 @@ const ContextAuthContext = createContext<ContextAuthContextType>(
 function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserType | null>(null);
   const [sendResponseToServer, setSendResponseToServer] = useState(false);
-  const { addToastNotifications } = useToastNotificaitonProvider();
+  const [loadingLocalData, setLoadingLocalData] = useState(false);
+  const { addToastNotifications } = useToastNotificationProvider();
   const { navigate } = useNavigation();
 
 
   const setItem = async (data: string) => {
-    return RNSInfo.setItem(
-      AppAuthenticatoinKeyValue,
-      data,
-      sharedStorageFreferencies
-    )
+    try {
+      return RNSInfo.setItem(
+        AppAuthenticatoinKeyValue,
+        data,
+        sharedStorageFreferencies
+      )
+    } catch (err) {
+      console.log();
+    }
   }
 
   const getItem = async () => {
-    return await RNSInfo.getItem(
-      AppAuthenticatoinKeyValue,
-      sharedStorageFreferencies
-    );
+    try {
+      return await RNSInfo.getItem(
+        AppAuthenticatoinKeyValue,
+        sharedStorageFreferencies
+      );
+    } catch (err) {
+      console.log();
+    }
   }
 
   const signIn = useCallback(async ({ email, password }: SignInMethodProps) => {
     setSendResponseToServer(true);
     try {
-      const signInDataResponse = await api.post("/session/signin", { email, password })
+      const signInDataResponse = await api.post("/customer/signin", { email, password })
       console.log({ signInDataResponse });
 
       if (!signInDataResponse.data) {
@@ -61,25 +79,25 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       }
 
     } catch (err) {
-      const error = err as unknown as { code: string }
-
       console.log(err)
       if (err instanceof AxiosError) {
-        console.log(err)
+        err.response as ErrorMessageType;
+
+        if (err.code === "ERR_BAD_REQUEST") {
+          addToastNotifications(signInNotificationContentTypeUserNotExists);
+        }
+
         if (err.code === "ERR_NETWORK") {
           addToastNotifications(signInNotificationContentTypeNetworkError);
         }
 
-        if (err.response.data.message.code === 422) {
+        if (err.response!.data.message.code === 422) {
           addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
         }
 
-        if (err.response.data.message.code === 404) {
-          addToastNotifications(signInNotificationContentTypeUserNotExists);
-        }
       }
 
-      addToastNotifications(signInNotificationContentTypeNetworkError);
+      // addToastNotifications(signInNotificationContentTypeNetworkError);
     } finally {
       setSendResponseToServer(false);
     }
@@ -116,11 +134,15 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const getUserDataStorage = async () => {
     try {
       const userDataStorageResponse = await getItem();
-      const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse) as UserType;
-
-      setUser(userDataStorageResponseParseData);
+      if (!userDataStorageResponse) {
+        const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse!) as UserType;
+        setUser(userDataStorageResponseParseData);
+      } else {
+        throw new Error("Data is not exists");
+      }
     } catch (err) {
       console.log(err);
+      addToastNotifications(signUpNotificationContentTypeNetworkError);
     }
   }
 
@@ -136,6 +158,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       signUp,
       signOut,
       sendResponseToServer,
+      loadingLocalData,
     }}>
       {children}
     </ContextAuthContext.Provider>

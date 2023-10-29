@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @unique
+  name           String
+  email          String          @unique
+  password       String
+  createdAt      DateTime
+  updatedAt      DateTime?
+  avatarUrl      String
+  roleName       String
+  status         String
+  transaction    Transaction[]
+  subscription   Product[]
+  role           Role            @relation(fields: [roleName], references: [name])
+  matriculations Matriculation[] @relation("MatriculationToUser")
+  penaltys       Penalty[]       @relation("PenaltyToUser")
+  permissions    Permission[]    @relation("PermissionToUser")
+  refreshTokens  RefreshToken[]
+  rooms          Room[]          @relation("RoomToUser")
+
+  @@index([id])
+}
+
+model Room {
+  id          String    @id
+  title       String
+  slug        String
+  description String
+  type        String
+  authorId    String
+  published   Boolean
+  createdAt   DateTime
+  updatedAt   DateTime?
+  closed      Boolean
+  lessons     Lesson?
+  users       User[]    @relation("RoomToUser")
+}
+
+model Message {
+  id        String   @id
+  content   String
+  authorId  String
+  roomId    String
+  createdAt DateTime
+}
+
+model Lesson {
+  id          String     @id @unique
+  slug        String     @unique
+  title       String
+  description String
+  roomId      String     @unique
+  createdAt   DateTime
+  start       DateTime
+  end         DateTime
+  duration    Int
+  type        String
+  room        Room       @relation(fields: [roomId], references: [id])
+  materials   Material[] @relation("LessonToMaterial")
+  schedules   Schedule[]
+}
+
+model Schedule {
+  id          String    @id @unique
+  createdAt   DateTime
+  updatedAt   DateTime?
+  start       DateTime
+  end         DateTime
+  status      String
+  title       String
+  description String
+  lessons     Lesson[]
+}
+
+model Matriculation {
+  id        String   @id
+  studentId String
+  romId     String
+  createAd  DateTime
+  users     User[]   @relation("MatriculationToUser")
+}
+
+model Material {
+  id          String    @id
+  title       String
+  description String?
+  createdAt   DateTime
+  updatedAt   DateTime?
+  lessons     Lesson[]  @relation("LessonToMaterial")
+}
+
+model Role {
+  id          String       @id
+  name        String       @unique
+  level       Int          @unique
+  description String
+  createdAt   DateTime
+  updatedAt   DateTime?
+  users       User[]
+  permissions Permission[] @relation("PermissionToRole")
+}
+
+model Permission {
+  id            String    @id
+  name          String    @unique
+  level         Int       @unique
+  createdAt     DateTime
+  description   String
+  updatedAt     DateTime?
+  subscriptions Product[] @relation("PermissionToProduct")
+  roles         Role[]    @relation("PermissionToRole")
+  users         User[]    @relation("PermissionToUser")
+}
+
+model RefreshToken {
+  id           String   @id
+  refreshToken String   @unique
+  state        String
+  expiryDate   DateTime
+  customerId   String   @unique
+  users        User     @relation(fields: [customerId], references: [id])
+}
+
+model Product {
+  id             String        @id
+  name           String        @unique
+  type           String
+  status         String
+  startDate      DateTime?
+  endDate        DateTime?
+  paymentMethod  String
+  price          Int
+  billingCycle   String
+  nextBilling    DateTime
+  autoRenew      Boolean
+  paymentDetails String
+  createdAt      DateTime
+  updatedAt      DateTime?
+  transactions   Transaction[]
+  users          User[]
+  permissions    Permission[]  @relation("PermissionToProduct")
+}
+
+model Transaction {
+  id             String   @id
+  userId         String
+  paymentIntent  String?
+  subscriptionId String?
+  amount         Int
+  currency       String
+  status         String
+  createdAt      DateTime @default(now())
+  subscription   Product? @relation(fields: [subscriptionId], references: [id])
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+model Penalty {
+  id          String   @id
+  reason      String
+  description String?
+  createdAt   DateTime @default(now())
+  users       User[]   @relation("PenaltyToUser")
+}
+
+model Feedback {
+  id          String   @id
+  label       String
+  description String
+  createdAt   DateTime
+  userId      String
+  answered    Boolean
+  tags        Tag[]
+}
+
+model Tag {
+  id          String     @id
+  label       String     @unique
+  description String
+  createdAt   DateTime
+  userId      String
+  feedbacks   Feedback[]
+}

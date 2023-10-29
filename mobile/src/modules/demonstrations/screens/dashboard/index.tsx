@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Text, SectionList, FlatList } from "react-native";
+import React, { useEffect, useState, useCallback } from "react";
+import { View, Text, Pressable, FlatList } from "react-native";
 import { CardRoom } from "../../components/card-room";
-import { api, baseUrl } from "@shared/services/api";
-import { useToastNotificaitonProvider } from "@shared/contexts/toast-notification";
-import { useOpenAndCloseNavbarOnKeyPressContextProvider } from "@shared/contexts/open-and-close-navbar-on-key-press";
-import { fullscreen } from "react-native-custom-window";
 import LottieView from "lottie-react-native";
-import { errorConnectingToServerDataToast } from "@shared/contexts/toast-notification/constants";
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
+import { COLORS, FONTS } from "../../../../shared/theme";
 
 import {
   fonts,
   Container,
+  Search,
   SubHeaderContent,
-  AmountOfQuestions,
+  SubHeaderContentLeftContent,
   ContentContainerListEmpty,
   ContentContainerListEmptyText,
   HeaderSectionTitle,
 } from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
+import { errorConnectingToServerDataToast } from "../../../../shared/contexts/toast-notification/constants";
+import { Transition } from "../../../../shared/components/transition";
+import { baseUrl } from "../../../../shared/services/api";
+import { useToastNotificationProvider } from "../../../../shared/contexts/toast-notification";
+import { useOpenAndCloseNavbarOnKeyPressContextProvider } from "../../../../shared/contexts/open-and-close-navbar-on-key-press";
+import { BadgeButton } from "../../components/badge-button";
+import { useModalQueueContextProvider } from "../../../../shared/contexts/modal-queue";
+import { Input } from "../../../rooms/screens/create-room/styles";
 
 type CardType = {
   title: string;
@@ -27,28 +32,23 @@ type CardType = {
   id: string;
 }
 
-type CardSectionType = {
-  title: string;
-  data: CardType[];
-}
-
 var myInit = { method: 'GET', }
 
 export const Dashboard = () => {
   const [roomsData, setRoomsData] = useState<CardType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { addToastNotifications } = useToastNotificaitonProvider();
+
+  const { addToastNotifications } = useToastNotificationProvider();
+  const { addModal } = useModalQueueContextProvider();
   const { onFocus } = useOpenAndCloseNavbarOnKeyPressContextProvider()
 
   const fetchRoomsData = async () => {
     try {
       const roomsDataResponse = await fetch(`${baseUrl}/rooms`, myInit);
-      console.log("Dashboard.fetchRoomsData")
       const response = await roomsDataResponse.json()
       const responseJson = await response[0].data
-      console.log(responseJson)
-      console.log("Dashboard.fetchRoomsData", "end")
+      console.log("Dashboard - [fetchRoomsData]")
 
       setRoomsData(responseJson);
     } catch (err) {
@@ -56,32 +56,41 @@ export const Dashboard = () => {
     }
   }
 
-  console.log("Dashboard.fetchRoomsData")
+  const handlerCreateRoom = async () => {
+    await addModal({
+      title: "Criar nova sala",
+      description: "Você não permissões para criar um nova sala, você pode contatar o gerente da sua instituição para habilitar você"
+    })
+  }
 
-
-  useEffect(() => {
-    setIsLoading(true)
-    if (!isLoading) {
+  useFocusEffect(() => {
+    if (isLoading) {
+      setIsLoading(false)
       fetchRoomsData();
     }
-    fullscreen.removeBackButton();
-    fullscreen.enableExtend();
-    fullscreen.TitlebarColor(0,0,0,0)
   })
 
+  const renderItem = useCallback(({ item, index }: any) => (
+    <CardRoom index={index} {...item} />
+  ), [])
+
   return (
-    <ScreenAnimationWrapper>
+    <Transition>
       <Container>
+        <Search
+          placeholder="Digite o codigo da sala"
+          style={{ fontFamily: FONTS.Poppins.Medium }}
+        />
         <SubHeaderContent>
-          <Text style={fonts.TitleRoom}>Sala React Q&A</Text>
-          <AmountOfQuestions onPress={onFocus}>
-            <Text style={fonts.TitleRoomText}>42 perguntas</Text>
-          </AmountOfQuestions>
+          <Text style={fonts.TitleRoom}>Company heathy hub</Text>
+          <BadgeButton text={"42 Salas"} />
+          <SubHeaderContentLeftContent>
+          </SubHeaderContentLeftContent>
         </SubHeaderContent>
-        {isLoading ? <FlatList
+        {!isLoading ? <FlatList
           data={roomsData}
           keyExtractor={(item, index) => `${index}`}
-          renderItem={({ item, index }) => <CardRoom index={index} {...item} />}
+          renderItem={renderItem}
           ListEmptyComponent={
             <ContentContainerListEmpty>
               <ContentContainerListEmptyText style={fonts.contentContainerListEmptyText}>parece que não existem salas disponiveis no momento</ContentContainerListEmptyText>
@@ -98,6 +107,6 @@ export const Dashboard = () => {
           style={{ width: 220, height: 220 }} source={"Message"}
         />}
       </Container>
-    </ScreenAnimationWrapper>
+    </Transition>
   );
 };

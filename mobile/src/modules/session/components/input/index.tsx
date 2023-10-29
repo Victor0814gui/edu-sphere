@@ -10,7 +10,7 @@ import {
 import { COLORS } from "@shared/theme";
 import { TextInput as TextInputType, TextInputProps, Animated } from 'react-native';
 import { ControllerFieldState } from 'react-hook-form';
-import { User } from 'phosphor-react-native';
+import { User, Warning } from 'phosphor-react-native';
 
 type InputProps = TextInputProps & {
   labelText: string;

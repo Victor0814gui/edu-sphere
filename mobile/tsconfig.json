@@ -1,17 +1,19 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",     /* Recommended React Native TSConfig base */
+  "extends": "@tsconfig/react-native/tsconfig.json" /* Recommended React Native TSConfig base */,
   "compilerOptions": {
     "jsx": "react-native",
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
-    "types": ["styled-components-react-native","jest"],
+    "types": ["styled-components-react-native", "jest"],
     /* Completeness */
-    "skipLibCheck": true,
-    "baseUrl":"./",
-    "paths":{
-      "@modules/*": ["./src/modules/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@types/*": ["./src/@types/*"],
-    }
-  },
+    "skipLibCheck": true
+    // "baseUrl": ".",
+    // "paths": {
+    //   "*": ["src/*"],
+    //   "@tests": ["tests/*"],
+    //   "@modules/*": ["src/modules/*"],
+    //   "@shared/*": ["src/shared/*"],
+    //   "@types/*": ["src/@types/*"]
+    // }
+  }
 }

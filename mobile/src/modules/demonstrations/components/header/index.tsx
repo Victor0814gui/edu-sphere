@@ -4,6 +4,8 @@ import { Container } from "./styles";
 import { ButtonBorder } from "../button-header";
 import { Modal } from "../../../../shared/components/modal";
 import { modalType } from "../../../../shared/types"
+import { useModalQueueContextProvider } from "../../../../shared/contexts/modal-queue";
+import { useToastNotificationProvider } from "../../../../shared/contexts/toast-notification";
 
 type modalContentType = {
   title: string;
@@ -14,25 +16,36 @@ type modalContentType = {
 const modalContent: modalContentType = {
   title: "tem certeza 🤔?",
   description: "Tem certeza que deseja encerrar essa sala? Ela não podera ser reaberta novamente depois de fechada",
-  type:"warning",
+  type: "warning",
 }
 
-export const Header = (props:{
+export const Header = (props: {
   roomId: string,
 }) => {
 
-  const [ modalIsOpen,setModalIsOpen ] = useState(false);
+  const { addModal } = useModalQueueContextProvider();
+  const { addToastNotifications } = useToastNotificationProvider();
 
   return (
     <Container>
-      <View style={{marginLeft: "auto"}}>
-        <ButtonBorder label={props.roomId || "#AHAPQNASDJ"} borderActive />
+      <View style={{ marginLeft: "auto" }}>
+        <ButtonBorder
+          onPress={() => addToastNotifications({
+            title: "codigo copiado",
+            description: "codigo copiado com sucesso para a area de tranferência",
+            type: "success",
+          })}
+          label={props.roomId || "#AHAPQNASDJ"}
+          borderActive
+        />
       </View>
-      <ButtonBorder onPress={() => setModalIsOpen(!modalIsOpen)} label="Encerrar sala"/>
-     {modalIsOpen && <Modal 
-        title="asdçfkljald falkdfçlkaçlsdfçlafa df asd fasd f asdf"
-        description="asdçfkljald falkdfçlkaçlsdfçlafa df asd fasd f asdf as df as df asdf a sdf as df asd f asd fa sdf as df asdflkjasdl fas df asdf asd f asdf asd fasdi fu asjdkf asdf asd fas dflkasd f ahsdfasdf asd f asdf"
-      />}
+      <ButtonBorder
+        onPress={() => addModal({
+          title: "Sem autorização!",
+          description: "Você não tem permissão para apagar o conteudo da sala, somente o autor da sala ou o administrador podem remover essa sala.",
+        })}
+        label="Encerrar sala"
+      />
     </Container>
   )
 }

@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-import { COLORS } from "../../../../shared/theme";
-import { api } from "../../../../shared/services/api";
-import { useNavigation } from "@react-navigation/native";
+import { useState, useEffect, useCallback } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   additionalStyles,
   Container,
@@ -18,7 +16,9 @@ import {
 } from "./styles"
 
 import Icon from "react-native-vector-icons/Feather";
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
+import { Trasition } from "../../../../shared/components/transition";
+import { api, baseUrl } from "../../../../shared/services/api";
+import { COLORS } from "../../../../shared/theme";
 
 
 type LessonsTypes = {
@@ -27,6 +27,7 @@ type LessonsTypes = {
   subtitle: string;
   thumb: string;
   title: string;
+  duration: number;
 }
 
 type RenderItemProps = {
@@ -40,12 +41,13 @@ const LessonSubject = ({ item, index }: RenderItemProps) => {
   const [isPressed, setIsPressed] = useState(false);
   const { navigate } = useNavigation();
 
-  console.log(item.sources[0]);
+  // console.log(item.sources[0]);
 
   const handlerPress = () => {
     setIsPressed(true)
-    navigate("player", { url: item.sources[0] })
+    navigate("player", { url: item.sources[0], duration: item.duration })
   }
+
   const onPressIn = () => {
     setIsPressed(true)
   }
@@ -81,26 +83,32 @@ const LessonSubject = ({ item, index }: RenderItemProps) => {
 
 export const PlaylistLessons = () => {
   const [lessonData, setLessonsData] = useState<LessonsTypes[]>([])
-  const ItemSeparatorComponent = () => <ListLessonsSubjectSeparator />
-  const renderItem = (props: RenderItemProps) => <LessonSubject {...props} />
-  const ListEmptyComponent = () => (
+  const ItemSeparatorComponent = useCallback(() => <ListLessonsSubjectSeparator />, [])
+
+
+  const renderItem = useCallback((props: RenderItemProps) => <LessonSubject {...props} />, [])
+
+  const ListEmptyComponent = useCallback(() => (
     <LessonSujectContainerContentText>ainda aulas disponiveis aqui</LessonSujectContainerContentText>
-  )
+  ), [])
 
-  useEffect(() => {
-    const getDataLessons = async () => {
-      try {
-        const lessons = await api.get("lessons") as { data: LessonsTypes[] };
-        setLessonsData(lessons.data);
-      } catch (err) {
+  const getDataLessons = async () => {
+    try {
+      const lessons = await api.get('/lessons');
+      // const lessonsResponse = await lessons.json() as { data: LessonsTypes[] };
+      // console.log(lessons.json())
+      setLessonsData(lessons.data)
+    } catch (err) {
 
-      }
     }
+  }
+
+  useFocusEffect(() => {
     getDataLessons();
-  }, [])
+  });
 
   return (
-    <ScreenAnimationWrapper>
+    <Trasition>
       <Container>
         <ListLessonsSubjectContainer>
           <ListLessonsSubject
@@ -112,6 +120,6 @@ export const PlaylistLessons = () => {
           />
         </ListLessonsSubjectContainer>
       </Container>
-    </ScreenAnimationWrapper>
+    </Trasition>
   )
 }

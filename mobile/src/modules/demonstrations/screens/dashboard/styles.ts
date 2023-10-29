@@ -1,27 +1,27 @@
 import styled from "styled-components/native";
-import { FONTS,COLORS } from "../../../../shared/theme";
-import { StyleSheet,Platform,Animated,Pressable,TouchableOpacity } from "react-native";
+import { FONTS, COLORS } from "../../../../shared/theme";
+import { StyleSheet, Platform, Animated, Pressable, TouchableOpacity } from "react-native";
 import { RectButton } from "react-native-gesture-handler"
 
 const mobile = Platform.OS === "android";
 
 export const fonts = StyleSheet.create({
-  TitleRoom:{
+  TitleRoom: {
     color: COLORS.white,
     fontFamily: FONTS.Poppins.Bold,
     fontSize: 24,
   },
-  TitleRoomText:{
+  TitleRoomText: {
     color: COLORS.grey_180,
     fontFamily: FONTS.Roboto.Medium,
     fontSize: 14,
   },
-  contentContainerListEmptyText:{
+  contentContainerListEmptyText: {
     fontSize: 16,
     fontFamily: FONTS.Poppins.Medium,
     marginVertical: 9,
   },
-  headerSectionTitle:{
+  headerSectionTitle: {
     fontSize: 18,
     fontFamily: FONTS.Roboto.Medium,
     marginVertical: 9,
@@ -33,25 +33,28 @@ export const Container = styled.View`
   background-color: ${COLORS.grey_180};
 `;
 
+export const Search = styled.TextInput`
+  width: 340px;
+  border-radius: 21px;
+  border-color: ${COLORS.grey_680};
+  border-width: 1px;
+  align-self: center;
+  background-color: ${COLORS.grey_270};
+`;
+
 export const SubHeaderContent = styled.View`
   flex-direction: row;
   margin-left: 4px;
   align-items: center;
   margin-bottom: 21px;
-  margin-top: 41px;
+  margin-top: 18px;
 `;
 
-export const AmountOfQuestions = styled((mobile ? RectButton : TouchableOpacity))`
-  background-color: ${COLORS.green_500};
-  height: 32px;
-  margin: 4px;
-  border-radius: 16px;
+export const SubHeaderContentLeftContent = styled.View`
+  margin-left: auto;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 0 7px;
-  margin-left: 12px;
 `;
+
 
 export const ContentContainerListEmpty = styled.View`
   flex: 1;
@@ -87,7 +90,7 @@ export const ButtonRoomControlListContainer = styled(Animated.View)`
 
 export const ButtonRoomControlList = styled(mobile ? RectButton : Pressable)``;
 
-export const ButtonRoomIcon = styled.Image.attrs(props => ({ resizeMode: "contain"}))`
+export const ButtonRoomIcon = styled.Image.attrs(props => ({ resizeMode: "contain" }))`
   width: 24px;
   height: 24px;
 `;

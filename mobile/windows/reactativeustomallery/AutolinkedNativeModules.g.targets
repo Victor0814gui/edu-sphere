@@ -38,5 +38,9 @@
     <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-video\windows\ReactNativeVideoCPP\ReactNativeVideoCPP.vcxproj">
       <Project>{0d1e54d3-4be1-4daf-98bf-124c28c85014}</Project>
     </ProjectReference>
+    <!-- Projects from react-native-xaml -->
+    <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-xaml\windows\ReactNativeXaml\ReactNativeXaml.vcxproj">
+      <Project>{0ff7027a-222c-4ffb-8f17-91d18bbaf7a8}</Project>
+    </ProjectReference>
   </ItemGroup>
 </Project>

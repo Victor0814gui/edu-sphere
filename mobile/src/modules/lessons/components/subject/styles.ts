@@ -26,12 +26,21 @@ export const Container = styled(Animated.View)<{isPressed: boolean,onHover: bool
   min-height: 300px;
   width: 200px;
   margin-right: 14px;
+  position: relative;
 
   ${({onHover,isPressed}) => 
     isPressed && css` background-color: ${COLORS.grey_200}; `
     || onHover && css` background-color: ${COLORS.grey_240}; `
     || css` background-color: ${COLORS.grey_270} `
   }
+`;
+
+export const BackgrounImage = styled.Image`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 `;
 
 export const Content  = styled.View`

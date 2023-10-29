@@ -1,25 +1,25 @@
 import styled from "styled-components/native"
 import { COLORS, FONTS } from "../../../../shared/theme";
-import { Animated,Dimensions,StyleSheet } from "react-native";
+import { Animated, Dimensions, StyleSheet } from "react-native";
 
 export const additionalStyles = StyleSheet.create({
-  sectionHeaderContainerLeftText:{
+  sectionHeaderContainerLeftText: {
     fontFamily: FONTS.Poppins.Medium,
     fontSize: 21,
   },
-  subjectContainerContentTitle:{
+  subjectContainerContentTitle: {
     fontFamily: FONTS.Poppins.Medium,
     color: COLORS.grey_970,
     fontSize: 14
   },
-  subjectContainerContentDescription:{
+  subjectContainerContentDescription: {
     fontFamily: FONTS.Poppins.Ligth,
     color: COLORS.grey_800,
     fontSize: 12
   },
 })
 
-export const Container  = styled.ScrollView`
+export const Container = styled.ScrollView`
   flex: 1;
   `;
 
@@ -55,11 +55,15 @@ export const BackgroundImageContent = styled.View`
   background-color: ${COLORS.grey_270};
   height: 200px;
   width: 100%;
+  position: relative;
 `;
 
 export const BackgroundImage = styled.Image`
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 export const SectionHeaderContainer = styled.View`

@@ -30,6 +30,9 @@
 // Includes from react-native-video
 #include <winrt/ReactNativeVideoCPP.h>
 
+// Includes from react-native-xaml
+#include <winrt/ReactNativeXaml.h>
+
 namespace winrt::Microsoft::ReactNative
 {
 
@@ -53,6 +56,8 @@ void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collecti
     packageProviders.Append(winrt::RNSVG::ReactPackageProvider());
     // IReactPackageProviders from react-native-video
     packageProviders.Append(winrt::ReactNativeVideoCPP::ReactPackageProvider());
+    // IReactPackageProviders from react-native-xaml
+    packageProviders.Append(winrt::ReactNativeXaml::ReactPackageProvider());
 }
 
 }

@@ -8,6 +8,7 @@ import {
   additionalStyles,
   Container,
   Content,
+  BackgrounImage,
   IconSubjectContainer,
   SubjectContainerContent,
   SubjectContainerContentTitle,
@@ -16,6 +17,7 @@ import {
 import { Animated, TouchableOpacity } from "react-native";
 import { Text } from "react-native-svg";
 import { Pressable } from "react-native";
+import { Image } from "react-native";
 
 export const Subject = (props: {
   premiun: boolean;
@@ -77,6 +79,7 @@ export const Subject = (props: {
           transform: [{ translateY: animationsElement }]
         }}
       >
+        <BackgrounImage resizeMode="cover" source={{uri: "https://cdn.discordapp.com/attachments/1008571142858092684/1138474924902715442/volul_96891_a_hipster_chic_girl_eating_hamburger_in_space_75c5e03c-6418-4bd5-943a-ef9d664a68e0.png"}}/>
         <Content>
           <IconSubjectContainer>
             <Icon name="play-circle-fill" size={25} color={COLORS.grey_970} />

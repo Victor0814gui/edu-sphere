@@ -60,8 +60,6 @@ struct Notifications {
 
         auto toast = winrt::Windows::UI::Notifications::ToastNotification(xml);
         ToastNotificationManager::CreateToastNotifier().Show(toast);
-
-
     }
 
 

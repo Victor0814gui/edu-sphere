@@ -1,5 +1,5 @@
-import { useState, useRef,useCallback } from "react";
-import { COLORS, FONTS } from "@shared/theme";
+import { useState, useRef, useCallback } from "react";
+import { COLORS, FONTS } from "../../../shared/theme";
 import {
   View,
   Text,
@@ -14,17 +14,17 @@ type DefaultProps = {
 } & PressableProps;
 
 export const Default = ({ children, ...rest }: DefaultProps) => {
-  const [ onHover,setOnHover ] = useState(false);
-  const [ onActive, setOnActive ] = useState(false);
+  const [onHover, setOnHover] = useState(false);
+  const [onActive, setOnActive] = useState(false);
 
-  const onMouseEnter = useCallback(() => setOnHover(true),[]);
-  const onMouseLeave = useCallback(() => setOnHover(false),[]);
+  const onMouseEnter = useCallback(() => setOnHover(true), []);
+  const onMouseLeave = useCallback(() => setOnHover(false), []);
 
-  const onPressIn = useCallback(() => setOnActive(true),[])
-  const onPressOut = useCallback(() => setOnActive(false),[])
+  const onPressIn = useCallback(() => setOnActive(true), [])
+  const onPressOut = useCallback(() => setOnActive(false), [])
 
   return (
-    <Pressable 
+    <Pressable
       {...rest}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
@@ -33,7 +33,7 @@ export const Default = ({ children, ...rest }: DefaultProps) => {
       ]}
 
     >
-      <View 
+      <View
         style={[
           styles.content,
           onHover && styles.contentHovered,
@@ -51,7 +51,7 @@ export const Default = ({ children, ...rest }: DefaultProps) => {
 
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     height: 42,
 
   },
@@ -64,10 +64,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  contentHovered:{
+  contentHovered: {
     backgroundColor: COLORS.green_400,
   },
-  contentActived:{
+  contentActived: {
     backgroundColor: COLORS.green_390,
   },
   text: {

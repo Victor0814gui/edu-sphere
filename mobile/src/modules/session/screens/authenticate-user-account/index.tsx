@@ -1,12 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { Button } from "../../components/button";
+import { Text, View } from "react-native"
 //@ts-ignore
 import { Input } from '../../components/input';
-import {
-  styles,
-  Container,
-  Form,
-} from './styles';
 import { useAuthContextProvider } from '../../../../shared/contexts/auth';
 import { HiperLink } from '../../components/hiper-link';
 import { useForm, Controller } from 'react-hook-form';
@@ -16,17 +12,20 @@ import { useNavigate, useNavigation } from "react-router-native"
 import BackgroundIlustrationSvg from "../../assets/images/background-ilustration.svg";
 //@ts-ignore
 import BackgroundIlustrationRightSvg from "../../assets/images/background-ilustration-right.svg";
-import { ScreenAnimationWrapper } from '@shared/components/screen-wrapper-animation';
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
-import { fullscreen, FilePicker } from "react-native-custom-window";
+import {
+  styles,
+  Container,
+  Form,
+} from './styles';
+import { Trasition } from '../../../../shared/components/transition';
 
 type OnSubmitProps = {
   password: string;
   email: string;
 }
 
-export function AuthenticateUserAccount() {
-  const history = useNavigate()
+export function AuthenticateUserAccount({ navigation }: any) {
   const { signIn } = useAuthContextProvider();
 
   const { control, handleSubmit, formState: { errors }, } = useForm({
@@ -40,22 +39,16 @@ export function AuthenticateUserAccount() {
     signIn({ email, password });
   }, [])
 
-  const handlePress = useCallback(async () => {
-    history('/signupstepone');
+  const handlePress = useCallback(() => {
+    navigation.navigate('createCustomer');
   }, []);
 
-
-  useEffect(() => {    
-    // fullscreen.removeBackButton();
-    // fullscreen.full();
-    // fullscreen.setSize(1080,800)
-  },[])
 
   return (
     <React.Fragment>
       <BackgroundIlustrationSvg style={styles.backgroundLeft} />
       <BackgroundIlustrationRightSvg style={styles.backgroundRight} />
-      <ScreenAnimationWrapper>
+      <Trasition>
         <Container>
           <Form>
             <Controller
@@ -115,7 +108,7 @@ export function AuthenticateUserAccount() {
             onPress={handlePress}
           />
         </Container>
-      </ScreenAnimationWrapper>
+      </Trasition>
     </React.Fragment>
   );
 }

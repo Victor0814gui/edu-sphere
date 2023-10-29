@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
 export const InputContainerAndLabel = styled(Animated.View)`
   flex-direction: column;
   align-items: flex-start;
-  
 `;
 
 export const InputLabelText = styled.Text`
   font-size: 16px;
   margin-top: 7px;
+  color: ${COLORS.grey_800};
 `;
 
 export const ContainerStyleTextInput = styled.View<{ onHover: boolean }>`
@@ -25,7 +25,7 @@ export const ContainerStyleTextInput = styled.View<{ onHover: boolean }>`
   height: 44px;
   border-radius: 41px;
   width: 100%;
-  min-width: 420px;
+  /* max-width: 420px; */
   margin-top: 7px;
   flex-direction: row;
   background-color: ${COLORS.grey_270};
@@ -44,4 +44,5 @@ export const Input = styled.TextInput`
   font-size: 16px;
   border-color: ${COLORS.grey_270};
   background-color: ${COLORS.grey_270};
+  color: ${COLORS.grey_800};
 `;

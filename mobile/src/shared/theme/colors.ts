@@ -12,7 +12,7 @@ export const COLORS = {
   white: "#ffffff",
   grey_120: "#1F1F1F",
   // grey_180:"#000000",
-  grey_180:"#2e2e2e",
+  grey_180: "#2e2e2e",
   grey_200: "#333333",
   grey_240: "#3E3E3E",
   grey_270: "#464646",

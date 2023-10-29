@@ -1,6 +1,6 @@
 
 
-import { RNSensitiveInfoAccessControlOptions, RNSensitiveInfoOptions } from "react-native-sensitive-info";
+import { RNSensitiveInfoOptions } from "react-native-sensitive-info";
 import { ToastContentType } from "../../types";
 
 

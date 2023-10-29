@@ -1,30 +1,30 @@
-import styled,{ css } from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { COLORS, FONTS } from "../../../../shared/theme";
 import { StyleSheet } from "react-native";
 
 
 export const styles = StyleSheet.create({
-  backgroundLeft:{
+  backgroundLeft: {
     position: "absolute",
     left: 0,
     top: 0,
     height: 345,
     width: 407
   },
-  backgroundRight:{
+  backgroundRight: {
     position: "absolute",
     right: 0,
     bottom: 0,
     height: 345,
-    width: 407,   
+    width: 407,
   },
-  text:{
+  text: {
     fontFamily: FONTS.Poppins.Medium,
   },
-  errorMessageContainerText:{
+  errorMessageContainerText: {
     fontFamily: FONTS.Poppins.Ligth,
   },
-  button:{ 
+  button: {
     marginTop: 12,
     minWidth: "100%"
   }
@@ -34,10 +34,12 @@ export const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
+  padding: 0 12px;
 `;
 
 export const Form = styled.View`
   max-width: 480px;
+  /* background-color: ${COLORS.grey_240}; */
 `;
 
 export const RedirectCreateAcountText = styled.Text`
