@@ -19,10 +19,12 @@ export class CustomerAuthorizationAccountUseCase
   public async execute(props: ICustomerAuthorizationAccountUseCase.Params):
     ICustomerAuthorizationAccountUseCase.Response {
 
-    const [, token] = props.token.split(" ");
 
-    const { sub } = verify(token, process.env.JWT_SECRET as string);
-    const customerId = sub?.toString()!;
+    // const [, token] = props.token.split(" ");
+
+    // const { sub } = verify(token, process.env.JWT_SECRET as string);
+    // const customerId = sub?.toString()!;
+    const customerId = props.token;
 
     if (!customerId) {
       throw new CustomerBusinessException("Customer does not exist", 404);
@@ -37,10 +39,26 @@ export class CustomerAuthorizationAccountUseCase
       throw new CustomerBusinessException("Customer does not exist", 404);
     }
 
+
+    const findPermissions =
+      await this.customerAuthorizationAccountRepository.findPermissions({
+        level: 0,
+      })
+
+    const findRole = await this.customerAuthorizationAccountRepository.findRoles({
+      level: 0,
+    })
+
+    if (!findPermissions && !findRole) {
+      throw new CustomerBusinessException("Permissions does not exist", 404);
+    }
+
     const customerAuthorizationAccountResponse =
       await this.customerAuthorizationAccountRepository.update({
         email: verifyCustomerAlreadyExists.email,
         status: AccountStatusEnum.Active,
+        permissions: findPermissions!,
+        roles: findRole!
       });
 
     return customerAuthorizationAccountResponse;

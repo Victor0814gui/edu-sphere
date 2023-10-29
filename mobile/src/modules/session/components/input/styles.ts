@@ -28,7 +28,7 @@ export const ContainerStyleTextInput = styled.View<{ onHover: boolean }>`
   /* max-width: 420px; */
   margin-top: 7px;
   flex-direction: row;
-  background-color: ${COLORS.grey_270};
+  /* background-color: ${COLORS.grey_270}; */
 `;
 
 export const IconContainer = styled.View`
@@ -45,4 +45,5 @@ export const Input = styled.TextInput`
   border-color: ${COLORS.grey_270};
   background-color: ${COLORS.grey_270};
   color: ${COLORS.grey_800};
+  border-radius: 41px;
 `;

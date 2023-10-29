@@ -7,5 +7,5 @@ declare module "*.svg" {
   export default content;
 }
 
-declare module "*.gif"{}
-declare module "*.png"{}
+declare module "*.gif" { }
+declare module "*.png" { }

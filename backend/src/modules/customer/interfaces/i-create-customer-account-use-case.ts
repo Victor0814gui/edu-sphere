@@ -3,7 +3,6 @@ import { Customer } from "@/src/shared/application/entities/user";
 
 export namespace ICreateCustomerAccountUseCase {
   export type Params = {
-    role: string;
     name: string;
     email: string;
     password: string;

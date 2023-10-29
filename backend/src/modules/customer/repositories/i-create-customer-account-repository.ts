@@ -17,7 +17,6 @@ export namespace ICreateCustomerAccountRepository {
   export namespace Create {
     export type Params = {
       id: string;
-      role: string;
       name: string;
       email: string;
       password: string
@@ -33,7 +32,7 @@ export namespace ICreateCustomerAccountRepository {
     export type Params = {
       id: string;
       permissions: string[];
-      role: string;
+      roles: string[];
     }
 
     export type Response = Promise<Customer & {

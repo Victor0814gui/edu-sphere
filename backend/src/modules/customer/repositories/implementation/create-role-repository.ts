@@ -10,18 +10,18 @@ export class CreateRoleRepository
 
   public async findUnique(props: ICreateRoleRepository.FindUnique.Params):
     ICreateRoleRepository.FindUnique.Response {
-    const findUniqueRoleResposne = await database.role.findFirst({
+    const findUniqueRoleResponse = await database.role.findFirst({
       where: {
         name: props.name,
       }
     })
 
-    return findUniqueRoleResposne;
+    return findUniqueRoleResponse;
   }
 
   async create(props: ICreateRoleRepository.Create.Params):
     ICreateRoleRepository.Create.Response {
-    const createRoleResposne = await database.role.create({
+    const createRoleResponse = await database.role.create({
       data: {
         id: props.id,
         level: props.level,
@@ -32,18 +32,18 @@ export class CreateRoleRepository
       }
     })
 
-    return createRoleResposne;
+    return createRoleResponse;
   }
 
   public async delete(props: ICreateRoleRepository.Delete.Params):
     ICreateRoleRepository.Delete.Response {
-    const deleteRoleResposne = await database.role.delete({
+    const deleteRoleResponse = await database.role.delete({
       where: {
         name: props.name,
       }
     })
 
-    return deleteRoleResposne;
+    return deleteRoleResponse;
   }
 
   public async list(props: ICreateRoleRepository.List.Params):

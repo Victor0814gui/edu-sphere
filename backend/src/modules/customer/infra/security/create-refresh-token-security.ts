@@ -9,7 +9,7 @@ export class GenerateRefreshToken
   implements IGenerateRefreshToken.Implementation {
   constructor(
     @inject('CreateRefreshTokenRepository')
-    private createSessionTokenSecurity: ICreateRefreshTokenRepository.Implementation,
+    private createRefreshTokenRepository: ICreateRefreshTokenRepository.Implementation,
     @inject("CreateUUIDTokenService")
     private createUUIDTokenService: ICreateUUIDTokenService.Implementation
   ) { }
@@ -18,7 +18,7 @@ export class GenerateRefreshToken
     IGenerateRefreshToken.Response {
     const expiryDate = parseInt(process.env.REFRESH_TOKEN_EXPIRES_TIME as string);
 
-    const refreshTokenAlreadyExists = await this.createSessionTokenSecurity.findByIdUser({
+    const refreshTokenAlreadyExists = await this.createRefreshTokenRepository.findByIdUser({
       customerId: props.customerId
     })
 
@@ -29,7 +29,7 @@ export class GenerateRefreshToken
     const expiresIn = new Date();
     expiresIn.setDate(expiresIn.getDate() + expiryDate);
 
-    const generateRefreshToken = await this.createSessionTokenSecurity.create({
+    const generateRefreshToken = await this.createRefreshTokenRepository.create({
       customerId: props.customerId,
       state: RefreshTokenState.Active,
       refreshToken: this.createUUIDTokenService.create(),

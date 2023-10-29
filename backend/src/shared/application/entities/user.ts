@@ -13,7 +13,6 @@ export interface User {
   createdAt: Date;
   updatedAt: Date | null;
   avatarUrl: string;
-  roleName: string;
 }
 
 

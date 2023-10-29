@@ -13,6 +13,7 @@ export namespace ICreatePermissionUseCase {
   export type Response = Promise<Permission>
 
   export interface Implementation {
-    execute: (props: ICreatePermissionUseCase.Params) => ICreatePermissionUseCase.Response;
+    execute: (props: ICreatePermissionUseCase.Params)
+      => ICreatePermissionUseCase.Response;
   }
 }

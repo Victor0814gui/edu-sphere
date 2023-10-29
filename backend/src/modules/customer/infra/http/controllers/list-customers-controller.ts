@@ -9,10 +9,10 @@ import { ListCustomersUseCase } from "@customer/use-cases/list-customers-use-cas
 export class ListCustomersController {
   public async handler(request: Request, response: Response):
     Promise<Response> {
-    const listCustomersUseCaseIntance = container.resolve(ListCustomersUseCase);
+    const listCustomersUseCase = container.resolve(ListCustomersUseCase);
 
-    const listCustomersUseCaseIntanceResponse = await listCustomersUseCaseIntance.execute({})
+    const listCustomersUseCaseResponse = await listCustomersUseCase.execute()
 
-    return response.status(201).json(listCustomersUseCaseIntanceResponse);
+    return response.status(201).json(listCustomersUseCaseResponse);
   }
 }

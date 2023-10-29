@@ -2,22 +2,28 @@ import { Permission } from "@/src/shared/application/entities/permission";
 import { Customer } from "@/src/shared/application/entities/user";
 
 
-interface IPermission {
+type IPermission = {
+  name: string;
+}
+
+type Role = {
   name: string;
 }
 
 export namespace IAuthenticationCustomerRepository {
 
   export namespace FindUnique {
-    export interface Params {
+    export type Params = {
       email: string;
     }
-    export interface Response extends Customer {
-      permissions: IPermission[]
-    }
+    export type Response = Promise<Customer & {
+      permissions: IPermission[];
+      roles: Role[]
+    } | null>
   }
 
-  export interface Implementation {
-    findUnique: (props: FindUnique.Params) => Promise<FindUnique.Response | null>;
+  export type Implementation = {
+    findUnique: (props: IAuthenticationCustomerRepository.FindUnique.Params)
+      => IAuthenticationCustomerRepository.FindUnique.Response;
   }
 }

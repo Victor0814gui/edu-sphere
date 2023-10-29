@@ -12,7 +12,8 @@ export class ListCustomersUseCase
   ) { }
   async execute(props: IListCustomersUseCase.Params): IListCustomersUseCase.Response {
 
-    const listCustomersRepositoryResponse = await this.listCustomersRepository.findMany({})
+    const listCustomersRepositoryResponse =
+      await this.listCustomersRepository.findMany()
 
     return listCustomersRepositoryResponse;
   }

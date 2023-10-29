@@ -1,5 +1,5 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
-import { CustomNavbar } from '../navbar';
+import { CustomNavbar } from '../../components/navbar';
 import { Profile } from '../../../modules/demonstrations/screens/profile';
 import { COLORS } from '../../theme';
 import { Room } from '../../../modules/demonstrations/screens/room';
@@ -55,7 +55,6 @@ export function UserDrawerRoutes() {
           }
         }}
         defaultStatus='open'
-
         useLegacyImplementation
       >
         <UserDrawer.Screen name="dashboard" component={Dashboard} />

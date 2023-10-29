@@ -15,11 +15,10 @@ model User {
   createdAt      DateTime
   updatedAt      DateTime?
   avatarUrl      String
-  roleName       String
   status         String
   transaction    Transaction[]
   subscription   Product[]
-  role           Role            @relation(fields: [roleName], references: [name])
+  roles          Role[]
   matriculations Matriculation[] @relation("MatriculationToUser")
   penaltys       Penalty[]       @relation("PenaltyToUser")
   permissions    Permission[]    @relation("PermissionToUser")
@@ -185,6 +184,5 @@ model Tag {
   label       String     @unique
   description String
   createdAt   DateTime
-  userId      String
   feedbacks   Feedback[]
 }

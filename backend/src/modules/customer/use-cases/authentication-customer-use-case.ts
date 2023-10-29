@@ -27,37 +27,55 @@ export class AuthenticationCustomerUserCase
       email: props.email,
     });
 
-    if (!verifyCustomerAlreadyExists) {
+    if (!verifyCustomerAlreadyExists?.id) {
       throw new CustomerBusinessException("Customer does not exists", 404);
     }
 
-    if (verifyCustomerAlreadyExists.email != props.email) {
+    if (verifyCustomerAlreadyExists?.email != props.email) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
     const isPasswordHasCorrect = await this.compareEncryptDataService.execute({
       data: props.password,
-      encrypted: verifyCustomerAlreadyExists.password,
+      encrypted: verifyCustomerAlreadyExists?.password,
     })
 
     if (isPasswordHasCorrect) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
-    const permissions = verifyCustomerAlreadyExists.permissions.map(permission => permission.name);
+    const permissions = verifyCustomerAlreadyExists
+      .permissions
+      .map(permission => permission.name);
+
+    const roles = verifyCustomerAlreadyExists
+      .roles
+      .map(role => role.name);
 
     const generateTokenProvider = this.createSessionTokenSecurity.execute({
       customerId: verifyCustomerAlreadyExists.id,
-      role: verifyCustomerAlreadyExists.roleName,
       permissions: permissions,
+      roles: roles,
     });
 
     const refreshTokenServiceResponse = await this.generateRefreshToken.execute({
       customerId: verifyCustomerAlreadyExists.id
     });
 
+
+    const customer = {
+      id: verifyCustomerAlreadyExists.id,
+      name: verifyCustomerAlreadyExists.name,
+      email: verifyCustomerAlreadyExists.email,
+      password: verifyCustomerAlreadyExists.password,
+      studentList: verifyCustomerAlreadyExists.studentList,
+      createdAt: verifyCustomerAlreadyExists.createdAt,
+      updatedAt: verifyCustomerAlreadyExists.updatedAt,
+      avatarUrl: verifyCustomerAlreadyExists.avatarUrl,
+    }
+
     return {
-      ...verifyCustomerAlreadyExists,
+      ...customer,
       token: generateTokenProvider,
       refreshToken: refreshTokenServiceResponse,
     }

@@ -32,9 +32,13 @@ export const styles = StyleSheet.create({
 
 export const Container = styled.View`
   flex: 1;
+  padding: 0 12px;
+`;
+
+export const Content = styled.View`
+  flex: 1;
   align-items: center;
   justify-content: center;
-  padding: 0 12px;
 `;
 
 export const Form = styled.View`
@@ -46,4 +50,11 @@ export const RedirectCreateAcountText = styled.Text`
   font-size: 16px;
   color: ${COLORS.grey_800};
   margin-top: 14px;
+`;
+
+
+export const Footer = styled.View`
+  height: 100px;
+  max-width: 500px;
+  align-self: center;
 `;

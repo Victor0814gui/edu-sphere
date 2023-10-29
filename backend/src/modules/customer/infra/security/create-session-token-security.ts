@@ -4,7 +4,7 @@ import { sign } from "jsonwebtoken";
 export namespace ICreateSessionTokenSecurity {
   export interface Params {
     customerId: string;
-    role: string;
+    roles: string[];
     permissions: string[]
   }
 
@@ -22,7 +22,7 @@ class CreateSessionTokenSecurity
     ICreateSessionTokenSecurity.Response {
     const token = sign(
       {
-        role: props.role,
+        roles: props.roles,
         permissions: props.permissions,
         userId: props.customerId,
       },

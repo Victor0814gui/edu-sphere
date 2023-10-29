@@ -3,6 +3,7 @@ import { CustomerBusinessException } from "@customer/infra/exceptions/business-e
 import { CustomerValidatorParams } from "../infra/validators/create";
 import { ICreateCustomerAccountRepository } from "../repositories/i-create-customer-account-repository";
 import { IDeleteUserAccountUseCase } from "../interfaces/i-delete-customer-account-use-case";
+import { IDeleteCustomerAccountRepository } from "../repositories/i-delete-customer-account-repository";
 
 
 
@@ -11,26 +12,23 @@ export class DeleteUserAccountUseCase
   implements IDeleteUserAccountUseCase.Implementation {
 
   constructor(
-    @inject("UserValidatorParams")
-    private customerValidatorParams: CustomerValidatorParams,
-    @inject("CreateUserAccountRepository")
-    private createCustomerAccountRepository: ICreateCustomerAccountRepository.Implementation,
+    @inject("DeleteCustomerAccountRepository")
+    private deleteCustomerAccountRepository: IDeleteCustomerAccountRepository.Implementation,
   ) { }
 
   public async execute(props: IDeleteUserAccountUseCase.Params):
     IDeleteUserAccountUseCase.Response {
 
-    const verifyUserAlreayExists = await this.createCustomerAccountRepository.findUnique({
-      email: props.email,
-    })
+    const verifyUserAlreadyExists =
+      await this.deleteCustomerAccountRepository.findById(props)
 
-    if (!verifyUserAlreayExists?.id) {
+    if (!verifyUserAlreadyExists?.id) {
       throw new CustomerBusinessException("user does not exists", 400);
     }
 
-    // await this.createCustomerAccountRepository.delete({
-    //   id: verifyUserAlreayExists.id,
-    // })
+    await this.deleteCustomerAccountRepository.delete({
+      customerId: verifyUserAlreadyExists.id,
+    })
 
     return {
       message: "customer deleted successfully",

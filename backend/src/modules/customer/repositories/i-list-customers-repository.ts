@@ -1,19 +1,24 @@
 import { Customer } from "@/src/shared/application/entities/user";
 
 
-interface IPermissions {
+type IPermissions = {
+  name: string;
+}
+
+type IRoles = {
   name: string;
 }
 
 export namespace IListCustomersRepository {
 
   export namespace FindMany {
-    export interface Params { }
+    export type Params = void;
 
-    export type Response = Promise<Array<Customer & IPermissions> | null>;
+    export type Response = Promise<Array<Customer & IPermissions & IRoles> | null>;
   }
 
-  export interface Implementation {
-    findMany: (props: FindMany.Params) => IListCustomersRepository.FindMany.Response;
+  export type Implementation = {
+    findMany: (props: IListCustomersRepository.FindMany.Params)
+      => IListCustomersRepository.FindMany.Response;
   }
 }

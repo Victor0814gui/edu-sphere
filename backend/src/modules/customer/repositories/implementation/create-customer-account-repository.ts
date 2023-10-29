@@ -22,16 +22,7 @@ export class CreateCustomerAccountRepository
     ICreateCustomerAccountRepository.Create.Response {
 
     const createCustomerResponse = await database.user.create({
-      data: {
-        id: props.id,
-        name: props.name,
-        email: props.email,
-        password: props.password,
-        createdAt: props.createdAt,
-        avatarUrl: props.avatarUrl,
-        roleName: props.role,
-        status: props.status,
-      },
+      data: props,
     });
 
     return createCustomerResponse;
@@ -41,19 +32,18 @@ export class CreateCustomerAccountRepository
     ICreateCustomerAccountRepository.Update.Response {
 
     const permissions = props.permissions.map((permission) => ({ name: permission }));
+    const roles = props.roles.map((role) => ({ name: role }));
 
     let createCustomerResponse = await database.user.update({
       where: {
         id: props.id,
       },
       data: {
-        role: {
-          connect: {
-            name: props.role,
-          }
+        roles: {
+          connect: roles
         },
         permissions: {
-          connect: [...permissions]
+          connect: permissions
         },
       },
       include: {
@@ -62,6 +52,11 @@ export class CreateCustomerAccountRepository
             name: true,
           }
         },
+        roles: {
+          select: {
+            name: true,
+          }
+        }
       }
     });
 

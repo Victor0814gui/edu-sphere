@@ -8,9 +8,9 @@ const database = new PrismaClient();
 export class AuthenticationCustomerRepository
   implements IAuthenticationCustomerRepository.Implementation {
   async findUnique(props: IAuthenticationCustomerRepository.FindUnique.Params):
-    Promise<IAuthenticationCustomerRepository.FindUnique.Response | null> {
+    IAuthenticationCustomerRepository.FindUnique.Response {
 
-    const authenticationCustomeResponse = database.user.findFirst({
+    const authenticationCustomerResponse = database.user.findFirst({
       where: {
         email: props.email
       },
@@ -19,10 +19,15 @@ export class AuthenticationCustomerRepository
           select: {
             name: true,
           }
+        },
+        roles: {
+          select: {
+            name: true,
+          }
         }
       }
     })
 
-    return authenticationCustomeResponse;
+    return authenticationCustomerResponse;
   }
 }

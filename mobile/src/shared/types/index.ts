@@ -19,7 +19,6 @@ type SignUpProps = {
   email?: string;
   password?: string;
   name: string;
-  birthday: string;
   avatarUrl: string;
 }
 

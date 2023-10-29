@@ -15,7 +15,7 @@ const MyTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: COLORS.grey_180,
+    background: COLORS.grey_200,
   },
 };
 
@@ -48,7 +48,7 @@ export const Main = () => {
   useEffect(() => {
     const handlerChangeTitleBar = async () => {
       await titleBar.enableExtend();
-      await window.setSize(1300, 720)
+      // await window.setSize(1300, 720)
       await titleBar.TitlebarColor({
         //@ts-ignore
         BackgroundColor: COLORS.grey_180,

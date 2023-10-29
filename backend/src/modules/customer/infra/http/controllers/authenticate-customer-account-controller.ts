@@ -17,10 +17,7 @@ export class AuthenticationCustomerAccountController {
     const authenticationCustomerUserCaseInstance = container.resolve(AuthenticationCustomerUserCase)
 
     const authenticationCustomerUserCaseInstanceResponse =
-      await authenticationCustomerUserCaseInstance.execute({
-        email: body.email,
-        password: body.password,
-      })
+      await authenticationCustomerUserCaseInstance.execute(body)
 
     return response.json(authenticationCustomerUserCaseInstanceResponse);
   }
