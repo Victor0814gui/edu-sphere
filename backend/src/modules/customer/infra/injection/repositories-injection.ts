@@ -17,6 +17,10 @@ import { AuthenticationCustomerRepository } from "../../repositories/implementat
 import { IAuthenticationCustomerRepository } from "../../repositories/i-authentication-customer-repository";
 import { IPurchaseProductToCustomerRepository } from "../../../purchases/repositories/i-purchase-product-to-customer-repository";
 import { PurchaseProductToCustomerRepository } from "../../../purchases/repositories/implementation/purchase-product-to-customer-repository";
+import { DeleteCustomerAccountRepository } from "../../repositories/implementation/delete-customer-account-repository";
+import { IDeleteCustomerAccountRepository } from "../../repositories/i-delete-customer-account-repository";
+import { CustomerAuthorizationAccountRepository } from "../../repositories/implementation/customer-authorization-account-repository";
+import { ICustomerAuthorizationAccountRepository } from "../../repositories/i-customer-authorization-account-repository";
 
 
 container.registerSingleton<ICreateCustomerAccountRepository.Implementation>(
@@ -63,3 +67,13 @@ container.registerSingleton<IPurchaseProductToCustomerRepository.Implementation>
   "PurchaseProductToCustomerRepository",
   PurchaseProductToCustomerRepository,
 );
+
+container.registerSingleton<IDeleteCustomerAccountRepository.Implementation>(
+  "DeleteCustomerAccountRepository",
+  DeleteCustomerAccountRepository,
+);
+
+container.registerSingleton<ICustomerAuthorizationAccountRepository.Implementation>(
+  "CustomerAuthorizationAccountRepository",
+  CustomerAuthorizationAccountRepository
+)

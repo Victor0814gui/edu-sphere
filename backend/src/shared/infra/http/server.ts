@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import cors from "cors";
 import express from "express"
-import 'express-async-errors';
+import "express-async-errors";
 import { captureErrorsMiddlewrare } from "../middlewares/app-error-middlewrare";
 import { routes } from "./routes";
 import http from "http";
@@ -17,7 +17,10 @@ app.use(routes);
 
 
 app.use((req, res, next) => {
-  res.status(404).send("route not found");
+  res.status(404).json({
+    status: 'error',
+    message: 'Route does not exits',
+  });
 });
 
 

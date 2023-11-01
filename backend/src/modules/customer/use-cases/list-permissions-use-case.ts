@@ -15,7 +15,7 @@ export class ListPermissionsUseCase
     IListPermissionsUseCase.Response {
 
     const createPermissionsServiceResponse =
-      await this.createPermissionRepository.list({})
+      await this.createPermissionRepository.list();
 
     return createPermissionsServiceResponse;
   }

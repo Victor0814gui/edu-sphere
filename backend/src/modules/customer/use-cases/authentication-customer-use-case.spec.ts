@@ -1,23 +1,22 @@
 import crypto from "crypto";
 import { CreateSessionTokenSecurity, ICreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
-import { CustomerValidatorParams } from "../infra/validators/create";
 import { ICreateCustomerAccountUseCase } from "../interfaces/i-create-customer-account-use-case";
-import { CreateCustomerAccountRepositoryFake } from "../repositories/fakes/create-customer-account-repository-fake";
 import { ICreateCustomerAccountRepository } from "../repositories/i-create-customer-account-repository";
 import { CreateCustomerAccountUseCase } from "./create-customer-account-use-case";
 import { Customer } from "@/src/shared/application/entities/user";
 import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
 import { CreateUUIDTokenService } from "../infra/services/create-uuid-token-service";
-import { CreateNewDateService } from "../infra/services/create-new-date-service";
 import { IAuthenticationCustomerRepository } from "../repositories/i-authentication-customer-repository";
 import { IGenerateRefreshToken } from "../infra/security/contracts/i-create-refresh-tocken-security";
 import { ICompareEncryptDataService } from "../infra/services/contracts/i-compare-encrypt-data-service";
 import { CompareEncryptDataService } from "../infra/services/compare-encrypt-data-service";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
 import { AuthenticationCustomerRepository } from "../repositories/implementation/authentication-customer-repository";
-import { IAuthenticationCustomerUserCase } from "../interfaces/i-authenticate-customer-use-case";
 import { IEncryptDataService } from "../infra/services/contracts/i-encrypt-data-service";
+import { ICreateRefreshTokenRepository } from "@customer/repositories/i-create-refresh-token-repository";
+import { CreateRefreshTokenRepository } from "../repositories/implementation/create-refresh-token-repository";
+
 
 let createCustomerAccountUseCase: ICreateCustomerAccountUseCase.Implementation;
 let authenticationCustomerRepository: IAuthenticationCustomerRepository.Implementation;
@@ -27,7 +26,7 @@ let compareEncryptDataService: ICompareEncryptDataService.Implementation;
 
 
 
-let customerValidatorParams: CustomerValidatorParams;
+let createRefreshTokenRepository: ICreateRefreshTokenRepository.Implementation;
 let createCustomerAccountRepository: ICreateCustomerAccountRepository.Implementation;
 let createUUIDTokenService: ICreateUUIDTokenService.Implementation;
 let createNewDateService: ICreateNewDateService.Implementation;
@@ -43,12 +42,16 @@ describe("Create new Customer", () => {
 
     authenticationCustomerRepository = new AuthenticationCustomerRepository();
     createSessionTokenSecurity = new CreateSessionTokenSecurity();
-    generateRefreshToken = new GenerateRefreshToken();
+    createRefreshTokenRepository = new CreateRefreshTokenRepository()
+    createUUIDTokenService = new CreateUUIDTokenService();
+    generateRefreshToken = new GenerateRefreshToken(
+      createRefreshTokenRepository,
+      createUUIDTokenService,
+    );
     compareEncryptDataService = new CompareEncryptDataService();
 
 
     createCustomerAccountUseCase = new CreateCustomerAccountUseCase(
-      customerValidatorParams,
       createCustomerAccountRepository,
       createUUIDTokenService,
       createNewDateService,
@@ -66,7 +69,6 @@ describe("Create new Customer", () => {
       createdAt: new Date(),
       updatedAt: null,
       avatarUrl: "https://fasdfasdfasdfasdfadsf.com/image.png",
-      roleName: "customer",
     }
 
     const createRoomImMemoryRepositoryResult = await createCustomerAccountUseCase.execute({
@@ -74,11 +76,13 @@ describe("Create new Customer", () => {
       email: customerData.email,
       name: customerData.name,
       password: customerData.password,
-      role: customerData.roleName,
     })
 
     expect(createRoomImMemoryRepositoryResult)
       .toEqual(customerData)
+
+  })
+  it("It should not be possible to create a client without data", async () => {
 
   })
 })

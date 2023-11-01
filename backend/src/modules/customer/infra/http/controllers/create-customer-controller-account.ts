@@ -5,8 +5,7 @@ import { User } from "@/src/shared/application/entities/user";
 
 
 
-interface ICreateUserAccountControllerParams {
-  role: string;
+type ICreateUserAccountControllerParams = {
   name: string;
   email: string;
   password: string;
@@ -20,14 +19,9 @@ export class CreateCustomerAccountController {
 
     const createCustomerAccountUseCase = container.resolve(CreateCustomerAccountUseCase);
 
-    const createCustomerAccountUseCaseResponse = await createCustomerAccountUseCase.execute({
-      role: body.role,
-      avatarUrl: body.avatarUrl,
-      password: body.password,
-      email: body.email,
-      name: body.name,
-    })
+    const createCustomerAccountUseCaseResponse =
+      await createCustomerAccountUseCase.execute(body)
 
-    return response.json(createCustomerAccountUseCaseResponse);
+    return response.status(201).json(createCustomerAccountUseCaseResponse);
   }
 }

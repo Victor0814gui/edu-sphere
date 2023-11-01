@@ -7,7 +7,7 @@ type Message = {
 
 export namespace IDeleteUserAccountUseCase {
   export type Params = {
-    email: string;
+    customerId: string;
   }
 
   export type Response = Promise<Message>;

@@ -15,6 +15,11 @@ export class ListCustomersRepository
           select: {
             name: true
           }
+        },
+        roles: {
+          select: {
+            name: true
+          }
         }
       }
     });

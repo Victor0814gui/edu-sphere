@@ -10,19 +10,19 @@ export class CreatePermissionRepository
   implements ICreatePermissionRepository.Implementation {
 
   async findUnique(props: ICreatePermissionRepository.FindUnique.Params):
-    Promise<ICreatePermissionRepository.FindUnique.Response | null> {
-    const findUniquePermissionResposne = await database.permission.findFirst({
+    ICreatePermissionRepository.FindUnique.Response {
+    const findUniquePermissionResponse = await database.permission.findFirst({
       where: {
         name: props.name,
       }
     })
 
-    return findUniquePermissionResposne;
+    return findUniquePermissionResponse;
   }
 
   async create(props: ICreatePermissionRepository.Create.Params):
-    Promise<ICreatePermissionRepository.Create.Response> {
-    const createPermissionResposne = await database.permission.create({
+    ICreatePermissionRepository.Create.Response {
+    const createPermissionResponse = await database.permission.create({
       data: {
         id: props.id,
         level: props.level,
@@ -33,24 +33,24 @@ export class CreatePermissionRepository
       }
     })
 
-    return createPermissionResposne;
+    return createPermissionResponse;
   }
 
   async delete(props: ICreatePermissionRepository.Delete.Params):
-    Promise<ICreatePermissionRepository.Delete.Response> {
-    const deletePermissionResposne = await database.permission.delete({
+    ICreatePermissionRepository.Delete.Response {
+    const deletePermissionResponse = await database.permission.delete({
       where: {
         name: props.name,
       }
     })
 
-    return deletePermissionResposne;
+    return deletePermissionResponse;
   }
 
   async list(props: ICreatePermissionRepository.List.Params):
-    Promise<ICreatePermissionRepository.List.Response | null> {
-    const listRolesResposne = await database.permission.findMany()
+    ICreatePermissionRepository.List.Response {
+    const listRolesResponse = await database.permission.findMany()
 
-    return listRolesResposne;
+    return listRolesResponse;
   }
 }

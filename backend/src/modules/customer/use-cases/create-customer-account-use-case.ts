@@ -14,8 +14,6 @@ import { IEncryptDataService } from "../infra/services/contracts/i-encrypt-data-
 export class CreateCustomerAccountUseCase
   implements ICreateCustomerAccountUseCase.Implementation {
   constructor(
-    @inject("CustomerValidatorParams")
-    private customerValidatorParams: CustomerValidatorParams,
     @inject("CreateCustomerAccountRepository")
     private createCustomerAccountRepository: ICreateCustomerAccountRepository.Implementation,
     @inject("CreateUUIDTokenService")
@@ -28,8 +26,6 @@ export class CreateCustomerAccountUseCase
 
   public async execute(props: ICreateCustomerAccountUseCase.Params):
     ICreateCustomerAccountUseCase.Response {
-
-    this.customerValidatorParams.validate(props)
 
     const verifyCustomerAlreadyExists =
       await this.createCustomerAccountRepository.findUnique({

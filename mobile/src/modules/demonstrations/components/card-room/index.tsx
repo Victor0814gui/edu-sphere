@@ -76,12 +76,7 @@ export const CardRoom = (props: CardRoomProps) => {
             <Title style={font.title}>{props.nickname}</Title>
             <Description style={font.description}>{props.title}</Description>
           </HeaderData>
-          <HeaderInfo>
-            {/* {props.index == 0 && <Tag label="author" />}
-            {props.index == 5 && <Tag label="author" />}
-            {props.index == 3 && <Tag type="red" label="banned" />} */}
-            {props.index == 1 && <Tag type="orange" label="pending" />}
-          </HeaderInfo>
+
         </Header>
         <Separator />
         <Content>

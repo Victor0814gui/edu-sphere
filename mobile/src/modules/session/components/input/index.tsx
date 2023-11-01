@@ -31,12 +31,12 @@ export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: Inp
     setIsFilled(!!inputValueRef.current?.value)
   }, [])
 
-  const AnimationsEnter = () => {
+  const AnimationsEnter = useCallback(() => {
     Animated.spring(animation, {
       toValue: 0,
       useNativeDriver: false, // Habilita o uso do driver nativo para melhor desempenho
     }).start();
-  };
+  }, []);
 
   const handleInputFocus = useCallback((value: any) => {
     setIsFocused(true)
@@ -48,10 +48,10 @@ export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: Inp
 
   return (
     <InputContainerAndLabel
-      onLayout={(e) => console.log(e.nativeEvent)}
       style={{
         transform: [{ translateY: animation }],
       }}
+      accessible={false}
     >
       <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>
       <ContainerStyleTextInput

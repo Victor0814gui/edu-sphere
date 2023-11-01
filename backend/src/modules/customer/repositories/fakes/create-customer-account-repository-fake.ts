@@ -27,7 +27,6 @@ export class CreateCustomerAccountRepositoryFake
       new Promise((resolve, reject) => {
         this.database = {
           ...props,
-          roleName: props.role,
           createdAt: new Date(),
           updatedAt: props.createdAt,
         }

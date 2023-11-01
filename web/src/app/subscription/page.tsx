@@ -8,9 +8,9 @@ export default function Subscription() {
       <div className="content">
         <h1>Planos</h1>
         <div className="subscription-list">
-          {[0,1,3].map((subscription => (
+          {[0, 1, 3].map((subscription => (
             <div className="subscription">
-            <h2>Basic</h2>
+              <h2>Basic</h2>
             </div>
           )))}
         </div>

@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { api } from "../../services/api";
 import { AxiosError } from "axios";
 import RNSInfo from 'react-native-sensitive-info';
+import { CreateCustomerAccountContract } from "../../../../../contracts/customer/create-customer-account-contract";
 
 import {
   signInNotificationContentTypeServerError,
@@ -66,17 +67,16 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     setSendResponseToServer(true);
     try {
       const signInDataResponse = await api.post("/customer/signin", { email, password })
-      console.log({ signInDataResponse });
 
-      if (!signInDataResponse.data) {
-        throw new Error("data is undefined")
-      }
-
-      setUser(signInDataResponse.data);
+      console.log(signInDataResponse.data)
       if (!!signInDataResponse.data) {
+        setUser(signInDataResponse.data);
         const signInDataResponseSerializationData = JSON.stringify(signInDataResponse.data);
         await setItem(signInDataResponseSerializationData)
       }
+
+      // addToastNotifications(signInNotificationContentTypeNetworkError);
+      addToastNotifications(signInNotificationContentTypeUserNotExists);
 
     } catch (err) {
       console.log(err)
@@ -95,18 +95,23 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
           addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
         }
 
+        if (err.code === "ERR_BAD_RESPONSE") {
+          addToastNotifications(signInNotificationContentTypeUserNotExistsOrIncorrectData);
+        }
+
       }
 
-      // addToastNotifications(signInNotificationContentTypeNetworkError);
+      addToastNotifications(signInNotificationContentTypeNetworkError);
     } finally {
       setSendResponseToServer(false);
     }
-  }, [user, setUser, api])
+  }, [user?.id])
 
-  const signUp = useCallback(async (props: SignUpProps) => {
+  const signUp = useCallback(async (props: CreateCustomerAccountContract) => {
     setSendResponseToServer(true)
     try {
-      const signInDataResponse = await api.post("/session/signup", { ...props })
+
+      const signInDataResponse = await api.post("/customer/signup", props)
       if (signInDataResponse.statusText === "Network Error") {
         addToastNotifications(signUpNotificationContentTypeServerError);
       }

@@ -14,15 +14,12 @@ interface ICreateRoleControllerParams {
 
 export class CreateRoleController {
   public async handler(request: Request, response: Response): Promise<Response> {
-    const { description, level, name } = request.body as ICreateRoleControllerParams;
-    const createRoleUseCaseIntance = container.resolve(CreateRoleUseCase);
+    const body = request.body as ICreateRoleControllerParams;
+    const createRoleUseCase = container.resolve(CreateRoleUseCase);
 
-    const createRoleUseCaseIntanceResponse = await createRoleUseCaseIntance.execute({
-      description,
-      level,
-      name
-    })
+    const createRoleUseCaseResponse =
+      await createRoleUseCase.execute(body)
 
-    return response.status(201).json(createRoleUseCaseIntanceResponse);
+    return response.status(201).json(createRoleUseCaseResponse);
   }
 }

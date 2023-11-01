@@ -1,57 +1,60 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { COLORS, FONTS } from "../../../../shared/theme";
-import { Button as ButtonPattern } from "../../components/button";
+import { StyleSheet } from "react-native";
 
-const selectAvatarImageAttributes = (props: any) => ({resizeMode: "contain"})
+
+export const styles = StyleSheet.create({
+  backgroundLeft: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    height: 345,
+    width: 407
+  },
+  backgroundRight: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    height: 345,
+    width: 407,
+  },
+  text: {
+    fontFamily: FONTS.Poppins.Medium,
+  },
+  errorMessageContainerText: {
+    fontFamily: FONTS.Poppins.Ligth,
+  },
+  button: {
+    marginTop: 12,
+    minWidth: "100%"
+  }
+});
 
 export const Container = styled.View`
+  flex: 1;
+  padding: 0 12px;
+`;
+
+export const Content = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
 `;
 
-export const SectionSelectAvatar = styled.View`
-  width: 100%;
-  margin: 20px;
-`;
-
-export const SectionSelectAvatarTitle = styled.Text`
-  font-size: 25px;
-  align-self: center;
-  color: ${COLORS.grey_680};
-`;
-
-export const SelectAvatarList = styled.FlatList`
-  margin: 31px auto;
-  border-radius: 100px;
-  max-width: 800px;
-  width: 80%;
-`;
-
-export const SelectAvatarImage = styled.Image.attrs(selectAvatarImageAttributes)<{onHover: boolean}>`
-  width: 110px;
-  height: 110px;
-  margin: 0 7px;
-`;
-
 export const Form = styled.View`
-  max-width: 380px;
+  max-width: 480px;
+  /* background-color: ${COLORS.grey_240}; */
 `;
 
-export const SectionButtonForm = styled.View`
-  flex-direction: row;
+export const RedirectCreateAcountText = styled.Text`
+  font-size: 16px;
+  color: ${COLORS.grey_800};
+  margin-top: 14px;
 `;
 
-export const ButtonGoBack = styled.TouchableOpacity`
-  width: 50%;
-  align-items: center;
-  justify-content: center;
-`;
 
-export const ButtonGoBackText = styled.Text`
-  color: ${COLORS.grey_680};
-`;
-
-export const Button = styled(ButtonPattern)`
-  width: 50%; 
+export const Footer = styled.View`
+  height: 100px;
+  max-width: 500px;
+  align-self: center;
 `;

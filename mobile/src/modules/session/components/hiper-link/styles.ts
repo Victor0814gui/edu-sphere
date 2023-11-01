@@ -1,11 +1,11 @@
 import styled from "styled-components/native";
 import { StyleSheet } from "react-native";
-import { FONTS,COLORS } from "../../../../shared/theme";
+import { FONTS, COLORS } from "../../../../shared/theme";
 
 
 
 export const styles = StyleSheet.create({
-  redirectCreateAcountText:{
+  redirectCreateAcountText: {
     fontFamily: FONTS.Poppins.Medium,
   },
 })

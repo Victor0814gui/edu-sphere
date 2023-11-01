@@ -3,7 +3,7 @@ import { CustomerBusinessException } from "@customer/infra/exceptions/business-e
 import AppErrors from "@/src/shared/infra/errors/app-errors";
 
 
-const userBusinessMiddleware = <TError extends Error>(
+const customerBusinessMiddleware = <TError extends Error>(
   error: TError,
   request: Request,
   response: Response,
@@ -19,4 +19,4 @@ const userBusinessMiddleware = <TError extends Error>(
   return next;
 }
 
-export { userBusinessMiddleware };
+export { customerBusinessMiddleware };

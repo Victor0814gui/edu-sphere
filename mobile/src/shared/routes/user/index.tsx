@@ -1,5 +1,5 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
-import { CustomNavbar } from '../navbar';
+import { CustomNavbar } from '../../components/navbar';
 import { Profile } from '../../../modules/demonstrations/screens/profile';
 import { COLORS } from '../../theme';
 import { Room } from '../../../modules/demonstrations/screens/room';
@@ -9,6 +9,8 @@ import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
 import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
 import { createStackNavigator } from '@react-navigation/stack';
+import { ModalQueueContextProvider } from '../../contexts/modal-queue';
+import { CreateRoomScreen } from '../../../modules/rooms/screens/create-room';
 type UserDrawerType = {
   dashboard: undefined;
   profile: undefined;

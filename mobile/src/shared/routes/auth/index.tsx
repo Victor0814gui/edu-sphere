@@ -18,7 +18,7 @@ export function AuthRoutes() {
     <AuthDrawer.Navigator
       useLegacyImplementation
       screenOptions={{
-        drawerType: "back",
+        drawerType: "slide",
         headerShown: false,
       }}
     >

@@ -2,8 +2,9 @@ import { RefreshToken, } from "@/src/shared/application/entities/refresh-token";
 
 
 
-export namespace ICreateRefreshTokenRepository {
+declare namespace ICreateRefreshTokenRepository { }
 
+namespace ICreateRefreshTokenRepository {
   export namespace Create {
     export type Params = {
       refreshToken: string;
@@ -15,7 +16,9 @@ export namespace ICreateRefreshTokenRepository {
 
     export type Response = Promise<RefreshToken>;
   }
+}
 
+namespace ICreateRefreshTokenRepository {
   export namespace FindUniqueUser {
     export type Params = {
       customerId: string;
@@ -23,7 +26,9 @@ export namespace ICreateRefreshTokenRepository {
 
     export type Response = Promise<RefreshToken[] | null>
   }
+}
 
+namespace ICreateRefreshTokenRepository {
   export namespace DeleteMany {
     export type Params = {
       refreshTokenId: string;
@@ -31,7 +36,9 @@ export namespace ICreateRefreshTokenRepository {
 
     export type Response = Promise<void>;
   }
+}
 
+namespace ICreateRefreshTokenRepository {
   export type Implementation = {
     create: (props: ICreateRefreshTokenRepository.Create.Params)
       => ICreateRefreshTokenRepository.Create.Response;
@@ -41,3 +48,5 @@ export namespace ICreateRefreshTokenRepository {
       => ICreateRefreshTokenRepository.DeleteMany.Response;
   }
 }
+
+export { ICreateRefreshTokenRepository }

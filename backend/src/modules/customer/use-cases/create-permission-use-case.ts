@@ -39,6 +39,7 @@ export class CreatePermissionUseCase
       level: props.level,
       createdAt: permissionCreatedAt,
       id: permissionId,
+      updatedAt: null,
     })
 
     return createPermissionServiceResponse;

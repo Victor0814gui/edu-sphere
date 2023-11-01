@@ -10,25 +10,25 @@ import {
 
 type HiperLinkTextProps = {
   text: string;
-  onPress: () =>  void;
+  onPress: () => void;
 }
 
 
 export const HiperLink = ({
   text,
   onPress,
-}:HiperLinkTextProps) => {
+}: HiperLinkTextProps) => {
 
-  const [onHover,setOnHover] = useState(false);
+  const [onHover, setOnHover] = useState(false);
 
   return (
     <Pressable onPress={onPress}>
-      {({pressed}) => (
+      {({ pressed }) => (
         <HiperLinkText
           //@ts-ignore
           onMouseEnter={() => setOnHover(true)}
           onMouseLeave={() => setOnHover(false)}
-          style={[styles.redirectCreateAcountText,onHover && {
+          style={[styles.redirectCreateAcountText, onHover && {
             textDecorationLine: "underline",
             color: pressed ? COLORS.green_900 : COLORS.green_500,
           }]}
@@ -39,4 +39,3 @@ export const HiperLink = ({
     </Pressable>
   )
 }
- 

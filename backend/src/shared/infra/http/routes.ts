@@ -7,9 +7,9 @@ import { purchasesRoutes } from "@/src/modules/purchases/infra/http/routes";
 
 const routes = ExpressRoutes();
 
-routes.use(userRoutes);
-routes.use(roomRoutes);
-routes.use(lessonsRoutes);
-routes.use(purchasesRoutes);
+routes.use("/customer", userRoutes);
+routes.use("/rooms", roomRoutes);
+routes.use("/lessons", lessonsRoutes);
+routes.use("/purchases", purchasesRoutes);
 
 export { routes };

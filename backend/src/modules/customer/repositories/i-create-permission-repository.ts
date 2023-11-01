@@ -1,47 +1,58 @@
 import { Permission } from "@/src/shared/application/entities/permission";
 
+declare namespace ICreatePermissionRepository { }
 
-interface IPermissions {
+type IPermissions = {
   name: string;
 }
 
-export namespace ICreatePermissionRepository {
+type PermissionList = Array<Permission & IPermissions>;
 
+
+namespace ICreatePermissionRepository {
   export namespace FindUnique {
-    export interface Params {
+    export type Params = {
       name: string;
     }
-    export interface Response extends Permission { }
-  }
-
-  export namespace Create {
-    export interface Params {
-      id: string;
-      name: string;
-      description: string;
-      level: number;
-      createdAt: Date;
-    }
-    export interface Response extends Permission { }
-  }
-
-  export namespace Delete {
-    export interface Params {
-      name: string;
-    }
-    export interface Response { }
-  }
-
-  export namespace List {
-    export interface Params { }
-
-    export interface Response extends Array<Permission & IPermissions> { }
-  }
-
-  export interface Implementation {
-    delete: (props: Delete.Params) => Promise<Delete.Response>;
-    findUnique: (props: FindUnique.Params) => Promise<FindUnique.Response | null>;
-    create: (props: Create.Params) => Promise<Create.Response>;
-    list: (props: List.Params) => Promise<List.Response | null>;
+    export type Response = Promise<Permission | null>;
   }
 }
+
+namespace ICreatePermissionRepository {
+  export namespace Create {
+    export type Params = Permission;
+    export type Response = Promise<Permission>;
+  }
+}
+
+namespace ICreatePermissionRepository {
+  export namespace Delete {
+    export type Params = {
+      name: string;
+    }
+    export type Response = Promise<Permission>;
+  }
+}
+
+namespace ICreatePermissionRepository {
+  export namespace List {
+    export type Params = void
+
+    export type Response = Promise<PermissionList>;
+  }
+}
+
+namespace ICreatePermissionRepository {
+  export type Implementation = {
+    delete: (props: ICreatePermissionRepository.Delete.Params)
+      => ICreatePermissionRepository.Delete.Response;
+    findUnique: (props: FindUnique.Params)
+      => ICreatePermissionRepository.FindUnique.Response;
+    create: (props: Create.Params)
+      => ICreatePermissionRepository.Create.Response;
+    list: (props: List.Params)
+      => ICreatePermissionRepository.List.Response;
+  }
+}
+
+export { ICreatePermissionRepository }
