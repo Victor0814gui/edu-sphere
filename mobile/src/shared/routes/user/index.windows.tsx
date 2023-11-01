@@ -1,9 +1,9 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
 import { CustomNavbar } from '../../components/navbar';
-import { Profile } from '../../../modules/demonstrations/screens/profile';
+import { Profile } from '../../../modules/customer/screens/profile';
 import { COLORS } from '../../theme';
-import { Room } from '../../../modules/demonstrations/screens/room';
-import { Dashboard } from '../../../modules/demonstrations/screens/dashboard';
+import { Room } from '../../../modules/customer/screens/room';
+import { Dashboard } from '../../../modules/customer/screens/dashboard';
 import { Player } from '../../../modules/lessons/screens/player';
 import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"

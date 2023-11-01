@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { api } from "../../services/api";
 import { AxiosError } from "axios";
 import RNSInfo from 'react-native-sensitive-info';
-import { CreateCustomerAccountContract } from "../../../../../contracts/customer/create-customer-account-contract";
+import { ICreateCustomerAccountContract } from "../../../../../contracts/customer/create-customer-account-contract";
 
 import {
   signInNotificationContentTypeServerError,
@@ -13,12 +13,14 @@ import {
   signInNotificationContentTypeUserDataUndefined,
   signInNotificationContentTypeUserNotExistsOrIncorrectData,
   signUpNotificationContentTypeServerError,
-  signUpNotificationContentTypeCreateUserSucess,
+  signUpNotificationContentTypeCreateUserSuccess,
   signUpNotificationContentTypeNetworkError,
   AppAuthenticatoinKeyValue,
   sharedStorageFreferencies,
   signInNotificationContentTypeUserNotExists,
+  authorizationAccountNotification,
 } from "./constants";
+import { titleBar } from "react-native-custom-window";
 
 type ErrorMessageType = {
   data: {
@@ -40,7 +42,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const { navigate } = useNavigation();
 
 
-  const setItem = async (data: string) => {
+  const setItem = useCallback(async (data: string) => {
     try {
       return RNSInfo.setItem(
         AppAuthenticatoinKeyValue,
@@ -50,9 +52,9 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     } catch (err) {
       console.log();
     }
-  }
+  }, [])
 
-  const getItem = async () => {
+  const getItem = useCallback(async () => {
     try {
       return await RNSInfo.getItem(
         AppAuthenticatoinKeyValue,
@@ -61,7 +63,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     } catch (err) {
       console.log();
     }
-  }
+  }, [])
 
   const signIn = useCallback(async ({ email, password }: SignInMethodProps) => {
     setSendResponseToServer(true);
@@ -107,18 +109,18 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     }
   }, [user?.id])
 
-  const signUp = useCallback(async (props: CreateCustomerAccountContract) => {
-    setSendResponseToServer(true)
+  const signUp = useCallback(async (props: ICreateCustomerAccountContract) => {
     try {
-
+      setSendResponseToServer(true)
       const signInDataResponse = await api.post("/customer/signup", props)
       if (signInDataResponse.statusText === "Network Error") {
         addToastNotifications(signUpNotificationContentTypeServerError);
       }
+      console.log(signInDataResponse)
 
       if (signInDataResponse.status === 201) {
-        navigate("signin")
-        addToastNotifications(signUpNotificationContentTypeCreateUserSucess);
+        navigate("authorization")
+        addToastNotifications(signUpNotificationContentTypeCreateUserSuccess);
       }
     } catch (err) {
       console.log("auth-network-error")
@@ -126,20 +128,40 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     } finally {
       setSendResponseToServer(false)
     }
+  }, []);
+
+
+  const authorization = useCallback(async (props: any) => {
+    try {
+      setSendResponseToServer(true);
+      const signInDataResponse = await api.post("/customer/authorization", props)
+      if (signInDataResponse.status === 200) {
+        addToastNotifications(authorizationAccountNotification);
+        navigate("signin")
+      }
+    } catch (err) {
+      addToastNotifications(signUpNotificationContentTypeServerError);
+    } finally {
+      setSendResponseToServer(false);
+    }
   }, [])
 
   const signOut = useCallback(async () => {
     setUser(null)
-    await RNSInfo.deleteItem(
-      AppAuthenticatoinKeyValue,
-      sharedStorageFreferencies
-    );
-  }, [])
+    try {
+      await RNSInfo.deleteItem(
+        AppAuthenticatoinKeyValue,
+        sharedStorageFreferencies
+      );
+    } catch (err) {
 
-  const getUserDataStorage = async () => {
+    }
+  }, []);
+
+  const getUserDataStorage = useCallback(async () => {
     try {
       const userDataStorageResponse = await getItem();
-      if (!userDataStorageResponse) {
+      if (!!userDataStorageResponse) {
         const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse!) as UserType;
         setUser(userDataStorageResponseParseData);
       } else {
@@ -147,13 +169,12 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       }
     } catch (err) {
       console.log(err);
-      addToastNotifications(signUpNotificationContentTypeNetworkError);
+      // addToastNotifications(signUpNotificationContentTypeNetworkError);
     }
-  }
+  }, [])
 
   useEffect(() => {
     getUserDataStorage();
-    console.log("jasljkdhflkajshdf")
   }, [])
 
   return (
@@ -161,6 +182,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
       user,
       signIn,
       signUp,
+      authorization,
       signOut,
       sendResponseToServer,
       loadingLocalData,

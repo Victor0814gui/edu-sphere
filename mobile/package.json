@@ -48,6 +48,7 @@
     "react-native-windows": "0.72.8",
     "react-native-xaml": "^0.0.74",
     "react-router-native": "^6.14.1",
+    "socket.io-client": "^4.7.2",
     "styled-components": "^5.3.6",
     "uuid": "^9.0.0"
   },

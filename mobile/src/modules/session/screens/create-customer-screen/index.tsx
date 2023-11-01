@@ -26,7 +26,6 @@ type OnSubmitProps = {
   name: string;
   email: string;
   password: string;
-  avatarUrl: string;
 }
 
 export function CreateCustomerScreen({ navigation }: any) {
@@ -56,15 +55,15 @@ export function CreateCustomerScreen({ navigation }: any) {
     />
   ), [itemIndex])
 
-  const onSubmit = useCallback((props: OnSubmitProps) => {
-    signUp({
+  const onSubmit = async (props: OnSubmitProps) => {
+    await signUp({
       ...props,
       avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
     });
-  }, [])
+  }
 
   const handlePress = useCallback(() => {
-    navigation.navigate('createCustomer');
+    navigation.navigate('signin');
   }, []);
 
   const fetchAvatars = () => {
@@ -155,19 +154,15 @@ export function CreateCustomerScreen({ navigation }: any) {
                 keyExtractor={(_, index) => `${index}`}
                 style={{ flexGrow: 0, marginTop: 12, borderRadius: 55 }}
               />
-              <HiperLink
-                text="Redefinir senha"
-                onPress={() => { }}
-              />
               <Button
-                text="entrar"
+                text="Criar Conta"
                 onPress={handleSubmit(onSubmit)}
                 style={styles.button}
                 icon={SignInIcon}
               />
             </Form>
             <HiperLink
-              text="Ainda não tem uma conta? cria a sua aqui"
+              text="Já tem uma conta? Entre aqui"
               onPress={handlePress}
             />
           </Content>

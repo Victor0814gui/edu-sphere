@@ -1,13 +1,17 @@
+import { ICreateCustomerAccountContract } from "../../../../contracts/customer/create-customer-account-contract";
 
 type modalType = 'default' | 'warning' | 'error' | 'success';
 
 type UserType = {
   id: string;
-  nickname: string;
+  name: string;
   email: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date | null;
   avatarUrl: string;
-  birthday: string;
-  birthDate: Date;
+  token: string;
+  refreshToken: string;
 }
 
 type SignInMethodProps = {
@@ -26,7 +30,8 @@ type ContextAuthContextType = {
   loadingLocalData: boolean;
   user: UserType | null;
   signIn: ({ email, password }: SignInMethodProps) => void;
-  signUp: (state: SignUpProps) => void;
+  signUp: (state: ICreateCustomerAccountContract) => void;
+  authorization: (props: any) => void
   signOut: () => void;
   sendResponseToServer: boolean;
 }
@@ -34,7 +39,8 @@ type ContextAuthContextType = {
 
 type UserDrawerType = {
   signin: undefined;
-  createCustomer: undefined;
+  authorization: undefined;
+  signup: undefined;
 }
 
 type ToastContentType = {

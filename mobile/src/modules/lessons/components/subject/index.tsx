@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { COLORS } from "../../../../shared/theme";
+import { COLORS } from "@shared/theme";
 import { useNavigation } from "@react-navigation/native";
 
 
@@ -79,7 +79,7 @@ export const Subject = (props: {
           transform: [{ translateY: animationsElement }]
         }}
       >
-        <BackgrounImage resizeMode="cover" source={{uri: "https://cdn.discordapp.com/attachments/1008571142858092684/1138474924902715442/volul_96891_a_hipster_chic_girl_eating_hamburger_in_space_75c5e03c-6418-4bd5-943a-ef9d664a68e0.png"}}/>
+        <BackgrounImage resizeMode="cover" source={{ uri: "https://cdn.discordapp.com/attachments/1008571142858092684/1138474924902715442/volul_96891_a_hipster_chic_girl_eating_hamburger_in_space_75c5e03c-6418-4bd5-943a-ef9d664a68e0.png" }} />
         <Content>
           <IconSubjectContainer>
             <Icon name="play-circle-fill" size={25} color={COLORS.grey_970} />

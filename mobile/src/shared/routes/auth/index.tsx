@@ -1,10 +1,9 @@
-import { NativeRouter, Routes, Route } from "react-router-native";
-
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { UserDrawerType } from '../../types';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { enableScreens, enableFreeze } from "react-native-screens"
-import { AuthenticateUserAccount } from "../../../modules/session/screens/authenticate-user-account";
-import { CreateCustomerScreen } from "../../../modules/session/screens/create-customer-screen";
+import { AuthenticateAccountScreen } from "@/src/modules/session/screens/authenticate-account-screen";
+import { CreateCustomerScreen } from "@/src/modules/session/screens/create-customer-screen";
+import { AuthorizationAccountScreen } from "@/src/modules/session/screens/authorization-account-screen";
 
 
 
@@ -22,8 +21,9 @@ export function AuthRoutes() {
         headerShown: false,
       }}
     >
-      <AuthDrawer.Screen name="signin" component={AuthenticateUserAccount} />
-      <AuthDrawer.Screen name="createCustomer" component={CreateCustomerScreen} />
+      <AuthDrawer.Screen name="signin" component={AuthenticateAccountScreen} />
+      <AuthDrawer.Screen name="authorization" component={AuthorizationAccountScreen} />
+      <AuthDrawer.Screen name="signup" component={CreateCustomerScreen} />
     </AuthDrawer.Navigator>
   );
 }

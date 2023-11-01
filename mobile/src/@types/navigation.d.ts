@@ -5,14 +5,14 @@ import { RootDrawerNavigationProp, DrawerNavigationProp, } from '@react-navigati
 interface RootParamList {
   //auth
   signin: undefined;
-  signupstepone: undefined;
-  signupsteptwo: undefined;
-  signinstepthree: undefined;
+  authorization: undefined;
+  signup: undefined;
   //user
   dashboard: undefined;
   profile: undefined;
   player: {
-    url: string,
+    url: string;
+    duration: number;
   };
   room: {
     roomId: string;

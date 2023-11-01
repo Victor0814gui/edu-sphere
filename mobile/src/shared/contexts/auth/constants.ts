@@ -47,8 +47,15 @@ const signUpNotificationContentTypeServerError: ToastContentType = {
   type: "error"
 }
 
+const authorizationAccountNotification: ToastContentType = {
+  title: "Conta verificada😎",
+  description: "asdfasdf",
+  position: "center",
+  type: "success",
+}
 
-const signUpNotificationContentTypeCreateUserSucess: ToastContentType = {
+
+const signUpNotificationContentTypeCreateUserSuccess: ToastContentType = {
   title: " perfil criado",
   description: "bem vindo a nossa plataforma",
   position: "center",
@@ -84,9 +91,10 @@ export {
   signInNotificationContentTypeUserNotExistsOrIncorrectData,
   signInNotificationContentTypeUserNotExists,
   signUpNotificationContentTypeServerError,
-  signUpNotificationContentTypeCreateUserSucess,
+  signUpNotificationContentTypeCreateUserSuccess,
   signUpNotificationContentTypeUsersDoesNotExists,
   signUpNotificationContentTypeNetworkError,
+  authorizationAccountNotification,
   AppAuthenticatoinKeyValue,
   sharedStorageFreferencies,
 }

@@ -1,6 +1,6 @@
-import { Dashboard } from "../../../modules/demonstrations/screens/dashboard";
-import { Lessons } from "../../../modules/lessons/screens/lessons";
-import { CreateRoomScreen } from "../../../modules/rooms/screens/create-room";
+import { Dashboard } from "@/src/modules/customer/screens/dashboard";
+import { Lessons } from "@/src/modules/lessons/screens/lessons";
+import { CreateRoomScreen } from "@/src/modules/rooms/screens/create-room";
 
 import { HouseSimple, Airplay } from "phosphor-react-native";
 

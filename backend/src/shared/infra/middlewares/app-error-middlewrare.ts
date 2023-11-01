@@ -15,6 +15,7 @@ const captureErrorsMiddlewrare = (
 ): Response<Capture> => {
 
   if (error instanceof AppErrors) {
+    console.log("intance AppErrors", error);
     console.log(error);
     return response.status(error.code).json({
       status: error.type,
@@ -22,8 +23,8 @@ const captureErrorsMiddlewrare = (
     });
   }
 
-  console.log(error);
   if (error instanceof Error) {
+    console.log("intance Error", error);
     return response.status(500).json({
       status: 'error',
       message: 'Internal server error',

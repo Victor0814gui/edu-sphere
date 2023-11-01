@@ -6,14 +6,15 @@
 
     "types": ["styled-components-react-native", "jest"],
     /* Completeness */
-    "skipLibCheck": true
-    // "baseUrl": ".",
-    // "paths": {
-    //   "*": ["src/*"],
-    //   "@tests": ["tests/*"],
-    //   "@modules/*": ["src/modules/*"],
-    //   "@shared/*": ["src/shared/*"],
-    //   "@types/*": ["src/@types/*"]
-    // }
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"],
+      "tests": ["tests/*"],
+      "@session/*": ["src/modules/session/*"],
+      "@customer/*": ["src/modules/customer/*"],
+      "@rooms/*": ["src/modules/rooms/*"],
+      "@shared/*": ["src/shared/*"]
+    }
   }
 }

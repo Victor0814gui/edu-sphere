@@ -7,12 +7,15 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src/'],
+        root: ['./src'],
         extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
         alias: {
-          '@modules': './src/modules',
+          '@': './',
+          tests: ['./tests/'],
+          '@customer': './src/modules/customer',
+          '@session': './src/modules/session',
+          '@rooms': './src/modules/rooms',
           '@shared': './src/shared',
-          '@types': './src/@types',
         },
       },
     ],

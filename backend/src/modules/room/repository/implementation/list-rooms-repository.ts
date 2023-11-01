@@ -8,12 +8,15 @@ const database = new PrismaClient();
 export class ListRoomsRepository
   implements IListRoomsRepository.Implementation {
 
-  async listMany(props: IListRoomsRepository.Params):
-    Promise<IListRoomsRepository.Response | null> {
+  public async listMany(props: IListRoomsRepository.Params):
+    IListRoomsRepository.Response {
 
-    const listUniqueRoomResponse = await database.room.findMany();
+    const listUniqueRoomResponse = await database.room.findMany({
+      where: {
+        published: true,
+      }
+    });
 
     return listUniqueRoomResponse;
   }
-
 }

@@ -1,16 +1,16 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
 import { CustomNavbar } from '../../components/navbar';
-import { Profile } from '../../../modules/demonstrations/screens/profile';
+import { Profile } from '@/src/modules/customer/screens/profile';
 import { COLORS } from '../../theme';
-import { Room } from '../../../modules/demonstrations/screens/room';
-import { Dashboard } from '../../../modules/demonstrations/screens/dashboard';
-import { Player } from '../../../modules/lessons/screens/player';
-import { Lessons } from '../../../modules/lessons/screens/lessons';
+import { Room } from '@/src/modules/customer/screens/room';
+import { Dashboard } from '@/src/modules/customer/screens/dashboard';
+import { Player } from '@/src/modules/lessons/screens/player';
+import { Lessons } from '@/src/modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
-import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
+import { PlaylistLessons } from '@/src/modules/lessons/screens/playlist-lessons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ModalQueueContextProvider } from '../../contexts/modal-queue';
-import { CreateRoomScreen } from '../../../modules/rooms/screens/create-room';
+import { CreateRoomScreen } from '@/src/modules/rooms/screens/create-room';
 type UserDrawerType = {
   dashboard: undefined;
   profile: undefined;

@@ -1,11 +1,7 @@
-import { Server, Socket } from "socket.io";
+import { createRoomSocketHandler } from "./create-room-socket-handler";
+import { listRoomsSocketHandler } from "./list-rooms-socket-handler";
 
-
-
-
-export function purchasesSocketEventsHandler(io: Server, socket: Socket) {
-  function createOrder(params: any): void {
-
-  }
-  socket.on("order:create", createOrder);
+export {
+  listRoomsSocketHandler,
+  createRoomSocketHandler,
 }

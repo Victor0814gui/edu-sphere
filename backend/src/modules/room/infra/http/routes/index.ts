@@ -21,13 +21,13 @@ const updateRoomController = container.resolve(UpdateRoomController);
 const listRoomsController = container.resolve(ListRoomsController);
 
 roomRoutes.get(
-  "/room/list",
+  "/list",
   roomAuthenticationCheck,
   listRoomsController.handler
 )
 
 roomRoutes.post(
-  "/room/create",
+  "/create",
   roomAuthenticationCheck,
   rolesMiddleware(Roles.teacher),
   permissionsMiddleware([TeacherPermission.create]),
@@ -36,7 +36,7 @@ roomRoutes.post(
 )
 
 roomRoutes.put(
-  "/room/update",
+  "/update",
   roomAuthenticationCheck,
   uploadFileMiddleware,
   rolesMiddleware(Roles.teacher),
@@ -45,14 +45,14 @@ roomRoutes.put(
 )
 
 roomRoutes.delete(
-  "/room/delete",
+  "/delete",
   roomAuthenticationCheck,
   rolesMiddleware(Roles.manager),
   permissionsMiddleware([ManagerPermission.delete]),
   deleteRoomController.handler
 )
 
-roomRoutes.use("/room", roomBusinessMiddleware);
+roomRoutes.use("/", roomBusinessMiddleware);
 
 
 export { roomRoutes };

@@ -1,15 +1,15 @@
-import styled,{ css } from "styled-components/native";
-import { COLORS, FONTS } from "../../../../shared/theme";
+import styled, { css } from "styled-components/native";
+import { COLORS, FONTS } from "@shared/theme";
 import { StyleSheet } from "react-native";
 
 
 export const additionalStyles = StyleSheet.create({
-  lessonSujectContainerContentText:{
+  lessonSujectContainerContentText: {
     fontFamily: FONTS.Roboto.Medium,
     color: COLORS.grey_970,
     fontSize: 14,
   },
-  lessonSujectClassroomTimeText:{
+  lessonSujectClassroomTimeText: {
     fontFamily: FONTS.Roboto.Medium,
     color: COLORS.grey_800,
     fontSize: 12,
@@ -25,11 +25,11 @@ export const ListLessonsSubject = styled.FlatList`
   gap: 12px;
 `;
 
-export const LessonSujectContainer = styled.Pressable<{isPressed: boolean,onHover: boolean}>`
+export const LessonSujectContainer = styled.Pressable<{ isPressed: boolean, onHover: boolean }>`
   padding: 8px;
   flex-direction: row;
 
-  ${({onHover,isPressed}) => 
+  ${({ onHover, isPressed }) =>
     isPressed && css` background-color: ${COLORS.grey_200}; `
     || onHover && css` background-color: ${COLORS.grey_240}; `
   }

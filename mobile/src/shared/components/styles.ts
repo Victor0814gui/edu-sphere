@@ -1,16 +1,16 @@
 import styled from "styled-components/native";
 import { COLORS, FONTS } from "../theme";
-import { FlatList,StyleSheet } from "react-native";
-import  { ToastContentType } from "../contexts/toast-notification";
+import { FlatList, StyleSheet } from "react-native";
+import { ToastContentType } from "../contexts/toast-notification";
 
 type IndicatorTypeToastProps = {
-  type: "default" | "warning" | "error" | "sucess";
+  type: 'default' | 'warning' | 'error' | 'success';
 }
 const ToastType = {
-  warning:COLORS.orange_400,
-  error:COLORS.red_530,
-  sucess:COLORS.green_500,
-  default:COLORS.grey_800
+  warning: COLORS.orange_400,
+  error: COLORS.red_530,
+  success: COLORS.green_500,
+  default: COLORS.grey_800
 }
 
 export const Container = styled.View`
@@ -32,7 +32,7 @@ export const ContentToast = styled.View`
 export const IndicatorTypeToast = styled.View<IndicatorTypeToastProps>`
   height: 100%;
   width: 4px;
-  background-color: ${({type}) => ToastType[type]};
+  background-color: ${({ type }) => ToastType[type]};
   margin-right: 7px;
   border-radius: 2px;
 `;
@@ -69,9 +69,9 @@ const ContainerButtonBase = styled.TouchableHighlight`
 export const ContainerButtonCancel = styled(ContainerButtonBase)`
 `;
 
-export const ContainerButtonAccept = styled(ContainerButtonBase)<{ pressed: boolean, onHover: boolean }>`
+export const ContainerButtonAccept = styled(ContainerButtonBase) <{ pressed: boolean, onHover: boolean }>`
 
-  background-color: ${({ onHover,pressed }) => (pressed && COLORS.red_500) || (onHover ? COLORS.red_530 : COLORS.red_580)};
+  background-color: ${({ onHover, pressed }) => (pressed && COLORS.red_500) || (onHover ? COLORS.red_530 : COLORS.red_580)};
 `;
 
 

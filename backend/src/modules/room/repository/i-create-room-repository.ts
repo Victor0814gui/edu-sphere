@@ -11,7 +11,7 @@ namespace ICreateRoomRepository {
       type: string;
       published: boolean;
       createdAt: Date;
-      teacherId: string
+      authorId: string
       description: string;
       slug: string;
     }

@@ -1,7 +1,7 @@
 
 
 
-export type CreateCustomerAccountContract = {
+export type ICreateCustomerAccountContract = {
   name: string;
   email: string;
   password: string;
