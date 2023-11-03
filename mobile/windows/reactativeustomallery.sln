@@ -7,10 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactativeustomallery", "re
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RNCNetInfoCPP", "..\node_modules\@react-native-community\netinfo\windows\RNCNetInfoCPP\RNCNetInfoCPP.vcxproj", "{37E37094-01B3-44A5-AAB7-F0379B1CE8FA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "progress-view", "..\node_modules\@react-native-community\progress-view\windows\progress-view\progress-view.vcxproj", "{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativePicker", "..\node_modules\@react-native-picker\picker\windows\ReactNativePicker\ReactNativePicker.vcxproj", "{BEDCC600-4541-41F2-AA46-9E058202B6AD}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LottieReactNative", "..\node_modules\lottie-react-native\src\windows\cppwinrt\LottieReactNative.vcxproj", "{E5A7828D-F596-4793-80EC-4C071E575C58}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeCustomWindow", "..\node_modules\react-native-custom-window\windows\ReactNativeCustomWindow\ReactNativeCustomWindow.vcxproj", "{63B6AB0F-3C32-4404-9115-5040047B6057}"
@@ -67,30 +63,6 @@ Global
 		{37E37094-01B3-44A5-AAB7-F0379B1CE8FA}.Release|x64.Build.0 = Release|x64
 		{37E37094-01B3-44A5-AAB7-F0379B1CE8FA}.Release|x86.ActiveCfg = Release|Win32
 		{37E37094-01B3-44A5-AAB7-F0379B1CE8FA}.Release|x86.Build.0 = Release|Win32
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Debug|ARM64.Build.0 = Debug|ARM64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Debug|x64.ActiveCfg = Debug|x64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Debug|x64.Build.0 = Debug|x64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Debug|x86.ActiveCfg = Debug|Win32
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Debug|x86.Build.0 = Debug|Win32
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Release|ARM64.ActiveCfg = Release|ARM64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Release|ARM64.Build.0 = Release|ARM64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Release|x64.ActiveCfg = Release|x64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Release|x64.Build.0 = Release|x64
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Release|x86.ActiveCfg = Release|Win32
-		{CA54A654-5E81-44DC-AF3F-CF55EF5B493A}.Release|x86.Build.0 = Release|Win32
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Debug|ARM64.Build.0 = Debug|ARM64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Debug|x64.ActiveCfg = Debug|x64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Debug|x64.Build.0 = Debug|x64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Debug|x86.ActiveCfg = Debug|Win32
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Debug|x86.Build.0 = Debug|Win32
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Release|ARM64.ActiveCfg = Release|ARM64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Release|ARM64.Build.0 = Release|ARM64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Release|x64.ActiveCfg = Release|x64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Release|x64.Build.0 = Release|x64
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Release|x86.ActiveCfg = Release|Win32
-		{BEDCC600-4541-41F2-AA46-9E058202B6AD}.Release|x86.Build.0 = Release|Win32
 		{E5A7828D-F596-4793-80EC-4C071E575C58}.Debug|ARM64.ActiveCfg = Debug|ARM64
 		{E5A7828D-F596-4793-80EC-4C071E575C58}.Debug|ARM64.Build.0 = Debug|ARM64
 		{E5A7828D-F596-4793-80EC-4C071E575C58}.Debug|x64.ActiveCfg = Debug|x64

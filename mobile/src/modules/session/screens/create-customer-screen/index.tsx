@@ -1,17 +1,16 @@
 import React, { useCallback, useState } from 'react';
-import { Button } from "../../components/button";
-//@ts-ignore
-import { Input } from '../../components/input';
-import { useAuthContextProvider } from '../../../../shared/contexts/auth';
-import { HiperLink } from '../../components/hiper-link';
+import { Button } from "@session/components/button";
+import { Input } from '@session/components/input';
+import { useAuthContextProvider } from '@shared/contexts/auth';
+import { HiperLink } from '@session/components/hiper-link';
 import { useForm, Controller } from 'react-hook-form';
-import { MessageError } from '../../components/message-error';
-import BackgroundIlustrationSvg from "../../assets/images/background-ilustration.svg";
-import BackgroundIlustrationRightSvg from "../../assets/images/background-ilustration-right.svg";
-import { Envelope, Password, SignIn as SignInIcon, User, Calendar } from 'phosphor-react-native';
-import { Trasition } from '../../../../shared/components/transition';
-import { Heading } from '../../../../shared/components/heading';
-import { Avatar } from '../../components/avatar'
+import { MessageError } from '@session/components/message-error';
+import BackgroundIllustrationSvg from "@session/assets/images/background-ilustration.svg";
+import BackgroundIllustrationRightSvg from "@session/assets/images/background-ilustration-right.svg";
+import { Envelope, Password, SignIn as SignInIcon, User } from "phosphor-react-native";
+import { Transition } from "@shared/components/transition";
+import { Heading } from "@shared/components/heading";
+import { Avatar } from "@session/components/avatar";
 
 import {
   styles,
@@ -73,9 +72,9 @@ export function CreateCustomerScreen({ navigation }: any) {
 
   return (
     <React.Fragment>
-      <BackgroundIlustrationSvg style={styles.backgroundLeft} />
-      <BackgroundIlustrationRightSvg style={styles.backgroundRight} />
-      <Trasition>
+      <BackgroundIllustrationSvg style={styles.backgroundLeft} />
+      <BackgroundIllustrationRightSvg style={styles.backgroundRight} />
+      <Transition>
         <Container accessible>
           <Content>
             <Form>
@@ -170,7 +169,7 @@ export function CreateCustomerScreen({ navigation }: any) {
             <Heading>Ao criar um conta você está sujeito aos termos de uso presente aqui, e as politicias de privacidade</Heading>
           </Footer>
         </Container>
-      </Trasition>
+      </Transition>
     </React.Fragment>
   );
 }

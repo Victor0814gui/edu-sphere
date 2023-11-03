@@ -5,7 +5,7 @@ import { container, injectable } from "tsyringe";
 
 
 
-interface ICreateRoomControllerRequest {
+type ICreateRoomControllerRequest = {
   title: string;
   description: string;
   type: string;
@@ -14,7 +14,6 @@ interface ICreateRoomControllerRequest {
 }
 
 
-@injectable()
 export class CreateRoomController {
   public async handler(request: Request, response: Response, next: NextFunction) {
     const body = request.body as ICreateRoomControllerRequest;

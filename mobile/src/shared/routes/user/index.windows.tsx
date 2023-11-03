@@ -1,15 +1,15 @@
 import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigation/drawer';
 import { CustomNavbar } from '../../components/navbar';
-import { Profile } from '../../../modules/customer/screens/profile';
 import { COLORS } from '../../theme';
-import { Room } from '../../../modules/customer/screens/room';
-import { Dashboard } from '../../../modules/customer/screens/dashboard';
 import { Player } from '../../../modules/lessons/screens/player';
 import { Lessons } from '../../../modules/lessons/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
 import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
 import { CreateRoomScreen } from '../../../modules/rooms/screens/create-room';
 import { ModalQueueContextProvider } from '../../contexts/modal-queue';
+import { CustomerRoutes } from '@/src/modules/customer/routes';
+import { Customer } from '@/src/modules/customer/configs/paths';
+import { drawerNavigationOptions } from '../../configs/drawer-options';
 
 type UserDrawerType = {
   dashboard: undefined;
@@ -21,20 +21,6 @@ type UserDrawerType = {
   CreateRoomScreen: undefined;
 }
 
-const drawerNavigationOptions: DrawerNavigationOptions = {
-  headerShown: false,
-  drawerType: "permanent",
-  drawerStyle: {
-    backgroundColor: COLORS.grey_200,
-    width: 250,
-    borderRadius: 0,
-    borderWidth: 0,
-    borderColor: COLORS.grey_200,
-  },
-  drawerContentContainerStyle: {
-    backgroundColor: '#333',
-  }
-}
 
 
 const UserDrawer = createDrawerNavigator<UserDrawerType>();
@@ -46,21 +32,14 @@ export function UserDrawerRoutes() {
     <ModalQueueContextProvider>
       <UserDrawer.Navigator
         screenOptions={drawerNavigationOptions}
-        drawerContent={props => <CustomNavbar {...props} />}
-        initialRouteName="dashboard"
+        drawerContent={CustomNavbar}
+        initialRouteName={Customer.Index}
         key={"route-user-screens"}
-        screenListeners={{
-          beforeRemove: (beforeRemoveEvent) => {
-            console.log(beforeRemoveEvent)
-          }
-        }}
         defaultStatus='open'
         useLegacyImplementation
       >
-        <UserDrawer.Screen name="dashboard" component={Dashboard} />
+        <UserDrawer.Screen name={Customer.Index} component={CustomerRoutes} />
         <UserDrawer.Screen name="lessons" component={Lessons} />
-        <UserDrawer.Screen name="profile" component={Profile} />
-        <UserDrawer.Screen name="room" component={Room} />
         <UserDrawer.Screen name="player" options={{ drawerType: "slide" }} component={Player} />
         <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
         <UserDrawer.Screen options={{ drawerType: "slide" }} name="CreateRoomScreen" component={CreateRoomScreen} />

@@ -2,7 +2,6 @@
 #include "ReactPackageProvider.h"
 #include "NativeModules.h"
 
-
 using namespace winrt::Microsoft::ReactNative;
 
 namespace winrt::reactativeustomallery::implementation

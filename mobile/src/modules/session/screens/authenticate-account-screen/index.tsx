@@ -1,16 +1,16 @@
 import React, { useCallback } from 'react';
-import { Button } from "../../components/button";
+import { Button } from "@session/components/button";
 //@ts-ignore
-import { Input } from '../../components/input';
-import { useAuthContextProvider } from '../../../../shared/contexts/auth';
-import { HiperLink } from '../../components/hiper-link';
+import { Input } from '@session/components/input';
+import { useAuthContextProvider } from '@shared/contexts/auth';
+import { HiperLink } from '@session/components/hiper-link';
 import { useForm, Controller } from 'react-hook-form';
-import { MessageError } from '../../components/message-error';
-import BackgroundIlustrationSvg from "../../assets/images/background-ilustration.svg";
-import BackgroundIlustrationRightSvg from "../../assets/images/background-ilustration-right.svg";
+import { MessageError } from '@session/components/message-error';
+import BackgroundIlustrationSvg from "@session/assets/images/background-ilustration.svg";
+import BackgroundIlustrationRightSvg from "@session/assets/images/background-ilustration-right.svg";
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
-import { Trasition } from '../../../../shared/components/transition';
-import { Heading } from '../../../../shared/components/heading';
+import { Transition } from '@shared/components/transition';
+import { Heading } from '@shared/components/heading';
 import {
   styles,
   Container,
@@ -54,7 +54,7 @@ export function AuthenticateAccountScreen({ navigation }: any) {
     <React.Fragment>
       <BackgroundIlustrationSvg style={styles.backgroundLeft} />
       <BackgroundIlustrationRightSvg style={styles.backgroundRight} />
-      <Trasition>
+      <Transition>
         <Container accessible>
           <Content>
             <Form>
@@ -123,7 +123,7 @@ export function AuthenticateAccountScreen({ navigation }: any) {
             <Heading>Ao criar um conta você está sujeito aos termos de uso presente aqui, e as politicias de privacidade</Heading>
           </Footer>
         </Container>
-      </Trasition>
+      </Transition>
     </React.Fragment>
   );
 }

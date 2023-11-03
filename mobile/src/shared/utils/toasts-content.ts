@@ -1,7 +1,7 @@
 
 
 import { RNSensitiveInfoOptions } from "react-native-sensitive-info";
-import { ToastContentType } from "../../types";
+import { ToastContentType } from "../types";
 
 
 const signInNotificationContentTypeServerError: ToastContentType = {

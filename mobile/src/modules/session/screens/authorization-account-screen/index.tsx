@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, TouchableHighlight, StyleSheet, Text, Pressable, View } from 'react-native';
-import { Flyout } from "react-native-windows";
+import React from 'react';
 import {
   Container,
   Content,
@@ -8,14 +6,13 @@ import {
   Description,
   aditionalStyles,
 } from './styles';
-import { Input } from '../../components/input';
-import { Button } from '../../components/button';
+import { Input } from '@session/components/input';
+import { Button } from '@session/components/button';
 import { CodeSimple } from "phosphor-react-native";
-import { useAuthContextProvider } from '../../../../shared/contexts/auth';
+import { useAuthContextProvider } from '@shared/contexts/auth';
 import { Controller, useForm } from 'react-hook-form';
-import { MessageError } from '../../components/message-error';
-import { titleBar } from 'react-native-custom-window';
-import { Transition } from '../../../../shared/components/transition';
+import { MessageError } from '@session/components/message-error';
+import { Transition } from '@shared/components/transition';
 
 export const AuthorizationAccountScreen = () => {
   const { authorization } = useAuthContextProvider();

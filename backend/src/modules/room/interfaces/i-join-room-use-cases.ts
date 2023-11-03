@@ -1,3 +1,4 @@
+import { Room } from "@/src/shared/application/entities/room";
 import { Socket } from "socket.io";
 
 
@@ -7,16 +8,13 @@ declare namespace IJoinRoomUseCase { };
 
 namespace IJoinRoomUseCase {
   export type Params = {
-    socket: Socket;
-    data: {
-      roomId: string;
-      customerId: string;
-    };
+    roomId: string;
+    customerId: string;
   };
 }
 
 namespace IJoinRoomUseCase {
-  export type Response = Promise<void>;
+  export type Response = Promise<Room>;
 }
 
 namespace IJoinRoomUseCase {

@@ -19,7 +19,7 @@ import {
   sharedStorageFreferencies,
   signInNotificationContentTypeUserNotExists,
   authorizationAccountNotification,
-} from "./constants";
+} from "../../utils/toasts-content";
 import { titleBar } from "react-native-custom-window";
 
 type ErrorMessageType = {
@@ -42,46 +42,26 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
   const { navigate } = useNavigation();
 
 
-  const setItem = useCallback(async (data: string) => {
-    try {
-      return RNSInfo.setItem(
-        AppAuthenticatoinKeyValue,
-        data,
-        sharedStorageFreferencies
-      )
-    } catch (err) {
-      console.log();
-    }
-  }, [])
-
-  const getItem = useCallback(async () => {
-    try {
-      return await RNSInfo.getItem(
-        AppAuthenticatoinKeyValue,
-        sharedStorageFreferencies
-      );
-    } catch (err) {
-      console.log();
-    }
-  }, [])
-
   const signIn = useCallback(async ({ email, password }: SignInMethodProps) => {
-    setSendResponseToServer(true);
     try {
+      setSendResponseToServer(true);
       const signInDataResponse = await api.post("/customer/signin", { email, password })
 
       console.log(signInDataResponse.data)
       if (!!signInDataResponse.data) {
         setUser(signInDataResponse.data);
         const signInDataResponseSerializationData = JSON.stringify(signInDataResponse.data);
-        await setItem(signInDataResponseSerializationData)
+        await RNSInfo.setItem(
+          AppAuthenticatoinKeyValue,
+          signInDataResponseSerializationData,
+          sharedStorageFreferencies
+        )
       }
 
       // addToastNotifications(signInNotificationContentTypeNetworkError);
       addToastNotifications(signInNotificationContentTypeUserNotExists);
 
     } catch (err) {
-      console.log(err)
       if (err instanceof AxiosError) {
         err.response as ErrorMessageType;
 
@@ -154,22 +134,26 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
         sharedStorageFreferencies
       );
     } catch (err) {
-
+      console.log(err);
     }
   }, []);
 
   const getUserDataStorage = useCallback(async () => {
     try {
-      const userDataStorageResponse = await getItem();
-      if (!!userDataStorageResponse) {
-        const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse!) as UserType;
-        setUser(userDataStorageResponseParseData);
-      } else {
-        throw new Error("Data is not exists");
-      }
+      setLoadingLocalData(true);
+
+      const userDataStorageResponse = await RNSInfo.getItem(
+        AppAuthenticatoinKeyValue,
+        sharedStorageFreferencies
+      );
+
+      const userDataStorageResponseParseData = JSON.parse(userDataStorageResponse) as UserType;
+      setUser(userDataStorageResponseParseData);
     } catch (err) {
       console.log(err);
       // addToastNotifications(signUpNotificationContentTypeNetworkError);
+    } finally {
+      setLoadingLocalData(false);
     }
   }, [])
 

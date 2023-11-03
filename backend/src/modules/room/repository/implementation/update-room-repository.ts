@@ -4,10 +4,11 @@ import { IUpdateRoomRepository } from "../i-update-room-repository";
 const database = new PrismaClient();
 
 
-export class UpdateRoomRepository implements IUpdateRoomRepository.Implementation {
+export class UpdateRoomRepository
+  implements IUpdateRoomRepository.Implementation {
 
   async update(props: IUpdateRoomRepository.Update.Params):
-    Promise<IUpdateRoomRepository.Update.Response> {
+    IUpdateRoomRepository.Update.Response {
     const updateRoomResponse = await database.room.update({
       where: {
         id: props.id
@@ -24,7 +25,7 @@ export class UpdateRoomRepository implements IUpdateRoomRepository.Implementatio
   }
 
   async findByCode(props: IUpdateRoomRepository.FindByCode.Params):
-    Promise<IUpdateRoomRepository.FindByCode.Response | null> {
+    IUpdateRoomRepository.FindByCode.Response {
 
     const listUniqueRoomResponse = await database.room.findFirst({
       where: {
@@ -34,5 +35,4 @@ export class UpdateRoomRepository implements IUpdateRoomRepository.Implementatio
 
     return listUniqueRoomResponse;
   }
-
 }

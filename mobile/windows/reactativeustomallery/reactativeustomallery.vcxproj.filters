@@ -18,7 +18,6 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="AutolinkedNativeModules.g.h" />
-    <ClInclude Include="Cabeçalho.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -53,17 +52,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
+    <None Include="..\..\src\shared\assets\animations\Lock.json" />
+    <None Include="..\..\src\shared\assets\animations\Message.json" />
+    <None Include="..\..\src\shared\assets\animations\Offline.json" />
+    <None Include="..\..\src\shared\assets\animations\Page-Not-Found.json" />
+    <None Include="..\..\src\shared\assets\animations\Welcome.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
-    <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
     <Text Include="..\..\src\shared\assets\fonts\Roboto\LICENSE.txt" />
+    <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Black.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Bold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Italic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Light.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Medium.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Regular.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Thin.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-BlackItalic.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Bold.ttf" />
@@ -82,17 +98,5 @@
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-SemiBoldItalic.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Thin.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ThinItalic.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Black.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BlackItalic.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Bold.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BoldItalic.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Italic.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Light.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-LightItalic.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Medium.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-MediumItalic.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Regular.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Thin.ttf" />
-    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
 </Project>

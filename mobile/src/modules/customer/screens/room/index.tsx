@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { Text } from "react-native";
-import { Header } from "../../components/header";
-import { Question } from "../../components/question";
+import { ListRenderItem, ListRenderItemInfo, Text } from "react-native";
+import { Header } from "@customer/components/header";
+import { Question } from "@customer/components/question";
 import { useFocusEffect } from "@react-navigation/native";
-import { ProgressView } from "@react-native-community/progress-view";
 import {
   fonts,
   Container,
@@ -15,8 +14,8 @@ import {
   DescriptionRoomNotFound,
 } from "./styles";
 import LottieView from "lottie-react-native";
-import { Trasition } from "../../../../shared/components/transition";
-import { Button } from "../../../../shared/components/button";
+import { Transition } from "@shared/components/transition";
+import { Button } from "@shared/components/button";
 
 type RoomParamsType = {
   roomId: string;
@@ -74,20 +73,21 @@ const questions: QuestionType[] = [
   },
 ]
 
+
 export const Room = ({ navigation: { navigate }, route }: any) => {
   const [data, setData] = useState<QuestionType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   if (!route.params.id) {
     return (
-      <Trasition>
+      <Transition>
         <ContainerRoomNotFound>
           <LottieView autoPlay loop style={{ width: 400, height: 400 }} source={"Not Found"} />
           <TitleRoomNotFound style={fonts.titleRoomNotFound}>Ops,sala não encontrada</TitleRoomNotFound>
           <DescriptionRoomNotFound style={fonts.descriptionRoomNotFound}>parece que a sala que você está buscando não existe, verifique se o codigo da sala está certo e tente novamente</DescriptionRoomNotFound>
           <Button.Default onPress={() => navigate("dashboard")}>Home</Button.Default>
         </ContainerRoomNotFound>
-      </Trasition>
+      </Transition>
     )
   }
 
@@ -103,7 +103,7 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
   })
 
 
-  const renderItem = useCallback(({ item }: { item: QuestionType, index?: number }): JSX.Element => (
+  const renderItem = useCallback(({ item }: any) => (
     <Question
       nickname={item.nickname}
       message={item.message}
@@ -117,7 +117,7 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
   const keyExtractor = (item: unknown, index: number) => `${index}-${item}`;
 
   return (
-    <Trasition>
+    <Transition>
       <Container>
         <Header roomId={route.params.id} />
         <SubHeaderContent>
@@ -126,19 +126,13 @@ export const Room = ({ navigation: { navigate }, route }: any) => {
             <Text style={fonts.titleRoomText}>42 perguntas</Text>
           </AmountOfQuestions>
         </SubHeaderContent>
-        {/* @ts-ignore */}
-        {isLoading
-          ? <ListQuestions
-            data={data}
-            // ListEmptyComponent={<Image source={require("../../assets/animations/arty-chat.gif")}/>}
-            //@ts-ignore
-            renderItem={renderItem}
-            showsVerticalScrollIndicator
-            keyExtractor={keyExtractor}
-          />
-          //@ts-ignore
-          : <ProgressView isIndeterminate={true} />}
+        <ListQuestions
+          data={data}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator
+          keyExtractor={keyExtractor}
+        />
       </Container>
-    </Trasition>
+    </Transition>
   );
 }

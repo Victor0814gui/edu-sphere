@@ -16,5 +16,7 @@
       "@rooms/*": ["src/modules/rooms/*"],
       "@shared/*": ["src/shared/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "declaration.d.ts"],
+  "exclude": ["node_modules", "build"]
 }

@@ -14,7 +14,7 @@ export interface User {
   email: string;
   password: string;
   studentList?: any[]
-  status: Status;
+  status: string;
   createdAt: Date;
   updatedAt: Date | null;
   avatarUrl: string;

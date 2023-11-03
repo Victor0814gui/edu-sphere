@@ -19,7 +19,6 @@ import { errorConnectingToServerDataToast } from "@shared/contexts/toast-notific
 import { Transition } from "@shared/components/transition";
 import { baseUrl } from "@shared/services/api";
 import { useToastNotificationProvider } from "@shared/contexts/toast-notification";
-import { useOpenAndCloseNavbarOnKeyPressContextProvider } from "@shared/contexts/open-and-close-navbar-on-key-press";
 import { BadgeButton } from "../../components/badge-button";
 import { useModalQueueContextProvider } from "@shared/contexts/modal-queue";
 import { Input } from "../../../rooms/screens/create-room/styles";
@@ -44,7 +43,6 @@ export const Dashboard = () => {
 
   const { addToastNotifications } = useToastNotificationProvider();
   const { addModal } = useModalQueueContextProvider();
-  const { onFocus } = useOpenAndCloseNavbarOnKeyPressContextProvider()
 
   const fetchRoomsData = async () => {
     try {
@@ -138,10 +136,10 @@ export const Dashboard = () => {
           style={{ width: 220, height: 220 }} source={"Message"}
         />}
         <CreateRoomButton />
-        <Modal
+        {/* <Modal
           title={"Criar sala"}
           description={"Para criar uma sala você deve ter permissões"}
-        />
+        /> */}
       </Container>
     </Transition>
   );
