@@ -16,9 +16,9 @@ import {
 } from "./styles"
 
 import Icon from "react-native-vector-icons/Feather";
-import { Trasition } from "../../../../shared/components/transition";
-import { api, baseUrl } from "../../../../shared/services/api";
-import { COLORS } from "../../../../shared/theme";
+import { Trasition } from "@shared/components/transition";
+import { api, baseUrl } from "@shared/services/api";
+import { COLORS } from "@shared/theme";
 
 
 type LessonsTypes = {
@@ -55,6 +55,7 @@ const LessonSubject = ({ item, index }: RenderItemProps) => {
   const onPressOut = () => {
     setIsPressed(false)
   }
+
   return (
     <LessonSujectContainer
       onHoverIn={(e) => setOnHover(true)}

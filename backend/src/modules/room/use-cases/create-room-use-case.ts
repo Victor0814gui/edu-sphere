@@ -25,7 +25,7 @@ export class CreateRoomUseCase
 
     const verifyRoomAlreadyExists = await this.createRoomRepository.findByTitle({
       slug: slug,
-    })
+    });
 
     if (!!verifyRoomAlreadyExists?.id) {
       throw new RoomBusinessException("the room already exists", 403);
@@ -40,7 +40,7 @@ export class CreateRoomUseCase
       title: props.title,
       published: props.published,
       description: props.description,
-      teacherId: props.authorId,
+      authorId: props.authorId,
     })
 
     return createRoomResponse;

@@ -1,6 +1,6 @@
 import { useState, useCallback, ReactNode, createContext, useContext } from "react";
 import { ToastComponent } from "../../components/toast-component";
-import { ToastContentType, ToastNotificationContextType } from "../../../shared/types";
+import { ToastContentType, ToastNotificationContextType } from "@shared/types";
 import { generateId } from "../../services/generateId";
 
 

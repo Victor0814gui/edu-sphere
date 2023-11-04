@@ -16,21 +16,9 @@
 
 #include <winrt/Microsoft.ReactNative.h>
 
-// #include "winrt/RNSplashScreen.h"
-
-#include <winrt/Windows.ApplicationModel.h>
-#include <winrt/Windows.Data.Xml.Dom.h>
-#include <winrt/Windows.Foundation.h>
-#include <winrt/Windows.Foundation.Collections.h>
-#include <winrt/Windows.Storage.h>
-#include <winrt/Windows.System.h>
-#include <winrt/Windows.UI.h>
-#include <winrt/Windows.UI.Xaml.Controls.h>
-#include <winrt/Windows.UI.Xaml.Media.Imaging.h>
-
 #include <winrt/Microsoft.UI.Xaml.Automation.Peers.h>
 #include <winrt/Microsoft.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
 #include <winrt/Microsoft.UI.Xaml.Media.h>
 #include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
-// using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Foundation;

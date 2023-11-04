@@ -33,12 +33,6 @@ const purchaseProductToCustomerController = container.resolve(PurchaseProductToC
 const authenticationCustomerAccountController = container.resolve(AuthenticationCustomerAccountController);
 const userRoutes = Router();
 
-userRoutes.use(
-  "/",
-  gatewayMiddleware,
-  customerBusinessMiddleware,
-);
-
 
 userRoutes.post(
   "/signup",
@@ -134,6 +128,14 @@ userRoutes.post(
   "/authorization",
   customerAuthorizationAccountController.handler
 );
+
+
+userRoutes.use(
+  "/",
+  customerBusinessMiddleware,
+  gatewayMiddleware,
+);
+
 
 
 export { userRoutes };

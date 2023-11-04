@@ -2,16 +2,22 @@
 
 export declare global {
   namespace ReactNavigation {
-      interface RootParamList extends RootStackParamList{
-        dashboard: undefined;
-        profile: undefined;
-        question: {
-          questionId: string;
-        }
-        signin: undefined
-        signupstepone: undefined
-        signupsteptwo: undefined
-        signinstepthree: undefined
+    interface RootParamList extends RootStackParamList {
+      signin: undefined;
+      authorization: undefined;
+      signup: undefined;
+      //user
+      dashboard: undefined;
+      profile: undefined;
+      player: {
+        url: string;
+        duration: string;
+      };
+      room: {
+        roomId: string;
       }
+      lessons: undefined;
+      playlistlessons: undefined;
+    }
   }
 }

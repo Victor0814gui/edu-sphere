@@ -1,68 +1,40 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Router } from "./routes";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer, DefaultTheme, Theme } from '@react-navigation/native';
 import { COLORS } from "./theme";
 import { AppProvider } from "./contexts";
 import { ToastNotificationProvider } from "./contexts/toast-notification";
-import { titleBar, window } from "react-native-custom-window";
+import { titleBar } from "react-native-custom-window";
 
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
-import { Modal } from "./components/modal";
 import { Animations } from "./utils/contants";
-const MyTheme: Theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: COLORS.grey_200,
-  },
-};
+import { linking } from "./configs/deeplink";
+import { theme } from "./configs/theme";
+import { titlebarConfigs } from "./configs/titlebar";
 
 
-const config = {
-  screens: {
-    room: {
-      path: 'room/:id',
-      exact: true,
-      parse: {
-        id: (id: string) => `user-${id}`,
-      },
-      stringify: {
-        id: (id: string) => id.replace(/^user-/, ''),
-      },
-    },
-  },
-};
 
-const linking = {
-  prefixes: ['reactativeustomallery://'],
-  config,
-};
+
+
 
 
 export const Main = () => {
   const [isRendering, setIsRendering] = useState(true);
   const onAnimationFinish = () => setIsRendering(false);
 
+
   useEffect(() => {
     const handlerChangeTitleBar = async () => {
       await titleBar.enableExtend();
       // await window.setSize(1300, 720)
-      await titleBar.TitlebarColor({
-        //@ts-ignore
-        BackgroundColor: COLORS.grey_180,
-        ButtonBackgroundColor: "transparent",
-        ButtonForegroundColor: COLORS.white,
-        buttonHoverBackgroundColor: COLORS.grey_400,
-        ButtonHoverForegroundColor: COLORS.grey_480,
-      });
+      await titleBar.TitlebarColor(titlebarConfigs);
     }
     handlerChangeTitleBar();
   }, [])
 
   if (isRendering) {
-
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: COLORS.grey_180 }}>
         <LottieView
@@ -79,7 +51,7 @@ export const Main = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer linking={linking} theme={MyTheme}>
+      <NavigationContainer linking={linking} theme={theme}>
         <ToastNotificationProvider>
           <AppProvider>
             <Router />

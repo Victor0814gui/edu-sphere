@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import { createContext, useContext, ReactNode, useRef, useState } from "react";
 import { View } from "react-native";
 import { IKeyboardEvent } from "react-native-windows/types";
-import { useToastNotificaitonProvider } from "./toast-notification";
 
 type OpenAndCloseNavbarOnKeyPressContextType = {
   navbarIsOpen: boolean;

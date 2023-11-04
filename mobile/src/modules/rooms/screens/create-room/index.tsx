@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 
-import { Input } from '@modules/session/components/input';
+import { Input } from '@/src/modules/session/components/input';
 import { Button } from '@shared/components/button';
 import { Controller, useForm } from 'react-hook-form';
 // import { fullscreen } from "react-native-custom-window"

@@ -9,21 +9,28 @@ import { ListRoomsRepository } from "../../repository/implementation/list-rooms-
 import { IListRoomsRepository } from "../../repository/i-list-room-repository";
 import { ICreateMessageRepository } from "../../repository/i-create-message-repository";
 import { CreateMessageRepository } from "../../repository/implementation/create-message-repository";
+import { IJoinRoomRepository } from "../../repository/i-join-room-repository";
+import { JoinRoomRepository } from "../../repository/implementation/join-room-repository";
 
 
 container.registerSingleton<ICreateRoomRepository.Implementation>(
-  'CreateRoomRepository',
+  "CreateRoomRepository",
   CreateRoomRepository
 );
 
 container.registerSingleton<IDeleteRoomRepository.Implementation>(
-  'DeleteRoomRepository',
+  "DeleteRoomRepository",
   DeleteRoomRepository
 );
 
 container.registerSingleton<IUpdateRoomRepository.Implementation>(
   "UpdateRoomRepository",
   UpdateRoomRepository,
+);
+
+container.registerSingleton<IJoinRoomRepository.Implementation>(
+  "JoinRoomRepository",
+  JoinRoomRepository,
 );
 
 container.registerSingleton<IListRoomsRepository.Implementation>(

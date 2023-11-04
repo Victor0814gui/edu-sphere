@@ -5,6 +5,7 @@ import { IAuthenticationCustomerRepository } from "../repositories/i-authenticat
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
 import { ICompareEncryptDataService } from "../infra/services/contracts/i-compare-encrypt-data-service";
+import { AccountStatusEnum } from "@/src/shared/application/entities/enums/account-status";
 
 @injectable()
 export class AuthenticationCustomerUserCase
@@ -31,6 +32,10 @@ export class AuthenticationCustomerUserCase
       throw new CustomerBusinessException("Customer does not exists", 404);
     }
 
+    if (verifyCustomerAlreadyExists?.status === AccountStatusEnum.Pending) {
+      throw new CustomerBusinessException("You must activate your account first", 403);
+    }
+
     if (verifyCustomerAlreadyExists?.email != props.email) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
@@ -40,7 +45,7 @@ export class AuthenticationCustomerUserCase
       encrypted: verifyCustomerAlreadyExists?.password,
     })
 
-    if (isPasswordHasCorrect) {
+    if (isPasswordHasCorrect == false) {
       throw new CustomerBusinessException("Email or password has incorrect", 403);
     }
 
@@ -72,6 +77,7 @@ export class AuthenticationCustomerUserCase
       createdAt: verifyCustomerAlreadyExists.createdAt,
       updatedAt: verifyCustomerAlreadyExists.updatedAt,
       avatarUrl: verifyCustomerAlreadyExists.avatarUrl,
+      status: verifyCustomerAlreadyExists.status,
     }
 
     return {

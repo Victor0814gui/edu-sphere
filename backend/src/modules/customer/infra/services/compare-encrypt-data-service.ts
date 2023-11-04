@@ -8,7 +8,7 @@ export class CompareEncryptDataService
   async execute(props: ICompareEncryptDataService.Params):
     ICompareEncryptDataService.Response {
 
-    const compareEncryptDataServiceResponse = await compare(props.encrypted, props.data)
+    const compareEncryptDataServiceResponse = await compare(props.data, props.encrypted)
 
     return compareEncryptDataServiceResponse;
   }

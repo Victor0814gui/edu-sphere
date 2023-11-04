@@ -13,7 +13,7 @@ import { ControllerFieldState } from 'react-hook-form';
 import { User, Warning } from 'phosphor-react-native';
 
 type InputProps = TextInputProps & {
-  labelText: string;
+  labelText?: string;
   icon?: ElementType;
   fieldState?: ControllerFieldState;
 }
@@ -53,7 +53,7 @@ export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: Inp
       }}
       accessible={false}
     >
-      <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>
+      {!!labelText && <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>}
       <ContainerStyleTextInput
         onHover={onHover}
         //@ts-ignore
@@ -70,7 +70,7 @@ export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: Inp
           verticalAlign='middle'
           selectionColor={COLORS.green_390}
           style={styles.textInput}
-          multiline={false}
+          multiline={rest.multiline}
           onFocus={handleInputFocus}
           onBlur={handleInputBlus}
         />

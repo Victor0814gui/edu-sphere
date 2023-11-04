@@ -19,7 +19,7 @@ import {
   ListSubjectsContainer,
 } from "./styles";
 import { Subject } from "../../components/subject";
-import { Trasition } from "../../../../shared/components/transition";
+import { Trasition } from "@shared/components/transition";
 
 const uri = "https://cdn.discordapp.com/attachments/1008571142858092684/1093544099388338287/thisistheway1142_toms_guide_logo_on_white_background_in_the_sty_4bf63938-ce79-40e7-928d-ac2b0da8b32b.png";
 

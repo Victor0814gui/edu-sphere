@@ -8,15 +8,17 @@ const customerBusinessMiddleware = <TError extends Error>(
   request: Request,
   response: Response,
   next: NextFunction
-): NextFunction => {
+): void => {
 
-  console.log(error);
-
+  const instance = error instanceof CustomerBusinessException
+  console.log(instance)
   if (error instanceof CustomerBusinessException) {
-    throw new AppErrors(error.message, error.code, error.type);
+    console.log({
+      message: error.message, code: error.code, type: error.type
+    });
+    next(error);
   }
-
-  return next;
+  next(new AppErrors("[customer] unknown internal server error", 500));
 }
 
 export { customerBusinessMiddleware };

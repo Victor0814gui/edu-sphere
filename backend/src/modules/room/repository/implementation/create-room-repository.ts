@@ -11,10 +11,7 @@ export class CreateRoomRepository
     ICreateRoomRepository.Create.Response {
 
     const createRoomResponse = await database.room.create({
-      data: {
-        ...props,
-        authorId: props.teacherId,
-      }
+      data: props
     })
 
     return createRoomResponse;
