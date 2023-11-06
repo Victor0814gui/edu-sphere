@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { CreateRoomController } from "@room/infra/controllers/create-room-controller";
-import { DeleteRoomController } from "@room/infra/controllers/delete-room-controller";
-import { UpdateRoomController } from "@room/infra/controllers/update-room-controller";
-import { ListRoomsController } from "@room/infra/controllers/list-rooms-controller";
+import { CreateRoomController } from "@room/infra/http/controllers/create-room-controller";
+import { DeleteRoomController } from "@room/infra/http/controllers/delete-room-controller";
+import { UpdateRoomController } from "@room/infra/http/controllers/update-room-controller";
+import { ListRoomsController } from "@room/infra/http/controllers/list-rooms-controller";
 import { roomBusinessMiddleware } from "../middleware/business-middleware";
 import { roomAuthenticationCheck } from "../middleware/room-authentication-check";
 import { uploadFileMiddleware } from "../middleware/upload-files-middleware";

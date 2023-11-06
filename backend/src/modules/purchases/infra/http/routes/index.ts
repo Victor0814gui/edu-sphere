@@ -1,11 +1,12 @@
 import { Router } from "express";
+import { container } from "tsyringe";
 import { customerAuthenticationCheck } from "../middlewares/customer-authentication-check";
 import { WebhookListenerStripeController } from "../controller/webhooks-listener-stripe-controller";
-import { container } from "tsyringe";
 import { CreateSubscriptionController } from "../controller/create-subscription-controller";
 import { CancelSubscriptionController } from "../controller/cancel-subscription-controller";
 import { UpdateSubscriptionController } from "../controller/update-subscription-controller";
 import { userBusinessMiddleware } from "../middlewares/business-middleware";
+import { ListProductsController } from "../controller/list-products-controller";
 
 
 export const purchasesRoutes = Router();
@@ -13,30 +14,38 @@ const webhookListenerStripeController = container.resolve(WebhookListenerStripeC
 const createSubscriptionController = container.resolve(CreateSubscriptionController);
 const cancelSubscriptionController = container.resolve(CancelSubscriptionController);
 const updateSubscriptionController = container.resolve(UpdateSubscriptionController);
+const listProductsController = container.resolve(ListProductsController);
+
 
 purchasesRoutes.post(
-  "/purchases/webhook",
-  customerAuthenticationCheck,
+  "/webhooks",
+  // customerAuthenticationCheck,
   webhookListenerStripeController.handler,
 );
 
 purchasesRoutes.patch(
-  "/purchase/subscriptions",
+  "/subscriptions/update",
   customerAuthenticationCheck,
   updateSubscriptionController.handler,
 );
 
 purchasesRoutes.post(
-  "/purchase/subscription",
+  "/subscription/create",
   customerAuthenticationCheck,
   createSubscriptionController.handler,
 );
 
-purchasesRoutes.delete(
-  "/subscriptions",
+purchasesRoutes.patch(
+  "/subscriptions/cancel",
   customerAuthenticationCheck,
   cancelSubscriptionController.handler,
-)
+);
+
+purchasesRoutes.get(
+  "/subscriptions/list",
+  // customerAuthenticationCheck,
+  listProductsController.handler,
+);
 
 purchasesRoutes.use(
   "/",

@@ -75,13 +75,6 @@ export class CreateSubscriptionUseCase
         subscriptionId: params.subscriptionId,
       })
 
-
-    await this.createSubscriptionRepository.updateCustomer({
-      customerId: params.customerId,
-      permissions,
-      roles,
-    })
-
     return createSubscriptionRepositoryResponse;
   }
 }

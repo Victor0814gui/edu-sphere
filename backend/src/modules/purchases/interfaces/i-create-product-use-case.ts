@@ -11,7 +11,6 @@ enum ProductType {
 export namespace ICreateProductUseCase {
   export type Params = {
     userId: string;
-    permissions: string[];
     name: string;
     type: string;
     status: string;

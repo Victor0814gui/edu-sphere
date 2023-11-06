@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+  flex: 1;
+}
+
+.content{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.listSubscriptions{
+  display: flex;
+  flex: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+
+.subscription{
+  padding: 21px;
+  margin: 5px;
+  background-color: #333333;
+  border-radius: 5px;
+
+}
+
+.subscription:hover{
+  border: 1px solid blueviolet;
+}

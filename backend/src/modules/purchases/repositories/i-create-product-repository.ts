@@ -24,13 +24,9 @@ namespace ICreateProductRepository {
 
 namespace ICreateProductRepository {
   export namespace Create {
-    export type Params = Product & {
-      permissions: Permission[];
-    };
+    export type Params = Product;
 
-    export type Response = Promise<Product & {
-      permissions: Permission[];
-    }>
+    export type Response = Promise<Product>
   }
 }
 
