@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -40,5 +36,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--grey_180);
+  background: var(--grey_120);
+}
+
+h1,h2,h3,h4,p,span,button,li{
+  font-family: "Roboto",sans-serif;  
 }

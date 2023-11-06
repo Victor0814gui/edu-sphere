@@ -2,7 +2,11 @@ import Image from 'next/image'
 
 import "./styles.css";
 
-export default function Subscription() {
+
+
+export default async function Subscription() {
+
+
   return (
     <main className="container">
       <div className="content">

@@ -24,19 +24,7 @@ export class CreateProductRepository
     ICreateProductRepository.Create.Response {
 
     const createProductResponse = await database.product.create({
-      data: {
-        ...props,
-        permissions: {
-          connect: props.permissions
-        },
-      },
-      include: {
-        permissions: {
-          select: {
-            name: true,
-          }
-        }
-      }
+      data: props,
     })
 
     return createProductResponse;

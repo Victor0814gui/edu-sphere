@@ -35,19 +35,24 @@ export class WebhookListenerStripeController {
 
     switch (event.type) {
       case 'invoice.payment_succeeded':
-        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
+        console.log("invoice.payment_succeeded", event.payload.data)
+        // serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'invoice.payment_failed':
-        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
+        console.log("invoice.payment_failed", event.payload.data)
+        // serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'invoice.finalized':
-        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
+        console.log("invoice.finalized", event.payload.data)
+        // serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'customer.subscription.deleted':
-        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
+        console.log("customer.subscription.deleted", event.payload.data)
+        // serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       case 'customer.subscription.trial_will_end':
-        serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
+        console.log("customer.subscription.trial_will_end", event.payload.data)
+        // serviceResponse = await invoicePaymentSucceededUseCase.execute(event);
         break;
       default:
       // Unexpected event type

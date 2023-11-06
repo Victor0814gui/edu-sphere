@@ -1,8 +1,17 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, Text, Pressable, FlatList } from "react-native";
-import { CardRoom } from "../../components/card-room";
+import { Text, FlatList } from "react-native";
+import { CardRoom } from "@customer/components/card-room";
 import LottieView from "lottie-react-native";
-import { COLORS, FONTS } from "@shared/theme";
+import { FONTS } from "@shared/theme";
+import { useFocusEffect } from "@react-navigation/native";
+import { errorConnectingToServerDataToast } from "@shared/contexts/toast-notification/constants";
+import { Transition } from "@shared/components/transition";
+import { baseUrl } from "@shared/services/api";
+import { useToastNotificationProvider } from "@shared/contexts/toast-notification";
+import { BadgeButton } from "@customer/components/badge-button";
+import { useModalQueueContextProvider } from "@shared/contexts/modal-queue";
+import { socket } from "@shared/services/socket-io";
+import { CreateRoomButton } from "@customer/components/create-room-button";
 
 import {
   fonts,
@@ -12,19 +21,7 @@ import {
   SubHeaderContentLeftContent,
   ContentContainerListEmpty,
   ContentContainerListEmptyText,
-  HeaderSectionTitle,
 } from "./styles";
-import { useFocusEffect } from "@react-navigation/native";
-import { errorConnectingToServerDataToast } from "@shared/contexts/toast-notification/constants";
-import { Transition } from "@shared/components/transition";
-import { baseUrl } from "@shared/services/api";
-import { useToastNotificationProvider } from "@shared/contexts/toast-notification";
-import { BadgeButton } from "../../components/badge-button";
-import { useModalQueueContextProvider } from "@shared/contexts/modal-queue";
-import { Input } from "../../../rooms/screens/create-room/styles";
-import { socket } from "@shared/services/socket-io";
-import { CreateRoomButton } from "../../components/create-room-button";
-import { Modal } from "../../components/modal";
 
 type CardType = {
   title: string;
@@ -71,10 +68,6 @@ export const Dashboard = () => {
     }
   })
 
-  const renderItem = useCallback(({ item, index }: any) => (
-    <CardRoom index={index} {...item} />
-  ), [])
-
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
@@ -101,6 +94,24 @@ export const Dashboard = () => {
     };
   }, []);
 
+  const renderItem = useCallback(({ item, index }: any) => (
+    <CardRoom index={index} {...item} />
+  ), [])
+
+  const keyExtractor = (item: any, index: number) => `${index}`;
+
+
+  const ListEmptyComponent = useCallback(() => (
+    <ContentContainerListEmpty>
+      <ContentContainerListEmptyText style={fonts.contentContainerListEmptyText}>parece que não existem salas disponiveis no momento</ContentContainerListEmptyText>
+      <LottieView
+        autoPlay
+        loop
+        style={{ width: 220, height: 220 }}
+        source={"Message"}
+      />
+    </ContentContainerListEmpty>
+  ), [])
 
   return (
     <Transition>
@@ -118,18 +129,9 @@ export const Dashboard = () => {
         </SubHeaderContent>
         {!isLoading ? <FlatList
           data={roomsData}
-          keyExtractor={(item, index) => `${index}`}
+          keyExtractor={keyExtractor}
           renderItem={renderItem}
-          ListEmptyComponent={
-            <ContentContainerListEmpty>
-              <ContentContainerListEmptyText style={fonts.contentContainerListEmptyText}>parece que não existem salas disponiveis no momento</ContentContainerListEmptyText>
-              <LottieView
-                autoPlay
-                loop
-                style={{ width: 220, height: 220 }} source={"Message"}
-              />
-            </ContentContainerListEmpty>
-          }
+          ListEmptyComponent={ListEmptyComponent}
         /> : <LottieView
           autoPlay
           loop={false}

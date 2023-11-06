@@ -1,3 +1,4 @@
+import { Permission, Role } from "@prisma/client";
 
 
 
@@ -16,20 +17,44 @@ interface ICreateResponse {
   url: string | null;
 }
 
-export namespace ISubscriptionCustomerAccountGateway {
+declare namespace ISubscriptionCustomerAccountGateway { }
+
+namespace ISubscriptionCustomerAccountGateway {
   export namespace Create {
     export type Params = IProduct;
 
     export type Response = Promise<ICreateResponse>;
   }
+}
 
+namespace ISubscriptionCustomerAccountGateway {
   export namespace FindById {
-    export interface Params {
+    export type Params = {
       productId: string
     }
-
     export type Response = Promise<IProduct>;
   }
+}
+
+namespace ISubscriptionCustomerAccountGateway {
+  export namespace FindPermissionsByLevel {
+    export type Params = {
+      productId: string
+    }
+    export type Response = Promise<Permission[] | null>;
+  }
+}
+
+namespace ISubscriptionCustomerAccountGateway {
+  export namespace FindRolesByLevel {
+    export type Params = {
+      productId: string
+    }
+    export type Response = Promise<Role[] | null>;
+  }
+}
+
+namespace ISubscriptionCustomerAccountGateway {
   export interface Implementation {
     create: (props: ISubscriptionCustomerAccountGateway.Create.Params)
       => ISubscriptionCustomerAccountGateway.Create.Response;
@@ -37,3 +62,5 @@ export namespace ISubscriptionCustomerAccountGateway {
       => ISubscriptionCustomerAccountGateway.FindById.Response;
   }
 }
+
+export { ISubscriptionCustomerAccountGateway };

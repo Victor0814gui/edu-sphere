@@ -35,9 +35,7 @@ export class CreateProductUseCase implements
     const verifyProductAlreadyExistsInGateway =
       await this.subscriptionCustomerAccountsGateway.findById({
         productId: props.name
-      })
-
-    const permissionsObject = props.permissions.map((e: string) => ({ name: e }))
+      });
 
     if (!!verifyProductAlreadyExistsInGateway.price) {
       throw new CustomerBusinessException("Product already exists on the gateway", 403);
@@ -52,7 +50,6 @@ export class CreateProductUseCase implements
         id: productId,
         createdAt: productCreatedAt,
         updatedAt: null,
-        permissions: permissionsObject
       });
 
     return createProductRepositoryResponse;

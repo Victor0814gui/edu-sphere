@@ -1,21 +1,21 @@
 
 
-declare namespace IListProductsUseCase {};
+declare namespace IListProductsUseCase { };
 
-namespace IListProductsUseCase{
-  export type Params = {}
+namespace IListProductsUseCase {
+  export type Params = void;
 }
 
-namespace IListProductsUseCase{
+namespace IListProductsUseCase {
   export type Response = Promise<{}>
 }
 
 
-namespace IListProductsUseCase{
+namespace IListProductsUseCase {
   export type Implementation = {
     execute: (params: IListProductsUseCase.Params)
-  => IListProductsUseCase.Response;
+      => IListProductsUseCase.Response;
   }
 }
 
-export {IListProductsUseCase};
+export { IListProductsUseCase };

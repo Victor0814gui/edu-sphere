@@ -5,10 +5,10 @@ import { IListProductsUseCase } from "../interfaces/i-list-products-use-cases";
 
 
 
-export class ListProductsUseCase 
-  implements IListProductsUseCase.Implementation{
+export class ListProductsUseCase
+  implements IListProductsUseCase.Implementation {
   public async execute(params: IListProductsUseCase.Params):
-  IListProductsUseCase.Response{
+    IListProductsUseCase.Response {
 
     const listProductsResponse = await stripe.products.list({
       limit: 3,
