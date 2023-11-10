@@ -4,20 +4,21 @@ import { container } from "tsyringe";
 
 
 
-type JoinRoomSocketHandlerRequest = {
+type IRequest = {
   roomId: string;
   customerId: string;
-  callback: (params: any) => void;
 }
+
+type IResponse = (params: any) => void;
 
 export function joinRoomSocketHandler(io: Server, socket: Socket) {
   const joinRoomUseCase = container.resolve(JoinRoomUseCase);
 
-  async function join(params: JoinRoomSocketHandlerRequest) {
-    const joinRoomUseCaseResponse =
-      await joinRoomUseCase.execute(params)
+  async function join(params: IRequest, response: IResponse) {
+    const joinRoomUseCaseResponse = await joinRoomUseCase.execute(params)
+
     socket.join(params.roomId);
-    params.callback(joinRoomUseCaseResponse)
+    response(joinRoomUseCaseResponse)
   }
 
   socket.on("room:join", join);
