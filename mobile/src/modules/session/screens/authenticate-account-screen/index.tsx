@@ -3,11 +3,11 @@ import { Button } from "@session/components/button";
 //@ts-ignore
 import { Input } from '@session/components/input';
 import { useAuthContextProvider } from '@shared/contexts/auth';
-import { HiperLink } from '@session/components/hiper-link';
+import { HyperLink } from '@session/components/hyper-link';
 import { useForm, Controller } from 'react-hook-form';
 import { MessageError } from '@session/components/message-error';
-import BackgroundIlustrationSvg from "@session/assets/images/background-ilustration.svg";
-import BackgroundIlustrationRightSvg from "@session/assets/images/background-ilustration-right.svg";
+import BackgroundIllustrationSvg from "@session/assets/images/background-illustration.svg";
+import BackgroundIllustrationRightSvg from "@session/assets/images/background-illustration-right.svg";
 import { Envelope, Password, SignIn as SignInIcon } from 'phosphor-react-native';
 import { Transition } from '@shared/components/transition';
 import { Heading } from '@shared/components/heading';
@@ -52,8 +52,8 @@ export function AuthenticateAccountScreen({ navigation }: any) {
 
   return (
     <React.Fragment>
-      <BackgroundIlustrationSvg style={styles.backgroundLeft} />
-      <BackgroundIlustrationRightSvg style={styles.backgroundRight} />
+      <BackgroundIllustrationSvg style={styles.backgroundLeft} />
+      <BackgroundIllustrationRightSvg style={styles.backgroundRight} />
       <Transition>
         <Container accessible>
           <Content>
@@ -103,7 +103,7 @@ export function AuthenticateAccountScreen({ navigation }: any) {
               {errors.password?.type === 'required' && <MessageError>password is required</MessageError>}
               {errors.password?.type === 'maxLength' && <MessageError>password is required 18 caracters</MessageError>}
               {errors.password?.type === 'minLength' && <MessageError>password is required 8 caracters</MessageError>}
-              <HiperLink
+              <HyperLink
                 text="Redefinir senha"
                 onPress={() => { }}
               />
@@ -114,7 +114,7 @@ export function AuthenticateAccountScreen({ navigation }: any) {
                 icon={SignInIcon}
               />
             </Form>
-            <HiperLink
+            <HyperLink
               text="Ainda não tem uma conta? cria a sua aqui"
               onPress={handlePress}
             />

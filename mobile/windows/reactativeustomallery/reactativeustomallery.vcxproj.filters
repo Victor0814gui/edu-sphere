@@ -51,15 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PropertySheet.props" />
-    <None Include="..\..\src\shared\assets\animations\Lock.json" />
-    <None Include="..\..\src\shared\assets\animations\Message.json" />
-    <None Include="..\..\src\shared\assets\animations\Offline.json" />
-    <None Include="..\..\src\shared\assets\animations\Page-Not-Found.json" />
-    <None Include="..\..\src\shared\assets\animations\Welcome.json" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="readme.txt" />
     <Text Include="..\..\src\shared\assets\fonts\Roboto\LICENSE.txt" />
     <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
@@ -98,5 +89,10 @@
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-SemiBoldItalic.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Thin.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
 </Project>

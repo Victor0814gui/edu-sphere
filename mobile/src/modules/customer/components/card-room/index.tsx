@@ -1,9 +1,11 @@
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   font,
   Container,
   ContainerContent,
+  Options,
+  Text,
   Title,
   HeaderData,
   HeaderInfo,
@@ -20,6 +22,7 @@ import {
 
 import { Clock, User, ChartBar, Play } from "phosphor-react-native"
 import { Tag } from "../tag";
+import { Flyout } from "react-native-windows";
 
 type CardRoomProps = {
   id: string
@@ -30,10 +33,17 @@ type CardRoomProps = {
   index: number
 }
 
+type OnTouchStart = {
+  isRightButton: boolean;
+}
+
 export const CardRoom = (props: CardRoomProps) => {
   const [onHover, setOnHover] = useState(false);
   const [isPressed, setIsPressed] = useState(false)
+  const [isRightPressed, setIsRightPressed] = useState(false)
   const { navigate } = useNavigation()
+
+  const myRef = useRef(null);
 
   const handleNavigationRoom = useCallback(() => {
     // @ts-ignore
@@ -56,12 +66,19 @@ export const CardRoom = (props: CardRoomProps) => {
     setOnHover(false);
   }
 
+  const onTouchStart = ({ nativeEvent }: any) => {
+    if (nativeEvent.isRightButton) {
+      setIsRightPressed(!isRightPressed)
+    }
+  }
+
   return (
     <Container
       onHoverIn={onHoverIn}
       onHoverOut={onHoverOut}
       onPress={handleNavigationRoom}
       onPressIn={onPressIn}
+      onTouchStart={onTouchStart}
       onPressOut={onPressOut}
       pressed={isPressed}
       hover={onHover}

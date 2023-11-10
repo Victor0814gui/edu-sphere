@@ -18,7 +18,7 @@ type UserDrawerType = {
   player: undefined;
   lessons: undefined;
   playlistlessons: undefined;
-  CreateRoomScreen: undefined;
+  createRoomScreen: undefined;
 }
 
 const drawerNavigationOptions: DrawerNavigationOptions = {
@@ -47,12 +47,6 @@ export function UserDrawerRoutes() {
       <UserDrawer.Navigator
         // screenOptions={drawerNavigationOptions}
         initialRouteName="dashboard"
-        key={"route-user-screens"}
-        screenListeners={{
-          beforeRemove: (beforeRemoveEvent) => {
-            console.log(beforeRemoveEvent)
-          }
-        }}
       >
         <UserDrawer.Screen name="dashboard" component={Dashboard} />
         <UserDrawer.Screen name="lessons" component={Lessons} />
@@ -60,7 +54,7 @@ export function UserDrawerRoutes() {
         <UserDrawer.Screen name="room" component={Room} />
         <UserDrawer.Screen name="player" component={Player} />
         <UserDrawer.Screen name="playlistlessons" component={PlaylistLessons} />
-        <UserDrawer.Screen name="CreateRoomScreen" component={CreateRoomScreen} />
+        <UserDrawer.Screen name="createRoomScreen" component={CreateRoomScreen} />
       </UserDrawer.Navigator>
     </ModalQueueContextProvider>
   );

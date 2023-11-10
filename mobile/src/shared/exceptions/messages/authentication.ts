@@ -1,7 +1,7 @@
 
 
 import { RNSensitiveInfoOptions } from "react-native-sensitive-info";
-import { ToastContentType } from "../types";
+import { ToastContentType } from "../../types";
 
 
 const signInNotificationContentTypeServerError: ToastContentType = {
@@ -79,8 +79,8 @@ const AppAuthenticatoinKeyValue = "kjkljçlkjçlkjçkljçlkjçlkj";
 
 
 const sharedStorageFreferencies: RNSensitiveInfoOptions = {
-  sharedPreferencesName: 'mySharedPrefs',
-  keychainService: 'myKeychain',
+  sharedPreferencesName: 'edusphere-asdfasdfasdf-asdaf',
+  keychainService: '12341092384=123134123-adf',
 }
 
 

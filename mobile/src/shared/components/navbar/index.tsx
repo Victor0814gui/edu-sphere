@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import {
   View,
   FlatList,
@@ -18,7 +18,7 @@ import {
   Content,
   Heading,
 } from "./styles";
-import { useAuthContextProvider } from "../../contexts/auth";
+import { ContextAuthContext, useAuthContextProvider } from "../../contexts/auth";
 import { IRoutes, UserRoutes } from "../../routes/user/routes";
 import { Avatar } from "../avatar";
 import { ItemNavbar } from "./item";
@@ -29,21 +29,21 @@ import { ItemRoom } from "./item-rooms";
 type CustomNavbarProps = {
   navigation: DrawerNavigationHelpers;
   state: DrawerNavigationState<ParamListBase>
+  user: any
 }
 
 
 type RenderItemType = {
   item: IRoutes;
-  index: number
+  index: number;
 }
 
 
-export const CustomNavbar = ({ navigation, state }: CustomNavbarProps) => {
-  const { user } = useAuthContextProvider()
+export const CustomNavbar = ({ navigation, state, user }: CustomNavbarProps) => {
 
 
-  const renderItemOnPress = (key: any) => navigation.navigate(key as any)
-  const keyExtractor = (_: any, index: number) => `${index}`;
+  const renderItemOnPress = useCallback((key: any) => navigation.navigate(key as any), [])
+  const keyExtractor = useCallback((_: any, index: number) => `${index}`, [])
 
 
   const renderItem = useCallback(({
@@ -56,7 +56,7 @@ export const CustomNavbar = ({ navigation, state }: CustomNavbarProps) => {
       routeName={name}
       icon={icon}
     />
-  ), [state.index]);
+  ), [])
 
 
   const renderItemRooms = useCallback((props: any) => (
@@ -91,7 +91,7 @@ export const CustomNavbar = ({ navigation, state }: CustomNavbarProps) => {
       <Content>
         <Heading style={fonts.heading}>Rooms</Heading>
         <FlatList
-          data={UserRoutes}
+          data={[0, 1, 2, 3, 4, 5, 6, 7]}
           renderItem={renderItemRooms}
           keyExtractor={keyExtractor}
           style={{

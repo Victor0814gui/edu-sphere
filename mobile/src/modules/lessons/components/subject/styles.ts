@@ -21,11 +21,11 @@ export const additionalStyles = StyleSheet.create({
 export const Container = styled(Animated.View) <{ isPressed: boolean, onHover: boolean }>`
   padding: 12px;
   border-radius: 12px;
+  margin: 0 12px;
   flex-direction: row;
   align-items: center;
-  min-height: 300px;
-  width: 200px;
-  margin-right: 14px;
+  min-height: 200px;
+  width: 300px;
   position: relative;
 
   ${({ onHover, isPressed }) =>

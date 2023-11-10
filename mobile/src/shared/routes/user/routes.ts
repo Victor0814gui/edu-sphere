@@ -2,7 +2,7 @@ import { Dashboard } from "@/src/modules/customer/screens/dashboard";
 import { Lessons } from "@/src/modules/lessons/screens/lessons";
 import { CreateRoomScreen } from "@/src/modules/rooms/screens/create-room";
 
-import { HouseSimple, Airplay } from "phosphor-react-native";
+import { HouseSimple, Airplay, AddressBook } from "phosphor-react-native";
 
 
 export interface IRoutes {
@@ -14,21 +14,15 @@ export interface IRoutes {
 
 export const UserRoutes: Array<IRoutes> = [
   {
-    name: "dashboard",
+    name: "Dashboard",
     component: Dashboard,
     icon: HouseSimple,
     key: "dashboard"
   },
   {
-    name: "lessons",
+    name: "Lessons",
     component: Lessons,
     icon: Airplay,
     key: "lessons"
-  },
-  {
-    name: "criar sala",
-    component: CreateRoomScreen,
-    icon: Airplay,
-    key: "CreateRoomScreen"
   },
 ]

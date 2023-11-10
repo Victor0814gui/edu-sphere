@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, useRef, ElementType } from 'react';
+import React, { useEffect, useCallback, useState, useRef, ElementType, } from 'react';
 import {
   styles,
   InputContainerAndLabel,
@@ -19,9 +19,7 @@ type InputProps = TextInputProps & {
 }
 
 export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: InputProps) => {
-  const [animation] = useState(new Animated.Value(0));
   const [onHover, setOnHover] = useState(false);
-
   const inputValueRef = useRef<TextInputProps>(null);
   const [isFilled, setIsFilled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -31,34 +29,29 @@ export const Input = ({ fieldState, icon: Icon = User, labelText, ...rest }: Inp
     setIsFilled(!!inputValueRef.current?.value)
   }, [])
 
-  const AnimationsEnter = useCallback(() => {
-    Animated.spring(animation, {
-      toValue: 0,
-      useNativeDriver: false, // Habilita o uso do driver nativo para melhor desempenho
-    }).start();
-  }, []);
-
   const handleInputFocus = useCallback((value: any) => {
     setIsFocused(true)
   }, [])
 
-  useEffect(() => {
-    AnimationsEnter();
-  })
+  const onMouseLeave = useCallback(() => {
+    setOnHover(false);
+  }, [])
+
+  const onMouseEnter = useCallback(() => {
+    setOnHover(true);
+  }, [])
+
 
   return (
     <InputContainerAndLabel
-      style={{
-        transform: [{ translateY: animation }],
-      }}
       accessible={false}
     >
       {!!labelText && <InputLabelText style={styles.textInput}>{labelText}</InputLabelText>}
       <ContainerStyleTextInput
         onHover={onHover}
         //@ts-ignore
-        onMouseLeave={() => setOnHover(false)}
-        onMouseEnter={() => setOnHover(true)}
+        onMouseLeave={onMouseLeave}
+        onMouseEnter={onMouseEnter}
       >
         <IconContainer>
           <Icon size={22} color={isFocused || isFilled ? COLORS.green_500 : COLORS.grey_800} />

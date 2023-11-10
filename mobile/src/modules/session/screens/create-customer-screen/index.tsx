@@ -2,11 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { Button } from "@session/components/button";
 import { Input } from '@session/components/input';
 import { useAuthContextProvider } from '@shared/contexts/auth';
-import { HiperLink } from '@session/components/hiper-link';
+import { HyperLink } from '@session/components/hyper-link';
 import { useForm, Controller } from 'react-hook-form';
 import { MessageError } from '@session/components/message-error';
-import BackgroundIllustrationSvg from "@session/assets/images/background-ilustration.svg";
-import BackgroundIllustrationRightSvg from "@session/assets/images/background-ilustration-right.svg";
+import BackgroundIllustrationSvg from "@session/assets/images/background-illustration.svg";
+import BackgroundIllustrationRightSvg from "@session/assets/images/background-illustration-right.svg";
 import { Envelope, Password, SignIn as SignInIcon, User } from "phosphor-react-native";
 import { Transition } from "@shared/components/transition";
 import { Heading } from "@shared/components/heading";
@@ -75,7 +75,7 @@ export function CreateCustomerScreen({ navigation }: any) {
       <BackgroundIllustrationSvg style={styles.backgroundLeft} />
       <BackgroundIllustrationRightSvg style={styles.backgroundRight} />
       <Transition>
-        <Container accessible>
+        <Container>
           <Content>
             <Form>
               <Controller
@@ -160,7 +160,7 @@ export function CreateCustomerScreen({ navigation }: any) {
                 icon={SignInIcon}
               />
             </Form>
-            <HiperLink
+            <HyperLink
               text="Já tem uma conta? Entre aqui"
               onPress={handlePress}
             />

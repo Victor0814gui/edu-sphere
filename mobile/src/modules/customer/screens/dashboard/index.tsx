@@ -22,6 +22,7 @@ import {
   ContentContainerListEmpty,
   ContentContainerListEmptyText,
 } from "./styles";
+import { Modal } from "../../components/modal";
 
 type CardType = {
   title: string;
@@ -123,7 +124,7 @@ export const Dashboard = () => {
         <Text>connected: {isConnected ? "true" : "false"}</Text>
         <SubHeaderContent>
           <Text style={fonts.TitleRoom}>Company heathy hub</Text>
-          <BadgeButton text={"42 Salas"} />
+          <BadgeButton text={"2 Salas"} />
           <SubHeaderContentLeftContent>
           </SubHeaderContentLeftContent>
         </SubHeaderContent>

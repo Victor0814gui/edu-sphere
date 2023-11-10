@@ -28,7 +28,7 @@ export const Container = styled.Pressable<{ isActive: boolean, onHover: boolean 
   align-items: center;
   width: 100%;
   align-self: stretch;
-  padding: 0 26px;
+  /* padding: 0 26px; */
   background-color: ${({ isActive }) => isActive ? COLORS.green_500 : 'transparent'};
   ${({ onHover }) => onHover && css`
     transform: scale(0.98,0.98);

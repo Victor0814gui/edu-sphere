@@ -5,26 +5,26 @@ import { COLORS } from "../../../../shared/theme";
 
 import {
   styles,
-  HiperLinkText,
+  HyperLinkText,
 } from "./styles";
 
-type HiperLinkTextProps = {
+type HyperLinkTextProps = {
   text: string;
   onPress: () => void;
 }
 
 
-export const HiperLink = ({
+export const HyperLink = ({
   text,
   onPress,
-}: HiperLinkTextProps) => {
+}: HyperLinkTextProps) => {
 
   const [onHover, setOnHover] = useState(false);
 
   return (
     <Pressable onPress={onPress}>
       {({ pressed }) => (
-        <HiperLinkText
+        <HyperLinkText
           //@ts-ignore
           onMouseEnter={() => setOnHover(true)}
           onMouseLeave={() => setOnHover(false)}
@@ -34,7 +34,7 @@ export const HiperLink = ({
           }]}
         >
           {text}
-        </HiperLinkText>
+        </HyperLinkText>
       )}
     </Pressable>
   )

@@ -4,21 +4,21 @@ import { RootDrawerNavigationProp, DrawerNavigationProp, } from '@react-navigati
 
 interface RootParamList {
   //auth
-  signin: undefined;
-  authorization: undefined;
-  signup: undefined;
+  Signin: undefined;
+  Authorization: undefined;
+  Signup: undefined;
   //user
-  dashboard: undefined;
-  profile: undefined;
-  player: {
+  Dashboard: undefined;
+  Profile: undefined;
+  Player: {
     url: string;
     duration: number;
   };
-  room: {
+  Room: {
     roomId: string;
   }
-  lessons: undefined;
-  playlistlessons: undefined;
+  Lessons: undefined;
+  Playlistlessons: undefined;
 }
 
 export type RootDrawerNavigationProp<

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { COLORS } from "@shared/theme";
 import { useNavigation } from "@react-navigation/native";
@@ -34,43 +34,44 @@ export const Subject = (props: {
 
     navigate("playlistlessons")
   }
-  const onPressIn = () => {
+  const onPressIn = useCallback(() => {
     // setIsPressed(true);
     Animated.spring(animationsElement, {
       useNativeDriver: false,
       // duration: 200,
       toValue: 15,
     }).start();
-  }
+  }, [])
 
-  const onPressOut = () => {
+  const onPressOut = useCallback(() => {
     // setIsPressed(false);   
-  }
+  }, [])
 
-  const onHoverIn = () => {
+  const onHoverIn = useCallback(() => {
     setOnHover(true);
     Animated.spring(animationsElement, {
       useNativeDriver: false,
       // duration: 200,
       toValue: 10,
     }).start();
-  }
-  const onHoverOut = () => {
+  }, [])
+
+  const onHoverOut = useCallback(() => {
     setOnHover(false);
     Animated.spring(animationsElement, {
       useNativeDriver: false,
       // duration: 200,
       toValue: 0,
     }).start();
-  }
+  }, [])
 
   return (
     <Pressable
       onPressIn={onPressIn}
       onPress={handlerPress}
       onPressOut={onPressOut}
-      onHoverIn={onHoverIn}
-      onHoverOut={onHoverOut}
+    // onHoverIn={onHoverIn}
+    // onHoverOut={onHoverOut}
     >
       <Container
         onHover={onHover}
