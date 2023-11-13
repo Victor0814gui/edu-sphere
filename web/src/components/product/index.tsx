@@ -8,7 +8,7 @@ export function Product(props: {
   index: number
 }) {
   return (
-    <div className={styles.subscription} key={props.index}>
+    <div className={styles.subscription}>
       <header>
         <h2>Spark</h2>
         {props.index === 2 && <Badge>especial</Badge>}

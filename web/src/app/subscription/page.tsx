@@ -18,13 +18,13 @@ export default function Home() {
         <TitleSection title="UPGRADES" />
         <div className={styles.listSubscriptions}>
           {[1, 2, 3].map((product, index) => (
-            <Product index={index} />
+            <Product key={index} index={index} />
           ))}
         </div>
         <TitleSection title="PRODUTOS" />
         <div className={styles.listSubscriptions}>
           {[1, 2, 3, 4, 5, 6].map((product, index) => (
-            <Product index={index} />
+            <Product key={index} index={index} />
           ))}
         </div>
       </div>
