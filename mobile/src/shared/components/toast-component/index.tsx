@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -127,9 +127,9 @@ export function ToastComponent() {
     return <View />
   }
 
-  const renderItem = ({ item }: { item: ToastContentType }) => (
+  const renderItem = useCallback(({ item }: { item: ToastContentType }) => (
     <ToastItem {...item} />
-  )
+  ), [])
 
   return (
     <Container>

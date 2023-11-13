@@ -107,7 +107,7 @@ export const Modal = ({
           control={control}
           rules={{
             required: true,
-            maxLength: 40,
+            maxLength: 60,
             minLength: 4,
           }}
           render={({ field: { onChange, onBlur, value } }) => (

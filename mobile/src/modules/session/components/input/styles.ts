@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
 });
 
-export const InputContainerAndLabel = styled(Animated.View)`
+export const InputContainerAndLabel = styled.View`
   flex-direction: column;
   align-items: flex-start;
 `;

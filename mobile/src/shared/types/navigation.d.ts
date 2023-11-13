@@ -7,17 +7,17 @@ export declare global {
       authorization: undefined;
       signup: undefined;
       //user
-      dashboard: undefined;
-      profile: undefined;
-      player: {
+      Dashboard: undefined;
+      Profile: undefined;
+      Player: {
         url: string;
         duration: string;
       };
-      room: {
+      Room: {
         roomId: string;
       }
-      lessons: undefined;
-      playlistlessons: undefined;
+      Lessons: undefined;
+      Playlistlessons: undefined;
     }
   }
 }

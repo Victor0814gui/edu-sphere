@@ -14,6 +14,10 @@ export function CustomerRoutes() {
   return (
     <Drawer.Navigator
       initialRouteName='Dashboard'
+      useLegacyImplementation
+      screenOptions={{
+        headerShown: false,
+      }}
     >
       <Drawer.Screen name={Customer.Dashboard} component={Dashboard} />
       <Drawer.Screen name={Customer.Profile} component={Profile} />

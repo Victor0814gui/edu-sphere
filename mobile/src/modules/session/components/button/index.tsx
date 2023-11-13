@@ -13,12 +13,14 @@ type InputProps = TouchableOpacityProps & {
   children?: ReactNode;
   text?: string;
   icon?: ElementType;
+  loading?: boolean
 }
 
 export function Button({
   children,
   text,
   icon: Icon = SignIn,
+  loading = false,
   ...rest
 }: InputProps) {
   const { sendResponseToServer } = useAuthContextProvider();
@@ -41,7 +43,8 @@ export function Button({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onHover={onHover}
-      disabled={sendResponseToServer}
+      active={sendResponseToServer}
+    // disabled={sendResponseToServer}
     >
       {sendResponseToServer ? <ActivityIndicator color={COLORS.grey_240} /> : (
         <View style={{

@@ -1,0 +1,28 @@
+.container{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* flex-direction: row; */
+  margin: 71px 0;
+}
+
+
+.line{
+  background-color: #333333;
+  height: 3px;
+  width: 100%;
+  align-self: center;
+flex: 1;
+}
+
+.circle{
+  height: 62px;
+  width: 62px;
+  margin: 0 12px;
+  border-radius: 31px;
+  background-color: #333333;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

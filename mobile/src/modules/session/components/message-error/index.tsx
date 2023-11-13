@@ -8,7 +8,7 @@ import {
   ErrorMessageContainer,
   ErrorMessageContainerText,
 } from "./styles";
-import { COLORS } from "../../../../shared/theme";
+import { COLORS } from "@shared/theme";
 import { Warning } from "phosphor-react-native";
 import { Animated } from "react-native";
 import { color } from "react-native-reanimated";
@@ -30,7 +30,7 @@ export const MessageError = ({ children, type }: {
       default:
         return COLORS.orange_400;
     }
-  }, [])
+  }, [type])
 
 
   const enter = () => {

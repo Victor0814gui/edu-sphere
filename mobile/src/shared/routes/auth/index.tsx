@@ -16,6 +16,7 @@ export function AuthRoutes() {
   return (
     <AuthDrawer.Navigator
       useLegacyImplementation
+      initialRouteName='signin'
       screenOptions={{
         drawerType: "slide",
         headerShown: false,

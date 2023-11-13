@@ -15,7 +15,6 @@ export class LeaveRoomUseCase
   public async execute(params: ILeaveRoomUseCase.Params):
     ILeaveRoomUseCase.Response {
 
-
     const verifyCustomerAlreadyExists = await this.leaveRoomRepository.findRoomById({
       roomId: params.roomId,
     });
@@ -27,7 +26,7 @@ export class LeaveRoomUseCase
     const verifyRoomAlreadyExists =
       await this.leaveRoomRepository.findCustomerById({
         customerId: params.customerId,
-      })
+      });
 
     if (!verifyRoomAlreadyExists?.id) {
       throw new RoomBusinessException("Customer does not exits", 404);
@@ -37,7 +36,7 @@ export class LeaveRoomUseCase
       await this.leaveRoomRepository.leave({
         customerId: params.customerId,
         roomId: params.roomId,
-      })
+      });
 
     return leaveRoomRepositoryResponse;
   }

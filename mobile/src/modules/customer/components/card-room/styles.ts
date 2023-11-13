@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import { COLORS, FONTS } from "../../../../shared/theme";
-
 export const font = StyleSheet.create({
   title: {
     fontFamily: `${FONTS.Poppins.Medium}`,
@@ -50,8 +49,15 @@ export const Container = styled.Pressable<{ pressed: boolean, hover: boolean }>`
 export const ContainerContent = styled.View`
 `;
 
+export const Options = styled.View`
+  padding: 12px 21px;
+`;
+
+export const Text = styled.Text``;
+
 export const Title = styled.Text`
 `;
+
 export const Description = styled.Text`
   color: ${COLORS.grey_680};
   margin: 5px 0;

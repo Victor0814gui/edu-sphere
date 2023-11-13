@@ -5,7 +5,14 @@ import { RectButton } from "react-native-gesture-handler";
 const mobile = Platform.OS === "android";
 
 
-export const ContainerButton = styled(mobile ? RectButton : TouchableHighlight) <{ onHover: boolean }>`
+type ContainerButtonProps = {
+  onHover: boolean;
+  active: boolean;
+}
+
+const component = mobile ? RectButton : TouchableHighlight;
+
+export const ContainerButton = styled(component) <ContainerButtonProps>`
   width: 100%;
   height: 42px;
   margin: 4px 0;

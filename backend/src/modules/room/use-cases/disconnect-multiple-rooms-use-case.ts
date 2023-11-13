@@ -8,12 +8,7 @@ export class DisconnectMultipleRoomsUseCase
 
   public async execute(params: IDisconnectMultipleRoomsUseCase.Params):
     IDisconnectMultipleRoomsUseCase.Response {
-    const { io, socket } = params;
-
     const response = {} as IDisconnectMultipleRoomsUseCase.Response;
-
-    io.of("/admin").in("room1").except("room2").local.disconnectSockets();
-
     return response;
   }
 }

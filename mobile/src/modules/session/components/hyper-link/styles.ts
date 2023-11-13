@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     fontFamily: FONTS.Poppins.Medium,
   },
 })
-export const HiperLinkText = styled.Text`
+export const HyperLinkText = styled.Text`
   font-size: 16px;
   color: ${COLORS.grey_800};
   margin-top: 12px;

@@ -52,11 +52,9 @@ export const Main = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer linking={linking} theme={theme}>
-        <ToastNotificationProvider>
-          <AppProvider>
-            <Router />
-          </AppProvider>
-        </ToastNotificationProvider>
+        <AppProvider>
+          <Router />
+        </AppProvider>
       </NavigationContainer>
     </GestureHandlerRootView>
   )

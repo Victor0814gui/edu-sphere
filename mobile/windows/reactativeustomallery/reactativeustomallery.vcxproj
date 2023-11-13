@@ -151,11 +151,13 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\shared\assets\animations\Lock.json" />
-    <None Include="..\..\src\shared\assets\animations\Message.json" />
-    <None Include="..\..\src\shared\assets\animations\Offline.json" />
-    <None Include="..\..\src\shared\assets\animations\Page-Not-Found.json" />
-    <None Include="..\..\src\shared\assets\animations\Welcome.json" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Lock.json" Name="Lock" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Message.json" Name="Message" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Offline.json" Name="Offline" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Page-Not-Found.json" Name="Page-Not-Found" />
+    <LottieAnimation Include="..\..\src\shared\assets\animations\Welcome.json" Name="Welcome" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
     <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
@@ -201,7 +203,23 @@
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Thin.ttf" />
     <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup Label="LottieReactNativeProps">
+    <LottieReactNativeDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\lottie-react-native\package.json'))\node_modules\lottie-react-native</LottieReactNativeDir>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
+  <ImportGroup Label="LottieReactNativeTargets">
+    <Import Project="$(LottieReactNativeDir)\src\windows\cppwinrt\PropertySheets\LottieGen.Auto.targets" />
+  </ImportGroup>
   <ImportGroup Label="ReactNativeWindowsTargets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.targets')" />
     <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.211028.7\build\native\Microsoft.Windows.CppWinRT.targets')" />

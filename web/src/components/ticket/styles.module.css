@@ -1,0 +1,46 @@
+.ticket{
+  background-color: #2e2e2e;
+  border-radius: 21px;
+  min-width: 550px;
+}
+
+.ticket header{
+  display: flex;
+  align-items: center;
+  padding: 21px;
+}
+
+.separator{
+  border: 2px dashed #1F1F1F;
+  position: relative;
+}
+
+.separator::after{
+  content: " ";
+  height: 40px;
+  width: 20px;
+  top: -20px;
+  background-color: #1F1F1F;
+  right: -2px;
+  border-radius: 20px 0 0 20px;
+  position: absolute;
+}
+
+.separator::before{
+  content: " ";
+  height: 40px;
+  width: 20px;
+  top: -20px;
+  border-radius: 20px;
+  border-radius: 0 20px 20px 0;
+  background-color: #1F1F1F;
+  position: absolute;
+  left: -2px;
+}
+
+.ticket footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 21px;
+}

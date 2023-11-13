@@ -19,7 +19,7 @@ import {
   sharedStorageFreferencies,
   signInNotificationContentTypeUserNotExists,
   authorizationAccountNotification,
-} from "../../utils/toasts-content";
+} from "../../exceptions/messages/authentication";
 import { titleBar } from "react-native-custom-window";
 
 type ErrorMessageType = {
@@ -30,7 +30,7 @@ type ErrorMessageType = {
   }
 }
 
-const ContextAuthContext = createContext<ContextAuthContextType>(
+export const ContextAuthContext = createContext<ContextAuthContextType>(
   {} as ContextAuthContextType
 );
 
@@ -138,7 +138,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const getUserDataStorage = useCallback(async () => {
+  const getUserDataStorage = async () => {
     try {
       setLoadingLocalData(true);
 
@@ -155,7 +155,7 @@ function ContextAuthContextProvider({ children }: { children: ReactNode }) {
     } finally {
       setLoadingLocalData(false);
     }
-  }, [])
+  }
 
   useEffect(() => {
     getUserDataStorage();
