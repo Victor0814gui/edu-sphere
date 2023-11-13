@@ -11,7 +11,8 @@ export function disconnectMultipleRoomsSocketHandler(io: Server, socket: Socket)
   const createRoomUseCase = container.resolve(DisconnectMultipleRoomsUseCase)
 
   async function disconnectAllRooms(request: IRequest, response: IResponse) {
-    const createRoomUseCaseResponse = await createRoomUseCase.execute(request)
+    const createRoomUseCaseResponse = 
+    await createRoomUseCase.execute(request)
     response(createRoomUseCaseResponse)
   }
   socket.on("room:disconnect:all", disconnectAllRooms);

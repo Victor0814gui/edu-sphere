@@ -15,7 +15,6 @@ export class LeaveRoomUseCase
   public async execute(params: ILeaveRoomUseCase.Params):
     ILeaveRoomUseCase.Response {
 
-
     const verifyCustomerAlreadyExists = await this.leaveRoomRepository.findRoomById({
       roomId: params.roomId,
     });

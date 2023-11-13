@@ -1,0 +1,23 @@
+.container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.content{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-top: 41px;
+  gap: 12px;
+}
+
+.listSubscriptions{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cria três colunas com largura igual */
+  max-width: 1240px;
+  margin: 0 auto;
+  gap: 12px;
+}

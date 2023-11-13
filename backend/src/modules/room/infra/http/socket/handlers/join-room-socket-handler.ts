@@ -1,6 +1,6 @@
-import { JoinRoomUseCase } from "@room/use-cases/join-room-use-cases";
-import { Server, Socket } from "socket.io";
 import { container } from "tsyringe";
+import { Server, Socket } from "socket.io";
+import { JoinRoomUseCase } from "@room/use-cases/join-room-use-cases";
 
 
 
@@ -11,7 +11,7 @@ type IRequest = {
 
 type IResponse = (params: any) => void;
 
-export function joinRoomSocketHandler(io: Server, socket: Socket) {
+export function joinRoomSocketHandler(socket: Socket) {
   const joinRoomUseCase = container.resolve(JoinRoomUseCase);
 
   async function join(params: IRequest, response: IResponse) {

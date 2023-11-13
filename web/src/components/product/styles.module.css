@@ -1,0 +1,89 @@
+
+
+.subscription{
+  padding: 21px;
+  margin: 5px;
+  background-color: #333333;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: border 0.4s;
+  position: relative;
+}
+
+.subscription header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subscription h2 {
+  font-size: 32px;
+}
+
+.subscription h4 {
+  color: #d9d9d9;
+  font-weight: 500;
+}
+
+.subscription ul {
+  list-style-type: none;
+}
+
+.subscription ul li{
+  color: #999999;
+}
+
+.subscription:hover{
+  border: 2px solid #25DA67;
+}
+
+.subscription footer button {
+  border: 0;
+  height: 46px;
+  border-radius: 23px;
+  padding: 0 12px;
+  font-family: "Poppins", sans-serif;
+  background-color:#444444;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.2s;
+  color: #d9d9d9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  gap: 12px;
+}
+
+.subscription footer button:hover {
+  color: #222222;
+  background-color:#25DA67;
+}
+
+.subscription footer button:hover svg{
+  fill: #222222;
+}
+
+.subscription .active{
+  background-color:#25DA67;
+  color: #222222;
+}
+
+.subscription .active:hover {
+  background-color:#0f9647;
+}
+
+.subscription footer{
+  display: flex;
+  margin-top: 12px;
+}
+
+.subscription footer h1{
+  font-weight: 500;
+  color: #d9d9d9;
+}
+
+.subscription footer h1 span{
+  font-size: 18px;
+}
