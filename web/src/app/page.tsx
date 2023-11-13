@@ -24,7 +24,7 @@ export default function Home() {
             <Button>CRIAR INSCRIÇÃO</Button>
           </div>
           <div className={styles.previewThumbnailContainer}>
-            <Image className={styles.preview} src="/images/preview.png" alt="preview" />
+            <Image height={590} width={590} className={styles.preview} src="/images/preview.png" alt="preview" />
             {/* <span>
               O título no header com um botão "ver todos" é comumente chamado de "Título de Seção" ou "Cabeçalho de Seção" em um layout de página ou aplicativo. </span> */}
           </div>
@@ -55,7 +55,7 @@ export default function Home() {
         <Separator />
         <TitleSection title="O QUE ESPERAR" />
         <section className={styles.section}>
-          <Image className={styles.preview} src="/images/preview-2.png" alt="preview" />
+          <Image height={590} width={590} className={styles.preview} src="/images/preview-2.png" alt="preview" />
           <div className={styles.productInfo}>
             <div>
               <h2>O que há de novo?</h2>
@@ -89,12 +89,12 @@ export default function Home() {
               <p>Você pode adicionar mais itens dentro do contêiner conforme necessário. Este exemplo é um ponto de partida, e você pode personalizar os estilos e a estrutura conforme desejar.</p>
             </div>
           </div>
-          <Image className={styles.preview} src="/images/preview-3.png" alt="preview" />
+          <Image height={590} width={590} className={styles.preview} src="/images/preview-3.png" alt="preview" />
         </section>
         <Separator />
         <TitleSection title="O QUE HÁ DE NOVO" />
         <section>
-          <Image className={styles.preview} src="/images/preview-4.png" alt="preview" />
+          <Image width={590} height={590} className={styles.preview} src="/images/preview-4.png" alt="preview" />
           <div className={styles.productFeatures}>
             <div>
               <h2>O que há de novo?</h2>
