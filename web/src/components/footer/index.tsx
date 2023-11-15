@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import styles from "./styles.module.css";
 
 export function Footer() {
@@ -27,9 +28,9 @@ export function Footer() {
       </div>
       <div className={styles.separator} />
       <div className={styles.about}>
-        <p>Termos de serviços</p>
-        <p>Politica de privacidade</p>
-        <p>Cookies</p>
+        <Link href="/about/tos">Termos de serviços</Link>
+        <Link href="/about/privacity">Politica de privacidade</Link>
+        <Link href="/about/privacity">Cookies</Link>
       </div>
     </footer>
   )

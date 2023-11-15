@@ -9,6 +9,7 @@ export function Header() {
   return (
     <header className={styles.container}>
       <div className={styles.content}>
+        <h1>EduSphere</h1>
       </div>
       <div className={styles.content}>
         <Link href="/">Home</Link>
