@@ -52,3 +52,7 @@ body {
 h1,h2,h3,h4,p,span,button,input,li{
   font-family: "Poppins",sans-serif;  
 }
+
+a:hover{
+  color: var(--green_500);
+}

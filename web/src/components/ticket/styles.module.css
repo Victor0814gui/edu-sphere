@@ -1,13 +1,21 @@
 .ticket{
   background-color: #2e2e2e;
   border-radius: 21px;
-  min-width: 550px;
-}
-
-.ticket header{
+  min-width: 500px;
+  
   display: flex;
   align-items: center;
-  padding: 21px;
+  justify-content: space-between;
+  padding: 21px 12px;
+  gap: 12px;
+}
+ 
+.content{
+  max-width: 400px;
+}
+
+.content span{
+  color: #d1d1d1;
 }
 
 .separator{
@@ -37,10 +45,15 @@
   position: absolute;
   left: -2px;
 }
+ 
 
-.ticket footer{
+.icon{
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: #414141;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 21px;
+  justify-content: center;
 }

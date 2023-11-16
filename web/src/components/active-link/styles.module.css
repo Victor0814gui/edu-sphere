@@ -1,0 +1,42 @@
+.content a {
+  font-family: 'Poppins';
+  text-decoration: none;
+  color: #d9d9d9;
+  padding: 4px 12px;
+  border-radius: 21px;
+  transition: 0.2s;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.content a svg{
+  color: #d9d9d9;
+}
+
+.content a:hover{
+  color: #25DA67;
+  text-decoration: underline;
+  /* color: #333333; */
+  /* background-color: #25DA67;
+  padding: 4px 21px;
+  border-radius: 21px; */
+  color: #e2e2e2; 
+  background-color: #808080;
+  cursor: pointer;
+}
+
+.content .active {
+  color: #333333; 
+  background-color: #25DA67;
+}
+
+.content svg {
+  fill: #f2f2f2
+}
+
+.content svg:hover {
+  fill: #25DA67
+}
+ 

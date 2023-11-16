@@ -30,7 +30,7 @@ export function Footer() {
       <div className={styles.about}>
         <Link href="/about/tos">Termos de serviços</Link>
         <Link href="/about/privacity">Politica de privacidade</Link>
-        <Link href="/about/privacity">Cookies</Link>
+        <Link href="/about/cookies">Cookies</Link>
       </div>
     </footer>
   )

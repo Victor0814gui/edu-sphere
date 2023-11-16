@@ -13,8 +13,14 @@ export default function Inscriptions() {
     <div className={styles.container}>
       <Header />
       <div className={styles.content}>
-        <h1>Inscriptions</h1>
-        <Ticket />
+        <img src="/images/cart-image.png" className={styles.cartImage} />
+        <div className={styles.listTickets}>
+          <Ticket />
+          <Ticket />
+          <Ticket />
+          <Ticket />
+          <Ticket />
+        </div>
       </div>
       <Footer />
     </div>
