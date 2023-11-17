@@ -8,14 +8,18 @@ import { PurchaseSubscriptionController } from "../controller/purchase-subscript
 import { CancelSubscriptionController } from "../controller/cancel-subscription-controller";
 import { UpdateSubscriptionController } from "../controller/update-subscription-controller";
 import { ListProductsController } from "../controller/list-products-controller";
-
+import { ListSubscriptionController } from "../controller/list-subscriptions-controller";
+import { CreateProductController } from "../controller/create-product-controller";
 
 export const purchasesRoutes = Router();
+
 const webhookListenerStripeController = container.resolve(WebhookListenerStripeController)
 const purchaseSubscriptionController = container.resolve(PurchaseSubscriptionController);
 const cancelSubscriptionController = container.resolve(CancelSubscriptionController);
 const updateSubscriptionController = container.resolve(UpdateSubscriptionController);
 const listProductsController = container.resolve(ListProductsController);
+const listSubscriptionController = container.resolve(ListSubscriptionController);
+const createProductController = container.resolve(CreateProductController);
 
 
 purchasesRoutes.post(
@@ -43,9 +47,27 @@ purchasesRoutes.patch(
 );
 
 purchasesRoutes.get(
-  "/subscriptions/list",
+  "/products/list",
   // customerAuthenticationCheck,
   listProductsController.handler,
+);
+
+purchasesRoutes.get(
+  "/subscriptions/list",
+  // customerAuthenticationCheck,
+  listSubscriptionController.handler,
+);
+
+purchasesRoutes.post(
+  "/products/create",
+  // customerAuthenticationCheck,
+  createProductController.handler,
+);
+
+purchasesRoutes.post(
+  "/subscriptions/create",
+  // customerAuthenticationCheck,
+  createProductController.handler,
 );
 
 purchasesRoutes.use(

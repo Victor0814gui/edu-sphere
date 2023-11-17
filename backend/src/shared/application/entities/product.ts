@@ -1,9 +1,5 @@
-
-enum ProductType {
-  subscription = "subscription",
-  product = "product",
-  upgrade = "upgrade",
-}
+import { ProductStatus } from "./enums/i-product-status";
+import { ProductType } from "./enums/i-product-type";
 
 
 type Product = {
@@ -13,8 +9,8 @@ type Product = {
   createdAt: Date;
   updatedAt: Date | null;
   description: string | null;
-  type: ProductType.product | ProductType.subscription | ProductType.upgrade | string;
-  status: string;
+  type: ProductType;
+  status: ProductStatus;
   startDate?: Date | null;
   endDate?: Date | null;
   paymentMethod?: string | null;

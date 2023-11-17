@@ -1,19 +1,22 @@
-import { stripe } from "@/src/shared/infra/services/stripe";
 import { IListProductsUseCase } from "../interfaces/i-list-products-use-cases";
+import { IListProductsRepository } from "../repositories/i-list-products-repository";
+import { inject, injectable } from "tsyringe";
 
 
 
-
-
+@injectable()
 export class ListProductsUseCase
   implements IListProductsUseCase.Implementation {
-  public async execute(params: IListProductsUseCase.Params):
+  constructor(
+    @inject("ListProductsRepository")
+    private listProductsRepository: IListProductsRepository.Implementation
+  ) { }
+  async execute(params: IListProductsUseCase.Params):
     IListProductsUseCase.Response {
 
-    const listProductsResponse = await stripe.products.list({
-      limit: 3,
-    });
+    const listProductsRepositoryResponse =
+      await this.listProductsRepository.list();
 
-    return listProductsResponse;
+    return listProductsRepositoryResponse;
   }
 }

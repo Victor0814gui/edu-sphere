@@ -1,3 +1,4 @@
+import { ProductStatus } from "@/src/shared/application/entities/enums/i-product-status";
 import { Product } from "../infra/entities/product";
 
 
@@ -11,18 +12,9 @@ enum ProductType {
 export namespace ICreateProductUseCase {
   export type Params = {
     description: string;
-    userId: string;
     name: string;
-    type: string;
-    status: string;
-    startDate: Date;
-    endDate: Date;
-    paymentMethod: string;
+    status: ProductStatus;
     price: number;
-    billingCycle: string;
-    nextBilling: Date;
-    autoRenew: boolean;
-    paymentDetails: string;
   }
 
   export type Response = Promise<Product>

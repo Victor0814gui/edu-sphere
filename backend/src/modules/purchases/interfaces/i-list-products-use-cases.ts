@@ -1,3 +1,4 @@
+import { Product } from "@/src/shared/application/entities/product";
 
 
 declare namespace IListProductsUseCase { };
@@ -7,7 +8,7 @@ namespace IListProductsUseCase {
 }
 
 namespace IListProductsUseCase {
-  export type Response = Promise<{}>
+  export type Response = Promise<Product[]>
 }
 
 

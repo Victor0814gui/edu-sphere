@@ -136,12 +136,12 @@ model Product {
   status         String
   startDate      DateTime?
   endDate        DateTime?
-  paymentMethod  String
+  paymentMethod  String?
   price          Int
-  billingCycle   String
-  nextBilling    DateTime
-  autoRenew      Boolean
-  paymentDetails String
+  billingCycle   String?
+  nextBilling    DateTime?
+  autoRenew      Boolean?
+  paymentDetails String?
   createdAt      DateTime
   updatedAt      DateTime?
   transactions   Transaction[]
@@ -153,6 +153,12 @@ model Attribute {
   id          String  @id
   content     String  @unique
   description String?
+}
+
+model Coupon {
+  id          String @id
+  name        String
+  description String
 }
 
 model Transaction {
