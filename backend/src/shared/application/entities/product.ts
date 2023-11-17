@@ -1,23 +1,30 @@
 
+enum ProductType {
+  subscription = "subscription",
+  product = "product",
+  upgrade = "upgrade",
+}
 
 
-
-
-
-export interface Product {
+type Product = {
   id: string;
   name: string;
+  price: number;
   createdAt: Date;
   updatedAt: Date | null;
-  type: string;
+  description: string | null;
+  type: ProductType.product | ProductType.subscription | ProductType.upgrade | string;
   status: string;
-  startDate: Date;
-  endDate: Date;
-  paymentMethod: string;
-  price: number;
-  billingCycle: string;
-  nextBilling: Date;
-  autoRenew: boolean;
-  // permissions: string[];
-  paymentDetails: string;
+  startDate?: Date | null;
+  endDate?: Date | null;
+  paymentMethod?: string | null;
+  billingCycle?: string | null;
+  nextBilling?: Date | null;
+  autoRenew?: boolean | null;
+  paymentDetails?: string | null;
+}
+
+export {
+  ProductType,
+  Product
 }

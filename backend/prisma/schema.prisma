@@ -132,6 +132,7 @@ model Product {
   id             String        @id
   name           String        @unique
   type           String
+  description    String?
   status         String
   startDate      DateTime?
   endDate        DateTime?
@@ -146,6 +147,12 @@ model Product {
   transactions   Transaction[]
   users          User[]
   permissions    Permission[]  @relation("PermissionToProduct")
+}
+
+model Attribute {
+  id          String  @id
+  content     String  @unique
+  description String?
 }
 
 model Transaction {

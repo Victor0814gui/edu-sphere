@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ICreateSubscriptionRepository } from "../i-create-subscription-repository";
+import { ICreateSubscriptionRepository } from "../i-purchase-subscription-repository";
 
 
 

@@ -1,17 +1,18 @@
 import { Router } from "express";
 import { container } from "tsyringe";
+import { userBusinessMiddleware } from "../middlewares/business-middleware";
 import { customerAuthenticationCheck } from "../middlewares/customer-authentication-check";
+
 import { WebhookListenerStripeController } from "../controller/webhooks-listener-stripe-controller";
-import { CreateSubscriptionController } from "../controller/create-subscription-controller";
+import { PurchaseSubscriptionController } from "../controller/purchase-subscription-controller";
 import { CancelSubscriptionController } from "../controller/cancel-subscription-controller";
 import { UpdateSubscriptionController } from "../controller/update-subscription-controller";
-import { userBusinessMiddleware } from "../middlewares/business-middleware";
 import { ListProductsController } from "../controller/list-products-controller";
 
 
 export const purchasesRoutes = Router();
 const webhookListenerStripeController = container.resolve(WebhookListenerStripeController)
-const createSubscriptionController = container.resolve(CreateSubscriptionController);
+const purchaseSubscriptionController = container.resolve(PurchaseSubscriptionController);
 const cancelSubscriptionController = container.resolve(CancelSubscriptionController);
 const updateSubscriptionController = container.resolve(UpdateSubscriptionController);
 const listProductsController = container.resolve(ListProductsController);
@@ -30,9 +31,9 @@ purchasesRoutes.patch(
 );
 
 purchasesRoutes.post(
-  "/subscription/create",
+  "/subscription/purchase",
   customerAuthenticationCheck,
-  createSubscriptionController.handler,
+  purchaseSubscriptionController.handler,
 );
 
 purchasesRoutes.patch(

@@ -2,13 +2,6 @@ import { Product } from "../infra/entities/product";
 
 
 
-
-
-
-interface Permission {
-  name: string;
-}
-
 declare namespace ICreateProductRepository { }
 
 namespace ICreateProductRepository {
@@ -34,7 +27,6 @@ namespace ICreateProductRepository {
   export type Implementation = {
     findByName: (props: ICreateProductRepository.FindByName.Params)
       => ICreateProductRepository.FindByName.Response;
-
     create: (props: ICreateProductRepository.Create.Params)
       => ICreateProductRepository.Create.Response;
   }

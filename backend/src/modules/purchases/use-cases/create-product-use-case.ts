@@ -5,6 +5,7 @@ import { CustomerBusinessException } from "../../customer/infra/exceptions/busin
 import { ISubscriptionCustomerAccountGateway } from "../../customer/infra/gateways/contracts/i-subscription-customer-accounts-gateway";
 import { ICreateUUIDTokenService } from "../../customer/infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../../customer/infra/services/contracts/i-create-new-date-service";
+import { ProductType } from "@/src/shared/application/entities/product";
 
 
 
@@ -47,6 +48,7 @@ export class CreateProductUseCase implements
     const createProductRepositoryResponse =
       await this.createProductRepository.create({
         ...props,
+        type: ProductType.product,
         id: productId,
         createdAt: productCreatedAt,
         updatedAt: null,
