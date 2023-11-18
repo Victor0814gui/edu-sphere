@@ -3,33 +3,29 @@ import { ISessionPurchaseProductGateway } from "./contracts/i-sessions-purchase-
 
 
 
-
-
 export class SessionPurchaseProductGateway
   implements ISessionPurchaseProductGateway.Implementation {
 
   async execute(props: ISessionPurchaseProductGateway.Params):
     ISessionPurchaseProductGateway.Response {
-    const stripeCheckoutSessionResponse = await stripe.checkout.sessions.create({
-      customer: props.customerId,
-      mode: 'payment',
-      billing_address_collection: "required",
-      line_items: [
-        { price: props.productId, quantity: props.productQuantity }
-      ],
-      success_url: props.successUrl,
-      cancel_url: process.env.cancelUrl,
-      allow_promotion_codes: true,
+    const customerId = props.customerId;
+    const priceId = props.priceId;
+
+    const subscription = await stripe.subscriptions.create({
+      customer: customerId,
+      items: [{
+        price: priceId,
+      }],
+      payment_behavior: 'default_incomplete',
+      expand: ['latest_invoice.payment_intent'],
     });
-    const stripeCheckoutSession = {
-      amountSubtotal: stripeCheckoutSessionResponse.amount_subtotal,
-      amountTotal: stripeCheckoutSessionResponse.amount_total,
-      automaticTax: stripeCheckoutSessionResponse.automatic_tax.status,
-      mode: stripeCheckoutSessionResponse.mode,
-      customerEmail: stripeCheckoutSessionResponse.customer_email,
-      currency: stripeCheckoutSessionResponse.currency,
+
+    const response = {
+      subscriptionId: subscription.id,
+      trialStart: subscription.trial_start,
+      trialEnd: subscription.trial_end,
     }
 
-    return stripeCheckoutSession;
+    return response;
   }
 }

@@ -5,7 +5,7 @@ import { IAuthenticationCustomerRepository } from "../repositories/i-authenticat
 import { CreateSessionTokenSecurity } from "../infra/security/create-session-token-security";
 import { GenerateRefreshToken } from "../infra/security/create-refresh-token-security";
 import { ICompareEncryptDataService } from "../infra/services/contracts/i-compare-encrypt-data-service";
-import { AccountStatusEnum } from "@/src/shared/application/entities/enums/account-status";
+import { AccountStatusEnum } from "@/src/shared/application/entities/enums/i-account-status";
 
 @injectable()
 export class AuthenticationCustomerUserCase

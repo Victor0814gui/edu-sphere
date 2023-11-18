@@ -11,3 +11,4 @@ export type AccountStatus =
   | AccountStatusEnum.Banned
   | AccountStatusEnum.Inactive
   | AccountStatusEnum.Pending
+  | string;
