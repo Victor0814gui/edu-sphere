@@ -1,0 +1,38 @@
+.container{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.content{
+  max-width: 1220px;
+  margin: 0 auto;
+  padding-top: 42px;
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.content ul{
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  gap: 16px;
+  list-style: none;
+}
+
+
+.content ul li {
+  color: #f2f2f2;
+  font-weight: 600;
+}
+
+.content ul p {
+  color: #d9d9d9;
+}

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="App.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="ReactPackageProvider.cpp" />
+    <ClCompile Include="AutolinkedNativeModules.g.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="ReactPackageProvider.h" />
+    <ClInclude Include="AutolinkedNativeModules.g.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Wide310x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\LockScreenLogo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{e48dc53e-40b1-40cb-970a-f89935452892}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+    <Text Include="..\..\src\shared\assets\fonts\Roboto\LICENSE.txt" />
+    <Text Include="..\..\src\shared\assets\fonts\Poppins\OFL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Black.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Bold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Italic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Light.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Medium.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Regular.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-Thin.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Black.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-BlackItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Bold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-BoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraBold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraLight.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ExtraLightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Italic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Light.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-LightItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Medium.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-MediumItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Regular.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-SemiBold.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-SemiBoldItalic.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-Thin.ttf" />
+    <Font Include="..\..\src\shared\assets\fonts\Poppins\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
+    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
+</Project>

@@ -1,3 +1,4 @@
+import { Product } from "@/src/shared/application/entities/product";
 
 
 
@@ -13,7 +14,7 @@ namespace IPurchaseProductToCustomerUseCase {
 }
 
 namespace IPurchaseProductToCustomerUseCase {
-  export type Response = Promise<{}>;
+  export type Response = Promise<Product>;
 }
 
 namespace IPurchaseProductToCustomerUseCase {

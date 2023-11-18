@@ -1,33 +1,26 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateProductUseCase } from "@/src/modules/purchases/use-cases/create-product-use-case";
+import { ProductStatus } from "@/src/shared/application/entities/enums/i-product-status";
 
 
 
 interface CreateProductControllerRequest {
-  userId: string;
-  permissions: string[];
+  description: string;
   name: string;
-  type: string;
-  status: string;
-  startDate: Date;
+  status: ProductStatus;
   endDate: Date;
-  paymentMethod: string;
   price: number;
-  billingCycle: string;
-  nextBilling: Date;
-  autoRenew: boolean;
-  paymentDetails: string;
 }
 
 export class CreateProductController {
   public async handler(request: Request, response: Response) {
     const body = request.body as CreateProductControllerRequest;
-    const createProductUseCaseIntance = container.resolve(CreateProductUseCase);
+    const createProductUseCase = container.resolve(CreateProductUseCase);
 
-    const createProductUseCaseIntanceResponse =
-      await createProductUseCaseIntance.execute(body);
+    const createProductUseCaseResponse =
+      await createProductUseCase.execute(body);
 
-    return response.json(createProductUseCaseIntanceResponse);
+    return response.json(createProductUseCaseResponse);
   }
 }

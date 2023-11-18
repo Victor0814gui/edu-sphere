@@ -1,32 +1,99 @@
 .container{
   display: flex;
-  flex: 1;
+  flex-direction: column; 
 }
 
 .content{
   display: flex;
   flex: 1;
   flex-direction: column;
-  max-width: 1240px;
+  max-width: 1220px;
   margin: 0 auto;
 }
+
+.content section{
+  display: flex;
+  justify-content: space-between;
+  gap: 21px;
+}
+
+.content section:first-child{
+  display: flex;
+  margin-top: 71px;
+}
+
+.info{
+  max-width: 540px;
+}
+
+.title{
+  font-size: 82px;
+  line-height: 68px;
+  font-family: "Poppins";
+  /* color: #25DA67; */
+  margin: 21px 0 41px 0;
+}
+
+
+.description{
+  font-family: "Poppins";
+  font-weight: 500;
+  line-height: 24px;
+  color: #d9d9d9;
+  margin-bottom: 21px;
+}
+
+.previewThumbnailContainer{
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+.previewThumbnailContainer span {
+  font-size: 14px;
+  margin-top: 12px;
+  max-width: 540px;
+}
+
+.preview{
+  width: 590px;
+  object-fit: contain;
+  height: auto;
+}
+
 
 .listSubscriptions{
-  display: flex;
-  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cria três colunas com largura igual */
   max-width: 1240px;
   margin: 0 auto;
+  gap: 12px;
 }
 
-
-.subscription{
-  padding: 21px;
-  margin: 5px;
-  background-color: #333333;
-  border-radius: 5px;
-
+.productInfo h2,.productInfo p{
+ font-family: 'Poppins';
 }
 
-.subscription:hover{
-  border: 1px solid blueviolet;
+.productInfo h2{
+  font-size: 28px;
+}
+
+.productInfo p{
+  color: #d9d9d9;
+}
+
+.productQuestions{
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.productQuestions div{
+  background-color:#333333;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.productFeatures div{
+  padding: 12px 0;
 }

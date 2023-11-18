@@ -5,6 +5,9 @@ import { CustomerBusinessException } from "../../customer/infra/exceptions/busin
 import { ISubscriptionCustomerAccountGateway } from "../../customer/infra/gateways/contracts/i-subscription-customer-accounts-gateway";
 import { ICreateUUIDTokenService } from "../../customer/infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../../customer/infra/services/contracts/i-create-new-date-service";
+import { ProductType } from "@/src/shared/application/entities/product";
+import { IConvertStringInDate } from "../infra/services/interfaces/i-convert-string-in-date";
+import { ProductTypeEnum } from "@/src/shared/application/entities/enums/i-product-type";
 
 
 
@@ -47,9 +50,9 @@ export class CreateProductUseCase implements
     const createProductRepositoryResponse =
       await this.createProductRepository.create({
         ...props,
+        type: ProductTypeEnum.product,
         id: productId,
         createdAt: productCreatedAt,
-        updatedAt: null,
       });
 
     return createProductRepositoryResponse;

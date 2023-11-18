@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.container span{
+  padding: 3px 12px;
+  background-color: #00B0FF;
+  border-radius: 12px;
+  margin-right: 16px;
+  color: #2e2e2e;
+  font-size: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container h1{
+  font-size: 38px;
+}

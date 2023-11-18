@@ -133,7 +133,7 @@ userRoutes.post(
 userRoutes.use(
   "/",
   customerBusinessMiddleware,
-  gatewayMiddleware,
+  // gatewayMiddleware,
 );
 
 

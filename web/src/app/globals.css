@@ -26,6 +26,12 @@
   --grey_970: #f8f8f8;
 }
 
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -34,11 +40,19 @@
   }
 }
 
+img{
+  max-width: 100%;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--grey_120);
 }
 
-h1,h2,h3,h4,p,span,button,li{
-  font-family: "Roboto",sans-serif;  
+h1,h2,h3,h4,p,span,button,input,li{
+  font-family: "Poppins",sans-serif;  
+}
+
+a:hover{
+  color: var(--green_500);
 }

@@ -34,7 +34,6 @@ io.on("connection", (socket: Socket) => {
 });
 
 
-app.use(captureErrorsMiddlewrare);
 
 export {
   httpServer

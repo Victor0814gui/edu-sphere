@@ -1,3 +1,4 @@
+import { Room } from "@/src/shared/application/entities/room";
 
 
 
@@ -6,11 +7,11 @@ declare namespace IDisconnectMultipleRoomsUseCase { };
 
 
 namespace IDisconnectMultipleRoomsUseCase {
-  export type Params = {};
+  export type Params = string[];
 }
 
 namespace IDisconnectMultipleRoomsUseCase {
-  export type Response = Promise<{}>;
+  export type Response = Promise<Room[]>;
 }
 
 namespace IDisconnectMultipleRoomsUseCase {
