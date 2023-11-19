@@ -1,5 +1,3 @@
-
-
 import { Header } from '@src/components/header';
 import styles from './styles.module.css';
 import { Footer } from '@src/components/footer';

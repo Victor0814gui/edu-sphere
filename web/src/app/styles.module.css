@@ -1,6 +1,7 @@
 .container{
   display: flex;
   flex-direction: column; 
+  padding: 0 14px;
 }
 
 .content{
@@ -9,6 +10,15 @@
   flex-direction: column;
   max-width: 1220px;
   margin: 0 auto;
+}
+
+@media (max-width: 720px){
+  .content section:first-child{
+    flex-direction: column;
+    display: flex;
+    margin-top: 71px;
+    align-items: center;
+  }
 }
 
 .content section{
@@ -68,6 +78,14 @@
   max-width: 1240px;
   margin: 0 auto;
   gap: 12px;
+}
+
+@media (max-width: 720px){
+  .listSubscriptions{
+    display: flex;
+    flex-direction: row;
+  }
+  
 }
 
 .productInfo h2,.productInfo p{

@@ -26,8 +26,6 @@ export default function Home() {
           </div>
           <div className={styles.previewThumbnailContainer}>
             <Image height={590} width={590} className={styles.preview} src="/images/preview.png" alt="preview" />
-            {/* <span>
-              O título no header com um botão "ver todos" é comumente chamado de "Título de Seção" ou "Cabeçalho de Seção" em um layout de página ou aplicativo. </span> */}
           </div>
         </section>
         <Separator />
@@ -35,7 +33,7 @@ export default function Home() {
         <section>
           <div className={styles.listSubscriptions}>
             {[1, 2, 3].map((product, index) => (
-              <Plan premium={index === 1} />
+              <Plan premium={index === 1} key={index} />
             ))}
           </div>
         </section>

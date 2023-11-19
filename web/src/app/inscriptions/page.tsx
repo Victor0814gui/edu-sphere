@@ -5,6 +5,7 @@ import styles from "./styles.module.css"
 import { Ticket } from "@src/components/ticket"
 import { Header } from "@src/components/header"
 import { Footer } from "@src/components/footer"
+import Image from "next/image"
 
 
 export default function Inscriptions() {
@@ -13,7 +14,7 @@ export default function Inscriptions() {
     <div className={styles.container}>
       <Header />
       <div className={styles.content}>
-        <img src="/images/cart-image.png" className={styles.cartImage} />
+        <Image width={520} height={520} src="/images/cart-image.png" className={styles.cartImage} alt={"preview"} />
         <div className={styles.listTickets}>
           <Ticket />
           <Ticket />
