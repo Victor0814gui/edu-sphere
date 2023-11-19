@@ -1,0 +1,28 @@
+.container {
+  height: 42px;
+  min-width: 320px;
+  border-radius: 21px;
+  background-color: #2e2e2e;
+  border: 2px solid transparent;
+  padding: 0 16px;
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+}
+
+.container:hover{
+  border: 2px solid #25DA67;
+}
+
+.input {
+  color: #d9d9d9;
+  font-family: 'Poppins',sans-serif;
+  font-size: 16px;
+  padding: 0 7px;
+  background-color: transparent;
+  display: flex;
+  border: 0;
+  flex: 1;
+  align-self: stretch;
+}

@@ -14,6 +14,10 @@ export function Badge({
 }: BadgeProps) {
 
   return (
-    <span className={styles.container} style={{ backgroundColor: color }}>{children}</span>
+    <span
+      className={styles.container}
+      style={{ backgroundColor: color }}>
+      {children}
+    </span>
   )
 }

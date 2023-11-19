@@ -1,0 +1,66 @@
+.container div {
+  padding: 21px;
+  margin: 5px;
+  background-color: #2e2e2e;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: border 0.4s;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+ 
+
+.container .premium{
+  border: 2px solid #25DA67;
+}
+
+.container div h2 {
+  font-size: 32px;
+  font-family: 'Poppins',sans-serif;
+}
+
+.container div h4 {
+  color: #d9d9d9;
+  font-family: 'Poppins',sans-serif;
+}
+
+.container div ul {
+  list-style-type: none;
+}
+
+.container div ul li{
+  color: #999999;
+}
+
+.container div:hover{
+  border: 2px solid #d9d9d9;
+}
+
+.container div button {
+  border: 0;
+  width: 100%;
+  padding: 8px 28px;
+  font-family: "Poppins", sans-serif;
+  background-color:#444444;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.2s;
+  color: #999999;
+}
+
+.container div .active{
+  background-color:#25DA67;
+  color: #222222;
+}
+
+.container div .active:hover {
+  background-color:#0f9647;
+}
+
+.container div button:hover {
+  background-color:#333333;
+}

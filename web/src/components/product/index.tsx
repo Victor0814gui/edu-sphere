@@ -5,7 +5,7 @@ import { Badge } from "../badge"
 
 
 export function Product(props: {
-  index: number
+  index: number,
 }) {
   return (
     <div className={styles.subscription}>

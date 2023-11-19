@@ -1,11 +1,7 @@
-import { AccountStatusEnum } from "./enums/account-status";
+import { AccountStatus, AccountStatusEnum } from "./enums/i-account-status";
 import { Permission } from "./permission";
 import { Role } from "./role";
 
-type Status = AccountStatusEnum.Active
-  | AccountStatusEnum.Banned
-  | AccountStatusEnum.Inactive
-  | AccountStatusEnum.Pending;
 
 
 export interface User {
@@ -14,7 +10,7 @@ export interface User {
   email: string;
   password: string;
   studentList?: any[]
-  status: string;
+  status: AccountStatus;
   createdAt: Date;
   updatedAt: Date | null;
   avatarUrl: string;

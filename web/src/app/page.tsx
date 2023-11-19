@@ -8,6 +8,7 @@ import { Badge } from "@src/components/badge";
 import { Separator } from "@src/components/separator";
 import { Footer } from "@src/components/footer";
 import { TitleSection } from "@src/components/title-section";
+import { Plan } from "@src/components/plan";
 
 export default function Home() {
 
@@ -25,8 +26,6 @@ export default function Home() {
           </div>
           <div className={styles.previewThumbnailContainer}>
             <Image height={590} width={590} className={styles.preview} src="/images/preview.png" alt="preview" />
-            {/* <span>
-              O título no header com um botão "ver todos" é comumente chamado de "Título de Seção" ou "Cabeçalho de Seção" em um layout de página ou aplicativo. </span> */}
           </div>
         </section>
         <Separator />
@@ -34,21 +33,7 @@ export default function Home() {
         <section>
           <div className={styles.listSubscriptions}>
             {[1, 2, 3].map((product, index) => (
-              <div className={styles.subscription} key={index}>
-                <h2>Spark</h2>
-                <h4>Este é o plano perfeito para aqueles que estão começando. Desfrute de uma comunicação rápida e confiável com amigos, familiares.</h4>
-                <ul>
-                  Todos os recursos do plano Starter
-                  <li>Salas de voz exclusivas</li>
-                  <li>Streaming de áudio e vídeo em alta qualidade (1080p)</li>
-                  <li>Histórico de mensagens expandido (até 90 dias)</li>
-                  <li>Grupos com até 100 membros</li>
-                  <li>Temas exclusivos e emojis personalizados</li>
-                </ul>
-                {index === 1
-                  ? <button className={styles.active}>Comprar</button>
-                  : <button>Comprar</button>}
-              </div>
+              <Plan premium={index === 1} key={index} />
             ))}
           </div>
         </section>

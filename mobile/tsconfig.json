@@ -1,20 +1,4 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json" /* Recommended React Native TSConfig base */,
-  "compilerOptions": {
-    "jsx": "react-native",
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
-    "types": ["styled-components-react-native", "jest"],
-    /* Completeness */
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["./*"],
-      "tests": ["tests/*"],
-      "@session/*": ["src/modules/session/*"],
-      "@customer/*": ["src/modules/customer/*"],
-      "@rooms/*": ["src/modules/rooms/*"],
-      "@shared/*": ["src/shared/*"]
-    }
-  }
+  "compilerOptions": {},
+  "extends": "expo/tsconfig.base"
 }

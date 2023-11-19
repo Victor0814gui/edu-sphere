@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IPurchaseProductToCustomerUseCase } from "../interfaces/i-purchase-product-to-customer-use-case";
 import { IPurchaseProductToCustomerRepository } from "../repositories/i-purchase-product-to-customer-repository";
 import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
-import { ISessionPurchaseProductGateway } from "../../customer/infra/gateways/contracts/i-sessions-purchase-product-gateway";
+import { ISessionPurchaseProductGateway } from "@customer/infra/gateways/contracts/i-sessions-purchase-product-gateway";
 
 
 @injectable()
@@ -36,22 +36,20 @@ export class PurchaseProductToCustomerUseCase
     }
 
     const purchaseProductToCustomerResponse =
-      await this.purchaseProductToCustomerRepository.findCustomer({
-        customerId: params.customerId
+      await this.purchaseProductToCustomerRepository.purchase({
+        customerId: params.customerId,
+        productId: params.productId,
       });
 
-    // const sessionPurchaseProductGatewayResponse =
-    //   await this.sessionPurchaseProductGateway.execute({
-    //     successUrl: "",
-    //     customerId: "",
-    //     productId: "",
-    //     productQuantity: 0,
-    //     cancelUrl: ""
-    //   });
+    const sessionPurchaseProductGatewayResponse =
+      await this.sessionPurchaseProductGateway.execute({
+        customerId: params.customerId,
+        priceId: params.productId,
+      });
 
-    // if (!sessionPurchaseProductGateway?.customerEmail) {
-    //   throw new PurchaseBusinessException("Error processing your payment", 500);
-    // }
+    if (!sessionPurchaseProductGatewayResponse?.subscriptionId) {
+      throw new PurchaseBusinessException("Error processing your payment", 500);
+    }
 
     return purchaseProductToCustomerResponse;
   };
