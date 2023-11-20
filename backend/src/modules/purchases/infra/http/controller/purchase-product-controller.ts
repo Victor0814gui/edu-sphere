@@ -1,9 +1,9 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
-import { PurchaseProductToCustomerUseCase } from "../../../use-cases/purchase-product-to-customer-use-case";
+import { PurchaseProductToCustomerUseCase } from "@purchases/use-cases/purchase-product-to-customer-use-case";
 
 type PurchaseProductControllerParams = {
-  productId: string[];
+  productId: string;
   customerId: string;
 }
 

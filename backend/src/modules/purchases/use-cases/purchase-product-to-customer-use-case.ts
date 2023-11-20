@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
+import { ISessionPurchaseProductGateway } from "@purchases/infra/gateways/contracts/i-sessions-purchase-product-gateway";
 import { IPurchaseProductToCustomerUseCase } from "@purchases/interfaces/i-purchase-product-to-customer-use-case";
 import { IPurchaseProductToCustomerRepository } from "@purchases/repositories/i-purchase-product-to-customer-repository";
-import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
-import { ISessionPurchaseProductGateway } from "@customer/infra/gateways/contracts/i-sessions-purchase-product-gateway";
 
 
 @injectable()
@@ -12,7 +12,7 @@ export class PurchaseProductToCustomerUseCase
     @inject("PurchaseProductToCustomerRepository")
     private purchaseProductToCustomerRepository: IPurchaseProductToCustomerRepository.Implementation,
     @inject("SessionPurchaseProductGateway")
-    private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation
+    private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation,
   ) { }
   public async execute(params: IPurchaseProductToCustomerUseCase.Params):
     IPurchaseProductToCustomerUseCase.Response {
@@ -43,10 +43,9 @@ export class PurchaseProductToCustomerUseCase
 
     const sessionPurchaseProductGatewayResponse =
       await this.sessionPurchaseProductGateway.execute({
-        amount: 3000,
+        amount: verifyProductAlreadyExists.price,
       });
 
-    console.log({ sessionPurchaseProductGatewayResponse });
     if (!sessionPurchaseProductGatewayResponse?.transactionId) {
       throw new PurchaseBusinessException("Error processing your payment", 500);
     }
