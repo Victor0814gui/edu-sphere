@@ -1,5 +1,6 @@
 import { stripe } from "@/src/shared/infra/services/stripe";
 import { ISessionPurchaseProductGateway } from "./contracts/i-sessions-purchase-product-gateway";
+import AppErrors from "@/src/shared/infra/errors/app-errors";
 
 
 
@@ -8,22 +9,20 @@ export class SessionPurchaseProductGateway
 
   async execute(props: ISessionPurchaseProductGateway.Params):
     ISessionPurchaseProductGateway.Response {
-    const customerId = props.customerId;
-    const priceId = props.priceId;
 
-    const subscription = await stripe.subscriptions.create({
-      customer: customerId,
-      items: [{
-        price: priceId,
-      }],
-      payment_behavior: 'default_incomplete',
-      expand: ['latest_invoice.payment_intent'],
+    if (!props.amount) {
+      throw new AppErrors("amount does not exits", 404);
+    }
+
+    const charge = await stripe.charges.create({
+      amount: 2000,
+      currency: 'brl',
+      source: 'tok_visa',
+      description: 'My First Test Charge (created for API docs at https://www.stripe.com/docs/api)',
     });
 
     const response = {
-      subscriptionId: subscription.id,
-      trialStart: subscription.trial_start,
-      trialEnd: subscription.trial_end,
+      transactionId: charge.id,
     }
 
     return response;

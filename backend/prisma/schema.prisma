@@ -162,16 +162,16 @@ model Coupon {
 }
 
 model Transaction {
-  id             String   @id
+  id             String    @id
   userId         String
   paymentIntent  String?
   subscriptionId String?
   amount         Int
   currency       String
   status         String
-  createdAt      DateTime @default(now())
-  subscription   Product? @relation(fields: [subscriptionId], references: [id])
-  user           User     @relation(fields: [userId], references: [id])
+  createdAt      DateTime  @default(now())
+  user           User      @relation(fields: [userId], references: [id])
+  products       Product[]
 }
 
 model Penalty {

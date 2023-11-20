@@ -1,14 +1,13 @@
 type ProductInfo = {
-  subscriptionId: string | null;
-  trialStart: number | null;
-  trialEnd: number | null;
+  transactionId: string | null;
 }
 
 export namespace ISessionPurchaseProductGateway {
 
   export type Params = {
-    customerId: string;
-    priceId: string;
+    // customerId: string;
+    // priceId: string;
+    amount: number;
   }
 
   export type Response = Promise<ProductInfo | null>;

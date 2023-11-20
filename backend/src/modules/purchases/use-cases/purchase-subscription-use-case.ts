@@ -1,9 +1,8 @@
-import { stripe } from "@/src/shared/infra/services/stripe";
-import { IPurchaseSubscriptionUseCase } from "../interfaces/i-purchase-subscription-use-case";
-import { IPurchaseSubscriptionRepository } from "../repositories/i-purchase-subscription-repository";
 import { inject, injectable } from "tsyringe";
-import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
-import Stripe from "stripe";
+import { stripe } from "@/src/shared/infra/services/stripe";
+import { IPurchaseSubscriptionUseCase } from "@purchases/interfaces/i-purchase-subscription-use-case";
+import { IPurchaseSubscriptionRepository } from "@purchases/repositories/i-purchase-subscription-repository";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
 
 
 @injectable()

@@ -32,7 +32,7 @@ namespace IPurchaseProductToCustomerRepository {
     }
 
     //@ts-check testar funcionalidade
-    export type Response = Promise<any>;
+    export type Response = Promise<Product>;
   }
 }
 

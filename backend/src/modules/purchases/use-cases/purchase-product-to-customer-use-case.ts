@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { IPurchaseProductToCustomerUseCase } from "../interfaces/i-purchase-product-to-customer-use-case";
-import { IPurchaseProductToCustomerRepository } from "../repositories/i-purchase-product-to-customer-repository";
-import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
+import { IPurchaseProductToCustomerUseCase } from "@purchases/interfaces/i-purchase-product-to-customer-use-case";
+import { IPurchaseProductToCustomerRepository } from "@purchases/repositories/i-purchase-product-to-customer-repository";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
 import { ISessionPurchaseProductGateway } from "@customer/infra/gateways/contracts/i-sessions-purchase-product-gateway";
 
 
@@ -43,11 +43,11 @@ export class PurchaseProductToCustomerUseCase
 
     const sessionPurchaseProductGatewayResponse =
       await this.sessionPurchaseProductGateway.execute({
-        customerId: params.customerId,
-        priceId: params.productId,
+        amount: 3000,
       });
 
-    if (!sessionPurchaseProductGatewayResponse?.subscriptionId) {
+    console.log({ sessionPurchaseProductGatewayResponse });
+    if (!sessionPurchaseProductGatewayResponse?.transactionId) {
       throw new PurchaseBusinessException("Error processing your payment", 500);
     }
 

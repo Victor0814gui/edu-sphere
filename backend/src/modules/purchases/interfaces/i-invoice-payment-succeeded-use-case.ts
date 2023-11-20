@@ -1,16 +1,22 @@
+import { Transaction } from "@/src/shared/application/entities/transaction";
 import Stripe from "stripe";
 
 
-type StripeType = Stripe.Response<Stripe.Subscription>;
 
 declare namespace IInvoicePaymentSucceededUseCase { }
 
 namespace IInvoicePaymentSucceededUseCase {
-  export type Params = Stripe.Event;
+  export type Params = {
+    userId: string;
+    paymentIntent?: string | null
+    subscriptionId?: string | null
+    amount: number;
+    currency: string
+  };
 }
 
 namespace IInvoicePaymentSucceededUseCase {
-  export type Response = Promise<StripeType | undefined>;
+  export type Response = Promise<Transaction | null>;
 }
 
 namespace IInvoicePaymentSucceededUseCase {
@@ -19,6 +25,5 @@ namespace IInvoicePaymentSucceededUseCase {
       => IInvoicePaymentSucceededUseCase.Response;
   }
 }
-
 
 export { IInvoicePaymentSucceededUseCase };

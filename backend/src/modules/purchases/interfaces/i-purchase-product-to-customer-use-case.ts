@@ -14,7 +14,7 @@ namespace IPurchaseProductToCustomerUseCase {
 }
 
 namespace IPurchaseProductToCustomerUseCase {
-  export type Response = Promise<Product>;
+  export type Response = Promise<{}>;
 }
 
 namespace IPurchaseProductToCustomerUseCase {
