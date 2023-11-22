@@ -9,7 +9,6 @@ interface CreateProductControllerRequest {
   description: string;
   name: string;
   status: ProductStatus;
-  endDate: Date;
   price: number;
 }
 

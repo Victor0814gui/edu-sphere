@@ -15,6 +15,8 @@ export class ConvertStringInDate
       const dataAtual = new Date(); // Obtém a data atual
       const dataConvertida = new Date(dataAtual.getTime() + numeroDias * 24 * 60 * 60 * 1000); // Adiciona os dias em milissegundos
 
+      console.log(dataConvertida);
+
       return dataConvertida;
     } else {
       throw new Error('Formato inválido. Use o formato "30d".');

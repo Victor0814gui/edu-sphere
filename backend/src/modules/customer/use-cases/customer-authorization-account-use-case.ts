@@ -1,9 +1,8 @@
-import { verify } from "jsonwebtoken";
 import { injectable, inject } from "tsyringe";
-import { AccountStatusEnum } from "../interfaces/enums/account-status-enum";
-import { ICustomerAuthorizationAccountUseCase } from "../interfaces/i-customer-authorization-account-use-case";
-import { ICustomerAuthorizationAccountRepository } from "../repositories/i-customer-authorization-account-repository";
+import { AccountStatusEnum } from "@customer/interfaces/enums/account-status-enum";
 import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
+import { ICustomerAuthorizationAccountUseCase } from "@customer/interfaces/i-customer-authorization-account-use-case";
+import { ICustomerAuthorizationAccountRepository } from "@customer/repositories/i-customer-authorization-account-repository";
 
 
 

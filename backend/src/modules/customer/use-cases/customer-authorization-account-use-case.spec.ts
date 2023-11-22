@@ -1,8 +1,8 @@
+import { randomUUID } from "crypto";
 import { Customer } from "@/src/shared/application/entities/user";
 import { ICustomerAuthorizationAccountUseCase } from "../interfaces/i-customer-authorization-account-use-case";
 import { ICustomerAuthorizationAccountRepository } from "../repositories/i-customer-authorization-account-repository";
 import { CustomerAuthorizationAccountUseCase } from "./customer-authorization-account-use-case";
-import { randomUUID } from "crypto";
 
 let customer: Customer;
 let token: string;
@@ -12,7 +12,7 @@ let customerAuthorizationAccountRepositoryFake: ICustomerAuthorizationAccountRep
 describe("Authorization Customer Account", () => {
   it("It should be possible to authorize customer account", async () => {
 
-    customerAuthorizationAccountRepositoryFake = new CustomerAuthorizationAccountRepositoryFake();
+    customerAuthorizationAccountRepositoryFake = new CreateCustomerAccountRepositoryFake();
     customerAuthorizationAccountUseCase = new CustomerAuthorizationAccountUseCase(
       customerAuthorizationAccountRepositoryFake,
     );
