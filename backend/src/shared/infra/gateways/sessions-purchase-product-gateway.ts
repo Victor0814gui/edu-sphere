@@ -15,7 +15,7 @@ export class SessionPurchaseProductGateway
     }
 
     const charge = await stripe.charges.create({
-      amount: 2000,
+      amount: props.amount,
       currency: 'brl',
       source: 'tok_visa',
       description: 'My First Test Charge (created for API docs at https://www.stripe.com/docs/api)',
