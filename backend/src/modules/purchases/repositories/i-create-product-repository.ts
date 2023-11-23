@@ -25,6 +25,7 @@ namespace ICreateProductRepository {
       status: ProductStatus,
       type: ProductType,
       createdAt: Date,
+      thumbnailUrl: string;
     };
 
     export type Response = Promise<Product>

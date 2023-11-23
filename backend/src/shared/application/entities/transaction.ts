@@ -1,3 +1,4 @@
+import { TransactionStatus } from "./enums/i-transaction-status";
 
 
 
@@ -8,6 +9,6 @@ export type Transaction = {
   subscriptionId?: string | null
   amount: number;
   currency: string
-  status: string;
+  status: TransactionStatus;
   createdAt: Date;
 }

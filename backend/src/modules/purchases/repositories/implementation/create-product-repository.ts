@@ -24,7 +24,7 @@ export class CreateProductRepository
     ICreateProductRepository.Create.Response {
 
     const createProductResponse = await database.product.create({
-      data: props,
+      data: props
     })
 
     return createProductResponse;

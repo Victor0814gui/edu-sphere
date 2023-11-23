@@ -21,6 +21,15 @@ export class PurchaseProductToCustomerRepository
     return findProductResponse;
   };
 
+  public async transaction(params: IPurchaseProductToCustomerRepository.Transaction.Params):
+    IPurchaseProductToCustomerRepository.Transaction.Response {
+
+    const findProductResponse = await database.transaction.create({
+      data: params,
+    })
+
+    return findProductResponse;
+  };
 
   public async purchase(props: IPurchaseProductToCustomerRepository.Purchase.Params):
     IPurchaseProductToCustomerRepository.Purchase.Response {

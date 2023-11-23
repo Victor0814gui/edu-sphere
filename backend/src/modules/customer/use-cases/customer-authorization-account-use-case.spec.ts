@@ -12,7 +12,7 @@ let customerAuthorizationAccountRepositoryFake: ICustomerAuthorizationAccountRep
 describe("Authorization Customer Account", () => {
   it("It should be possible to authorize customer account", async () => {
 
-    customerAuthorizationAccountRepositoryFake = new CreateCustomerAccountRepositoryFake();
+    customerAuthorizationAccountRepositoryFake = new CustomerAuthorizationAccountRepositoryFake();
     customerAuthorizationAccountUseCase = new CustomerAuthorizationAccountUseCase(
       customerAuthorizationAccountRepositoryFake,
     );

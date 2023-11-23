@@ -6,17 +6,19 @@ import { ListProductsUseCase } from "./list-products-use-cases"
 
 
 
-let products: Product[];
+const products = [] as Product[];
 let listProductsUseCase: IListProductsUseCase.Implementation
 let listProductsRepository: IListProductsRepository.Implementation
 
 describe("List all products", () => {
   it("It should be possible to list all products", async () => {
 
-    listProductsRepository = new ListProductsRepository();
-    listProductsUseCase = new ListProductsUseCase(
-      listProductsRepository,
-    );
+    beforeEach(() => {
+      listProductsRepository = new ListProductsRepository();
+      listProductsUseCase = new ListProductsUseCase(
+        listProductsRepository,
+      );
+    })
 
     expect(listProductsUseCase)
       .toEqual(products)

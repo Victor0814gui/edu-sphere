@@ -7,6 +7,7 @@ type Product = {
   name: string;
   price: number;
   createdAt: Date;
+  thumbnailUrl: string | null;
   updatedAt: Date | null;
   description: string | null;
   type: ProductType;

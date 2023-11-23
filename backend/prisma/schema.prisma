@@ -138,6 +138,7 @@ model Product {
   endDate        DateTime?
   paymentMethod  String?
   price          Int
+  thumbnailUrl   String?
   billingCycle   String?
   nextBilling    DateTime?
   autoRenew      Boolean?

@@ -1,12 +1,10 @@
-import { inject, injectable } from "tsyringe";
-import { ProductTypeEnum } from "@/src/shared/application/entities/enums/i-product-type";
-import { ICreateProductUseCase } from "../interfaces/i-create-product-use-case";
-import { ICreateProductRepository } from "../repositories/i-create-product-repository";
-import { ISubscriptionCustomerAccountGateway } from "../../customer/infra/gateways/contracts/i-subscription-customer-accounts-gateway";
-import { ICreateUUIDTokenService } from "../../customer/infra/services/contracts/i-create-uuid-token-service";
-import { ICreateNewDateService } from "../../customer/infra/services/contracts/i-create-new-date-service";
-import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
 import { randomUUID } from "crypto";
+import { inject, injectable } from "tsyringe";
+import { ProductTypeEnum } from "@shared/application/entities/enums/i-product-type";
+import { ICreateProductUseCase } from "@purchases/interfaces/i-create-product-use-case";
+import { ICreateProductRepository } from "@purchases/repositories/i-create-product-repository";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
+import { ISubscriptionCustomerAccountGateway } from "@shared/infra/gateways/contracts/i-subscription-customer-accounts-gateway";
 
 
 

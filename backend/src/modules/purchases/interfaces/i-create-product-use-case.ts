@@ -11,6 +11,7 @@ enum ProductType {
 
 export namespace ICreateProductUseCase {
   export type Params = {
+    thumbnailUrl: string;
     description: string;
     name: string;
     status: ProductStatus;
