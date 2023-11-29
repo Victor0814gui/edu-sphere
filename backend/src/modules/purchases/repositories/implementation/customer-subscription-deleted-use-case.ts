@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ICustomerSubscriptionDeletedRepository } from "../i-customer-subscription-deleted-use-case";
+import { ICustomerSubscriptionDeletedRepository } from "../i-customer-subscription-deleted-repository";
 
 
 

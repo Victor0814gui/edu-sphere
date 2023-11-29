@@ -35,18 +35,12 @@ export class PurchaseSubscriptionUseCase
     }
 
 
-    try {
-      await stripe.subscriptions.create({
-        customer: params.customerId,
-        items: [{
-          price: params.subscriptionId,
-        }],
-        payment_behavior: 'default_incomplete',
-        expand: ['latest_invoice.payment_intent'],
-      });
-    } catch (err) {
-      throw new PurchaseBusinessException("internal server error - Gateway error", 500)
-    }
+    const product = await stripe.subscriptions.retrieve(
+      params.subscriptionId,
+    );
+
+
+    //adicionar intenção de pagamento que deve ser confirmada no client
 
     const PurchaseSubscriptionRepositoryResponse =
       await this.purchaseSubscriptionRepository.updateSubscription({

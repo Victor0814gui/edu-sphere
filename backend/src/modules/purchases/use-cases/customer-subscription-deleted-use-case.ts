@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { ICustomerSubscriptionDeletedRepository } from "../repositories/i-customer-subscription-deleted-use-case";
+import { ICustomerSubscriptionDeletedRepository } from "../repositories/i-customer-subscription-deleted-repository";
 import { ICustomerSubscriptionDeletedUseCase } from "../interfaces/i-customer-subscription-deleted-use-case";
 
 @injectable()

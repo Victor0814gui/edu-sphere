@@ -2,7 +2,10 @@ type ProductInfo = {
   transactionId: string | null;
 }
 
-export namespace ISessionPurchaseProductGateway {
+
+declare namespace ISessionPurchaseProductGateway { }
+
+namespace ISessionPurchaseProductGateway {
   export type Params = {
     // customerId: string;
     // priceId: string;
@@ -10,9 +13,14 @@ export namespace ISessionPurchaseProductGateway {
   }
 
   export type Response = Promise<ProductInfo | null>;
+}
 
+
+namespace ISessionPurchaseProductGateway {
   export type Implementation = {
-    execute: (props: ISessionPurchaseProductGateway.Params) =>
-      ISessionPurchaseProductGateway.Response
+    execute: (props: ISessionPurchaseProductGateway.Params)
+      => ISessionPurchaseProductGateway.Response
   }
 }
+
+export { ISessionPurchaseProductGateway };

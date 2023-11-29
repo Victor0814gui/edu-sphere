@@ -2,12 +2,19 @@ import { Permission, Role } from "@prisma/client";
 
 
 interface IProduct {
-  productId: string;
-  price: number;
-  quantity: number;
-  recurrence: 'day' | 'month' | 'week' | 'year';
-  name: string;
-  description: string;
+  productId: string | null;
+  price: number | null;
+  quantity: number | null;
+  recurrence: 'day' | 'month' | 'week' | 'year' | null;
+  name: string | null;
+  description: string | null;
+}
+
+type ISubscription = {
+  currency: string | null
+  description: string | null
+  recurrence: string | null
+  id: string | null
 }
 
 interface ICreateResponse {
@@ -35,22 +42,17 @@ namespace ISubscriptionCustomerAccountGateway {
 }
 
 namespace ISubscriptionCustomerAccountGateway {
-  export namespace FindPermissionsByLevel {
+  export namespace Purchase {
     export type Params = {
-      productId: string
+      productId: string;
+      customerId: string;
     }
-    export type Response = Promise<Permission[] | null>;
+    export type Response = Promise<ISubscription>;
   }
 }
 
-namespace ISubscriptionCustomerAccountGateway {
-  export namespace FindRolesByLevel {
-    export type Params = {
-      productId: string
-    }
-    export type Response = Promise<Role[] | null>;
-  }
-}
+
+
 
 namespace ISubscriptionCustomerAccountGateway {
   export interface Implementation {

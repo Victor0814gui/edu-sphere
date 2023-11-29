@@ -164,13 +164,13 @@ model Coupon {
 
 model Transaction {
   id             String    @id
-  userId         String
   paymentIntent  String?
   subscriptionId String?
   amount         Int
   currency       String
   status         String
   createdAt      DateTime  @default(now())
+  userId         String
   user           User      @relation(fields: [userId], references: [id])
   products       Product[]
 }

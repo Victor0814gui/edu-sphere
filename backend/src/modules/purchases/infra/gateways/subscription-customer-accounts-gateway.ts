@@ -10,37 +10,48 @@ export class SubscriptionCustomerAccountsGateway
   public async create(props: ISubscriptionCustomerAccountGateway.Create.Params):
     ISubscriptionCustomerAccountGateway.Create.Response {
 
-    const stripeGatewayCreateProductResponse = await stripe.products.create({
-      name: props.name,
-      description: props.description,
-    });
 
-    const stripeGatewayCreatePriceProductResponse = await stripe.prices.create({
-      unit_amount: props.price,
-      currency: 'usd',
-      recurring: {
-        interval: props.recurrence,
-      },
-      product: stripeGatewayCreateProductResponse.id,
-    });
-
-    stripeGatewayCreatePriceProductResponse.id
 
     if (!stripeGatewayCreatePriceProductResponse.created) {
       throw new PurchaseBusinessException("Product not created", 500);
     }
 
-    return {
-      code: 200,
-      url: stripeGatewayCreatePriceProductResponse.id
-    };
+    return null
+
+  }
+
+  public async purchase(params: ISubscriptionCustomerAccountGateway.Purchase.Params):
+    ISubscriptionCustomerAccountGateway.Purchase.Response {
+
+    const subscription = await stripe.subscriptions.create({
+      customer: 'cus_P4DrLfw9Bt1ynX',
+      items: [
+        { price: params.productId },
+      ],
+    });
+
+
+    const subscriptionDTO = {
+      currency: subscription.currency,
+      description: subscription.description,
+      recurrence: 'month',
+      id: subscription.id,
+    }
+
+    return subscriptionDTO;
   }
 
   public async findById(props: ISubscriptionCustomerAccountGateway.FindById.Params):
     ISubscriptionCustomerAccountGateway.FindById.Response {
 
-    const response = {} as ISubscriptionCustomerAccountGateway.FindById.Response
+    const subscription = await stripe.subscriptions.search({
+      query: `active:\'true\' AND metadata[\'price_id\']:\'${props.productId}\'`,
+      limit: 1,
+    });
 
+    console.log({ subscription });
+
+    const response = {} as ISubscriptionCustomerAccountGateway.FindById.Response;
     return response;
   }
 }

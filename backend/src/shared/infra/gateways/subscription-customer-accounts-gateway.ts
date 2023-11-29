@@ -1,11 +1,11 @@
 import AppErrors from "../errors/app-errors";
 import { stripe } from "@/src/shared/infra/services/stripe";
 import { ISubscriptionCustomerAccountGateway } from "./contracts/i-subscription-customer-accounts-gateway";
+import { PrismaClient } from "@prisma/client";
 
 
 export class SubscriptionCustomerAccountsGateway
   implements ISubscriptionCustomerAccountGateway.Implementation {
-
   public async create(props: ISubscriptionCustomerAccountGateway.Create.Params):
     ISubscriptionCustomerAccountGateway.Create.Response {
 
@@ -22,8 +22,6 @@ export class SubscriptionCustomerAccountsGateway
       },
       product: stripeGatewayCreateProductResponse.id,
     });
-
-    stripeGatewayCreatePriceProductResponse.id
 
     if (!stripeGatewayCreatePriceProductResponse.created) {
       throw new AppErrors("Product not created", 500);

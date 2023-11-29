@@ -1,85 +1,32 @@
-import { PrismaClient } from "@prisma/client";
 
-import { IPurchaseSubscriptionRepository } from "../i-purchase-subscription-repository";
+import { PrismaClient } from "@prisma/client";
+import { ICreateSubscriptionRepository } from "../i-create-subscription-repository";
 
 const database = new PrismaClient();
 
+export class CreateSubscriptionRepository
+  implements ICreateSubscriptionRepository.Implementation {
 
-export class PurchaseSubscriptionRepository
-  implements IPurchaseSubscriptionRepository.Implementation {
-  public async findByPermissions(params: IPurchaseSubscriptionRepository.FindByPermissions.Params):
-    IPurchaseSubscriptionRepository.FindByPermissions.Response {
-    const response = {} as IPurchaseSubscriptionRepository.FindByPermissions.Response;
-    return response
-  }
+  public async findByName(props: ICreateSubscriptionRepository.FindByName.Params):
+    ICreateSubscriptionRepository.FindByName.Response {
 
-  public async findByRoles(params: IPurchaseSubscriptionRepository.FindByRoles.Params):
-    IPurchaseSubscriptionRepository.FindByRoles.Response {
-    const response = {} as IPurchaseSubscriptionRepository.FindByRoles.Response;
-    return response
-  }
-
-  public async findByCustomer(params: IPurchaseSubscriptionRepository.FindByCustomer.Params):
-    IPurchaseSubscriptionRepository.FindByCustomer.Response {
-
-    const deleteCustomerSubscription = await database.user.findFirst({
+    const findUniqueSubscriptionResponse = await database.product.findFirst({
       where: {
-        id: params.customerId,
+        name: props.name,
       },
     })
 
-    return deleteCustomerSubscription;
+    return findUniqueSubscriptionResponse;
   }
 
-  public async findBySubscription(params: IPurchaseSubscriptionRepository.FindBySubscription.Params):
-    IPurchaseSubscriptionRepository.FindBySubscription.Response {
+  public async create(props: ICreateSubscriptionRepository.Create.Params):
+    ICreateSubscriptionRepository.Create.Response {
 
-    const deleteCustomerSubscription = await database.product.findFirst({
-      where: {
-        id: params.subscriptionId,
-      },
+    const createSubscriptionResponse = await database.product.create({
+      data: props
     })
 
-    return deleteCustomerSubscription;
+    return createSubscriptionResponse;
   }
 
-  public async updateSubscription(params: IPurchaseSubscriptionRepository.UpdateSubscription.Params):
-    IPurchaseSubscriptionRepository.UpdateSubscription.Response {
-
-    const deleteCustomerSubscription = await database.product.update({
-      where: {
-        id: params.subscriptionId,
-      },
-      data: {
-        users: {
-          connect: [{
-            id: params.customerId,
-          }]
-        }
-      }
-    })
-
-    return deleteCustomerSubscription;
-  }
-
-  public async updateCustomer(
-    params: IPurchaseSubscriptionRepository.UpdateCustomer.Params
-  ): IPurchaseSubscriptionRepository.UpdateCustomer.Response {
-
-    const updateCustomerPermissionsAndRoles = await database.user.update({
-      where: {
-        id: params.customerId,
-      },
-      data: {
-        permissions: {
-          connect: params.permissions,
-        },
-        roles: {
-          connect: params.roles,
-        }
-      }
-    })
-
-    return updateCustomerPermissionsAndRoles;
-  }
-};
+}

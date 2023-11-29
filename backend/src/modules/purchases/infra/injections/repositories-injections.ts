@@ -2,7 +2,7 @@ import { container } from "tsyringe";
 
 import { ICreateProductRepository } from "@purchases/repositories/i-create-product-repository";
 import { CreateProductRepository } from "@purchases/repositories/implementation/create-product-repository";
-import { PurchaseSubscriptionRepository } from "@purchases/repositories/implementation/create-subscription-repository";
+import { PurchaseSubscriptionRepository } from "@/src/modules/purchases/repositories/implementation/purchase-subscription-repository";
 import { ListProductsRepository } from "@purchases/repositories/implementation/list-products-repository";
 import { IListProductsRepository } from "@purchases/repositories/i-list-products-repository";
 import { IListSubscriptionsRepository } from "@purchases/repositories/i-list-subscriptions-repository";
