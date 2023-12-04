@@ -1,21 +1,27 @@
 
-import styles from "./styles.module.css";
-import { ElementType } from "react";
+import { ElementType, HTMLAttributes, forwardRef, HTMLInputTypeAttribute } from "react";
 
-type InputProps = {
+import styles from "./styles.module.css";
+
+type InputProps = HTMLAttributes<HTMLInputElement> & {
   premium?: boolean;
   icon?: ElementType;
+  placeholder?: string;
+  type?: HTMLInputTypeAttribute;
 }
 
-export function Input({
+export const Input = forwardRef<HTMLInputElement, InputProps>(({
   premium = false,
+  placeholder,
   icon: Icon,
-}: InputProps) {
+  type = "text",
+  ...rest
+}, ref) => {
 
   return (
     <div className={styles.container}>
       {Icon && <Icon size={24} color="#d9d9d9" weight="bold" />}
-      <input className={styles.input} type="email" />
+      <input {...rest} ref={ref} placeholder={placeholder} className={styles.input} type={type} />
     </div>
   )
-}
+})

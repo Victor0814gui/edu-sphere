@@ -7,6 +7,7 @@ import { AccountStatusEnum } from "../interfaces/enums/account-status-enum";
 import { ICreateUUIDTokenService } from "../infra/services/contracts/i-create-uuid-token-service";
 import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-date-service";
 import { IEncryptDataService } from "../infra/services/contracts/i-encrypt-data-service";
+import { PurchaseBusinessException } from "../../purchases/infra/exceptions/business-exception";
 
 
 
@@ -26,6 +27,10 @@ export class CreateCustomerAccountUseCase
 
   public async execute(props: ICreateCustomerAccountUseCase.Params):
     ICreateCustomerAccountUseCase.Response {
+
+    if (!props.name || !props.email || !props.avatarUrl || !props.password) {
+      throw new PurchaseBusinessException("data is missin", 403);
+    }
 
     const verifyCustomerAlreadyExists =
       await this.createCustomerAccountRepository.findUnique({

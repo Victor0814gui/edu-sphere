@@ -1,3 +1,4 @@
+import { Transaction } from "@/src/shared/application/entities/transaction";
 import { Product } from "../infra/entities/product";
 
 
@@ -7,15 +8,13 @@ declare namespace IPurchaseSubscriptionUseCase { }
 
 namespace IPurchaseSubscriptionUseCase {
   export type Params = {
-    paymentMethodId: string;
     customerId: string;
     priceId: string;
-    subscriptionId: string;
   }
 }
 
 namespace IPurchaseSubscriptionUseCase {
-  export type Response = Promise<Product>;
+  export type Response = Promise<Transaction>;
 }
 
 namespace IPurchaseSubscriptionUseCase {

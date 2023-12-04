@@ -44,7 +44,7 @@ namespace ISubscriptionCustomerAccountGateway {
 namespace ISubscriptionCustomerAccountGateway {
   export namespace Purchase {
     export type Params = {
-      productId: string;
+      subscriptionId: string;
       customerId: string;
     }
     export type Response = Promise<ISubscription>;

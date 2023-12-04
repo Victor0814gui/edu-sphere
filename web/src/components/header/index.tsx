@@ -1,13 +1,20 @@
 'use client'
 import styles from "./styles.module.css"
-import { GearSix, Bell, ShoppingCartSimple } from "@phosphor-icons/react"
+import { usePathname, useRouter } from 'next/navigation'
 import { ActiveLink } from "../active-link";
 
 
 export function Header() {
+  const router = useRouter();
+  const pathName = usePathname();
+
+  const handlerGoRoute = (route: string) => {
+    router.push(route);
+  }
+
   return (
     <header className={styles.container}>
-      <div className={styles.content}>
+      <div>
         <h1>EduSphere</h1>
       </div>
       <div className={styles.content}>
@@ -17,10 +24,13 @@ export function Header() {
         <ActiveLink name="cart" />
         <ActiveLink name="shop" />
       </div>
-      <div className={styles.content}>
-        <Bell size={24} color="#d9d9d9" weight="fill" />
-        <GearSix size={24} color="#d9d9d9" weight="fill" />
-        <ShoppingCartSimple size={24} color="#d9d9d9" weight="fill" />
+      <div>
+        {pathName === '/' && (
+          <>
+            <button onClick={() => handlerGoRoute("/auth/signup")} className={styles.buttonDefault}>Criar conta</button>
+            <button onClick={() => handlerGoRoute("/auth/signin")} className={styles.button}>entrar</button>
+          </>
+        )}
       </div>
     </header>
   )

@@ -2,12 +2,13 @@
 
 import { Header } from "@src/components/header";
 import styles from "./styles.module.css";
-import { GearSix, MagnifyingGlass, ShoppingCartSimple } from "@phosphor-icons/react"
 import { Footer } from "@src/components/footer";
 import { Product } from "@src/components/product";
 import { TitleSection } from "@src/components/title-section";
 import { useEffect, useState } from "react";
 import { network } from "@src/services/network";
+import { useRouter } from 'next/navigation'
+
 
 
 type Product = {
@@ -24,16 +25,36 @@ type Product = {
   status: "private" | "public";
 }
 
+type PurchaseResponseProps = {
+  data: {
+    paymentIntent: string;
+  }
+}
 
 export default function Shop() {
   const [products, setProducts] = useState<Product[]>([])
   const [subscriptions, setSubscriptions] = useState<Product[]>([])
+
+  const router = useRouter();
+
+  const handlerPurchaseProduct = async () => {
+    const purchaseResponse =
+      await network.post("/purchases/subscription/buy", {
+        customerId: "string",
+        priceId: "string",
+      }) as PurchaseResponseProps;
+    const transactionId = purchaseResponse.data.paymentIntent;
+    if (!!transactionId) {
+      router.push(`/checkout-page/${transactionId}`);
+    }
+  }
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
       const productsResponse = await network.get("/purchases/products/list");
       const subscriptionsResponse = await network.get("/purchases/subscriptions/list");
       setSubscriptions(subscriptionsResponse.data);
+      console.log(productsResponse.data);
       setProducts(productsResponse.data);
     }
 
@@ -53,6 +74,8 @@ export default function Shop() {
               amount={subscription.amount}
               name={subscription.name}
               description={subscription.description}
+              buttonLabel="Comprar"
+              onClick={handlerPurchaseProduct}
             />
           ))}
         </div>

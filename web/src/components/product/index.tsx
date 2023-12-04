@@ -6,12 +6,16 @@ type ProductProps = {
   amount?: number,
   name?: string;
   description?: string;
+  buttonLabel?: string;
+  onClick?: () => void;
 }
 
 export function Product({
   amount = 1599,
   name = "Spark",
   description = "Este é o plano perfeito para aqueles que estão começando. Desfrute de uma comunicação rápida e confiável com amigos, familiares.",
+  buttonLabel = "Adicionar",
+  onClick,
 }: ProductProps) {
   const amountFormat = amount / 100
   let precoFormatado = amountFormat.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -24,8 +28,8 @@ export function Product({
       <h4>{description}</h4>
       <footer>
         <h1>{precoFormatado}</h1>
-        <button>
-          Adicionar
+        <button onClick={onClick ?? (() => { })}>
+          {buttonLabel}
           <ShoppingCartSimple size={28} color="#d9d9d9" weight="fill" />
         </button>
       </footer>

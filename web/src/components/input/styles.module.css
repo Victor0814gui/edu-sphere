@@ -15,6 +15,10 @@
   border: 2px solid #25DA67;
 }
 
+.container:focus svg{
+  fill: #25DA67;
+}
+
 .input {
   color: #d9d9d9;
   font-family: 'Poppins',sans-serif;
@@ -25,4 +29,8 @@
   border: 0;
   flex: 1;
   align-self: stretch;
+}
+
+.input:focus{
+  outline: none;
 }

@@ -49,8 +49,9 @@ body {
   background: var(--grey_120);
 }
 
-h1,h2,h3,h4,p,span,button,input,li{
+h1,h2,h3,h4,p,a,span,button,input,li{
   font-family: "Poppins",sans-serif;  
+  color: var(--grey_970);
 }
 
 a:hover{

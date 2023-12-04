@@ -6,6 +6,7 @@ import { Footer } from "@src/components/footer";
 import { Input } from "@src/components/input";
 import { Envelope, Password } from "@phosphor-icons/react";
 import Link from "next/link";
+import { Button } from "@src/components/button";
 
 
 export default function SignIn() {
@@ -17,9 +18,9 @@ export default function SignIn() {
       <div className={styles.content}>
         <h1>SignIn</h1>
         <div className={styles.box}>
-          <Input icon={Envelope} />
-          <Input icon={Password} />
-          <button>Criar conta</button>
+          <Input icon={Envelope} placeholder="ex: seunome@gmail.com" />
+          <Input icon={Password} placeholder="ex: *******" />
+          <Button>Criar conta</Button>
           <span>Ainda não tem uma conta? <Link href="/auth/signup">crie a sua aqui</Link></span>
         </div>
       </div>

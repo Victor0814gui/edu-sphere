@@ -13,6 +13,22 @@ export class PurchaseSubscriptionRepository
     return response
   }
 
+  public async transaction(params: IPurchaseSubscriptionRepository.CreateTransaction.Params):
+    IPurchaseSubscriptionRepository.CreateTransaction.Response {
+    const createTransaction = await database.transaction.create({
+      data: {
+        ...params,
+        products: {
+          connect: [{
+            id: params.subscriptionId,
+          }]
+        }
+      },
+    })
+
+    return createTransaction;
+  };
+
   public async findByRoles(params: IPurchaseSubscriptionRepository.FindByRoles.Params):
     IPurchaseSubscriptionRepository.FindByRoles.Response {
     const response = {} as IPurchaseSubscriptionRepository.FindByRoles.Response;
@@ -36,7 +52,7 @@ export class PurchaseSubscriptionRepository
 
     const deleteCustomerSubscription = await database.product.findFirst({
       where: {
-        id: params.subscriptionId,
+        productId: params.subscriptionId,
       },
     })
 
