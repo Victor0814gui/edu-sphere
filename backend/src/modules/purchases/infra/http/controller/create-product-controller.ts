@@ -1,15 +1,16 @@
-import { Request, Response } from "express";
 import { container } from "tsyringe";
+import { Request, Response } from "express";
 import { CreateProductUseCase } from "@/src/modules/purchases/use-cases/create-product-use-case";
 import { ProductStatus } from "@/src/shared/application/entities/enums/i-product-status";
 
 
 
 interface CreateProductControllerRequest {
+  thumbnailUrl: string;
   description: string;
   name: string;
   status: ProductStatus;
-  price: number;
+  amount: number;
 }
 
 export class CreateProductController {

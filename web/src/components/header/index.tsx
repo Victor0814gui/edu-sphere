@@ -1,8 +1,6 @@
 'use client'
-import Link from "next/link"
 import styles from "./styles.module.css"
 import { GearSix, Bell, ShoppingCartSimple } from "@phosphor-icons/react"
-import { usePathname } from "next/navigation";
 import { ActiveLink } from "../active-link";
 
 
@@ -15,8 +13,9 @@ export function Header() {
       <div className={styles.content}>
         <ActiveLink name="home" path="/" />
         <ActiveLink inactive name="dashboard" />
-        <ActiveLink name="subscription" />
-        <ActiveLink name="inscriptions" />
+        <ActiveLink name="subscriptions" />
+        <ActiveLink name="cart" />
+        <ActiveLink name="shop" />
       </div>
       <div className={styles.content}>
         <Bell size={24} color="#d9d9d9" weight="fill" />

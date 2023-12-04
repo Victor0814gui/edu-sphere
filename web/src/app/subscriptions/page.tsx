@@ -6,10 +6,11 @@ import { Ticket } from "@src/components/ticket"
 import { Header } from "@src/components/header"
 import { Footer } from "@src/components/footer"
 import Image from "next/image"
+import { useEffect } from "react"
+import { network } from "@src/services/network"
 
 
-export default function Inscriptions() {
-
+export default function Subscriptions() {
   return (
     <div className={styles.container}>
       <Header />

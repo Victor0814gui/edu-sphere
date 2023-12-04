@@ -12,19 +12,11 @@ export class WebhookListenerStripeController {
     const invoicePaymentSucceededUseCase = container.resolve(InvoicePaymentSucceededUseCase)
     let event: Stripe.Event;
 
-    try {
-      event = stripe.webhooks.constructEvent(
-        request.body,
-        request.header('Stripe-Signature')!,
-        process.env.STRIPE_WEBHOOK_SECRET as string,
-      );
-    } catch (err) {
-      console.log(err);
-      console.log(`⚠️  Webhook signature verification failed.`);
-      console.log(
-        `⚠️  Check the env file and enter the correct webhook secret.`
-      );
-    }
+    event = stripe.webhooks.constructEvent(
+      request.body,
+      request.header('Stripe-Signature')!,
+      process.env.STRIPE_WEBHOOK_SECRET as string,
+    );
 
     switch (event.type) {
       case 'invoice.payment_succeeded':

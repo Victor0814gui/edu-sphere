@@ -129,25 +129,20 @@ model RefreshToken {
 }
 
 model Product {
-  id             String        @id
-  name           String        @unique
-  type           String
-  description    String?
-  status         String
-  startDate      DateTime?
-  endDate        DateTime?
-  paymentMethod  String?
-  price          Int
-  thumbnailUrl   String?
-  billingCycle   String?
-  nextBilling    DateTime?
-  autoRenew      Boolean?
-  paymentDetails String?
-  createdAt      DateTime
-  updatedAt      DateTime?
-  transactions   Transaction[]
-  users          User[]
-  permissions    Permission[]  @relation("PermissionToProduct")
+  id           String        @id
+  name         String        @unique
+  productId    String        @unique
+  priceId      String        @unique
+  type         String
+  description  String?
+  status       String
+  amount       Int
+  thumbnailUrl String?
+  createdAt    DateTime
+  updatedAt    DateTime?
+  transactions Transaction[]
+  users        User[]
+  permissions  Permission[]  @relation("PermissionToProduct")
 }
 
 model Attribute {

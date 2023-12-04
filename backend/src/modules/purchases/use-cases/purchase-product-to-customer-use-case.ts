@@ -37,15 +37,15 @@ export class PurchaseProductToCustomerUseCase
       throw new PurchaseBusinessException("Product does not exists", 404);
     }
 
-    const purchaseProductToCustomerResponse =
+    const sessionPurchaseProductGatewayResponse =
+      await this.sessionPurchaseProductGateway.purchase({
+        productId: verifyProductAlreadyExists.productId,
+      });
+
+    const purchaseProductEmitTransactionResponse =
       await this.purchaseProductToCustomerRepository.purchase({
         customerId: params.customerId,
         productId: params.productId,
-      });
-
-    const sessionPurchaseProductGatewayResponse =
-      await this.sessionPurchaseProductGateway.execute({
-        amount: verifyProductAlreadyExists.price,
       });
 
     if (!sessionPurchaseProductGatewayResponse?.transactionId) {
@@ -60,7 +60,7 @@ export class PurchaseProductToCustomerUseCase
         id: transactionId,
         currency: "brl",
         userId: verifyCustomerAlreadyExists.id,
-        amount: purchaseProductToCustomerResponse.price,
+        amount: purchaseProductEmitTransactionResponse.amount,
         status: TransactionStatusEnum.active,
         createdAt: transactionDate,
       });

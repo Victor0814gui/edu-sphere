@@ -1,38 +1,38 @@
+import { Product } from "@/src/shared/application/entities/product";
 import { Permission, Role } from "@prisma/client";
 
 
-
-
-interface IProduct {
-  productId: string;
-  price: number;
-  quantity: number;
-  recurrence: 'day' | 'month' | 'week' | 'year';
-  name: string;
-  description: string;
-}
-
-interface ICreateResponse {
-  code: number;
-  url: string | null;
-}
 
 declare namespace ISubscriptionCustomerAccountGateway { }
 
 namespace ISubscriptionCustomerAccountGateway {
   export namespace Create {
-    export type Params = IProduct;
+    export type Params = {
+      name: string;
+      description: string;
+      thumbnailUrl: string;
+      currency: string;
+      recurrence: "day" | "week" | "month" | "year";
+      amount: number;
+      active: boolean;
+    };
 
-    export type Response = Promise<ICreateResponse>;
+    export type Response = Promise<Product>;
   }
 }
 
 namespace ISubscriptionCustomerAccountGateway {
   export namespace FindById {
     export type Params = {
-      productId: string
+      subscriptionId: string
     }
-    export type Response = Promise<IProduct>;
+    export type Response = Promise<{
+      name: string;
+      description: string;
+      priceId: string;
+      productId: string;
+      status: string;
+    }>;
   }
 }
 

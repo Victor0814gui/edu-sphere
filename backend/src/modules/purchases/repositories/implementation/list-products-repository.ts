@@ -1,4 +1,3 @@
-import { ProductType } from "@/src/shared/application/entities/product";
 import { PrismaClient } from "@prisma/client";
 import { IListProductsRepository } from "../i-list-products-repository"
 import { ProductTypeEnum } from "@/src/shared/application/entities/enums/i-product-type";

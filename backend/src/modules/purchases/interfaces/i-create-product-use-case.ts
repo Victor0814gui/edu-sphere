@@ -2,25 +2,25 @@ import { ProductStatus } from "@/src/shared/application/entities/enums/i-product
 import { Product } from "../infra/entities/product";
 
 
-
-
-enum ProductType {
-  Recurrent = "recurrent",
-}
-
-
-export namespace ICreateProductUseCase {
+declare namespace ICreateProductUseCase {
   export type Params = {
     thumbnailUrl: string;
     description: string;
     name: string;
     status: ProductStatus;
-    price: number;
-  }
-
-  export type Response = Promise<Product>
-
-  export type Implementation = {
-    execute: (props: ICreateProductUseCase.Params) => ICreateProductUseCase.Response
+    amount: number;
   }
 }
+
+namespace ICreateProductUseCase {
+  export type Response = Promise<Product>
+}
+
+namespace ICreateProductUseCase {
+  export type Implementation = {
+    execute: (props: ICreateProductUseCase.Params)
+      => ICreateProductUseCase.Response
+  }
+}
+
+export { ICreateProductUseCase };

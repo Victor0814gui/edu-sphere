@@ -34,14 +34,6 @@ export class PurchaseSubscriptionUseCase
       throw new PurchaseBusinessException("Customer does not exist", 404)
     }
 
-
-    const product = await stripe.subscriptions.retrieve(
-      params.subscriptionId,
-    );
-
-
-    //adicionar intenção de pagamento que deve ser confirmada no client
-
     const PurchaseSubscriptionRepositoryResponse =
       await this.purchaseSubscriptionRepository.updateSubscription({
         customerId: params.customerId,
