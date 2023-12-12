@@ -4,16 +4,20 @@ import styles from "./styles.module.css"
 import { Footer } from "@src/components/footer";
 import Link from "next/link";
 import { Button } from "@src/components/button";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { useAuthContextProvider } from "@src/hooks/auth";
 
 type AuthorizationAccountProps = {
   params: {
-    email: string;
+    userId: string;
   }
 }
 
 export default function AuthorizationAccount({ params }: AuthorizationAccountProps) {
   const [text, setText] = useState("");
+
+  const { authorization, user } = useAuthContextProvider();
+
 
   const inputRefs = [
     useRef<HTMLInputElement>(null),
@@ -33,10 +37,16 @@ export default function AuthorizationAccount({ params }: AuthorizationAccountPro
     }
   };
 
-  const printValue = () => {
+  const printValue = async (e: FormEvent) => {
+    e.preventDefault();
     setText("");
     inputRefs.map(inputRef => {
       setText(oldValue => oldValue + inputRef.current?.value);
+    })
+
+    await authorization({
+      code: text,
+      customerId: user.id,
     })
   }
 
@@ -46,7 +56,7 @@ export default function AuthorizationAccount({ params }: AuthorizationAccountPro
       <div className={styles.content}>
         <h1>Ativar Conta</h1>
         <span>Digite o codigo de ativação que você recebeu.</span>
-        <form className={styles.box} >
+        <form className={styles.box} onSubmit={printValue}>
           <div className={styles.inputsList}>
             {inputRefs.map((inputRef, index) => (
               <input
@@ -58,7 +68,11 @@ export default function AuthorizationAccount({ params }: AuthorizationAccountPro
               />
             ))}
           </div>
-          <Button onClick={printValue} type="button" active={true}>Autorizar Conta</Button>
+          <Button
+            onClick={printValue}
+            type="button"
+            active={true}
+          >Autorizar Conta</Button>
           <span>Já tem uma conta? <Link href="/auth/signin">faça login aqui</Link></span>
         </form>
       </div>

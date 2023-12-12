@@ -34,13 +34,15 @@ export class PurchaseProductToCustomerRepository
   public async purchase(props: IPurchaseProductToCustomerRepository.Purchase.Params):
     IPurchaseProductToCustomerRepository.Purchase.Response {
 
-    const purchaseProductResponse = await database.user.update({
+    const purchaseProductResponse = await database.product.update({
       where: {
-        id: props.customerId,
+        priceId: props.productId,
       },
       data: {
-        subscription: {
-          connect: [{ id: props.productId }]
+        users: {
+          connect: [{
+            id: props.customerId,
+          }]
         }
       }
     })
@@ -53,7 +55,7 @@ export class PurchaseProductToCustomerRepository
 
     const findProductResponse = await database.product.findUnique({
       where: {
-        id: props.productId,
+        priceId: props.productId,
       },
     })
 

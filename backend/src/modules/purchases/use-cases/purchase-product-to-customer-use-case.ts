@@ -39,7 +39,7 @@ export class PurchaseProductToCustomerUseCase
 
     const sessionPurchaseProductGatewayResponse =
       await this.sessionPurchaseProductGateway.purchase({
-        productId: verifyProductAlreadyExists.productId,
+        priceId: verifyProductAlreadyExists.priceId,
       });
 
     const purchaseProductEmitTransactionResponse =
@@ -48,22 +48,27 @@ export class PurchaseProductToCustomerUseCase
         productId: params.productId,
       });
 
-    if (!sessionPurchaseProductGatewayResponse?.transactionId) {
+    const transactionPaymentIntent = sessionPurchaseProductGatewayResponse?.transactionId;
+    const transactionId = sessionPurchaseProductGatewayResponse.id
+
+    if (!transactionId && !transactionPaymentIntent) {
       throw new PurchaseBusinessException("Error processing your payment", 500);
     }
 
     const transactionDate = new Date();
-    const transactionId = randomUUID();
 
     const purchaseProductToCustomerRepositoryResponse =
       await this.purchaseProductToCustomerRepository.transaction({
-        id: transactionId,
+        id: transactionId!,
+        paymentIntent: transactionPaymentIntent!,
         currency: "brl",
         userId: verifyCustomerAlreadyExists.id,
         amount: purchaseProductEmitTransactionResponse.amount,
         status: TransactionStatusEnum.active,
         createdAt: transactionDate,
       });
+
+    console.log(purchaseProductToCustomerRepositoryResponse);
 
     return purchaseProductToCustomerRepositoryResponse;
   };

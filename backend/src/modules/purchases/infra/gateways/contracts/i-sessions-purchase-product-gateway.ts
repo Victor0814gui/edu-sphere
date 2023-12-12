@@ -15,6 +15,7 @@ namespace ISessionPurchaseProductGateway {
     }
 
     export type Response = Promise<{
+      id: string | null;
       transactionId: string | null;
       currency: string | null
       amount: number | null

@@ -18,7 +18,7 @@ export const PaymentForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:5000/success",
+        return_url: "http://localhost:5000/payment/success",
       },
     });
 

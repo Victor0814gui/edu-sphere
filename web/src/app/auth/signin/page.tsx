@@ -7,22 +7,39 @@ import { Input } from "@src/components/input";
 import { Envelope, Password } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Button } from "@src/components/button";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import { useCartContextProvider } from "@src/hooks/cart";
+import { useAuthContextProvider } from "@src/hooks/auth";
+
+
+type SignupProps = {
+  email: string;
+  password: string;
+}
 
 
 export default function SignIn() {
-  // Or a custom loading skeleton component
-  const animationsSize = 200;
+  const { signIn } = useAuthContextProvider()
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+  const handlerCreateCustomer: SubmitHandler<SignupProps> = async (data: SignupProps) => {
+    await signIn(data);
+  }
+
   return (
     <div className={styles.container}>
       <Header />
-      <div className={styles.content}>
+      <div className={styles.content} onSubmit={handleSubmit(handlerCreateCustomer)}>
         <h1>SignIn</h1>
-        <div className={styles.box}>
-          <Input icon={Envelope} placeholder="ex: seunome@gmail.com" />
-          <Input icon={Password} placeholder="ex: *******" />
+        <form className={styles.box}>
+          <Input type="email" {...register("email", { required: true })} icon={Envelope} placeholder="ex: seunome@gmail.com" />
+          {errors.email?.type === 'required' && <p role="alert">email is required</p>}
+          <Input type="password" {...register("password", { required: true })} icon={Password} placeholder="ex: *******" />
+          {errors.password?.type === 'required' && <p role="alert">password is required</p>}
           <Button>Criar conta</Button>
           <span>Ainda não tem uma conta? <Link href="/auth/signup">crie a sua aqui</Link></span>
-        </div>
+        </form>
       </div>
       <Footer />
     </div>

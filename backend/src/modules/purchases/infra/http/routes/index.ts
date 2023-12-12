@@ -12,6 +12,7 @@ import { ListSubscriptionController } from "../controller/list-subscriptions-con
 import { CreateProductController } from "../controller/create-product-controller";
 import { PurchaseProductController } from "../controller/purchase-product-controller";
 import { SyncProductWithGatewayController } from "../controller/sync-product-with-gateway-controller";
+import { ListTransactionsCustomerController } from "../controller/list-transactions-customer-constroller";
 
 export const purchasesRoutes = Router();
 
@@ -24,6 +25,7 @@ const listSubscriptionController = container.resolve(ListSubscriptionController)
 const createProductController = container.resolve(CreateProductController);
 const purchaseProductController = container.resolve(PurchaseProductController);
 const syncProductWithGatewayController = container.resolve(SyncProductWithGatewayController);
+const listTransactionsCustomerController = container.resolve(ListTransactionsCustomerController);
 
 
 purchasesRoutes.post(
@@ -85,4 +87,10 @@ purchasesRoutes.post(
   "/sync/product",
   // customerAuthenticationCheck,
   syncProductWithGatewayController.handler,
+);
+
+purchasesRoutes.get(
+  "/transactions",
+  // customerAuthenticationCheck,
+  listTransactionsCustomerController.handler,
 );

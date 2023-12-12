@@ -7,12 +7,12 @@ const database = new PrismaClient();
 export class CustomerAuthorizationAccountRepository
   implements ICustomerAuthorizationAccountRepository.Implementation {
 
-  public async findById(props: ICustomerAuthorizationAccountRepository.FindById.Params):
-    ICustomerAuthorizationAccountRepository.FindById.Response {
+  public async findByCode(props: ICustomerAuthorizationAccountRepository.FindByCode.Params):
+    ICustomerAuthorizationAccountRepository.FindByCode.Response {
 
-    const findByEmailResponse = await database.user.findFirst({
+    const findByEmailResponse = await database.verificationCode.findFirst({
       where: {
-        email: props.customerId
+        code: props.code,
       },
     });
 
@@ -24,7 +24,7 @@ export class CustomerAuthorizationAccountRepository
 
     const updateCustomerAccountResponse = await database.user.update({
       where: {
-        email: props.email
+        id: props.customerId
       },
       data: {
         status: props.status,

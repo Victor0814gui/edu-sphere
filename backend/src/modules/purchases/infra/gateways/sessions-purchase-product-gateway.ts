@@ -71,11 +71,12 @@ export class SessionPurchaseProductGateway
     const paymentIntents = await stripe.paymentIntents.create({
       amount: price.unit_amount!,
       currency: price.currency,
-      automatic_payment_methods: { enabled: true },
+      automatic_payment_methods: { enabled: false },
     });
 
     const response = {
-      transactionId: paymentIntents.id,
+      id: paymentIntents.id,
+      transactionId: paymentIntents.client_secret,
       currency: paymentIntents.currency,
       amount: paymentIntents.amount,
     }

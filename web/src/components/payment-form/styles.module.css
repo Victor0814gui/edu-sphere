@@ -4,17 +4,24 @@
   margin-top: 41px;
 }
 
+.container input{
+  border: 2px solid #25DA67;
+
+}
+
 .button{
   height: 42px;
   width: 480px;
-  border-radius: 4px;
+  border-radius: 21px;
   margin-top: 18px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 0;
 
-  background-color: #fa8100;
+  background-color: #25DA67;
+  color: #333333;
   font-weight: 700;
 
   transition: filter 0.2s;

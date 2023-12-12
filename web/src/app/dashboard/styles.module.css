@@ -14,3 +14,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.listChannels{
+  display: flex;
+  flex: 1;
+  gap: 5px;
+  padding: 72px 21px;
+  border-radius: 21px;
+  background-color: #222222;
+}

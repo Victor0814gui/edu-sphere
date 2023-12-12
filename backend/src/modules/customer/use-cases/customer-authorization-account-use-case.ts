@@ -18,26 +18,23 @@ export class CustomerAuthorizationAccountUseCase
   public async execute(props: ICustomerAuthorizationAccountUseCase.Params):
     ICustomerAuthorizationAccountUseCase.Response {
 
-
-    // const [, token] = props.token.split(" ");
-
-    // const { sub } = verify(token, process.env.JWT_SECRET as string);
-    // const customerId = sub?.toString()!;
-    const customerId = props.token;
-
-    if (!customerId) {
-      throw new CustomerBusinessException("Customer does not exist", 404);
-    }
-
-    const verifyCustomerAlreadyExists =
-      await this.customerAuthorizationAccountRepository.findById({
-        customerId: customerId,
+    const verifyCodeAlreadyExists =
+      await this.customerAuthorizationAccountRepository.findByCode({
+        code: props.code,
       });
 
-    if (!verifyCustomerAlreadyExists?.id) {
-      throw new CustomerBusinessException("Customer does not exist", 404);
+    if (!verifyCodeAlreadyExists?.id) {
+      throw new CustomerBusinessException("code does not exists", 403);
     }
+    console.log({
+      code: props.code,
+      userId: verifyCodeAlreadyExists.userId,
+      customerId: props.customerId
+    });
 
+    if (verifyCodeAlreadyExists.userId !== props.customerId) {
+      throw new CustomerBusinessException("code incorrect", 403);
+    }
 
     const findPermissions =
       await this.customerAuthorizationAccountRepository.findPermissions({
@@ -54,7 +51,7 @@ export class CustomerAuthorizationAccountUseCase
 
     const customerAuthorizationAccountResponse =
       await this.customerAuthorizationAccountRepository.update({
-        email: verifyCustomerAlreadyExists.email,
+        customerId: props.customerId,
         status: AccountStatusEnum.Active,
         permissions: findPermissions!,
         roles: findRole!

@@ -8,9 +8,9 @@ datasource db {
 }
 
 model User {
-  id             String          @id @unique
+  id             String             @id @unique
   name           String
-  email          String          @unique
+  email          String             @unique
   password       String
   createdAt      DateTime
   updatedAt      DateTime?
@@ -19,13 +19,23 @@ model User {
   transaction    Transaction[]
   subscription   Product[]
   roles          Role[]
-  matriculations Matriculation[] @relation("MatriculationToUser")
-  penaltys       Penalty[]       @relation("PenaltyToUser")
-  permissions    Permission[]    @relation("PermissionToUser")
+  matriculations Matriculation[]    @relation("MatriculationToUser")
+  penaltys       Penalty[]          @relation("PenaltyToUser")
+  permissions    Permission[]       @relation("PermissionToUser")
   refreshTokens  RefreshToken[]
-  rooms          Room[]          @relation("RoomToUser")
+  rooms          Room[]             @relation("RoomToUser")
+  codes          VerificationCode[]
 
   @@index([id])
+}
+
+model VerificationCode {
+  id          String    @id
+  code        String
+  createdAt   DateTime
+  activatedAt DateTime?
+  userId      String
+  users       User      @relation(fields: [userId], references: [id])
 }
 
 model Room {

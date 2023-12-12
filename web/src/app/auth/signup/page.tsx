@@ -7,12 +7,12 @@ import { Input } from "@src/components/input";
 import { Envelope, Password, User } from "@phosphor-icons/react";
 import Link from "next/link";
 import { Button } from "@src/components/button";
-import { network } from "@src/services/network";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { Checkbox } from "@src/components/checkbox";
 
 import { useRouter } from 'next/navigation'
+import { useAuthContextProvider } from "@src/hooks/auth";
 
 
 type SignupProps = {
@@ -23,6 +23,7 @@ type SignupProps = {
 
 export default function SignUp() {
   const router = useRouter();
+  const { signUp } = useAuthContextProvider()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [terms, setTerms] = useState({
     acceptPolicy: false,
@@ -30,14 +31,7 @@ export default function SignUp() {
   })
 
   const handlerCreateCustomer: SubmitHandler<SignupProps> = async (data: SignupProps) => {
-    const user = await network.post("/customer/signup", {
-      ...data,
-      avatarUrl: "https://avatars.githubusercontent.com/u/92493696?v=4",
-    })
-    console.log(user);
-    if (user.data.email) {
-      router.push(`/auth/authorization/${user.data.email}`);
-    }
+    await signUp(data);
   }
 
   const acceptTerms = () => {
@@ -46,6 +40,7 @@ export default function SignUp() {
       acceptTerms: !terms.acceptTerms,
     });
   }
+
   const acceptPolicy = () => {
     setTerms({
       acceptPolicy: !terms.acceptPolicy,

@@ -7,6 +7,7 @@
 
 - **Configuração de Salas de Aula**: Os professores têm a capacidade de configurar informações adicionais sobre a sala de aula. Isso pode incluir a definição de permissões de acesso, como permitir que alunos específicos se inscrevam na sala ou conceder acesso apenas a alunos convidados.
 
+
 - **Adição e Remoção de Alunos**: O módulo permite que os professores adicionem ou removam alunos da sala de aula. Isso pode ser feito manualmente pelo professor ou por meio do envio de convites para os alunos ingressarem na sala.
 
 - **Acesso dos Alunos às Aulas**: Os alunos devem ter acesso apenas às salas de aula em que estão inscritos. O módulo controla o acesso dos alunos e impede o acesso a salas de aula não autorizadas.

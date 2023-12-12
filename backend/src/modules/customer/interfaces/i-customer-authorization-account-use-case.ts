@@ -7,7 +7,8 @@
 export namespace ICustomerAuthorizationAccountUseCase {
 
   export type Params = {
-    token: string;
+    code: string;
+    customerId: string;
   }
 
   export type Response = Promise<{}>
