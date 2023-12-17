@@ -1,7 +1,8 @@
-import { ListRoomsUseCase } from "@/src/modules/room/use-cases/list-rooms-use-case";
-import { Room } from "@/src/shared/application/entities/room";
-import { Server, Socket } from "socket.io";
 import { container } from "tsyringe";
+import { Server, Socket } from "socket.io";
+import { Room } from "@/src/shared/application/entities/room";
+import { ListRoomsUseCase } from "@/src/modules/room/use-cases/list-rooms-use-case";
+import { routeName } from "@/src/shared/infra/interfaces/routes";
 
 
 type IListRoomSocketHandlerResponse = (params: Room[] | null) => void;
@@ -18,5 +19,5 @@ export function listRoomsSocketHandler(io: Server, socket: Socket) {
 
     callback(listRoomsUseCaseResponse)
   }
-  socket.on("room:list", ListRooms);
+  socket.on(routeName.LIST_ROOMS, ListRooms);
 }

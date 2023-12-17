@@ -11,6 +11,7 @@ import { rolesMiddleware } from "../middleware/roles-middleware";
 import { permissionsMiddleware } from "../middleware/permissions-middleware";
 import { ManagerPermission, TeacherPermission } from "@room/interfaces/security/permissions";
 import { Roles } from "@room/interfaces/security/roles";
+import { SearchRoomController } from "../controllers/search-room-controller";
 
 
 const roomRoutes = Router();
@@ -19,6 +20,7 @@ const createRoomController = container.resolve(CreateRoomController);
 const deleteRoomController = container.resolve(DeleteRoomController);
 const updateRoomController = container.resolve(UpdateRoomController);
 const listRoomsController = container.resolve(ListRoomsController);
+const searchRoomController = container.resolve(SearchRoomController);
 
 roomRoutes.get(
   "/list",
@@ -50,6 +52,12 @@ roomRoutes.delete(
   rolesMiddleware(Roles.manager),
   permissionsMiddleware([ManagerPermission.delete]),
   deleteRoomController.handler
+)
+
+roomRoutes.get(
+  "/search",
+  roomAuthenticationCheck,
+  searchRoomController.handler,
 )
 
 roomRoutes.use("/", roomBusinessMiddleware);

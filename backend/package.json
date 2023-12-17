@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "server:dev": "ts-node-dev  -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --exit-child --respawn  ./src/shared/infra/http/default.ts",
+    "server:start": "node -r tsconfig-paths/register ./src/shared/infra/http/default.js",
     "server:cluster:dev": "ts-node-dev  -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --exit-child --respawn  ./src/shared/infra/http/cluster.ts",
-    "build": "tsc ./src/shared/infra/http/serverHttp.ts",
+    "build": "tsc    tsconfig-paths/register ./src/shared/infra/http/serverHttp.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "test": "jest"
@@ -42,6 +43,7 @@
     "@types/multer": "^1.4.7",
     "@types/node": "^20.4.2",
     "@types/nodemailer": "^6.4.14",
+    "artillery": "^2.0.3",
     "babel-jest": "^29.7.0",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "jest": "^29.6.1",

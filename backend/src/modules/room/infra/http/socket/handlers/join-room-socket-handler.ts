@@ -1,6 +1,7 @@
 import { container } from "tsyringe";
 import { Server, Socket } from "socket.io";
 import { JoinRoomUseCase } from "@room/use-cases/join-room-use-cases";
+import { routeName } from "@/src/shared/infra/interfaces/routes";
 
 
 
@@ -21,5 +22,5 @@ export function joinRoomSocketHandler(socket: Socket) {
     response(joinRoomUseCaseResponse)
   }
 
-  socket.on("room:join", join);
+  socket.on(routeName.JOIN_ROOM, join);
 }

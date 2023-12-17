@@ -20,8 +20,8 @@ export function Header() {
       <div className={styles.content}>
         <ActiveLink name="home" path="/" />
         <ActiveLink inactive name="dashboard" />
-        <ActiveLink name="subscriptions" />
-        <ActiveLink name="cart" />
+        <ActiveLink inactive name="subscriptions" />
+        <ActiveLink inactive name="cart" />
         <ActiveLink name="shop" />
       </div>
       <div>

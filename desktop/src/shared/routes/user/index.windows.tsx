@@ -1,17 +1,17 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import { CustomNavbar } from '../../components/navbar';
-import { Player } from '../../../modules/lessons/screens/player';
-import { Lessons } from '../../../modules/lessons/screens/lessons';
+import { Player } from '@modules/screens/player';
+import { Lessons } from '@modules/screens/lessons';
 import { enableScreens, enableFreeze } from "react-native-screens"
-import { PlaylistLessons } from '../../../modules/lessons/screens/playlist-lessons';
-import { CreateRoomScreen } from '../../../modules/rooms/screens/create-room';
+import { PlaylistLessons } from '@modules/screens/playlist-lessons';
+import { CreateRoomScreen } from '@modules/screens/create-room';
 import { ModalQueueContextProvider } from '../../contexts/modal-queue';
-import { Customer } from '@/src/modules/customer/configs/paths';
 import { drawerNavigationOptions } from '../../configs/drawer-options';
-import { Dashboard } from '@/src/modules/customer/screens/dashboard';
-import { Room } from '@/src/modules/customer/screens/room';
-import { Profile } from '@/src/modules/customer/screens/profile';
+import { Dashboard } from '@/src/modules/screens/dashboard';
+import { Room } from '@/src/modules/screens/room';
+import { Profile } from '@/src/modules/screens/profile';
 import { useAuthContextProvider } from '../../contexts/auth';
+import { screenOptions } from '../configs/screen-options';
 
 type UserDrawerType = {
   dashboard: undefined;
@@ -25,20 +25,15 @@ type UserDrawerType = {
 
 
 
-const UserDrawer = createDrawerNavigator<UserDrawerType>();
+const UserDrawer = createStackNavigator<UserDrawerType>();
 enableScreens(true);
 enableFreeze(false);
 
 export function UserDrawerRoutes() {
-  const { user } = useAuthContextProvider()
   return (
     <ModalQueueContextProvider>
       <UserDrawer.Navigator
-        screenOptions={drawerNavigationOptions}
-        drawerContent={(props) => <CustomNavbar {...props} user={user} />}
-        key={"route-user-screens"}
-        defaultStatus='open'
-        useLegacyImplementation
+        screenOptions={screenOptions}
       >
         <UserDrawer.Screen name="dashboard" component={Dashboard} />
         <UserDrawer.Screen name="profile" component={Profile} />

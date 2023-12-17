@@ -9,8 +9,8 @@ import {
 } from '../styles';
 import { View, StyleSheet, Button } from 'react-native';
 
-import { useToastNotificationProvider, ToastContentType } from '../../contexts/toast-notification';
-import { FONTS } from '../../theme';
+import { useToastNotificationProvider, ToastContentType } from '@shared/contexts/toast-notification';
+import { FONTS } from '@shared/theme';
 
 
 export function ToastComponent() {

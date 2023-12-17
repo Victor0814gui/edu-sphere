@@ -1,8 +1,6 @@
-import { Dashboard } from "@/src/modules/customer/screens/dashboard";
-import { Lessons } from "@/src/modules/lessons/screens/lessons";
-import { CreateRoomScreen } from "@/src/modules/rooms/screens/create-room";
-
-import { HouseSimple, Airplay, AddressBook } from "phosphor-react-native";
+import { Dashboard } from "@modules/screens/dashboard";
+import { Lessons } from "@modules/screens/lessons";
+import { HouseSimple, Airplay } from "phosphor-react-native";
 
 
 export interface IRoutes {

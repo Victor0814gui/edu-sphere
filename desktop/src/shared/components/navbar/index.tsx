@@ -18,8 +18,8 @@ import {
   Content,
   Heading,
 } from "./styles";
-import { ContextAuthContext, useAuthContextProvider } from "../../contexts/auth";
-import { IRoutes, UserRoutes } from "../../routes/user/routes";
+import { ContextAuthContext, useAuthContextProvider } from "@shared/contexts/auth";
+import { IRoutes, UserRoutes } from "@shared/routes/user/routes";
 import { Avatar } from "../avatar";
 import { ItemNavbar } from "./item";
 import { ItemRoom } from "./item-rooms";

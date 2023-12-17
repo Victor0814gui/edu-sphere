@@ -15,8 +15,8 @@ import {
   ToastRemoveButton,
 } from '../styles';
 import { XCircle } from 'phosphor-react-native';
-import { ToastContentType, useToastNotificationProvider } from '../../contexts/toast-notification';
-import { COLORS } from '../../theme';
+import { ToastContentType, useToastNotificationProvider } from '@shared/contexts/toast-notification';
+import { COLORS } from '@shared/theme';
 
 
 

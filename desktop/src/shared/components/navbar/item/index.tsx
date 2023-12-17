@@ -8,7 +8,7 @@ import {
   Container,
   Label,
 } from "./styles";
-import { COLORS } from "../../../theme";
+import { COLORS } from "@shared/theme";
 
 type ItemNavbar = PressableProps & {
   isActive: boolean;

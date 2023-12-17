@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import styled, { css } from "styled-components/native";
-import { COLORS, FONTS } from "../../theme";
+import { COLORS, FONTS } from "@shared/theme";
 //@ts-ignore
 import AdminIconSvg from "@shared/assets/icons/admin.svg"
 

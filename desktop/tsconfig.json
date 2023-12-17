@@ -11,9 +11,7 @@
     "paths": {
       "@/*": ["./*"],
       "tests": ["tests/*"],
-      "@session/*": ["src/modules/session/*"],
-      "@customer/*": ["src/modules/customer/*"],
-      "@rooms/*": ["src/modules/rooms/*"],
+      "@modules/*": ["src/modules/*"],
       "@shared/*": ["src/shared/*"]
     }
   }
