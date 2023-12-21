@@ -1,10 +1,12 @@
 import { PurchaseBusinessException } from "@/src/modules/purchases/infra/exceptions/business-exception";
 import nodemailer from "nodemailer";
 
+
+
 const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
-  host: "smtp.gmail.com",
+  host: process.env.SECRET_EMAIL_HOST,
   auth: {
     user: process.env.SECRET_EMAIL as string,
     pass: process.env.SECRET_PASSWORD as string,

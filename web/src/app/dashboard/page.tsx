@@ -4,21 +4,25 @@ import { Header } from "@src/components/header";
 import styles from "./styles.module.css"
 import { Footer } from "@src/components/footer";
 import { Channel } from "@src/components/channel";
+import { DashboardHeader } from "./components/header";
+import { Badge } from "@src/components/badge";
+import { Button } from "@src/components/button";
 
 export default function Dashboard() {
-  // Or a custom loading skeleton component
-  const animationsSize = 200;
   return (
     <div className={styles.container}>
       <Header />
+      <DashboardHeader />
       <div className={styles.content}>
-        <h1>Dashboard</h1>
-
-        {/* <div className={styles.listChannels}>
-          {new Array(30).fill({ i: 0 }).map(channel => (
-            <Channel />
+        <div className={styles.profile}>
+          <h1>Victor Guilherme Coimbra</h1>
+          <p>sou um entusiasta das tecnologia, meu maior sonho é mudar o mundo ajudando as pessoas através da tecnologia, e bom, tem sido uma tarefa um tanto desafiadora :'(, mas nada que tentar mais uma vez não resvolva.</p>
+        </div>
+        <div className={styles.productsList}>
+          {new Array(8).fill({ id: 0 }).map(product => (
+            <div className={styles.product} />
           ))}
-        </div> */}
+        </div>
       </div>
       <Footer />
     </div>

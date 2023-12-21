@@ -13,7 +13,6 @@ export class CreateRoomUseCase
     @inject("CreateRoomRepository")
     private createRoomRepository: ICreateRoomRepository.Implementation,
   ) { }
-
   public async execute(props: ICreateRoomUseCase.Params):
     ICreateRoomUseCase.Response {
 
@@ -27,7 +26,7 @@ export class CreateRoomUseCase
       slug: slug,
     });
 
-    if (!!verifyRoomAlreadyExists?.id) {
+    if (verifyRoomAlreadyExists?.id) {
       throw new RoomBusinessException("the room already exists", 403);
     }
 
