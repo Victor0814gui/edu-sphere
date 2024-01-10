@@ -4,7 +4,7 @@ import { ScrollView, Pressable, Image } from "react-native";
 import { FilePicker } from "react-native-custom-window"
 import RNFS from "react-native-fs";
 import {
-  aditionalStyles,
+  additionalStyles,
   Container,
   TextContainer,
   ButtonSingnOut,
@@ -13,7 +13,7 @@ import {
   OptionsDescriptionText,
 } from "./styles";
 import { useAuthContextProvider } from "@shared/contexts/auth";
-import { Trasition } from '@shared/components/transition';
+import { Transition } from '@shared/components/transition';
 import { useToastNotificationProvider } from "@shared/contexts/toast-notification";
 import { Expander } from "../../components/expander";
 
@@ -22,10 +22,10 @@ const description = "Os Ursos constituem uma família de mamíferos plantígrado
 
 
 
-export const Profile = (): JSX.Element => {
+export const Profile = () => {
   return (
     <ScrollView>
-      <Trasition>
+      <Transition>
         <Container>
           <TextContainer>Profile</TextContainer>
           <Expander label="criar mensagens com dados moveis" />
@@ -33,16 +33,16 @@ export const Profile = (): JSX.Element => {
           <Expander label="tonar minhas questions editaveis ao publico" />
           <Expander label="Desabilitar animações" >
             <OptionsDescription>
-              <OptionsDescriptionText style={aditionalStyles.optionsDescriptionText}>{description}</OptionsDescriptionText>
+              <OptionsDescriptionText style={additionalStyles.optionsDescriptionText}>{description}</OptionsDescriptionText>
             </OptionsDescription>
           </Expander>
           <Expander label="Desabilitar animações" >
             <OptionsDescription>
-              <OptionsDescriptionText style={aditionalStyles.optionsDescriptionText}>{description}</OptionsDescriptionText>
+              <OptionsDescriptionText style={additionalStyles.optionsDescriptionText}>{description}</OptionsDescriptionText>
             </OptionsDescription>
           </Expander>
         </Container>
-      </Trasition>
+      </Transition>
     </ScrollView>
   )
 }
