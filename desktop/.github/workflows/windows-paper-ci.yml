@@ -1,5 +1,9 @@
 name: Windows build CI
-on: [pull_request]
+on: 
+  push:
+    paths:
+      - 'windows/'
+
 
 jobs:
   run-windows-tests:
