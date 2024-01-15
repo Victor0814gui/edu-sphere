@@ -8,9 +8,9 @@ datasource db {
 }
 
 model User {
-  id             String          @id @unique
+  id             String             @id @unique
   name           String
-  email          String          @unique
+  email          String             @unique
   password       String
   createdAt      DateTime
   updatedAt      DateTime?
@@ -19,13 +19,23 @@ model User {
   transaction    Transaction[]
   subscription   Product[]
   roles          Role[]
-  matriculations Matriculation[] @relation("MatriculationToUser")
-  penaltys       Penalty[]       @relation("PenaltyToUser")
-  permissions    Permission[]    @relation("PermissionToUser")
+  matriculations Matriculation[]    @relation("MatriculationToUser")
+  penaltys       Penalty[]          @relation("PenaltyToUser")
+  permissions    Permission[]       @relation("PermissionToUser")
   refreshTokens  RefreshToken[]
-  rooms          Room[]          @relation("RoomToUser")
+  rooms          Room[]             @relation("RoomToUser")
+  codes          VerificationCode[]
 
   @@index([id])
+}
+
+model VerificationCode {
+  id          String    @id
+  code        String
+  createdAt   DateTime
+  activatedAt DateTime?
+  userId      String
+  users       User      @relation(fields: [userId], references: [id])
 }
 
 model Room {
@@ -129,24 +139,20 @@ model RefreshToken {
 }
 
 model Product {
-  id             String        @id
-  name           String        @unique
-  type           String
-  description    String?
-  status         String
-  startDate      DateTime?
-  endDate        DateTime?
-  paymentMethod  String?
-  price          Int
-  billingCycle   String?
-  nextBilling    DateTime?
-  autoRenew      Boolean?
-  paymentDetails String?
-  createdAt      DateTime
-  updatedAt      DateTime?
-  transactions   Transaction[]
-  users          User[]
-  permissions    Permission[]  @relation("PermissionToProduct")
+  id           String        @id
+  name         String        @unique
+  productId    String        @unique
+  priceId      String        @unique
+  type         String
+  description  String?
+  status       String
+  amount       Int
+  thumbnailUrl String?
+  createdAt    DateTime
+  updatedAt    DateTime?
+  transactions Transaction[]
+  users        User[]
+  permissions  Permission[]  @relation("PermissionToProduct")
 }
 
 model Attribute {
@@ -162,16 +168,16 @@ model Coupon {
 }
 
 model Transaction {
-  id             String   @id
-  userId         String
+  id             String    @id
   paymentIntent  String?
   subscriptionId String?
   amount         Int
   currency       String
   status         String
-  createdAt      DateTime @default(now())
-  subscription   Product? @relation(fields: [subscriptionId], references: [id])
-  user           User     @relation(fields: [userId], references: [id])
+  createdAt      DateTime  @default(now())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id])
+  products       Product[]
 }
 
 model Penalty {

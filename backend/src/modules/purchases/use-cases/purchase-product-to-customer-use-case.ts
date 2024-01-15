@@ -1,8 +1,10 @@
+import { randomUUID } from "crypto";
 import { inject, injectable } from "tsyringe";
-import { IPurchaseProductToCustomerUseCase } from "../interfaces/i-purchase-product-to-customer-use-case";
-import { IPurchaseProductToCustomerRepository } from "../repositories/i-purchase-product-to-customer-repository";
-import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
-import { ISessionPurchaseProductGateway } from "@customer/infra/gateways/contracts/i-sessions-purchase-product-gateway";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
+import { ISessionPurchaseProductGateway } from "@purchases/infra/gateways/contracts/i-sessions-purchase-product-gateway";
+import { IPurchaseProductToCustomerUseCase } from "@purchases/interfaces/i-purchase-product-to-customer-use-case";
+import { IPurchaseProductToCustomerRepository } from "@purchases/repositories/i-purchase-product-to-customer-repository";
+import { TransactionStatusEnum } from "@/src/shared/application/entities/enums/i-transaction-status";
 
 
 @injectable()
@@ -12,7 +14,7 @@ export class PurchaseProductToCustomerUseCase
     @inject("PurchaseProductToCustomerRepository")
     private purchaseProductToCustomerRepository: IPurchaseProductToCustomerRepository.Implementation,
     @inject("SessionPurchaseProductGateway")
-    private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation
+    private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation,
   ) { }
   public async execute(params: IPurchaseProductToCustomerUseCase.Params):
     IPurchaseProductToCustomerUseCase.Response {
@@ -35,22 +37,39 @@ export class PurchaseProductToCustomerUseCase
       throw new PurchaseBusinessException("Product does not exists", 404);
     }
 
-    const purchaseProductToCustomerResponse =
+    const sessionPurchaseProductGatewayResponse =
+      await this.sessionPurchaseProductGateway.purchase({
+        priceId: verifyProductAlreadyExists.priceId,
+      });
+
+    const purchaseProductEmitTransactionResponse =
       await this.purchaseProductToCustomerRepository.purchase({
         customerId: params.customerId,
         productId: params.productId,
       });
 
-    const sessionPurchaseProductGatewayResponse =
-      await this.sessionPurchaseProductGateway.execute({
-        customerId: params.customerId,
-        priceId: params.productId,
-      });
+    const transactionPaymentIntent = sessionPurchaseProductGatewayResponse?.transactionId;
+    const transactionId = sessionPurchaseProductGatewayResponse.id
 
-    if (!sessionPurchaseProductGatewayResponse?.subscriptionId) {
+    if (!transactionId && !transactionPaymentIntent) {
       throw new PurchaseBusinessException("Error processing your payment", 500);
     }
 
-    return purchaseProductToCustomerResponse;
+    const transactionDate = new Date();
+
+    const purchaseProductToCustomerRepositoryResponse =
+      await this.purchaseProductToCustomerRepository.transaction({
+        id: transactionId!,
+        paymentIntent: transactionPaymentIntent!,
+        currency: "brl",
+        userId: verifyCustomerAlreadyExists.id,
+        amount: purchaseProductEmitTransactionResponse.amount,
+        status: TransactionStatusEnum.active,
+        createdAt: transactionDate,
+      });
+
+    console.log(purchaseProductToCustomerRepositoryResponse);
+
+    return purchaseProductToCustomerRepositoryResponse;
   };
 }

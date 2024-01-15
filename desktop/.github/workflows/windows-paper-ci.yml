@@ -1,0 +1,50 @@
+name: Windows build CI
+on: 
+  push:
+    paths:
+      - 'windows/'
+
+
+jobs:
+  run-windows-tests:
+    name: Build & run tests
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout Code
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "^16"
+          cache: "yarn"
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: "5.x"
+      - name: Setup Windows SDKs
+      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
+        with:
+          sdk-version: 18362
+      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
+        with:
+          sdk-version: 17763
+      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
+        with:
+          sdk-version: 16299
+      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
+        with:
+          sdk-version: 19041
+      - name: List installed Windows SDKs
+        run: |
+          & "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -products * -requires Microsoft.VisualStudio.Component.Windows10SDK -property installationPath
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: '[16.0,17.0)'
+            msbuild-architecture: x64
+      - name: Install node modules
+        run: yarn install --frozen-lock
+      - name: Build x64 release
+        shell: powershell
+        run: yarn react-native run-windows --arch x64 --sln ./windows/reactativeustomallery.sln --proj ./windows/reactativeustomallery/reactativeustomallery.vcxproj --logging --no-autolink --no-deploy

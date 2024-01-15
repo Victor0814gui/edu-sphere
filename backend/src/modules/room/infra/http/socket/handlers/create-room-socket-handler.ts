@@ -1,7 +1,8 @@
-import { CreateRoomUseCase } from "@/src/modules/room/use-cases/create-room-use-case";
-import { Room } from "@/src/shared/application/entities/room";
-import { Server, Socket } from "socket.io";
 import { container } from "tsyringe";
+import { Server, Socket } from "socket.io";
+import { Room } from "@shared/application/entities/room";
+import { CreateRoomUseCase } from "@room/use-cases/create-room-use-case";
+import { routeName } from "@/src/shared/infra/interfaces/routes";
 
 
 type ICreateRoomSocketHandlerParams = {
@@ -26,6 +27,8 @@ export function createRoomSocketHandler(io: Server, socket: Socket) {
       await createRoomUseCase.execute(params);
 
     callback(createRoomResponse)
+    socket.emit("room:create", createRoomResponse);
   }
-  socket.on("room:create", createRoom);
+
+  socket.on(routeName.CREATE_ROOM, createRoom);
 }

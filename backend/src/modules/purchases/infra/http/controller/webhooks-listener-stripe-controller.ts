@@ -1,37 +1,22 @@
-import { Request, Response } from "express";
-import { InvoicePaymentSucceededUseCase } from "../../../use-cases/invoice-payment-succeeded-use-case";
-import { container } from "tsyringe";
 import Stripe from "stripe";
+import { container } from "tsyringe";
+import { Request, Response } from "express";
 import { stripe } from "@/src/shared/infra/services/stripe";
-
-
-
+import { InvoicePaymentSucceededUseCase } from "@purchases/use-cases/invoice-payment-succeeded-use-case";
 
 
 
 export class WebhookListenerStripeController {
-  public async handler(request: Request, response: Response):
-    Promise<Response> {
+  public async handler(request: Request, response: Response): Promise<void> {
 
     const invoicePaymentSucceededUseCase = container.resolve(InvoicePaymentSucceededUseCase)
     let event: Stripe.Event;
 
-    try {
-      event = stripe.webhooks.constructEvent(
-        request.body,
-        request.header('Stripe-Signature')!,
-        process.env.STRIPE_WEBHOOK_SECRET as string,
-      );
-    } catch (err) {
-      console.log(err);
-      console.log(`⚠️  Webhook signature verification failed.`);
-      console.log(
-        `⚠️  Check the env file and enter the correct webhook secret.`
-      );
-      return response.json(400);
-    }
-
-    let serviceResponse;
+    event = stripe.webhooks.constructEvent(
+      request.body,
+      request.header('Stripe-Signature')!,
+      process.env.STRIPE_WEBHOOK_SECRET as string,
+    );
 
     switch (event.type) {
       case 'invoice.payment_succeeded':
@@ -58,6 +43,5 @@ export class WebhookListenerStripeController {
       // Unexpected event type
     }
 
-    return response.json(serviceResponse);
   }
 }

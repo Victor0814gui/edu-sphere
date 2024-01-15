@@ -1,12 +1,10 @@
-import React from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import {
-  View,
-  Animated,
-  StyleSheet
-} from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Animated, ActivityIndicator } from 'react-native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
 import { styles } from "./styles";
+import { COLORS } from '@shared/theme';
+import { Modal } from '../modal';
 
 type TransitionProps = {
   children: React.ReactNode;
@@ -18,23 +16,33 @@ function Trasition({
   duration = 500,
 }: TransitionProps) {
   const animatedScreenValue = React.useRef(new Animated.Value(20)).current;
+  const isScreenFocused = useIsFocused();
 
-  const animationEnter = () => {
+  const animationEnter = useCallback(() => {
     Animated.spring(animatedScreenValue, {
       toValue: 0,
       useNativeDriver: true,
     }).start();
-  }
+  }, [])
 
   useFocusEffect(() => {
     animationEnter();
   })
 
-  return (
-    <Animated.View style={[styles.container, { transform: [{ translateY: animatedScreenValue }] }]}>
-      {children}
-    </Animated.View>
-  );
+  if (isScreenFocused) {
+    return (
+      <Animated.View style={[styles.container, { transform: [{ translateY: animatedScreenValue }] }]}>
+        {children}
+        <Modal />
+      </Animated.View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size={42} color={COLORS.green_500} />
+      </View>
+    );
+  }
 }
 
 const Transition = Trasition;

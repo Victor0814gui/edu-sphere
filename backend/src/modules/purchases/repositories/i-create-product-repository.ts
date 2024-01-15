@@ -20,11 +20,15 @@ namespace ICreateProductRepository {
   export namespace Create {
     export type Params = {
       name: string,
+      priceId: string;
+      productId: string;
       id: string,
-      price: number,
+      amount: number,
       status: ProductStatus,
       type: ProductType,
       createdAt: Date,
+      description: string;
+      thumbnailUrl: string;
     };
 
     export type Response = Promise<Product>

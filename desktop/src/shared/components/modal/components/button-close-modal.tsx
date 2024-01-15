@@ -1,6 +1,6 @@
 import { X } from 'phosphor-react-native';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, PressableProps } from 'react-native';
+import { Pressable, StyleSheet, PressableProps, View } from 'react-native';
 import { COLORS } from "@shared/theme";
 
 export const ButtonCloseModal = ({ ...props }: PressableProps) => {
@@ -14,9 +14,11 @@ export const ButtonCloseModal = ({ ...props }: PressableProps) => {
   }
 
   return (
-    <Pressable
-      onHoverIn={onHoverIn}
-      onHoverOut={onHoverOut}
+    <View
+      onMouseEnter={onHoverIn}
+      onMouseLeave={onHoverOut}
+      // onHoverIn={onHoverIn}
+      // onHoverOut={onHoverOut}
       {...props}
       style={[
         styles.container,
@@ -24,7 +26,7 @@ export const ButtonCloseModal = ({ ...props }: PressableProps) => {
       ]}
     >
       <X size={24} color="#d9d9d9" />
-    </Pressable>
+    </View>
   );
 }
 
@@ -33,12 +35,8 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: COLORS.grey_270,
-    position: "absolute",
-    right: 2,
-    top: 2,
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: COLORS.grey_800,
+    zIndex: 0,
   },
   containerHovored: {
     backgroundColor: COLORS.grey_120,

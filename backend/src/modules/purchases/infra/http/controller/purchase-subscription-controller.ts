@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 import { PurchaseSubscriptionUseCase } from "@purchases/use-cases/purchase-subscription-use-case";
 
 type PurchaseSubscriptionControllerParams = {
-  paymentMethodId: string;
-  subscriptionId: string;
   customerId: string;
   priceId: string;
 }

@@ -1,23 +1,35 @@
-
 import { ShoppingCartSimple } from "@phosphor-icons/react"
 import styles from "./styles.module.css"
 import { Badge } from "../badge"
 
+type ProductProps = {
+  amount?: number,
+  name?: string;
+  description?: string;
+  buttonLabel?: string;
+  onClick?: () => void;
+}
 
-export function Product(props: {
-  index: number,
-}) {
+export function Product({
+  amount = 1599,
+  name = "Spark",
+  description = "Este é o plano perfeito para aqueles que estão começando. Desfrute de uma comunicação rápida e confiável com amigos, familiares.",
+  buttonLabel = "Adicionar",
+  onClick,
+}: ProductProps) {
+  const amountFormat = amount / 100
+  let precoFormatado = amountFormat.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   return (
     <div className={styles.subscription}>
       <header>
-        <h2>Spark</h2>
-        {props.index === 2 && <Badge>especial</Badge>}
+        <h2>{name}</h2>
+        {/* <Badge>Atual</Badge> */}
       </header>
-      <h4>Este é o plano perfeito para aqueles que estão começando. Desfrute de uma comunicação rápida e confiável com amigos, familiares.</h4>
+      <h4>{description}</h4>
       <footer>
-        <h1>15.99R$</h1>
-        <button>
-          Adicionar
+        <h1>{precoFormatado}</h1>
+        <button onClick={onClick ?? (() => { })}>
+          {buttonLabel}
           <ShoppingCartSimple size={28} color="#d9d9d9" weight="fill" />
         </button>
       </footer>

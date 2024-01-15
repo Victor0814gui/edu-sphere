@@ -1,5 +1,6 @@
 import { Product } from "@/src/shared/application/entities/product";
 import { Customer } from "@/src/shared/application/entities/user";
+import { Transaction } from "@/src/shared/application/entities/transaction";
 
 
 
@@ -12,6 +13,14 @@ namespace IPurchaseProductToCustomerRepository {
     }
 
     export type Response = Promise<Product | null>;
+  }
+}
+
+namespace IPurchaseProductToCustomerRepository {
+  export namespace Transaction {
+    export type Params = Transaction;
+
+    export type Response = Promise<Transaction>;
   }
 }
 
@@ -32,7 +41,7 @@ namespace IPurchaseProductToCustomerRepository {
     }
 
     //@ts-check testar funcionalidade
-    export type Response = Promise<any>;
+    export type Response = Promise<Product>;
   }
 }
 
@@ -44,6 +53,8 @@ namespace IPurchaseProductToCustomerRepository {
       => IPurchaseProductToCustomerRepository.FindCustomer.Response;
     purchase: (props: IPurchaseProductToCustomerRepository.Purchase.Params)
       => IPurchaseProductToCustomerRepository.Purchase.Response;
+    transaction: (props: IPurchaseProductToCustomerRepository.Transaction.Params)
+      => IPurchaseProductToCustomerRepository.Transaction.Response;
   }
 }
 

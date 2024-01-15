@@ -1,0 +1,15 @@
+config:
+  # This is a test server run by team Artillery
+  # It's designed to be highly scalable
+  target: http://localhost:5000
+  phases:
+    - duration: 4
+      arrivalRate: 40000
+ 
+  # Load & configure a couple of useful plugins
+  # https://docs.art/reference/extensions
+ 
+scenarios:
+  - flow:      
+      - get:
+          url: "/purchases/products/list"   

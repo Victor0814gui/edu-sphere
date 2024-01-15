@@ -3,7 +3,8 @@ import { container } from "tsyringe";
 import { CustomerAuthorizationAccountUseCase } from "../../../use-cases/customer-authorization-account-use-case";
 
 type CustomerAuthorizationAccountControllerParams = {
-  token: string;
+  code: string;
+  customerId: string;
 }
 
 export class CustomerAuthorizationAccountController {

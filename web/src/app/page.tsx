@@ -21,7 +21,28 @@ export default function Home() {
           <div className={styles.info}>
             <Badge color="#00B0FF">Acesso antecipado</Badge>
             <h1 className={styles.title}>Gerencie <span>!</span> <br />seu grupo</h1>
-            <h3 className={styles.description}>Explore um novo padrão de aprendizado com nosso aplicativo inovador, oferecendo uma sala de aula virtual envolvente e interativa. Facilitamos a colaboração entre alunos e professores, proporcionando uma experiência de aprendizado personalizada.</h3>
+            <h3 className={styles.description}>Explore um novo padrão de aprendizado com nosso aplicativo inovador</h3>
+            <div className={styles.qualitiesList}>
+              <div className={styles.squareContent}>
+                <p>windows</p>
+              </div>
+              <div className={styles.squareContent}>
+                <p>android</p>
+              </div>
+              <div className={styles.squareContent}>
+                <p>ios</p>
+              </div>
+              <div className={styles.squareContent}>
+                <p>web</p>
+              </div>
+              <div className={styles.squareContent}>
+                <p>TVs</p>
+              </div>
+              <div className={styles.squareContent}>
+                <p>macOS</p>
+              </div>
+            </div>
+            <h3 className={styles.description}>Facilitamos a colaboração entre alunos e professores, proporcionando uma experiência de aprendizado personalizada.</h3>
             <Button>CRIAR INSCRIÇÃO</Button>
           </div>
           <div className={styles.previewThumbnailContainer}>
@@ -43,14 +64,17 @@ export default function Home() {
           <Image height={590} width={590} className={styles.preview} src="/images/preview-2.png" alt="preview" />
           <div className={styles.productInfo}>
             <div>
-              <h2>O que há de novo?</h2>
-              <p>Você pode adicionar mais itens dentro do contêiner conforme necessário. Este exemplo é um ponto de partida, e você pode personalizar os estilos e a estrutura conforme desejar.</p>
+              <h2>Em constante melhorias</h2>
+              <p>Através na nossa rapida comunicação rapida e eficiente com a equipe de desenvolvimento podemos dar prioridade maxima a resolução de bugs e melhorias sugeridas.</p>
             </div>
             <div>
-              <h2>O que há de novo?</h2>
-              <p>Você pode adicionar mais itens dentro do contêiner conforme necessário. Este exemplo é um ponto de partida, e você pode personalizar os estilos e a estrutura conforme desejar.</p>
+              <h2>Pedidos de melhorias atendidos</h2>
+              <p>Os tickets com maior votação entraram com prioridade para nossa lista de funcionlidades a serem implementadas, buscando sem duvidas uma experiencia incrivel </p>
             </div>
-            <Button>Testar funcionalidades</Button>
+            <div>
+              <h2>Atualizações</h2>
+              <p>Novas features em planejamento e em desenvolvimento no painel de avisos, algumas estão sujeitas a sigilo</p>
+            </div>
           </div>
         </section>
         <Separator />

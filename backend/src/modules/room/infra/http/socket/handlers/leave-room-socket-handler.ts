@@ -1,5 +1,6 @@
 import { LeaveRoomUseCase } from "@/src/modules/room/use-cases/leave-room-use-case";
 import { Room } from "@/src/shared/application/entities/room";
+import { routeName } from "@/src/shared/infra/interfaces/routes";
 import { Server, Socket } from "socket.io";
 import { container } from "tsyringe";
 
@@ -24,6 +25,6 @@ export function LeaveRoomSocketHandler(io: Server, socket: Socket) {
     }
   }
 
-  socket.on("room:leave", leave)
+  socket.on(routeName.LEAVE_ROOM, leave)
 
 }

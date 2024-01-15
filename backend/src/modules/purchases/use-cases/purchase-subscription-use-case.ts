@@ -1,9 +1,8 @@
-import { stripe } from "@/src/shared/infra/services/stripe";
-import { IPurchaseSubscriptionUseCase } from "../interfaces/i-purchase-subscription-use-case";
-import { IPurchaseSubscriptionRepository } from "../repositories/i-purchase-subscription-repository";
 import { inject, injectable } from "tsyringe";
-import { PurchaseBusinessException } from "../infra/exceptions/business-exception";
-import Stripe from "stripe";
+import { IPurchaseSubscriptionUseCase } from "@purchases/interfaces/i-purchase-subscription-use-case";
+import { IPurchaseSubscriptionRepository } from "@purchases/repositories/i-purchase-subscription-repository";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
+import { ISessionPurchaseProductGateway } from "../infra/gateways/contracts/i-sessions-purchase-product-gateway";
 
 
 @injectable()
@@ -12,19 +11,12 @@ export class PurchaseSubscriptionUseCase
   constructor(
     @inject("PurchaseSubscriptionRepository")
     private purchaseSubscriptionRepository: IPurchaseSubscriptionRepository.Implementation,
+    @inject("SessionPurchaseProductGateway")
+    private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation,
   ) { }
 
   public async execute(params: IPurchaseSubscriptionUseCase.Params):
     IPurchaseSubscriptionUseCase.Response {
-
-    const verifySubscriptionAlreadyExists =
-      await this.purchaseSubscriptionRepository.findBySubscription({
-        subscriptionId: params.subscriptionId,
-      })
-
-    if (!verifySubscriptionAlreadyExists?.id) {
-      throw new PurchaseBusinessException("Subscription does not exist", 404)
-    }
 
     const verifyCustomerAlreadyExists =
       await this.purchaseSubscriptionRepository.findByCustomer({
@@ -35,26 +27,44 @@ export class PurchaseSubscriptionUseCase
       throw new PurchaseBusinessException("Customer does not exist", 404)
     }
 
+    const product = await this.sessionPurchaseProductGateway.findProduct({
+      priceId: params.priceId,
+    })
 
-    try {
-      await stripe.subscriptions.create({
-        customer: params.customerId,
-        items: [{
-          price: params.subscriptionId,
-        }],
-        payment_behavior: 'default_incomplete',
-        expand: ['latest_invoice.payment_intent'],
-      });
-    } catch (err) {
-      throw new PurchaseBusinessException("internal server error - Gateway error", 500)
+    if (!product.productId) {
+      throw new PurchaseBusinessException("Subscriptions does not exits", 404);
     }
 
-    const PurchaseSubscriptionRepositoryResponse =
-      await this.purchaseSubscriptionRepository.updateSubscription({
-        customerId: params.customerId,
-        subscriptionId: params.subscriptionId,
+    const verifySubscriptionAlreadyExists =
+      await this.purchaseSubscriptionRepository.findBySubscription({
+        subscriptionId: product.productId!,
       })
 
-    return PurchaseSubscriptionRepositoryResponse;
+    if (!verifySubscriptionAlreadyExists?.id) {
+      throw new PurchaseBusinessException("Subscription does not exist", 404)
+    }
+
+    const purchase = await this.sessionPurchaseProductGateway.purchase({
+      priceId: params.priceId,
+    })
+
+    await this.purchaseSubscriptionRepository.updateSubscription({
+      customerId: params.customerId,
+      subscriptionId: product.productId!,
+    })
+
+    const transaction =
+      await this.purchaseSubscriptionRepository.transaction({
+        id: purchase.transactionId!,
+        userId: params.customerId,
+        subscriptionId: product.productId,
+        amount: purchase.amount!,
+        paymentIntent: purchase.transactionId,
+        currency: purchase.currency!,
+        status: product.status!,
+        createdAt: new Date(),
+      })
+
+    return transaction;
   }
 }

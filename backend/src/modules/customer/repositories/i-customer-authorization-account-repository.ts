@@ -1,6 +1,7 @@
 import { Permission } from "@/src/shared/application/entities/permission";
 import { Role } from "@/src/shared/application/entities/role";
 import { Customer } from "@/src/shared/application/entities/user";
+import { VerificationCode } from "@/src/shared/application/entities/verification-code";
 
 
 
@@ -9,19 +10,19 @@ declare namespace ICustomerAuthorizationAccountRepository { }
 
 
 namespace ICustomerAuthorizationAccountRepository {
-  export namespace FindById {
+  export namespace FindByCode {
     export type Params = {
-      customerId: string;
+      code: string;
     };
 
-    export type Response = Promise<Customer | null>;
+    export type Response = Promise<VerificationCode | null>;
   }
 }
 
 namespace ICustomerAuthorizationAccountRepository {
   export namespace Update {
     export type Params = {
-      email: string;
+      customerId: string;
       status: string;
       permissions: Permission[];
       roles: Role[];
@@ -57,8 +58,8 @@ namespace ICustomerAuthorizationAccountRepository {
       => ICustomerAuthorizationAccountRepository.FindPermissions.Response;
     findRoles: (params: ICustomerAuthorizationAccountRepository.FindRoles.Params)
       => ICustomerAuthorizationAccountRepository.FindRoles.Response;
-    findById: (props: ICustomerAuthorizationAccountRepository.FindById.Params)
-      => ICustomerAuthorizationAccountRepository.FindById.Response;
+    findByCode: (props: ICustomerAuthorizationAccountRepository.FindByCode.Params)
+      => ICustomerAuthorizationAccountRepository.FindByCode.Response;
     update: (props: ICustomerAuthorizationAccountRepository.Update.Params)
       => ICustomerAuthorizationAccountRepository.Update.Response;
   }

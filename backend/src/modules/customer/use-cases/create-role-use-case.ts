@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import { injectable, inject } from "tsyringe";
 import { ICreateRoleUseCase } from "../interfaces/i-create-role-use-case";
 import { ICreateRoleRepository } from "../repositories/i-create-role-repository";
@@ -21,11 +20,11 @@ export class CreateRoleUseCase
   ) { }
   async execute(props: ICreateRoleUseCase.Params): ICreateRoleUseCase.Response {
 
-    const verifyRoleAlreayExists = await this.createRoleRepository.findUnique({
+    const verifyRoleAlreadyExists = await this.createRoleRepository.findUnique({
       name: props.name,
     });
 
-    if (verifyRoleAlreayExists?.id) {
+    if (verifyRoleAlreadyExists?.id) {
       throw new CustomerBusinessException("role already exists", 409)
     }
 

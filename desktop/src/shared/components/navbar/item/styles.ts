@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import styled, { css } from "styled-components/native";
 //@ts-ignore
 import AdminIconSvg from "@shared/assets/icons/admin.svg"
-import { COLORS, FONTS } from "../../../theme";
+import { COLORS, FONTS } from "@shared/theme";
 
 
 export const fonts = StyleSheet.create({

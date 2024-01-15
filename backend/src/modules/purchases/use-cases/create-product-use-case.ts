@@ -1,13 +1,10 @@
+import { randomUUID } from "crypto";
 import { inject, injectable } from "tsyringe";
-import { ICreateProductUseCase } from "../interfaces/i-create-product-use-case";
-import { ICreateProductRepository } from "../repositories/i-create-product-repository";
-import { CustomerBusinessException } from "../../customer/infra/exceptions/business-exception";
-import { ISubscriptionCustomerAccountGateway } from "../../customer/infra/gateways/contracts/i-subscription-customer-accounts-gateway";
-import { ICreateUUIDTokenService } from "../../customer/infra/services/contracts/i-create-uuid-token-service";
-import { ICreateNewDateService } from "../../customer/infra/services/contracts/i-create-new-date-service";
-import { ProductType } from "@/src/shared/application/entities/product";
-import { IConvertStringInDate } from "../infra/services/interfaces/i-convert-string-in-date";
-import { ProductTypeEnum } from "@/src/shared/application/entities/enums/i-product-type";
+import { ProductTypeEnum } from "@shared/application/entities/enums/i-product-type";
+import { ICreateProductUseCase } from "@purchases/interfaces/i-create-product-use-case";
+import { ICreateProductRepository } from "@purchases/repositories/i-create-product-repository";
+import { PurchaseBusinessException } from "@purchases/infra/exceptions/business-exception";
+import { ISessionPurchaseProductGateway } from "../infra/gateways/contracts/i-sessions-purchase-product-gateway";
 
 
 
@@ -17,42 +14,34 @@ export class CreateProductUseCase implements
   constructor(
     @inject("CreateProductRepository")
     private createProductRepository: ICreateProductRepository.Implementation,
-    @inject("SubscriptionCustomerAccountsGateway")
-    private subscriptionCustomerAccountsGateway: ISubscriptionCustomerAccountGateway.Implementation,
-    @inject("CreateUUIDTokenService")
-    private createUUIDTokenService: ICreateUUIDTokenService.Implementation,
-    @inject("CreateNewDateService")
-    private createNewDateService: ICreateNewDateService.Implementation,
+    @inject("SessionPurchaseProductGateway")
+    private sessionPurchaseProductGateway: ISessionPurchaseProductGateway.Implementation,
   ) { }
 
-  public async execute(props: ICreateProductUseCase.Params):
+  public async execute(params: ICreateProductUseCase.Params):
     ICreateProductUseCase.Response {
 
     const verifyProductAlreadyExists =
-      await this.createProductRepository.findByName({ name: props.name });
+      await this.createProductRepository.findByName({ name: params.name });
 
     if (!!verifyProductAlreadyExists?.id) {
-      throw new CustomerBusinessException("Product already exists", 403);
+      throw new PurchaseBusinessException("Product already exists", 403);
     }
 
     const verifyProductAlreadyExistsInGateway =
-      await this.subscriptionCustomerAccountsGateway.findById({
-        productId: props.name
-      });
+      await this.sessionPurchaseProductGateway.create(params);
 
-    if (!!verifyProductAlreadyExistsInGateway.price) {
-      throw new CustomerBusinessException("Product already exists on the gateway", 403);
-    }
-
-    const productId = this.createUUIDTokenService.create()
-    const productCreatedAt = this.createNewDateService.create()
+    const productId = randomUUID();
+    const productCreatedAt = new Date();
 
     const createProductRepositoryResponse =
       await this.createProductRepository.create({
-        ...props,
+        ...params,
         type: ProductTypeEnum.product,
         id: productId,
         createdAt: productCreatedAt,
+        priceId: verifyProductAlreadyExistsInGateway.priceId,
+        productId: verifyProductAlreadyExistsInGateway.productId,
       });
 
     return createProductRepositoryResponse;

@@ -8,7 +8,6 @@ import { IListSubscriptionsRepository } from "../repositories/i-list-subscriptio
 @injectable()
 export class ListSubscriptionsUseCase
   implements IListSubscriptionsUseCase.Implementation {
-
   constructor(
     @inject("ListSubscriptionsRepository")
     private listSubscriptionsRepository: IListSubscriptionsRepository.Implementation,

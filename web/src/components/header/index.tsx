@@ -1,27 +1,36 @@
 'use client'
-import Link from "next/link"
 import styles from "./styles.module.css"
-import { GearSix, Bell, ShoppingCartSimple } from "@phosphor-icons/react"
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from 'next/navigation'
 import { ActiveLink } from "../active-link";
 
 
 export function Header() {
+  const router = useRouter();
+  const pathName = usePathname();
+
+  const handlerGoRoute = (route: string) => {
+    router.push(route);
+  }
+
   return (
     <header className={styles.container}>
-      <div className={styles.content}>
+      <div>
         <h1>EduSphere</h1>
       </div>
       <div className={styles.content}>
         <ActiveLink name="home" path="/" />
         <ActiveLink inactive name="dashboard" />
-        <ActiveLink name="subscription" />
-        <ActiveLink name="inscriptions" />
+        <ActiveLink inactive name="subscriptions" />
+        <ActiveLink inactive name="cart" />
+        <ActiveLink name="shop" />
       </div>
-      <div className={styles.content}>
-        <Bell size={24} color="#d9d9d9" weight="fill" />
-        <GearSix size={24} color="#d9d9d9" weight="fill" />
-        <ShoppingCartSimple size={24} color="#d9d9d9" weight="fill" />
+      <div>
+        {pathName === '/' && (
+          <>
+            <button onClick={() => handlerGoRoute("/auth/signup")} className={styles.buttonDefault}>Criar conta</button>
+            <button onClick={() => handlerGoRoute("/auth/signin")} className={styles.button}>entrar</button>
+          </>
+        )}
       </div>
     </header>
   )

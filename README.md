@@ -10,7 +10,7 @@
 
 ### Description
 
-Contruido usando a tecnologia react native for ```windows``` & ```macos```, suporta as plataformas windows e macos tornando o processo de contrução de plataforma rapido fácil.
+O EduSphere é um software de chat e aulas projetado para tornar o processo de comunicação entre educadores e alunos mais prático e eficaz. Ele facilita a interação ao mesmo tempo em que oferece uma estrutura de comunicação sólida e simples.
 
 
 ## Mobile
@@ -18,11 +18,11 @@ Contruido usando a tecnologia react native for ```windows``` & ```macos```, supo
 
 ### Description
 
-Contruido usando a tecnologia react native, suporta as plataformas ```android``` e ```ios``` tornando o processo de contrução de plataforma rapido fácil aproveitando os melhores recursos das plataformas moveis para estudar e se manter atualizado.
+Construído usando a tecnologia React Native, ele oferece suporte às plataformas Android e iOS, tornando o processo de desenvolvimento rápido e fácil. Isso permite aproveitar os melhores recursos das plataformas móveis para estudar e manter-se atualizado.
 
 ## Web
 <!-- <img src="preview.png" alt="preview desktop project" /> -->
 
 ### Description
 
-Contruido usando a tecnologia nextjs suportando a plataforma```web```, torna o processo de contrução de plataforma rapido fácil, com as features mais recentes e poderosas que a web disponibiliza.
+Construído utilizando a tecnologia Next.js e oferecendo suporte à plataforma web, torna o processo de desenvolvimento de plataforma rápido e fácil, incorporando as mais recentes e poderosas funcionalidades que a web disponibiliza.

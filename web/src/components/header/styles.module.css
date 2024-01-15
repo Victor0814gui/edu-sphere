@@ -5,12 +5,44 @@
   flex-direction: row;
   align-items: center;
   /* background-color: red; */
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 0 21px;
 }
 
 .content{
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 4px;
+  margin: 0 auto;
+}
+
+.buttonDefault,.button{
+  padding: 8px 21px;
+  border: 0;
+  box-shadow: 2px 2px 5px 2px #222222;
+  border-radius: 21px;
+  font-family: "Poppins",sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: opacity 0.2s;
+}
+
+.buttonDefault{
+  background-color: #333333;
+}
+
+.button{
+  background-color: #25DA67;
+  color: #333333;
+}
+
+
+.button:hover,.buttonDefault:hover{
+  opacity: 0.7;
+}
+
+.button:active,.buttonDefault:active{
+  opacity: 0.5;
 }

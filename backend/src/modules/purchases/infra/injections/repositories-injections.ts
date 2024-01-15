@@ -1,12 +1,17 @@
 import { container } from "tsyringe";
-import { ICreateProductRepository } from "../../repositories/i-create-product-repository";
-import { CreateProductRepository } from "../../repositories/implementation/create-product-repository";
-import { PurchaseSubscriptionRepository } from "../../repositories/implementation/create-subscription-repository";
-import { ListProductsRepository } from "../../repositories/implementation/list-products-repository";
-import { IListProductsRepository } from "../../repositories/i-list-products-repository";
-import { IListSubscriptionsRepository } from "../../repositories/i-list-subscriptions-repository";
-import { ListSubscriptionsRepository } from "../../repositories/implementation/list-subscriptions-repository";
-import { IPurchaseSubscriptionRepository } from "../../repositories/i-purchase-subscription-repository";
+
+import { ICreateProductRepository } from "@purchases/repositories/i-create-product-repository";
+import { CreateProductRepository } from "@purchases/repositories/implementation/create-product-repository";
+import { PurchaseSubscriptionRepository } from "@/src/modules/purchases/repositories/implementation/purchase-subscription-repository";
+import { ListProductsRepository } from "@purchases/repositories/implementation/list-products-repository";
+import { IListProductsRepository } from "@purchases/repositories/i-list-products-repository";
+import { IListSubscriptionsRepository } from "@purchases/repositories/i-list-subscriptions-repository";
+import { ListSubscriptionsRepository } from "@purchases/repositories/implementation/list-subscriptions-repository";
+import { IPurchaseSubscriptionRepository } from "@purchases/repositories/i-purchase-subscription-repository";
+import { IInvoicePaymentSucceededUseCase } from "@purchases/interfaces/i-invoice-payment-succeeded-use-case";
+import { InvoicePaymentSucceededUseCase } from "@purchases/use-cases/invoice-payment-succeeded-use-case";
+import { IListTransactionsCustomerRepository } from "../../repositories/i-list-transactions-customer-repository";
+import { ListTransactionsCustomerRepository } from "../../repositories/implementation/list-transactions-customer-repository";
 
 container.registerSingleton<ICreateProductRepository.Implementation>(
   "CreateProductRepository",
@@ -26,4 +31,14 @@ container.registerSingleton<IListProductsRepository.Implementation>(
 container.registerSingleton<IListSubscriptionsRepository.Implementation>(
   "ListSubscriptionsRepository",
   ListSubscriptionsRepository
+);
+
+container.registerSingleton<IInvoicePaymentSucceededUseCase.Implementation>(
+  "InvoicePaymentSucceededUseCase",
+  InvoicePaymentSucceededUseCase
+);
+
+container.registerSingleton<IListTransactionsCustomerRepository.Implementation>(
+  "ListTransactionsCustomerRepository",
+  ListTransactionsCustomerRepository
 );

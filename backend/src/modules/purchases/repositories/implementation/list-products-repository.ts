@@ -1,9 +1,10 @@
-import { ProductType } from "@/src/shared/application/entities/product";
 import { PrismaClient } from "@prisma/client";
 import { IListProductsRepository } from "../i-list-products-repository"
+import { ProductTypeEnum } from "@/src/shared/application/entities/enums/i-product-type";
+
+
 
 const database = new PrismaClient();
-
 
 export class ListProductsRepository
   implements IListProductsRepository.Implementation {
@@ -12,7 +13,7 @@ export class ListProductsRepository
 
     const deleteCustomerSubscription = await database.product.findMany({
       where: {
-        type: ProductType.product,
+        type: ProductTypeEnum.product,
       },
     })
 

@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { COLORS, FONTS } from "@shared/theme";
 import { Animated, StyleSheet } from "react-native";
-
+import { Flyout } from "react-native-windows";
 
 export const aditionalStyles = StyleSheet.create({
   title: {
@@ -25,11 +25,11 @@ export const Container = styled.View`
 `;
 
 
-export const Content = styled(Animated.View)`
+export const Content = styled(Flyout)`
   width: 500px;
   padding: 21px;
   border-radius: 12px;
-  background-color: ${COLORS.grey_180};
+  background-color: #f2f2f2;
 `;
 
 export const Title = styled.Text`
@@ -39,6 +39,6 @@ export const Title = styled.Text`
 `;
 export const Description = styled.Text`
   font-size: 14px;
-  color: #d9d9d9
+  color: #d9d9d9;
   margin-top: 18px;
 `;

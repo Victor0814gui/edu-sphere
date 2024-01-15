@@ -5,19 +5,15 @@ import { ProductType } from "./enums/i-product-type";
 type Product = {
   id: string;
   name: string;
-  price: number;
+  amount: number;
+  priceId: string;
+  productId: string;
   createdAt: Date;
-  updatedAt: Date | null;
-  description: string | null;
+  thumbnailUrl?: string | null;
+  updatedAt?: Date | null;
+  description?: string | null;
   type: ProductType;
   status: ProductStatus;
-  startDate?: Date | null;
-  endDate?: Date | null;
-  paymentMethod?: string | null;
-  billingCycle?: string | null;
-  nextBilling?: Date | null;
-  autoRenew?: boolean | null;
-  paymentDetails?: string | null;
 }
 
 export {

@@ -1,21 +1,36 @@
+import {
+  ElementType,
+  HTMLAttributes,
+  forwardRef,
+  HTMLInputTypeAttribute,
+} from "react";
 
 import styles from "./styles.module.css";
-import { ElementType } from "react";
 
-type InputProps = {
+type InputProps = HTMLAttributes<HTMLInputElement> & {
   premium?: boolean;
   icon?: ElementType;
-}
+  placeholder?: string;
+  type?: HTMLInputTypeAttribute;
+};
 
-export function Input({
-  premium = false,
-  icon: Icon,
-}: InputProps) {
-
-  return (
-    <div className={styles.container}>
-      {Icon && <Icon size={24} color="#d9d9d9" weight="bold" />}
-      <input className={styles.input} type="email" />
-    </div>
-  )
-}
+// eslint-disable-next-line react/display-name
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    { premium = false, placeholder, icon: Icon, type = "text", ...rest },
+    ref
+  ) => {
+    return (
+      <div className={styles.container}>
+        {Icon && <Icon size={24} color="#d9d9d9" weight="bold" />}
+        <input
+          {...rest}
+          ref={ref}
+          placeholder={placeholder}
+          className={styles.input}
+          type={type}
+        />
+      </div>
+    );
+  }
+);

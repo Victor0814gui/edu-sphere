@@ -8,6 +8,10 @@
   border: 2px solid transparent;
   transition: border 0.4s;
   position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .subscription header{
@@ -23,6 +27,7 @@
 .subscription h4 {
   color: #d9d9d9;
   font-weight: 500;
+  -webkit-line-clamp: 3;
 }
 
 .subscription ul {

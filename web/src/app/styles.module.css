@@ -41,16 +41,36 @@
   line-height: 68px;
   font-family: "Poppins";
   /* color: #25DA67; */
-  margin: 21px 0 41px 0;
+  margin: 21px 0 0 0;
 }
-
 
 .description{
   font-family: "Poppins";
   font-weight: 500;
   line-height: 24px;
   color: #d9d9d9;
-  margin-bottom: 21px;
+  margin: 21px 0;
+}
+
+.qualitiesList{
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+}
+
+.squareContent{
+  height: 52px;
+  padding: 0 21px;
+  border-radius: 5px;
+  background-color: #333333;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.squareContent:hover{
+  background-color: #444444;
 }
 
 .previewThumbnailContainer{
@@ -86,6 +106,10 @@
     flex-direction: row;
   }
   
+}
+
+.productInfo > div{
+  border: 1px solid #333333;
 }
 
 .productInfo h2,.productInfo p{

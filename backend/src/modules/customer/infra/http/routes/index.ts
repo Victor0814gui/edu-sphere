@@ -130,12 +130,6 @@ userRoutes.post(
 );
 
 
-userRoutes.use(
-  "/",
-  customerBusinessMiddleware,
-  // gatewayMiddleware,
-);
-
 
 
 export { userRoutes };

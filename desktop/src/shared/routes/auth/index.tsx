@@ -1,9 +1,9 @@
-import { UserDrawerType } from '../../types';
+import { UserDrawerType } from '@shared/types';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { enableScreens, enableFreeze } from "react-native-screens"
-import { AuthenticateAccountScreen } from "@/src/modules/session/screens/authenticate-account-screen";
-import { CreateCustomerScreen } from "@/src/modules/session/screens/create-customer-screen";
-import { AuthorizationAccountScreen } from "@/src/modules/session/screens/authorization-account-screen";
+import { AuthenticateAccountScreen, ROUTE_NAME } from "@modules/screens/authenticate-account-screen";
+import { CreateCustomerScreen } from "@modules/screens/create-customer-screen";
+import { AuthorizationAccountScreen } from "@modules/screens/authorization-account-screen";
 
 
 

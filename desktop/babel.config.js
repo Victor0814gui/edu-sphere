@@ -12,9 +12,7 @@ module.exports = {
         alias: {
           '@': './',
           tests: ['./tests/'],
-          '@customer': './src/modules/customer',
-          '@session': './src/modules/session',
-          '@rooms': './src/modules/rooms',
+          '@modules': './src/modules',
           '@shared': './src/shared',
         },
       },

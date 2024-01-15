@@ -1,4 +1,5 @@
 import { Customer } from "@/src/shared/application/entities/user";
+import { VerificationCode } from "@/src/shared/application/entities/verification-code";
 
 
 interface Permissions {
@@ -40,6 +41,12 @@ export namespace ICreateCustomerAccountRepository {
     }>;
   }
 
+  export namespace Code {
+    export type Params = VerificationCode;
+
+    export type Response = Promise<VerificationCode>;
+  }
+
   export interface Implementation {
     findUnique: (props: ICreateCustomerAccountRepository.FindUnique.Params)
       => ICreateCustomerAccountRepository.FindUnique.Response;
@@ -47,5 +54,7 @@ export namespace ICreateCustomerAccountRepository {
       => ICreateCustomerAccountRepository.Create.Response;
     update: (props: ICreateCustomerAccountRepository.Update.Params)
       => ICreateCustomerAccountRepository.Update.Response;
+    code: (props: ICreateCustomerAccountRepository.Code.Params)
+      => ICreateCustomerAccountRepository.Code.Response;
   }
 }

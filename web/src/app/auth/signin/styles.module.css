@@ -6,7 +6,6 @@
   flex-direction: column;
 }
 
-
 .content{
   display: flex;
   flex: 1;
@@ -25,7 +24,7 @@
   margin-top: 16px;
 }
 
-.box button{
+/* .box button{
   height: 42px;
   min-width: 320px;
   background-color: #25DA67;
@@ -35,4 +34,4 @@
   font-weight: 600;
   font-size: 15px;
   color: #2e2e2e;
-}
+} */

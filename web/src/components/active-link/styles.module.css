@@ -12,7 +12,7 @@
 }
 
 .content a svg{
-  color: #d9d9d9;
+  fill: #e2e2e2;
 }
 
 .content a:hover{
@@ -30,6 +30,14 @@
 .content .active {
   color: #333333; 
   background-color: #25DA67;
+}
+
+.content .active svg {
+  fill: #333333;
+}
+
+.content .active:hover svg {
+  fill: #e2e2e2;
 }
 
 .content svg {
