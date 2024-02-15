@@ -7,8 +7,17 @@ import { Channel } from "@src/components/channel";
 import { DashboardHeader } from "./components/header";
 import { Badge } from "@src/components/badge";
 import { Button } from "@src/components/button";
+import { useToastContextProvider } from "@src/hooks/toast";
 
 export default function Dashboard() {
+  const { addToast } = useToastContextProvider();
+
+  const handlerAddToast = () => {
+    addToast({
+      content: "Error ao entrar, verifique seu dados",
+      type: "warning",
+    });
+  };
   return (
     <div className={styles.container}>
       <Header />
@@ -28,6 +37,7 @@ export default function Dashboard() {
             <div className={styles.product} key={index} />
           ))}
         </div>
+        <button onClick={handlerAddToast}>Toast</button>
       </div>
       <Footer />
     </div>

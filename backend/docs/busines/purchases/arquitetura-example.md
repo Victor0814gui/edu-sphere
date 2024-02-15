@@ -3,6 +3,8 @@ modules/
       - use-cases/
       - repositories/
       - interfaces/
+      - views/
+	      - emails/
       - infra/
          - exceptions/
          - injections/

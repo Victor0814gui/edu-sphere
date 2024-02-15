@@ -16,7 +16,6 @@ Cadastro de Usuários: Neste módulo, você implementaria a funcionalidade que p
 
 - [ ] - **Hotorico de Penalidades:** Nesta funcionalidade o usuario poderava ver as penalidades que sofreu devido as suas ações burlando o sistema ou aplicadas pelos professores ou diretores da organização.
 
-
 - [ ] - **Papéis de Usuário:** Você implementaria a lógica para atribuir papéis específicos a cada usuário, como "Professor" ou "Aluno", permitindo que a plataforma conceda as permissões adequadas com base no papel de cada usuário.
 
 - [ ] - **Privacidade e Segurança:** Neste módulo, você garantiria a privacidade e segurança dos dados dos usuários, utilizando práticas de criptografia para armazenar senhas de forma segura e implementando mecanismos para proteger os dados pessoais dos usuários contra acesso não autorizado.
@@ -28,6 +27,7 @@ Nesse caso deve ser analizado a possivel substituição de permissões e roles p
 
 - [ ] - **Funcionalidade para comprar Produto**
 
+OBS: Uma possível falha de segurança pode ser implementada através dos módulos de middleware que não verificam as permissões no banco de dados, mas sim usando o token do que vai para o cliente. Deve ser estuda mais afundo para uma implementação mais segura.
 
 Permissões do sistema
 Admin

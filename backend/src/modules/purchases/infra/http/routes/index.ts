@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { container } from "tsyringe";
+import express from "express";
 import { userBusinessMiddleware } from "../middlewares/business-middleware";
 import { customerAuthenticationCheck } from "../middlewares/customer-authentication-check";
 
@@ -13,6 +14,7 @@ import { CreateProductController } from "../controller/create-product-controller
 import { PurchaseProductController } from "../controller/purchase-product-controller";
 import { SyncProductWithGatewayController } from "../controller/sync-product-with-gateway-controller";
 import { ListTransactionsCustomerController } from "../controller/list-transactions-customer-constroller";
+import { CreatePaymentIntentController } from "../controller/create-payment-controller";
 
 export const purchasesRoutes = Router();
 
@@ -26,10 +28,11 @@ const createProductController = container.resolve(CreateProductController);
 const purchaseProductController = container.resolve(PurchaseProductController);
 const syncProductWithGatewayController = container.resolve(SyncProductWithGatewayController);
 const listTransactionsCustomerController = container.resolve(ListTransactionsCustomerController);
-
+const createPaymentIntentController  =container.resolve(CreatePaymentIntentController);
 
 purchasesRoutes.post(
   "/webhooks",
+  express.raw({ type: 'application/json' }),
   // customerAuthenticationCheck,
   webhookListenerStripeController.handler,
 );
@@ -94,3 +97,9 @@ purchasesRoutes.get(
   // customerAuthenticationCheck,
   listTransactionsCustomerController.handler,
 );
+
+purchasesRoutes.post(
+  "/payment-intent",
+  // customerAuthenticationCheck,
+  createPaymentIntentController.handler,
+)

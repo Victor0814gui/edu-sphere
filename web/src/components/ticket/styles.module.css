@@ -1,55 +1,55 @@
-.ticket{
+.ticket {
   background-color: #2e2e2e;
   border-radius: 21px;
   min-width: 500px;
-  
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 21px 12px;
   gap: 12px;
 }
- 
-.content{
+
+.content {
   max-width: 400px;
 }
 
-.content span{
+.content span {
   color: #d1d1d1;
 }
 
-.separator{
-  border: 2px dashed #1F1F1F;
+.separator {
+  border: 2px dashed #1f1f1f;
   position: relative;
 }
 
-.separator::after{
+.separator::after {
   content: " ";
   height: 40px;
   width: 20px;
   top: -20px;
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   right: -2px;
   border-radius: 20px 0 0 20px;
   position: absolute;
 }
 
-.separator::before{
+.separator::before {
   content: " ";
   height: 40px;
   width: 20px;
   top: -20px;
   border-radius: 20px;
   border-radius: 0 20px 20px 0;
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   position: absolute;
   left: -2px;
 }
- 
 
-.icon{
+.buttonRemoveProductIcon {
   height: 40px;
   width: 40px;
+  border: 0;
   border-radius: 20px;
   background-color: #414141;
 

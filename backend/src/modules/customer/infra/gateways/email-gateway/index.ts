@@ -1,7 +1,9 @@
 import { PurchaseBusinessException } from "@/src/modules/purchases/infra/exceptions/business-exception";
 import nodemailer from "nodemailer";
-
-
+import { contentMessageTemplate } from "./template";
+import fs from "fs";
+import Handlebars from "handlebars";
+import Mail from "nodemailer/lib/mailer";
 
 const transporter = nodemailer.createTransport({
   port: 587,
@@ -19,20 +21,23 @@ const transporter = nodemailer.createTransport({
 type EmailGatewaySend = {
   email: string;
   subject: string;
-  text: string;
-  code: string;
+  path?: string;
+  variables?: any;
 }
 
 export class EmailGateway {
-
   public async send(params: EmailGatewaySend) {
 
+    const templateFileContent = fs.readFileSync(params.path!).toString("utf-8");
+    const templateParse = Handlebars.compile(templateFileContent);
+    const templateHTML = templateParse(params.variables);
+
     // Configurar o e-mail
-    const mailOptions = {
+    const mailOptions: Mail.Options = {
       from: process.env.SECRET_EMAIL,
       to: params.email,
       subject: params.subject,
-      text: params.text + "Code: " + params.code,
+      html: templateHTML
     };
 
     await transporter.sendMail(mailOptions, (error, info) => {

@@ -12,6 +12,8 @@ import { IInvoicePaymentSucceededUseCase } from "@purchases/interfaces/i-invoice
 import { InvoicePaymentSucceededUseCase } from "@purchases/use-cases/invoice-payment-succeeded-use-case";
 import { IListTransactionsCustomerRepository } from "../../repositories/i-list-transactions-customer-repository";
 import { ListTransactionsCustomerRepository } from "../../repositories/implementation/list-transactions-customer-repository";
+import { InvoicePaymentSucceededRepository } from "../../repositories/implementation/invoice-payment-succeeded-repository";
+import { IInvoicePaymentSucceededRepository } from "../../repositories/i-invoice-payment-succeeded-repository";
 
 container.registerSingleton<ICreateProductRepository.Implementation>(
   "CreateProductRepository",
@@ -42,3 +44,8 @@ container.registerSingleton<IListTransactionsCustomerRepository.Implementation>(
   "ListTransactionsCustomerRepository",
   ListTransactionsCustomerRepository
 );
+
+container.registerSingleton<IInvoicePaymentSucceededRepository.Implementation>(
+  "InvoicePaymentSucceededRepository",
+  InvoicePaymentSucceededRepository,
+)

@@ -26,7 +26,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
 
   try {
     const { sub, permissions, role } = verify(token, process.env.JWT_SECRET as string) as IPayload
-    request.userId = sub;
+    request.customerId = sub;
     request.permissions = permissions;
     request.role = role;
 
@@ -34,7 +34,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
   } catch (err) {
     return response.status(401).json({
       message: "token expired",
-      type: "unautorized"
+      type: "unauthorized"
     })
   }
 }

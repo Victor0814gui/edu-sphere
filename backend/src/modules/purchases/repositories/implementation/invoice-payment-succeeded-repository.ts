@@ -5,7 +5,7 @@ import { IInvoicePaymentSucceededRepository } from "../i-invoice-payment-succeed
 const database = new PrismaClient();
 
 export class InvoicePaymentSucceededRepository
-  implements IInvoicePaymentSucceededRepository {
+  implements IInvoicePaymentSucceededRepository.Implementation {
 
   public async create(params: IInvoicePaymentSucceededRepository.Create.Params):
     IInvoicePaymentSucceededRepository.Create.Response {

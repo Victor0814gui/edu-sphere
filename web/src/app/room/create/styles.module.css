@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container form {
+  transition: box-shadow 0.2s;
+}
+
+.box {
+  padding: 21px;
+  background-color: #333333;
+  border-radius: 12px;
+}
+
+.boxActive {
+  padding: 21px;
+  background-color: blueviolet;
+  -webkit-box-shadow: -1px 15px 52px -13px rgb(43, 43, 43);
+  -moz-box-shadow: -1px 15px 52px -13px rgb(43, 43, 43);
+  box-shadow: -1px 15px 52px -13px rgb(43, 43, 43);
+}
+
+.inputHidden {
+  display: none;
+}
+
+.fileContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

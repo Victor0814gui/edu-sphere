@@ -21,6 +21,8 @@ import { DeleteCustomerAccountRepository } from "../../repositories/implementati
 import { IDeleteCustomerAccountRepository } from "../../repositories/i-delete-customer-account-repository";
 import { CustomerAuthorizationAccountRepository } from "../../repositories/implementation/customer-authorization-account-repository";
 import { ICustomerAuthorizationAccountRepository } from "../../repositories/i-customer-authorization-account-repository";
+import { IRecoveryCustomerPasswordRepository } from "../../repositories/i-recovery-customer-password-repository";
+import { RecoveryCustomerPasswordRepository } from "../../repositories/implementation/recovery-customer-password-repository";
 
 
 container.registerSingleton<ICreateCustomerAccountRepository.Implementation>(
@@ -76,4 +78,9 @@ container.registerSingleton<IDeleteCustomerAccountRepository.Implementation>(
 container.registerSingleton<ICustomerAuthorizationAccountRepository.Implementation>(
   "CustomerAuthorizationAccountRepository",
   CustomerAuthorizationAccountRepository
+)
+
+container.registerSingleton<IRecoveryCustomerPasswordRepository.Implementation>(
+  "RecoveryCustomerPasswordRepository",
+  RecoveryCustomerPasswordRepository
 )

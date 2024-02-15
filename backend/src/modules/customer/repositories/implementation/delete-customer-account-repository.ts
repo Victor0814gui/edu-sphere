@@ -11,7 +11,7 @@ export class DeleteCustomerAccountRepository
 
     const findCustomer = database.user.findFirst({
       where: {
-        id: params.customerId,
+        id: params.customerId,   
       },
     })
 

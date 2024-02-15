@@ -19,6 +19,7 @@ export class SyncProductWithGatewayUseCase
   public async execute(params: ISyncProductWithGatewayUseCase.Params):
     ISyncProductWithGatewayUseCase.Response {
 
+
     const subscriptionCustomerAccountsGatewayResponse =
       await this.sessionPurchaseProductGateway.findProduct({
         priceId: params.priceId,

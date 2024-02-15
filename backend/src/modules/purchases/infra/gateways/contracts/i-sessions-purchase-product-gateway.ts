@@ -1,3 +1,5 @@
+import { PaymentIntent as PaymentIntentType } from "@/src/shared/application/entities/payment-intent"
+
 import { ProductStatus } from "@/src/shared/application/entities/enums/i-product-status";
 import { Product } from "@/src/shared/application/entities/product";
 
@@ -20,6 +22,17 @@ namespace ISessionPurchaseProductGateway {
       currency: string | null
       amount: number | null
     }>;
+  }
+}
+
+namespace ISessionPurchaseProductGateway {
+  export namespace PaymentIntent {
+    export type Params = {
+      amount: number;
+      currency: string;
+    }
+
+    export type Response = Promise<PaymentIntentType | null>;
   }
 }
 
@@ -71,6 +84,8 @@ namespace ISessionPurchaseProductGateway {
       => ISessionPurchaseProductGateway.FindProduct.Response;
     create: (props: ISessionPurchaseProductGateway.Create.Params)
       => ISessionPurchaseProductGateway.Create.Response;
+    paymentIntent: (props: ISessionPurchaseProductGateway.PaymentIntent.Params)
+    => ISessionPurchaseProductGateway.PaymentIntent.Response;
   }
 }
 

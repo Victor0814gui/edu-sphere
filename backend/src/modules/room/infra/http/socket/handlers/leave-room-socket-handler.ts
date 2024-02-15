@@ -1,8 +1,8 @@
-import { LeaveRoomUseCase } from "@/src/modules/room/use-cases/leave-room-use-case";
+import { container } from "tsyringe";
+import { Server, Socket } from "socket.io";
 import { Room } from "@/src/shared/application/entities/room";
 import { routeName } from "@/src/shared/infra/interfaces/routes";
-import { Server, Socket } from "socket.io";
-import { container } from "tsyringe";
+import { LeaveRoomUseCase } from "@/src/modules/room/use-cases/leave-room-use-case";
 
 
 type IParams = {
@@ -24,7 +24,5 @@ export function LeaveRoomSocketHandler(io: Server, socket: Socket) {
       response(leaveRoomUseCaseResponse);
     }
   }
-
   socket.on(routeName.LEAVE_ROOM, leave)
-
 }

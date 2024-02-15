@@ -1,3 +1,21 @@
+.container div::after {
+  content: " ";
+  top: -14px;
+  right: 14px;
+  background-color: #00b0ff;
+  position: absolute;
+  border-radius: 5px;
+
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* .container:nth-child(2)::after {
+  bottom: -14px;
+  left: 14px;
+} */
+
 .container div {
   padding: 21px;
   margin: 5px;
@@ -12,55 +30,60 @@
   gap: 16px;
 }
 
- 
-
-.container .premium{
-  border: 2px solid #25DA67;
+.container .premium::after {
+  left: 0;
+  bottom: -14px;
 }
 
 .container div h2 {
   font-size: 32px;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+.container h4 {
+  font-family: "Poppins", sans-serif;
 }
 
 .container div h4 {
   color: #d9d9d9;
-  font-family: 'Poppins',sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .container div ul {
   list-style-type: none;
 }
 
-.container div ul li{
+.container div ul li {
   color: #999999;
 }
 
-.container div:hover{
-  border: 2px solid #d9d9d9;
+.container div:hover div::after:hover {
+  right: 0;
+  top: 0;
 }
 
 .container div button {
   border: 0;
   width: 100%;
   padding: 8px 28px;
+  border-radius: 21px;
   font-family: "Poppins", sans-serif;
-  background-color:#444444;
+  background-color: #444444;
   font-size: 14px;
   font-weight: 700;
   transition: 0.2s;
   color: #999999;
 }
 
-.container div .active{
-  background-color:#25DA67;
+.container div .active {
+  background-color: #25da67;
   color: #222222;
 }
 
 .container div .active:hover {
-  background-color:#0f9647;
+  background-color: #0f9647;
 }
 
 .container div button:hover {
-  background-color:#333333;
+  background-color: #333333;
 }

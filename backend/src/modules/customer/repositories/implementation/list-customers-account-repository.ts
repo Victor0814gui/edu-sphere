@@ -11,6 +11,11 @@ export class ListCustomersRepository
 
     const findUniqueUserResponse = await database.user.findMany({
       include: {
+        codes: {
+          select:{
+            id: true,
+          }
+        },
         permissions: {
           select: {
             name: true
@@ -20,7 +25,7 @@ export class ListCustomersRepository
           select: {
             name: true
           }
-        }
+        },
       }
     });
 

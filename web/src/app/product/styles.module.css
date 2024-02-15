@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 14px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+@media (max-width: 720px) {
+  .content section:first-child {
+    flex-direction: column;
+    display: flex;
+    margin-top: 71px;
+    align-items: center;
+  }
+}
+
+.content section {
+  display: flex;
+  justify-content: space-between;
+  gap: 21px;
+}
+
+.content section:first-child {
+  display: flex;
+  margin-top: 71px;
+}

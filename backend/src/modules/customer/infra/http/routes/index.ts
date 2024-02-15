@@ -18,6 +18,7 @@ import { rolesMiddleware } from "../middlewares/roles-middleware";
 import { permissionsMiddleware } from "../middlewares/permissions-middleware";
 import { gatewayMiddleware } from "../middlewares/gateway-middleware";
 import { CustomerAuthorizationAccountController } from "../controllers/customer-authorization-account-controller";
+import { RecoveryCustomerPasswordController } from "../controllers/recovery-customer-password-controller";
 
 const customerAuthorizationAccountController = container.resolve(CustomerAuthorizationAccountController)
 const createCustomerAccountController = new CreateCustomerAccountController();
@@ -31,8 +32,9 @@ const updateRoleController = new UpdateRoleController();
 const createProductController = container.resolve(CreateProductController);
 const purchaseProductToCustomerController = container.resolve(PurchaseProductToCustomerController);
 const authenticationCustomerAccountController = container.resolve(AuthenticationCustomerAccountController);
-const userRoutes = Router();
+const recoveryCustomerPasswordController = container.resolve(RecoveryCustomerPasswordController);
 
+const userRoutes = Router();
 
 userRoutes.post(
   "/signup",
@@ -63,6 +65,14 @@ userRoutes.get(
   // rolesMiddleware("student"),
   // permissionsMiddleware(["student.list"]),
   listCustomersController.handler
+);
+
+userRoutes.post(
+  "/recovery/password",
+  // customerAuthenticationCheck,
+  // rolesMiddleware("student"),
+  // permissionsMiddleware(["student.list"]),
+  recoveryCustomerPasswordController.handler
 );
 
 userRoutes.get(

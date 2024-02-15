@@ -83,4 +83,25 @@ export class SessionPurchaseProductGateway
 
     return response;
   }
+
+  public async paymentIntent(params: ISessionPurchaseProductGateway.PaymentIntent.Params):
+  ISessionPurchaseProductGateway.PaymentIntent.Response {
+
+    const paymentIntents = await stripe.paymentIntents.create({
+      amount: params.amount!,
+      currency: params.currency,
+      automatic_payment_methods: { enabled: false },
+    });
+
+    const response = {
+      id: paymentIntents.id,
+      clientSecret: paymentIntents.client_secret,
+      amount: paymentIntents.amount,
+    }
+
+    return {
+      ...paymentIntents,
+      clientSecret: paymentIntents.client_secret!,
+    };
+  }
 }

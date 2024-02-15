@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.listSubscriptions {
+  display: flex;
+  flex-direction: row;
+  gap: 21px;
+}
+
+.info {
+  padding: 21px;
+  background-color: #222222;
+  gap: 21px;
+
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background-color: #333333;
+}
+
+.content {
+}
+
+.content p {
+  color: #d9d9d9;
+}
+
+.link {
+  color: #cd00ea;
+}

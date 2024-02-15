@@ -1,0 +1,60 @@
+.container{
+  min-height: 100vh;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+.content{
+  width: 100%;
+  max-width: 1220px;
+  margin: 70px auto;
+  
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.profile{
+}
+
+.actions{
+
+}
+
+.productsList{
+  display: grid;
+  grid-template-columns: repeat(4, 54px); /* Define 4 colunas de 54px */
+  grid-template-rows: repeat(3, 54px); /* Define 3 linhas de 54px */
+  gap: 5px; /* Espaço entre os itens (opcional) */
+  /* Defina largura e altura para o grid-container conforme necessário */
+  width: 242px; /* (4 * 54) + (3 - 1) * gap = 242px */
+  height: 167px; /* (3 * 54) + (4 - 1) * gap = 167px */
+}
+
+.product{
+  height: 56px;
+  width: 56px;
+  border-radius: 5px;
+  background-color: #333333;
+}
+
+.product:hover{
+  background-color: #444444;
+}
+
+.product:active{
+  background-color: #555555;
+}
+
+.listChannels{
+  display: flex;
+  flex: 1;
+  gap: 5px;
+  padding: 72px 21px;
+  border-radius: 21px;
+  background-color: #222222;
+}

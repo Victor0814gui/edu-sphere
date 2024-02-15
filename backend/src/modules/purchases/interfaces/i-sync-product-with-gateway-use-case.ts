@@ -5,7 +5,7 @@ declare namespace ISyncProductWithGatewayUseCase { }
 
 namespace ISyncProductWithGatewayUseCase {
   export type Params = {
-    priceId: string
+    priceId: string;
   };
 }
 

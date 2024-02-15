@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import fs from "fs";
 import { inject, injectable } from "tsyringe"
 import { CustomerBusinessException } from "@customer/infra/exceptions/business-exception";
 import { ICreateCustomerAccountRepository } from "../repositories/i-create-customer-account-repository";
@@ -9,6 +10,7 @@ import { ICreateNewDateService } from "../infra/services/contracts/i-create-new-
 import { IEncryptDataService } from "../infra/services/contracts/i-encrypt-data-service";
 import { PurchaseBusinessException } from "../../purchases/infra/exceptions/business-exception";
 import { EmailGateway } from "../infra/gateways/email-gateway";
+import { resolve } from "path";
 
 
 function generateAlphanumericCode() {
@@ -35,16 +37,16 @@ export class CreateCustomerAccountUseCase
     private encryptDataService: IEncryptDataService.Implementation,
   ) { }
 
-  public async execute(props: ICreateCustomerAccountUseCase.Params):
+  public async execute(params: ICreateCustomerAccountUseCase.Params):
     ICreateCustomerAccountUseCase.Response {
 
-    if (!props.name || !props.email || !props.avatarUrl || !props.password) {
+    if (!params.name || !params.email || !params.avatarUrl || !params.password) {
       throw new PurchaseBusinessException("data is missin", 403);
     }
 
     const verifyCustomerAlreadyExists =
       await this.createCustomerAccountRepository.findUnique({
-        email: props.email
+        email: params.email
       });
 
     if (verifyCustomerAlreadyExists?.id) {
@@ -54,7 +56,7 @@ export class CreateCustomerAccountUseCase
     const customerId = this.createUUIDTokenService.create();
     const createNewDate = this.createNewDateService.create();
 
-    const passwordHash = await this.encryptDataService.execute(props.password);
+    const passwordHash = await this.encryptDataService.execute(params.password);
 
     if (!passwordHash) {
       throw new CustomerBusinessException("Hash password error", 400);
@@ -62,7 +64,7 @@ export class CreateCustomerAccountUseCase
 
     const createCustomerAccountResponse =
       await this.createCustomerAccountRepository.create({
-        ...props,
+        ...params,
         id: customerId,
         password: passwordHash,
         createdAt: createNewDate,
@@ -79,12 +81,24 @@ export class CreateCustomerAccountUseCase
       activatedAt: null,
     });
 
+
+    const templatePath = resolve(
+      __dirname,
+      "..",
+      "views",
+      "emails",
+      "authorization-account.hbs"
+    );
+
     const emailGateway = new EmailGateway();
     await emailGateway.send({
-      email: props.email,
-      subject: "codigo de verificação",
-      text: "seu codigo não deve ser compartilhado com mais ninguém",
-      code,
+      email: params.email,
+      subject: "código de verificação EduSphere",
+      path: templatePath,
+      variables:{
+        code,
+        name: params.name,
+      }
     })
 
     return createCustomerAccountResponse;

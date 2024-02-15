@@ -1,10 +1,13 @@
-"use client"
-import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
+"use client";
+import {
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 export const PaymentForm = () => {
-
   const stripe = useStripe();
   const elements = useElements();
 
@@ -18,7 +21,7 @@ export const PaymentForm = () => {
     const result = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:5000/payment/success",
+        return_url: "http://localhost:3000/payment/success",
       },
     });
 
@@ -27,7 +30,6 @@ export const PaymentForm = () => {
     } else {
     }
   };
-
 
   return (
     <form className={styles.container}>
@@ -39,7 +41,9 @@ export const PaymentForm = () => {
         }}
         className={styles.form}
       />
-      <button onClick={handleSubmit} className={styles.button}>COMPRAR</button>
+      <button onClick={handleSubmit} className={styles.button}>
+        COMPRAR
+      </button>
     </form>
   );
 };
